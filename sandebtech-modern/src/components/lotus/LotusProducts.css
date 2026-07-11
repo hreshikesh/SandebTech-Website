@@ -1,0 +1,142 @@
+.lotus-products{
+    padding:110px 0;
+    background:#f8fafc;
+}
+
+.lotus-product-grid{
+    margin-top:70px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+}
+
+.lotus-card{
+    background:#fff;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    border:1px solid #e5e7eb;
+
+    transition:.35s;
+
+    box-shadow:0 12px 30px rgba(15,23,42,.05);
+}
+
+.lotus-card:hover{
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(15,23,42,.10);
+}
+
+.lotus-card-image{
+    overflow:hidden;
+}
+
+.lotus-card-image img{
+    width:100%;
+
+    height:250px;
+
+    object-fit:contain;
+
+    background:#fff;
+
+    padding:20px;
+
+    transition:.4s;
+}
+
+.lotus-card:hover img{
+    transform:scale(1.05);
+}
+
+.lotus-card-content{
+    padding:30px;
+}
+
+.lotus-card-content h3{
+    font-size:28px;
+
+    color:#1e293b;
+
+    margin-bottom:24px;
+}
+
+.lotus-card-content ul{
+    list-style:none;
+
+    margin-bottom:30px;
+}
+
+.lotus-card-content li{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:16px;
+
+    color:#475569;
+
+    line-height:1.6;
+}
+
+.lotus-card-content li svg{
+    color:#0F4C81;
+
+    flex-shrink:0;
+}
+
+.lotus-link{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#0F4C81;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.lotus-link:hover{
+    gap:14px;
+}
+
+@media(max-width:992px){
+
+.lotus-product-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.lotus-products{
+    padding:80px 0;
+}
+
+.lotus-card-image img{
+    height:220px;
+}
+
+.lotus-card-content{
+    padding:24px;
+}
+
+.lotus-card-content h3{
+    font-size:24px;
+}
+
+}

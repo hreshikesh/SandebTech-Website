@@ -1,0 +1,48 @@
+.energy-section{
+    padding:110px 0;
+    background:#f8fafc;
+}
+
+.energy-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.energy-content h2{
+    font-size:42px;
+    color:#1e293b;
+    margin-bottom:24px;
+    line-height:1.2;
+}
+
+.energy-content p{
+    color:#64748b;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+@media(max-width:992px){
+
+.energy-grid{
+    grid-template-columns:1fr;
+}
+
+.service-image{
+    order:-1;
+}
+
+}
+
+@media(max-width:768px){
+
+.energy-section{
+    padding:80px 0;
+}
+
+.energy-content h2{
+    font-size:32px;
+}
+
+}

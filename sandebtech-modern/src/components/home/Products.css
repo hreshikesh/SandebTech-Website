@@ -1,0 +1,156 @@
+.products {
+  padding: 110px 0;
+  background: #ffffff;
+}
+
+.products-heading {
+  text-align: center;
+  max-width: 720px;
+  margin: auto auto 70px;
+}
+
+.products-heading span {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #eef6ff;
+  color: #0F4C81;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.products-heading h2 {
+  font-size: 46px;
+  color: #1e293b;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.products-heading p {
+  color: #64748b;
+  line-height: 1.8;
+}
+
+/* Desktop: 2 columns */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
+  transition: .35s;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.product-content {
+  padding: 32px;
+}
+
+.product-content h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #1e293b;
+}
+
+.product-content p {
+  color: #64748b;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.product-content button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0F4C81;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.product-card:hover button {
+  gap: 16px;
+  transition: .2s;
+}
+
+
+/* ==========================================
+   MEDIA QUERIES 
+   ========================================== */
+
+/* Tablets & iPads */
+@media (max-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* Keeps 2 per row */
+    gap: 20px; /* Reduces space so things fit nicely */
+  }
+
+  .product-content {
+    padding: 24px; /* Slightly compact card interior padding */
+  }
+
+  .product-content h3 {
+    font-size: 22px;
+  }
+}
+
+/* Mobile Phones (Still forces 2 per row) */
+@media (max-width: 576px) {
+  .products {
+    padding: 60px 0;
+  }
+
+  .products-heading h2 {
+    font-size: 32px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 12px; /* Tight grid gap for mobile screen efficiency */
+  }
+
+  .product-card {
+    border-radius: 16px; /* Scales down border curve for smaller elements */
+  }
+
+  .product-card img {
+    height: 140px; /* Shorter image so the text content takes priority on tiny screens */
+  }
+
+  .product-content {
+    padding: 14px; /* Compact layout spacing */
+  }
+
+  .product-content h3 {
+    font-size: 16px; /* Prevents long card titles from stacking awkwardly */
+    margin-bottom: 8px;
+  }
+
+  .product-content p {
+    font-size: 12px; /* Small layout description text scale */
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .product-content button {
+    font-size: 13px;
+    gap: 6px;
+  }
+}

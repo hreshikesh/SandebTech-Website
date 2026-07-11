@@ -1,0 +1,74 @@
+.lotus-intro{
+    padding:110px 0;
+    background:#fff;
+}
+
+.lotus-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.lotus-image img{
+    width:100%;
+    border-radius:24px;
+    box-shadow:0 20px 40px rgba(15,23,42,.08);
+}
+
+.lotus-content h2{
+    font-size:46px;
+    color:#1e293b;
+    margin:18px 0 28px;
+}
+
+.lotus-content p{
+    color:#64748b;
+    line-height:1.9;
+    margin-bottom:20px;
+}
+
+.lotus-btn{
+    margin-top:15px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:15px 28px;
+
+    background:#0F4C81;
+    color:#fff;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.35s;
+}
+
+.lotus-btn:hover{
+    transform:translateY(-3px);
+    background:#103d67;
+}
+
+@media(max-width:992px){
+
+.lotus-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.lotus-intro{
+    padding:80px 0;
+}
+
+.lotus-content h2{
+    font-size:34px;
+}
+
+}

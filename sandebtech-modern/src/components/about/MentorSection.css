@@ -1,0 +1,84 @@
+.mentor-section{
+    padding:110px 0;
+    background:#ffffff;
+}
+
+.mentor-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:40px;
+    max-width:900px;
+    margin:0 auto;
+}
+
+.mentor-card{
+    background:#fff;
+    border-radius:24px;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(15,23,42,.08);
+    transition:.35s;
+    border:1px solid #e5e7eb;
+}
+
+.mentor-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 45px rgba(15,23,42,.12);
+}
+
+.mentor-image{
+    overflow:hidden;
+}
+
+.mentor-image img{
+    width:100%;
+    height:460px;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.mentor-card:hover img{
+    transform:scale(1.05);
+}
+
+.mentor-card h3{
+    padding:28px;
+    font-size:24px;
+    color:#1e293b;
+}
+
+/* ==========================================
+   MEDIA QUERIES FOR MOBILE & TABLETS
+   ========================================== */
+
+@media (max-width: 768px) {
+  .mentor-section {
+    padding: 80px 0;
+  }
+
+  /* Switch grid to flexbox on mobile to allow the odd card to center */
+  .mentor-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px; /* Smaller gap gives cards more horizontal breathing room on mobile */
+    padding: 0 15px; /* Prevents cards from touching screen edges */
+  }
+
+  .mentor-card {
+    /* 6px accounts for the 12px gap split between 2 items */
+    flex: 0 0 calc(50% - 6px); 
+    border-radius: 16px; /* Slightly tighter border radius to scale with smaller cards */
+  }
+
+  .mentor-image img {
+    height: 220px; /* Shorter image height so they look proportional on small screens */
+  }
+
+  .mentor-card h3 {
+    padding: 16px 12px;
+    font-size: 16px; /* Keeps text small so names don't wrap awkwardly */
+  }
+
+
+}

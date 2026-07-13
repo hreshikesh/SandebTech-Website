@@ -166,3 +166,25 @@
         margin-bottom: 22px;
     }
 }
+
+.product-link{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+font:inherit;
+
+text-decoration:none;
+
+/* keep your existing styles */
+
+}

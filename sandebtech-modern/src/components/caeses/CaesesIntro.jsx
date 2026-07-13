@@ -3,6 +3,13 @@ import "./CaesesIntro.css";
 import { ExternalLink } from "lucide-react";
 
 import introImg from "../../assets/images/caeses/caeses.webp";
+import ProtectedAction from "../auth/ProtectedAction";
+
+
+const openProduct = (url) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
 
 function CaesesIntro() {
   return (
@@ -45,17 +52,19 @@ function CaesesIntro() {
               provides technical promotion and support for CAESES.
             </p>
 
-            <a
-              href="https://www.caeses.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="caeses-btn"
+      
+
+            <ProtectedAction
+              action={() => openProduct("https://www.caeses.com/")}
             >
-              Visit Official Website
+              <button className="caeses-btn">
 
-              <ExternalLink size={18} />
+                Visit Official Website
 
-            </a>
+                <ExternalLink size={18} />
+
+              </button>
+            </ProtectedAction>
 
           </div>
 

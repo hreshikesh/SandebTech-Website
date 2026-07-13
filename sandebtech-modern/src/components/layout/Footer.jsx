@@ -13,7 +13,7 @@ import {
 import { FaLinkedinIn } from "react-icons/fa6";
 
 import logo from "../../assets/images/logo/logo.webp";
-import { navLinks } from "../../constants/navigation";
+import { links } from "../../constants/navigation";
 
 function Footer() {
 
@@ -69,7 +69,7 @@ function Footer() {
 
             <h3>Quick Links</h3>
 
-            {navLinks.map((link) => (
+            {links.map((link) => (
 
               <Link
                 key={link.id}

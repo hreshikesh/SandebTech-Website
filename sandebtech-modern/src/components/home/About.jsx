@@ -3,13 +3,8 @@ import { CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import aboutImage from "../../assets/images/about/about1.webp";
+import { features } from "../../data/feactures";
 
-const features = [
-  "Electrical Engineering Solutions",
-  "Industrial Automation Systems",
-  "PLC & SCADA Integration",
-  "Control Panel Design & Manufacturing",
-];
 
 function About() {
   return (

@@ -1,0 +1,71 @@
+.meeting-fab{
+
+position:fixed;
+
+right:28px;
+
+bottom:34px;
+
+z-index:999;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:15px 24px;
+
+border:none;
+
+border-radius:999px;
+
+background:linear-gradient(135deg,#0f4c81,#2563eb);
+
+color:#fff;
+
+font-size:15px;
+
+font-weight:600;
+
+cursor:pointer;
+
+box-shadow:0 20px 45px rgba(15,76,129,.35);
+
+transition:.35s;
+
+}
+
+.meeting-fab:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 28px 55px rgba(15,76,129,.45);
+
+}
+
+.meeting-fab svg{
+
+flex-shrink:0;
+
+}
+
+@media(max-width:768px){
+
+.meeting-fab{
+
+right:18px;
+
+bottom:20px;
+
+padding:14px 20px;
+
+}
+
+.meeting-fab span{
+
+display:none;
+
+}
+
+}

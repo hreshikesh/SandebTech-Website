@@ -1,6 +1,5 @@
 export const SITE = {
   name: "SandebTech",
-  phone: "",
-  email: "",
-  logo: "/src/assets/images/logo/logo.webp",
+  phone: "+91789478585",
+  email: "sandebtech@gmail.com",
 };

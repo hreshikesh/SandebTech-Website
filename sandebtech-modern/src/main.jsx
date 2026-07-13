@@ -6,13 +6,16 @@ import { HelmetProvider } from "react-helmet-async";
 
 import "./index.css";
 import App from "./App";
+import { AuthProvider } from "./context/AuthContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <AuthProvider>
+      <HelmetProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

@@ -3,10 +3,12 @@ import PageBanner from "../components/common/PageBanner";
 import ShipflowIntro from "../components/shipflow/ShipflowIntro";
 import ProductSuite from "../components/shipflow/ProductSuite";
 import Applications from "../components/shipflow/Applications";
+import PageTransition from "../components/PageTransition/PageTransition";
 
 function ShipflowCFD() {
   return (
     <>
+      <PageTransition />
       <PageBanner
         title="CFD Software - SHIPFLOW"
         subtitle="Professional CFD Software for Ship Design"

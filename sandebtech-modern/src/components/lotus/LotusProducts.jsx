@@ -6,6 +6,14 @@ import ltgImg from "../../assets/images/lotus/products/ltg.webp";
 import lmuImg from "../../assets/images/lotus/products/lmu20p1.webp";
 import lbkImg from "../../assets/images/lotus/products/lbk0504.webp";
 
+import ProtectedAction from "../auth/ProtectedAction";
+
+
+const openProduct = (url) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
+
 const products = [
   {
     title: "LTG Family",
@@ -104,17 +112,18 @@ function LotusProducts() {
 
                 </ul>
 
-                <a
-                  href={product.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="lotus-link"
+
+                <ProtectedAction
+                  action={() => openProduct(product.link)}
                 >
-                  Visit Product
+                  <button className="lotus-link">
 
-                  <ArrowUpRight size={18} />
+                    Visit Product
 
-                </a>
+                    <ArrowUpRight size={18} />
+
+                  </button>
+                </ProtectedAction>
 
               </div>
 

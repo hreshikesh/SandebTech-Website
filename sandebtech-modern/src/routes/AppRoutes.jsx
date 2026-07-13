@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import Layout from "../components/layout/Layout";
 
@@ -14,64 +16,100 @@ import Turbomachinery from "../pages/Turbomachinery";
 import LotusMarine from "../pages/LotusMicro";
 
 import Contact from "../pages/Contact";
+import Meeting from "../pages/Meeting";
+import Loader from "../components/Loader/Loader";
+import NotFound from "../pages/NotFound";
+import AuthManager from "../components/auth/AuthManager";
 
 function App() {
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+
+      setLoading(false);
+
+    }, 1800);
+
+    return () => clearTimeout(timer);
+
+  }, []);
+  if (loading) {
+
+    return <Loader />;
+
+  }
   return (
-    <Routes>
+    <>
+      <AnimatePresence mode="wait">
 
-      <Route element={<Layout />}>
+        <Routes location={location} key={location.pathname}>
 
-        <Route
-          path="/"
-          element={<Home />}
-        />
+          <Route element={<Layout />}>
 
-        <Route
-          path="/about"
-          element={<About />}
-        />
+            <Route
+              path="/"
+              element={<Home />}
+            />
 
-        <Route
-          path="/services"
-          element={<Services />}
-        />
+            <Route
+              path="/about"
+              element={<About />}
+            />
 
-        <Route
-          path="/solutions"
-          element={<Solutions />}
-        />
+            <Route
+              path="/services"
+              element={<Services />}
+            />
 
-        <Route
-          path="/solutions/shipflow-cfd"
-          element={<ShipflowCFD />}
-        />
+            <Route
+              path="/solutions"
+              element={<Solutions />}
+            />
 
-        <Route
-          path="/solutions/caeses"
-          element={<Caeses />}
-        />
+            <Route
+              path="/solutions/shipflow-cfd"
+              element={<ShipflowCFD />}
+            />
 
-        <Route
-          path="/solutions/turbomachinery"
-          element={<Turbomachinery />}
-        />
+            <Route
+              path="/solutions/caeses"
+              element={<Caeses />}
+            />
 
-        <Route
-          path="/solutions/lotus-marine"
-          element={<LotusMarine />}
-        />
+            <Route
+              path="/solutions/turbomachinery"
+              element={<Turbomachinery />}
+            />
+
+            <Route
+              path="/solutions/lotus-marine"
+              element={<LotusMarine />}
+            />
 
 
-        
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
-       
 
-      </Route>
+            <Route
+              path="/contact"
+              element={<Contact />}
+            />
 
-    </Routes>
+            <Route
+              path="/meeting"
+              element={<Meeting />}
+            />
+
+            <Route path="/*" element={<NotFound />} />
+
+          </Route>
+
+        </Routes>
+
+      </AnimatePresence>
+      <AuthManager />
+    </>
   );
 }
 

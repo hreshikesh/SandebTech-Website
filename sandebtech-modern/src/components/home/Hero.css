@@ -230,21 +230,27 @@
    RESPONSIVE
 =========================== */
 
-/* FIX: new intermediate breakpoint — smooths tablet card layout
-   before the full 1-column collapse at 1100px */
+
 @media (max-width: 1300px) {
     .hero-wrapper {
         padding-inline: 20px;
     }
 }
 
+/* ===========================
+   RESPONSIVE MODIFICATIONS
+=========================== */
+
 @media (max-width: 1100px) {
     .hero-wrapper {
         grid-template-columns: 1fr;
     }
 
+    /* CHANGED: Changed from -1 to 1 so text content comes FIRST, image comes SECOND */
     .hero-image {
-        order: -1;
+        order: 1;
+        margin-top: 40px;
+        /* Optional: adds nice breathing room above the image */
     }
 
     .hero-content {
@@ -259,20 +265,27 @@
         height: 500px;
     }
 
-    /* FIX: pull card in so it doesn't overhang off-canvas on tablets */
     .experience-card {
         left: 16px;
     }
 }
 
-/* FIX: new breakpoint — 2-column cards instead of jumping 3 → 1 */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+    /* ... keep your other 768px styles identical ... */
+
     .hero-cards {
+        display: grid;
+        /* FIX: Added the missing "repeat" keyword so the browser can parse it properly */
         grid-template-columns: repeat(2, 1fr);
     }
-}
 
-@media (max-width: 768px) {
+    .hero-cards> :last-child {
+        grid-column: span 2;
+        justify-self: center;
+        /* FIX: changed to 100% or auto so it matches the full width of the mobile container */
+        width: 100%;
+    }
+
     .hero {
         padding: 50px 0 70px;
     }
@@ -295,20 +308,6 @@
         font-size: 16px;
     }
 
-    .hero-cards {
-        display: grid;
-        grid-template-columns: (2, 1fr);
-        /* Creates 2 equal columns */
-    }
-
-    .hero-cards> :last-child {
-        grid-column: span 2;
-        /* Makes the 3rd box span across both columns */
-        justify-self: center;
-        /* Centers it inside that spanned space */
-        width: 50%;
-        /* Optional: keeps it the same width as the items above */
-    }
 
     .hero-buttons {
         flex-direction: column;

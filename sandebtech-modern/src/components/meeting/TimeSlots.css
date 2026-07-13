@@ -1,0 +1,112 @@
+.time-slots {
+
+    margin-bottom: 40px;
+
+}
+
+.slots-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+}
+
+.slot-btn {
+
+    padding: 16px;
+
+    border: 2px solid #dbeafe;
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    font-weight: 600;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    color: #0f172a;
+
+}
+
+.slot-btn:hover {
+
+    border-color: #2563eb;
+
+    background: #eff6ff;
+
+    transform: translateY(-2px);
+
+}
+
+.active-slot {
+
+    background: #0f4c81;
+
+    border-color: #0f4c81;
+
+    color: #fff;
+
+    box-shadow: 0 10px 25px rgba(15, 76, 129, .25);
+
+}
+
+@media(max-width:768px) {
+
+    .slots-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+@media(max-width:480px) {
+
+    .slots-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .selected-date {
+
+        margin-top: 10px;
+
+        margin-bottom: 25px;
+
+        font-weight: 600;
+
+        color: #0f4c81;
+
+    }
+
+    .disabled-slot {
+
+        opacity: .45;
+
+        cursor: not-allowed;
+
+        background: #f1f5f9;
+
+        border-color: #e2e8f0;
+
+    }
+
+    .disabled-slot:hover {
+
+        transform: none;
+
+        background: #f1f5f9;
+
+    }
+}

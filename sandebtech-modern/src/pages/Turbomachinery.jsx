@@ -1,9 +1,11 @@
 import PageBanner from "../components/common/PageBanner";
+import PageTransition from "../components/PageTransition/PageTransition";
 import "./Turbomachinery.css";
 
 function Turbomachinery() {
   return (
     <>
+      <PageTransition />
       <PageBanner
         title="Turbomachinery"
         subtitle="Engineering Solutions for Turbomachinery Applications"

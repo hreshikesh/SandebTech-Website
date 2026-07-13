@@ -5,10 +5,12 @@ import About from "../components/home/About";
 import Products from "../components/home/Product";
 import WhyChoose from "../components/home/WhyChoose";
 import CTA from "../components/home/CTA";
+import PageTransition from "../components/PageTransition/PageTransition";
 
 function Home() {
   return (
     <>
+      <PageTransition />
       <Hero />
       <Highlights />
       <About />

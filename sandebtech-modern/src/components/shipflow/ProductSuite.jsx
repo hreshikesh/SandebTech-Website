@@ -1,6 +1,12 @@
 import "./ProductSuite.css";
 
 import { ExternalLink } from "lucide-react";
+import ProtectedAction from "../auth/ProtectedAction";
+
+
+const openProduct = (url) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
 
 const products = [
   {
@@ -64,17 +70,17 @@ function ProductSuite() {
 
               <p>{product.description}</p>
 
-              <a
-                href={product.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="product-link"
+              <ProtectedAction
+                action={() => openProduct(product.link)}
               >
-                Visit Official Page
+                <button className="product-link">
 
-                <ExternalLink size={18} />
+                  Visit Official Page
 
-              </a>
+                  <ExternalLink size={18} />
+
+                </button>
+              </ProtectedAction>
 
             </div>
 

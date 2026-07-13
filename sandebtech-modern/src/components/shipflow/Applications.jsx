@@ -5,6 +5,13 @@ import { ArrowUpRight } from "lucide-react";
 import hullImg from "../../assets/images/shipflow/applications/hull.webp";
 import bulbImg from "../../assets/images/shipflow/applications/bulb.webp";
 import aftbodyImg from "../../assets/images/shipflow/applications/aftbody.webp";
+import ProtectedAction from "../auth/ProtectedAction";
+
+
+const openProduct = (url) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
 
 const applications = [
   {
@@ -78,17 +85,18 @@ function Applications() {
 
               <p>{app.description}</p>
 
-              <a
-                href={app.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="case-link"
+        
+               <ProtectedAction
+                action={() => openProduct(app.link)}
               >
-                View Detailed Case Study
+                <button className="case-link">
 
-                <ArrowUpRight size={18} />
+                  View Detailed Case Study
 
-              </a>
+                   <ArrowUpRight size={18} />
+
+                </button>
+              </ProtectedAction>
 
             </div>
 

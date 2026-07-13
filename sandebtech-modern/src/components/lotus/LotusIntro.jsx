@@ -4,6 +4,14 @@ import { ExternalLink } from "lucide-react";
 
 import lotusImg from "../../assets/images/lotus/lotus.webp";
 
+import ProtectedAction from "../auth/ProtectedAction";
+
+
+const openProduct = (url) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
+
 function LotusIntro() {
   return (
     <section className="lotus-intro">
@@ -48,17 +56,18 @@ function LotusIntro() {
               integration solutions.
             </p>
 
-            <a
-              href="https://www.lotus-microsystems.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="lotus-btn"
+
+            <ProtectedAction
+              action={() => openProduct("https://www.lotus-microsystems.com/")}
             >
-              Visit Official Website
+              <button className="lotus-btn">
 
-              <ExternalLink size={18} />
+                Visit Official Webisite
 
-            </a>
+                <ExternalLink size={18} />
+
+              </button>
+            </ProtectedAction>
 
           </div>
 

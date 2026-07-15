@@ -179,5 +179,20 @@ public class GlobalExceptionHandler {
                 .build();
 
     }
+    @ExceptionHandler(InvalidRequestException.class)
+    public ResponseEntity<ApiErrorResponse> handleInvalidRequestException(
+            InvalidRequestException ex
+    ) {
+
+        ApiErrorResponse response = ApiErrorResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .build();
+
+        return ResponseEntity
+                .badRequest()
+                .body(response);
+
+    }
 
 }

@@ -1,51 +1,59 @@
 import "./TimeSlots.css";
 
-import { useState, useEffect } from "react";
-
-const slots = [
-    "09:00 AM",
-    "09:30 AM",
-    "10:00 AM",
-    "10:30 AM",
-    "11:00 AM",
-    "11:30 AM",
-    "02:00 PM",
-    "02:30 PM",
-    "03:00 PM",
-    "03:30 PM",
-    "04:00 PM",
-    "04:30 PM",
-];
-
-
+import { useEffect, useState } from "react";
 import { getAvailableSlots } from "../../service/meetingApi";
+
+function formatTime(time) {
+    return new Date(`1970-01-01T${time}`)
+        .toLocaleTimeString("en-IN", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        });
+}
+
 function TimeSlots({
 
     selectedDate,
+
     selectedSlot,
+
     setSelectedSlot,
 
 }) {
+
     const [slots, setSlots] = useState([]);
 
     useEffect(() => {
 
         async function loadSlots() {
 
-            const data = await getAvailableSlots(selectedDate);
+            try {
 
-            setSlots(data);
+                const data = await getAvailableSlots(selectedDate);
+
+                setSlots(data);
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
 
         }
 
-        loadSlots();
+        if (selectedDate) {
+
+            loadSlots();
+
+        }
 
     }, [selectedDate]);
-
 
     return (
 
         <section className="time-slots">
+
             <p className="selected-date">
 
                 {selectedDate.toLocaleDateString("en-IN", {
@@ -70,39 +78,45 @@ function TimeSlots({
 
             </div>
 
-
-
             <div className="slots-grid">
 
                 {slots.map((slot) => (
 
                     <button
 
-                        key={slot.time}
+                        key={slot.startTime}
 
                         disabled={!slot.available}
 
                         className={`slot-btn
-                                     ${selectedSlot === slot.time
+
+                            ${selectedSlot?.startTime === slot.startTime
+
                                 ? "active-slot"
-                                : ""
-                            }
-                                ${!slot.available
+
+                                : ""}
+
+                            ${!slot.available
+
                                 ? "disabled-slot"
-                                : ""
-                            }`}
+
+                                : ""}
+
+                        `}
 
                         onClick={() =>
-                            slot.available &&
-                            setSelectedSlot(slot.time)
+
+                            slot.available && setSelectedSlot(slot)
+
                         }
 
                     >
 
-                        {slot.time}
+                        {formatTime(slot.startTime)}
+                        {" - "}
+                        {formatTime(slot.endTime)}
 
                     </button>
-
 
                 ))}
 

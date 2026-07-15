@@ -44,8 +44,12 @@ public class SecurityConfig {
                                 "/api/auth/**"
                         ).permitAll()
 
+                        .requestMatchers("/api/meeting")
+                        .authenticated()
+
                         .requestMatchers("/api/admin/**")
                         .hasRole("ADMIN")
+
 
                         .anyRequest()
                         .authenticated()

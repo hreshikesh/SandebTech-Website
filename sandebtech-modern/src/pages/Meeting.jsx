@@ -11,7 +11,7 @@ function Meeting() {
 
     const [selectedDate, setSelectedDate] = useState(new Date());
 
-    const [selectedSlot, setSelectedSlot] = useState("");
+    const [selectedSlot, setSelectedSlot] = useState(null);
 
     return (
         <>

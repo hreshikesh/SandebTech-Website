@@ -1,12 +1,15 @@
 package com.sandebTech.user.entity;
 
 import com.sandebTech.common.BaseEntity;
+import com.sandebTech.contact.entity.ContactMessage;
+import com.sandebTech.meeting.entity.Meeting;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,6 +46,16 @@ public class User extends BaseEntity implements UserDetails {
     @Builder.Default
     @Column(nullable = false)
     private Boolean verified = false;
+
+    @OneToMany(mappedBy = "user")
+    private List<ContactMessage> contactMessages;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Meeting> meetings = new ArrayList<>();
 
 
     @Override

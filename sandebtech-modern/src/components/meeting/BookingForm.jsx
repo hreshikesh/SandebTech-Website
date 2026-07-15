@@ -85,10 +85,20 @@ function BookingForm({ selectedDate, selectedSlot }) {
         setLoading(true);
 
         try {
-            const response = await bookMeeting({
-                ...formData,
-                selectedDate,
-                selectedSlot,
+            bookMeeting({
+
+                meetingDate: selectedDate,
+
+                startTime: selectedSlot.startTime,
+
+                endTime: selectedSlot.endTime,
+
+                purpose: formData.purpose,
+
+                meetingMode: formData.meetingMode,
+
+                notes: formData.notes,
+
             });
 
             if (response.success) {
@@ -234,23 +244,21 @@ function BookingForm({ selectedDate, selectedSlot }) {
                         value={formData.meetingMode}
                         onChange={handleChange}
                     >
-                        <option>Google Meet</option>
-                        <option>Microsoft Teams</option>
-                        <option>Phone Call</option>
+                        <option value="GOOGLE_MEET">
+                            Google Meet
+                        </option>
+
+                        <option value="IN_PERSON">
+                            In Person
+                        </option>
+
+                        <option value="PHONE_CALL">
+                            Phone Call
+                        </option>
                     </select>
                 </div>
 
-                <div className="form-group">
-                    <label>Duration</label>
-                    <select
-                        name="duration"
-                        value={formData.duration}
-                        onChange={handleChange}
-                    >
-                        <option>30 Minutes</option>
-                        <option>60 Minutes</option>
-                    </select>
-                </div>
+               
             </div>
 
             <div className="form-group">

@@ -1,6 +1,5 @@
 package com.sandebTech.exception;
 
-
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,16 +23,9 @@ public class GlobalExceptionHandler {
             ResourceNotFoundException ex,
             HttpServletRequest request
     ) {
-
-        log.error(ex.getMessage());
-
+        log.error("Resource not found: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(build(
-                        HttpStatus.NOT_FOUND,
-                        ex.getMessage(),
-                        request.getRequestURI(),
-                        null
-                ));
+                .body(build(HttpStatus.NOT_FOUND, ex.getMessage(), request.getRequestURI(), null));
     }
 
     @ExceptionHandler(DuplicateResourceException.class)
@@ -41,16 +33,9 @@ public class GlobalExceptionHandler {
             DuplicateResourceException ex,
             HttpServletRequest request
     ) {
-
-        log.error(ex.getMessage());
-
+        log.error("Duplicate resource detected: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(build(
-                        HttpStatus.CONFLICT,
-                        ex.getMessage(),
-                        request.getRequestURI(),
-                        null
-                ));
+                .body(build(HttpStatus.CONFLICT, ex.getMessage(), request.getRequestURI(), null));
     }
 
     @ExceptionHandler(BadRequestException.class)
@@ -58,16 +43,19 @@ public class GlobalExceptionHandler {
             BadRequestException ex,
             HttpServletRequest request
     ) {
-
-        log.error(ex.getMessage());
-
+        log.error("Bad request: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(build(
-                        HttpStatus.BAD_REQUEST,
-                        ex.getMessage(),
-                        request.getRequestURI(),
-                        null
-                ));
+                .body(build(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), null));
+    }
+
+    @ExceptionHandler(InvalidRequestException.class)
+    public ResponseEntity<ApiErrorResponse> handleInvalidRequestException(
+            InvalidRequestException ex,
+            HttpServletRequest request
+    ) {
+        log.error("Invalid request structure: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(build(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), null));
     }
 
     @ExceptionHandler(InvalidOtpException.class)
@@ -75,14 +63,9 @@ public class GlobalExceptionHandler {
             InvalidOtpException ex,
             HttpServletRequest request
     ) {
-
+        log.error("OTP Validation failed: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(build(
-                        HttpStatus.BAD_REQUEST,
-                        ex.getMessage(),
-                        request.getRequestURI(),
-                        null
-                ));
+                .body(build(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), null));
     }
 
     @ExceptionHandler(UnauthorizedException.class)
@@ -90,14 +73,9 @@ public class GlobalExceptionHandler {
             UnauthorizedException ex,
             HttpServletRequest request
     ) {
-
+        log.error("Unauthorized access attempt: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(build(
-                        HttpStatus.UNAUTHORIZED,
-                        ex.getMessage(),
-                        request.getRequestURI(),
-                        null
-                ));
+                .body(build(HttpStatus.UNAUTHORIZED, ex.getMessage(), request.getRequestURI(), null));
     }
 
     @ExceptionHandler(AccessDeniedException.class)
@@ -105,14 +83,9 @@ public class GlobalExceptionHandler {
             AccessDeniedException ex,
             HttpServletRequest request
     ) {
-
+        log.error("Access denied for path: {}", request.getRequestURI());
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
-                .body(build(
-                        HttpStatus.FORBIDDEN,
-                        "Access Denied",
-                        request.getRequestURI(),
-                        null
-                ));
+                .body(build(HttpStatus.FORBIDDEN, "Access Denied", request.getRequestURI(), null));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -120,22 +93,14 @@ public class GlobalExceptionHandler {
             MethodArgumentNotValidException ex,
             HttpServletRequest request
     ) {
-
         Map<String, String> errors = new HashMap<>();
-
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
-
             errors.put(error.getField(), error.getDefaultMessage());
-
         }
 
+        log.error("DTO Validation failed for path: {}", request.getRequestURI());
         return ResponseEntity.badRequest()
-                .body(build(
-                        HttpStatus.BAD_REQUEST,
-                        "Validation Failed",
-                        request.getRequestURI(),
-                        errors
-                ));
+                .body(build(HttpStatus.BAD_REQUEST, "Validation Failed", request.getRequestURI(), errors));
     }
 
     @ExceptionHandler(Exception.class)
@@ -143,16 +108,9 @@ public class GlobalExceptionHandler {
             Exception ex,
             HttpServletRequest request
     ) {
-
-        log.error("Unhandled Exception", ex);
-
+        log.error("Unhandled Exception caught at global layer:", ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(build(
-                        HttpStatus.INTERNAL_SERVER_ERROR,
-                        "Internal Server Error",
-                        request.getRequestURI(),
-                        null
-                ));
+                .body(build(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error", request.getRequestURI(), null));
     }
 
     private ApiErrorResponse build(
@@ -161,38 +119,13 @@ public class GlobalExceptionHandler {
             String path,
             Map<String, String> errors
     ) {
-
         return ApiErrorResponse.builder()
-
                 .success(false)
-
                 .status(status.value())
-
                 .message(message)
-
                 .path(path)
-
                 .timestamp(LocalDateTime.now())
-
                 .errors(errors)
-
                 .build();
-
     }
-    @ExceptionHandler(InvalidRequestException.class)
-    public ResponseEntity<ApiErrorResponse> handleInvalidRequestException(
-            InvalidRequestException ex
-    ) {
-
-        ApiErrorResponse response = ApiErrorResponse.builder()
-                .success(false)
-                .message(ex.getMessage())
-                .build();
-
-        return ResponseEntity
-                .badRequest()
-                .body(response);
-
-    }
-
 }

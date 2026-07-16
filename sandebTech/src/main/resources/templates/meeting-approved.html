@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meeting Confirmed</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 25px; background: #f4f4f4; margin: 0;">
+<div style="max-width: 650px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <img src="cid:logo" width="170" alt="Logo" style="display: block; margin-bottom: 20px;"/>
+    <h2 style="color: #16a34a; margin-top: 0;">✅ Your Meeting is Confirmed!</h2>
+    <p style="color: #334155; font-size: 15px;">Hi <span th:text="${meeting.user.name}"></span>, your session parameters have been successfully validated by our technical team.</p>
+
+    <!-- Highlighted Google Meet Action Box -->
+    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
+        <span style="color: #16a34a; font-weight: bold; font-size: 14px; uppercase; display: block; margin-bottom: 5px;">Join Link</span>
+        <a th:if="${meeting.googleMeetLink != null}" th:href="${meeting.googleMeetLink}" th:text="${meeting.googleMeetLink}" style="color: #15803d; font-size: 18px; font-weight: bold; text-decoration: underline;"></a>
+        <span th:if="${meeting.googleMeetLink == null}" style="color: #64748b; font-style: italic; font-size: 15px;">Your meeting room connection link will be synced shortly.</span>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 20px;">
+    <p style="margin: 8px 0; color: #334155;"><strong style="color: #0f172a;">Confirmed Date:</strong> <span th:text="${meeting.meetingDate}"></span></p>
+    <p style="margin: 8px 0; color: #334155;"><strong style="color: #0f172a;">Time Frame:</strong> <span th:text="${meeting.startTime} + ' - ' + ${meeting.endTime}"></span></p>
+    <p style="margin: 8px 0; color: #334155;"><strong style="color: #0f172a;">Connection Type:</strong> <span th:text="${meeting.meetingMode}"></span></p>
+
+    <br>
+    <p style="margin: 0; color: #64748b; font-size: 14px;">We look forward to speaking with you,</p>
+    <strong style="color: #0f172a; font-size: 16px;">SandebTech Engineering</strong>
+</div>
+</body>
+</html>

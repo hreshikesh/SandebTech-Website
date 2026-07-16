@@ -27,63 +27,55 @@ public class JwtAuthenticationFilter
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
+
         String path = request.getServletPath();
 
-
-        if(path.startsWith("/google")){
-
-            filterChain.doFilter(request,response);
-
+        if (path.startsWith("/google")) {
+            filterChain.doFilter(request, response);
             return;
-
         }
 
-        String header =
-                request.getHeader("Authorization");
+        String header = request.getHeader("Authorization");
 
         if (header == null || !header.startsWith("Bearer ")) {
-
             filterChain.doFilter(request, response);
-
             return;
-
         }
 
         String token = header.substring(7);
 
-        String email = jwtService.extractEmail(token);
+        try {
+            String email = jwtService.extractEmail(token);
 
-        if (email != null &&
-                SecurityContextHolder.getContext()
-                        .getAuthentication() == null) {
+            if (email != null &&
+                    SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            var user =
-                    userDetailsService.loadUserByUsername(email);
+                var user = userDetailsService.loadUserByUsername(email);
 
-            if (jwtService.isTokenValid(token)) {
+                if (jwtService.isTokenValid(token)) {
 
-                UsernamePasswordAuthenticationToken auth =
-                        new UsernamePasswordAuthenticationToken(
-                                user,
-                                null,
-                                user.getAuthorities()
-                        );
+                    UsernamePasswordAuthenticationToken auth =
+                            new UsernamePasswordAuthenticationToken(
+                                    user,
+                                    null,
+                                    user.getAuthorities()
+                            );
 
-                auth.setDetails(
-                        new WebAuthenticationDetailsSource()
-                                .buildDetails(request)
-                );
+                    auth.setDetails(
+                            new WebAuthenticationDetailsSource().buildDetails(request)
+                    );
 
-                SecurityContextHolder
-                        .getContext()
-                        .setAuthentication(auth);
-
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                }
             }
-
+        } catch (Exception ex) {
+            // Invalid/expired/malformed token — leave SecurityContext empty
+            // so the request falls through as unauthenticated, and
+            // JwtAuthenticationEntryPoint returns a clean 401 JSON response.
+            SecurityContextHolder.clearContext();
         }
 
         filterChain.doFilter(request, response);
-
     }
 
 }

@@ -27,7 +27,7 @@ public class ContactRequest {
     private String subject;
 
     @NotBlank(message = "Message is required.")
-    @Size(min = 20, max = 2000)
+    @Size(min = 20, max = 500)
     private String message;
 
 }

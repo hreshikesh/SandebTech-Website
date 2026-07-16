@@ -42,7 +42,7 @@ public class EmailServiceImpl implements EmailService {
             Context context = new Context();
             context.setVariable("otp", otp);
 
-            // FIX: was using "contact-email" template - use a dedicated OTP template
+
             String htmlContent = templateEngine.process("otp-email", context);
 
             helper.setTo(to);
@@ -93,167 +93,56 @@ public class EmailServiceImpl implements EmailService {
     @Override
     @Async
     public void sendMeetingRequest(Meeting meeting) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setTo(contactRecipient);
-            helper.setSubject("📅 New Meeting Request");
-
-            helper.setText(
-                    buildMeetingRequestHtml(meeting, "NEW MEETING REQUEST", "#f59e0b"),
-                    true
-            );
-
-            helper.addInline("logo", new ClassPathResource("static/images/logo.png"));
-
-            mailSender.send(message);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to send meeting request email.", e);
-        }
+        dispatchEmail(contactRecipient, "📅 New Meeting Request", meeting, "meeting-requested");
     }
 
     @Override
     @Async
     public void sendMeetingConfirmation(Meeting meeting) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setTo(meeting.getUser().getEmail());
-            helper.setSubject("✅ Meeting Confirmed");
-
-            helper.setText(
-                    buildMeetingRequestHtml(meeting, "MEETING CONFIRMED", "#16a34a"),
-                    true
-            );
-
-            helper.addInline("logo", new ClassPathResource("static/images/logo.png"));
-
-            mailSender.send(message);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to send confirmation email.", e);
-        }
-    }
-
-    @Override
-    @Async
-    public void sendMeetingRejected(Meeting meeting) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setTo(meeting.getUser().getEmail());
-            helper.setSubject("❌ Meeting Rejected");
-
-            helper.setText(
-                    buildMeetingRequestHtml(meeting, "MEETING REJECTED", "#dc2626"),
-                    true
-            );
-
-            helper.addInline("logo", new ClassPathResource("static/images/logo.png"));
-
-            mailSender.send(message);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to send rejection email.", e);
-        }
-    }
-
-    @Override
-    @Async
-    public void sendMeetingCancellation(Meeting meeting) {
-        try {
-            MimeMessage message = mailSender.createMimeMessage();
-
-            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-
-            helper.setTo(meeting.getUser().getEmail());
-            helper.setSubject("🚫 Meeting Cancelled");
-
-            helper.setText(
-                    buildMeetingRequestHtml(meeting, "MEETING CANCELLED", "#dc2626"),
-                    true
-            );
-
-            helper.addInline("logo", new ClassPathResource("static/images/logo.png"));
-
-            mailSender.send(message);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to send cancellation email.", e);
-        }
+        dispatchEmail(meeting.getUser().getEmail(), "✅ Meeting Confirmed", meeting, "meeting-approved");
     }
 
     @Override
     @Async
     public void sendMeetingCompleted(Meeting meeting) {
+        // Reuse confirmation or direct to a specific template if preferred
+        dispatchEmail(meeting.getUser().getEmail(), "✅ Meeting Completed", meeting, "meeting-capproved");
+    }
+
+    @Override
+    @Async
+    public void sendMeetingRejected(Meeting meeting) {
+        dispatchEmail(meeting.getUser().getEmail(), "❌ Meeting Rejected", meeting, "meeting-rejected");
+    }
+
+    @Override
+    @Async
+    public void sendMeetingCancellation(Meeting meeting) {
+        dispatchEmail(meeting.getUser().getEmail(), "🚫 Meeting Cancelled", meeting, "meeting-rejected");
+    }
+
+    private void dispatchEmail(String recipient, String subject, Meeting meeting, String templateName) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
-
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-            helper.setTo(meeting.getUser().getEmail());
-            helper.setSubject("✅ Meeting Completed");
+            helper.setTo(recipient);
+            helper.setSubject(subject);
 
-            helper.setText(
-                    buildMeetingRequestHtml(meeting, "MEETING COMPLETED", "#16a34a"),
-                    true
-            );
+            Context context = new Context();
+            context.setVariable("meeting", meeting);
+
+            // Dynamically loads the distinct HTML layout requested
+            String htmlContent = templateEngine.process(templateName, context);
+            helper.setText(htmlContent, true);
 
             helper.addInline("logo", new ClassPathResource("static/images/logo.png"));
 
             mailSender.send(message);
-
         } catch (Exception e) {
-            throw new RuntimeException("Unable to send completion email.", e);
+            throw new RuntimeException("Email delivery crash on template reference execution: " + templateName, e);
         }
     }
 
-    private String buildMeetingRequestHtml(Meeting meeting, String title, String color) {
 
-        String meetLink = meeting.getGoogleMeetLink() == null
-                ? "Will be shared shortly."
-                : "<a href='" + meeting.getGoogleMeetLink() + "'>" + meeting.getGoogleMeetLink() + "</a>";
-
-        return """
-                <html>
-                <body style='font-family:Arial;padding:25px;background:#f4f4f4;'>
-                <div style='max-width:650px;margin:auto;background:white;padding:30px;border-radius:12px;'>
-                    <img src='cid:logo' width='170'/>
-                    <h2 style='color:%s;'>%s</h2>
-                    <hr>
-                    <p><b>Name :</b> %s</p>
-                    <p><b>Email :</b> %s</p>
-                    <p><b>Company :</b> %s</p>
-                    <p><b>Date :</b> %s</p>
-                    <p><b>Time :</b> %s - %s</p>
-                    <p><b>Purpose :</b> %s</p>
-                    <p><b>Meeting Mode :</b> %s</p>
-                    <p><b>Google Meet :</b><br>%s</p>
-                    <br>
-                    <p>Regards,</p>
-                    <b>SandebTech</b>
-                </div>
-                </body>
-                </html>
-                """.formatted(
-                color,
-                title,
-                meeting.getUser().getName(),
-                meeting.getUser().getEmail(),
-                meeting.getUser().getCompany(),
-                meeting.getMeetingDate(),
-                meeting.getStartTime(),
-                meeting.getEndTime(),
-                meeting.getPurpose(),
-                meeting.getMeetingMode(),
-                meetLink
-        );
-    }
 }

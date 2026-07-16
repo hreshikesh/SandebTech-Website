@@ -27,6 +27,12 @@ public class SecurityConfig {
 
         http
 
+
+                .cors(cors -> {
+                })
+
+                .csrf(csrf -> csrf.disable())
+
                 .csrf(csrf -> csrf.disable())
 
                 .sessionManagement(session ->

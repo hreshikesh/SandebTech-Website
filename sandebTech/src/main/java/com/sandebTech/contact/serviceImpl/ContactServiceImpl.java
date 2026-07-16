@@ -37,6 +37,10 @@ public class ContactServiceImpl implements ContactService {
         ContactMessage contact = ContactMessage.builder()
                 .user(user)
 
+                .name(request.getName())
+                .email(request.getEmail())
+                .phone(request.getPhone())
+
                 .company(request.getCompany())
 
                 .subject(request.getSubject())
@@ -151,9 +155,9 @@ public class ContactServiceImpl implements ContactService {
 
                 .id(contact.getId())
 
-                .name(contact.getUser().getName())
-                .email(contact.getUser().getEmail())
-                .phone(contact.getUser().getPhone())
+                .name(contact.getName())
+                .email(contact.getEmail())
+                .phone(contact.getPhone())
                 .company(contact.getCompany())
 
                 .subject(contact.getSubject())

@@ -26,10 +26,10 @@ public class MeetingRequest {
     private LocalTime endTime;
 
     @NotBlank(message = "Purpose is required.")
-    @Size(min = 10, max = 500)
+    @Size(min = 10, max = 500,message = "Purpose Should be 10-500 letters Only")
     private String purpose;
 
-    @Size(max = 2000)
+    @Size(max = 2000,message = "Maximum 2000 letters")
     private String notes;
 
     @NotNull(message = "Meeting mode is required.")

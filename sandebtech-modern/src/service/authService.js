@@ -1,65 +1,42 @@
-const delay = (ms) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+import axios from "axios";
 
-const existingUsers = [
-  {
-    id: 1,
-    email: "rishi@gmail.com",
-    name: "Rishi",
-    phone: "+919999999999",
-    company: "SandebTech",
-  },
-];
+const API = axios.create({
+
+    baseURL: "http://localhost:8080/api/auth"
+
+});
 
 export async function sendOTP(email) {
-  await delay(1200);
 
-  return {
-    success: true,
-    message: "OTP Sent",
-  };
+    const response = await API.post("/login", {
+
+        email
+
+    });
+
+    return response.data;
+
 }
 
 export async function verifyOTP(email, otp) {
-  await delay(1500);
 
-  if (otp !== "123456") {
-    return {
-      success: false,
-      message: "Invalid OTP",
-    };
-  }
+    const response = await API.post("/verify", {
 
-  const user = existingUsers.find(
-    (u) => u.email === email
-  );
+        email,
 
-  if (user) {
-    return {
-      success: true,
-      existingUser: true,
-      user,
-    };
-  }
+        otp
 
-  return {
-    success: true,
-    existingUser: false,
-  };
+    });
+
+    return response.data;
+
 }
 
 export async function register(data) {
-  await delay(1500);
 
-  const user = {
-    id: Date.now(),
-    ...data,
-  };
+    const response = await API.post("/register", data);
 
-  existingUsers.push(user);
+    return response.data;
 
-  return {
-    success: true,
-    user,
-  };
 }
+

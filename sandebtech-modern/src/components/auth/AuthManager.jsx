@@ -4,6 +4,7 @@ import RegisterModal from "./RegisterModal/RegisterModal";
 import SuccessModal from "./SuccessModal/SuccessModal";
 
 import { useAuth } from "../../context/AuthContext";
+import { sendOTP } from "../../service/authService";
 
 function AuthManager() {
 
@@ -16,15 +17,7 @@ function AuthManager() {
                 open={auth.loginOpen}
                 email={auth.email}
                 setEmail={auth.setEmail}
-                loading={false}
                 onClose={auth.closeAll}
-                onContinue={() => {
-
-                    auth.setLoginOpen(false);
-
-                    auth.setOtpOpen(true);
-
-                }}
             />
 
             <OTPModal
@@ -32,16 +25,8 @@ function AuthManager() {
                 email={auth.email}
                 otp={auth.otp}
                 setOtp={auth.setOtp}
-                loading={false}
                 onClose={auth.closeAll}
-                onResend={() => { }}
-                onVerify={() => {
-
-                    auth.setOtpOpen(false);
-
-                    auth.setRegisterOpen(true);
-
-                }}
+                onResend={() => sendOTP(auth.email)}
             />
 
             <RegisterModal
@@ -66,7 +51,7 @@ function AuthManager() {
 
                     auth.closeAll();
 
-                    auth.executePendingAction();
+                   
 
                 }}
             />

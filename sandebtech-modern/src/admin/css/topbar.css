@@ -1,0 +1,432 @@
+:root {
+    --bg-surface: #111c2e;
+    --bg-input: #0a121e;
+    --bg-hover: #1a2942;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-glow: #00d9ff;
+    --accent-muted: rgba(0, 217, 255, 0.1);
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --transition-speed: 0.2s;
+}
+
+.topbar {
+    height: 80px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    zIndex: 100;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Left Side Component (Breadcrumbs & Title)
+   ========================================================================== */
+.topbar-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar-left h1 {
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.topbar-breadcrumb {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+/* ==========================================================================
+   Center Component (Premium Search Input)
+   ========================================================================== */
+.topbar-center {
+    flex: 0 1 400px;
+    margin: 0 20px;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box input {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 12px 45px 12px 40px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+}
+
+.search-box input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-glow);
+    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.15);
+    background: rgba(10, 18, 30, 0.6);
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: color var(--transition-speed) ease;
+}
+
+.search-box input:focus ~ .search-icon {
+    color: var(--accent-glow);
+}
+
+.search-shortcut {
+    position: absolute;
+    right: 14px;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-family: monospace;
+}
+
+/* ==========================================================================
+   Right Side Component (Utility Icons & Identity Widget)
+   ========================================================================== */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Base style for interactive control buttons */
+.utility-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+}
+
+.utility-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+}
+
+.notification-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: #ef4444;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--bg-surface);
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border-subtle);
+    margin: 0 6px;
+}
+
+/* User Identity Frame */
+.user-profile-widget {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.profile-name {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.profile-role {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.profile-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-subtle);
+    transition: border-color var(--transition-speed) ease;
+}
+
+.profile-avatar-placeholder {
+    color: var(--text-secondary);
+    transition: color var(--transition-speed) ease;
+}
+
+.user-profile-widget:hover .profile-avatar {
+    border-color: var(--accent-glow);
+}
+
+.user-profile-widget:hover .profile-avatar-placeholder {
+    color: var(--accent-glow);
+}
+
+/* ==========================================================================
+   Responsive Architecture Layout Constraints
+   ========================================================================== */
+@media (max-width: 992px) {
+    .topbar-center {
+        display: none; /* Strip central input to prioritize compact space */
+    }
+}
+
+@media (max-width: 576px) {
+    .topbar {
+        padding: 0 20px;
+        height: 70px;
+    }
+    
+    .profile-details {
+        display: none; /* Hide multi-line text parameters on tight mobile arrays */
+    }
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(17, 28, 46, 0.8); /* Matches your var(--panel-dark) framework */
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 14px 24px;
+    color: #f8fafc;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Left Zone Layout */
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.title-stack h1 {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.topbar-breadcrumb {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.system-node-badge {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #00d9ff;
+    background: rgba(0, 217, 255, 0.08);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* Center Zone / Global Search Bar */
+.topbar-center {
+    flex: 1;
+    max-width: 380px;
+    margin: 0 24px;
+}
+
+.topbar-global-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.topbar-global-search input {
+    width: 100%;
+    background: #0a121e;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #f8fafc;
+    padding: 8px 14px 8px 36px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.topbar-global-search input:focus {
+    outline: none;
+    border-color: #00d9ff;
+    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+}
+
+.search-icon-hint {
+    position: absolute;
+    left: 12px;
+    color: #94a3b8;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+/* Right Zone Telemetry Grid Layout */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topbar-metric-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #0a121e;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.monospace-numerical-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+/* Connection Active Status Pulse */
+.connection-status-online {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.08);
+    border-color: rgba(16, 185, 129, 0.2);
+    font-weight: 700;
+}
+
+.metric-icon-pulse {
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; filter: drop-shadow(0 0 4px #10b981); }
+}
+
+.topbar-divider-line {
+    width: 1px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 4px;
+}
+
+/* Action Utility Buttons */
+.topbar-utility-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.topbar-utility-btn:hover {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Profile Visual Identification Layout */
+.operator-profile-anchor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.operator-profile-anchor:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.operator-avatar {
+    color: #94a3b8;
+}
+
+.operator-profile-anchor:hover .operator-avatar {
+    color: #00d9ff;
+}
+
+.operator-meta-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.operator-name-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f8fafc;
+    line-height: 1.2;
+}
+
+.operator-role-subtext {
+    font-size: 9px;
+    font-weight: 700;
+    color: #00d9ff;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+}

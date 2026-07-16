@@ -60,13 +60,15 @@ export function AuthProvider({ children }) {
         );
     };
 
-    const logout = () => {
-        setUser(null);
+  const logout = () => {
 
-        localStorage.removeItem(
-            "sandebtech-user"
-        );
-    };
+    setUser(null);
+
+    localStorage.removeItem("sandebtech-user");
+
+    localStorage.removeItem("token");
+
+};
 
     const openLogin = () => {
         setLoginOpen(true);

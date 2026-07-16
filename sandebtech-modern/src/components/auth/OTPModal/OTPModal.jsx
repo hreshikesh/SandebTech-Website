@@ -3,9 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X, ArrowRight } from "lucide-react";
 import { verifyOTP } from "../../../service/authService";
 import useAuth from "../../../hooks/useAuth";
-
 import OTPInput from "../OTPInput/OTPInput";
-
 import "./OTPModal.css";
 
 function OTPModal({
@@ -18,6 +16,8 @@ function OTPModal({
     onResend,
 }) {
     const [timer, setTimer] = useState(30);
+    const [error, setError] = useState("");
+    const [verifying, setVerifying] = useState(false);
 
     const {
         login,
@@ -30,6 +30,7 @@ function OTPModal({
         if (!open) return;
 
         setTimer(30);
+        setError("");
 
         const interval = setInterval(() => {
             setTimer((prev) => {
@@ -37,7 +38,6 @@ function OTPModal({
                     clearInterval(interval);
                     return 0;
                 }
-
                 return prev - 1;
             });
         }, 1000);
@@ -45,137 +45,119 @@ function OTPModal({
         return () => clearInterval(interval);
     }, [open]);
 
-    if (!open) return null;
+    const handleResend = () => {
+        setTimer(30);
+        setError("");
+        onResend();
+    };
 
     const handleVerify = async () => {
+        setError("");
+        
+        // Defensive check if otp is an array or string
+        const code = Array.isArray(otp) ? otp.join("") : String(otp);
 
-        const result = await verifyOTP(
-            email,
-            otp.join("")
-        );
-
-        if (!result.success) {
-            alert(result.message);
+        if (code.length !== 6) {
+            setError("Enter the complete 6-digit code.");
             return;
         }
 
-        if (result.existingUser) {
+        if (verifying || loading) return;
 
-            login(result.user);
+        try {
+            setVerifying(true);
+            const result = await verifyOTP(email, code);
+
+            if (!result || !result.success) {
+                setError(result?.message || "Invalid validation code provided.");
+                return;
+            }
+
+            if (!result.newUser) {
+                if (result.token) {
+                    localStorage.setItem("token", result.token);
+                }
+                login(result.userResponse);
+                setOtpOpen(false);
+                setSuccessOpen(true);
+                return;
+            }
 
             setOtpOpen(false);
+            setRegisterOpen(true);
 
-            setSuccessOpen(true);
-
-            return;
+        } catch (err) {
+            setError(err?.response?.data?.message || "Something went wrong. Please try again.");
+        } finally {
+            setVerifying(false);
         }
-
-        setOtpOpen(false);
-
-        setRegisterOpen(true);
-
     };
 
     return (
+        /* AnimatePresence must explicitly wrap the conditional statement to catch the exit step */
         <AnimatePresence>
-
-            <motion.div
-                className="otp-overlay"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={onClose}
-            >
-
+            {open && (
                 <motion.div
-                    className="otp-modal"
-                    initial={{ scale: .9, y: 30 }}
-                    animate={{ scale: 1, y: 0 }}
-                    exit={{ scale: .9, y: 30 }}
-                    transition={{ duration: .25 }}
-                    onClick={(e) => e.stopPropagation()}
+                    className="otp-overlay"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={onClose}
                 >
-
-                    <button
-                        className="otp-close"
-                        onClick={onClose}
+                    <motion.div
+                        className="otp-modal"
+                        initial={{ scale: 0.9, y: 30 }}
+                        animate={{ scale: 1, y: 0 }}
+                        exit={{ scale: 0.9, y: 30 }}
+                        transition={{ duration: 0.25 }}
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        <X size={22} />
-                    </button>
+                        <button className="otp-close" onClick={onClose} type="button">
+                            <X size={22} />
+                        </button>
 
-                    <div className="otp-logo">
+                        <div className="otp-logo">ST</div>
 
-                        ST
+                        <h2>Verify Email</h2>
 
-                    </div>
+                        <p>
+                            We've sent a 6-digit verification code to{" "}
+                            <strong>{email}</strong>
+                        </p>
 
-                    <h2>
+                        <OTPInput value={otp} onChange={setOtp} />
 
-                        Verify Email
-
-                    </h2>
-
-                    <p>
-
-                        We've sent a 6-digit verification code to
-
-                        <strong>{email}</strong>
-
-                    </p>
-
-                    <OTPInput
-                        value={otp}
-                        onChange={setOtp}
-                    />
-
-                    <div className="otp-resend">
-
-                        {timer > 0 ? (
-
-                            <span>
-
-                                Resend OTP in
-
-                                <strong>
-
-                                    {" "}
-                                    00:{timer.toString().padStart(2, "0")}
-
-                                </strong>
-
+                        {error && (
+                            <span className="form-error" style={{ display: "block", marginTop: "10px" }}>
+                                {error}
                             </span>
-
-                        ) : (
-
-                            <button
-                                type="button"
-                                onClick={onResend}
-                            >
-                                Resend OTP
-                            </button>
-
                         )}
 
-                    </div>
+                        <div className="otp-resend">
+                            {timer > 0 ? (
+                                <span>
+                                    Resend OTP in{" "}
+                                    <strong>00:{timer.toString().padStart(2, "0")}</strong>
+                                </span>
+                            ) : (
+                                <button type="button" onClick={handleResend}>
+                                    Resend OTP
+                                </button>
+                            )}
+                        </div>
 
-                    <button
-                        className="otp-btn"
-                        onClick={handleVerify}
-                        disabled={loading}
-                    >
-
-                        {loading
-                            ? "Verifying..."
-                            : "Verify OTP"}
-
-                        <ArrowRight size={18} />
-
-                    </button>
-
+                        <button
+                            className="otp-btn"
+                            onClick={handleVerify}
+                            type="button"
+                            disabled={loading || verifying}
+                        >
+                            {loading || verifying ? "Verifying..." : "Verify OTP"}
+                            <ArrowRight size={18} />
+                        </button>
+                    </motion.div>
                 </motion.div>
-
-            </motion.div>
-
+            )}
         </AnimatePresence>
     );
 }

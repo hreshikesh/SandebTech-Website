@@ -110,3 +110,17 @@
 
     }
 }
+
+.slot-btn.disabled-slot {
+    background-color: #f1f1f1;
+    color: #b0b0b0;
+    border-color: #e0e0e0;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.slot-btn.disabled-slot:hover {
+    background-color: #f1f1f1; /* prevent hover effects on disabled buttons */
+    transform: none;
+}

@@ -43,11 +43,11 @@ function Navbar() {
         <div className="container topbar-content">
           <div className="top-left">
             <span>
-              <Phone size={15} />
+              <Phone size={14} />
               {SITE.phone}
             </span>
             <span>
-              <Mail size={15} />
+              <Mail size={14} />
               {SITE.email}
             </span>
           </div>
@@ -72,7 +72,7 @@ function Navbar() {
             <div className="dropdown">
               <NavLink to="/solutions" className="dropdown-trigger">
                 Solutions
-                <ChevronDown size={16} />
+                <ChevronDown size={14} />
               </NavLink>
               <div className="dropdown-menu">
                 {solutionLinks.map((item) => (
@@ -91,11 +91,11 @@ function Navbar() {
             {user ? (
               <div className="desktop-user-menu">
                 <span className="user-display">
-                  <User size={16} />
+                  <User size={15} />
                   {user.name}
                 </span>
                 <button className="logout-action-btn" onClick={logout} title="Logout">
-                  <LogOut size={16} />
+                  <LogOut size={15} />
                 </button>
               </div>
             ) : (
@@ -104,10 +104,13 @@ function Navbar() {
               </button>
             )}
 
-
+            <Link to="/contact" className="quote-action-btn">
+              <span>Get Quote</span>
+              <ArrowRight size={15} className="arrow-icon" />
+            </Link>
 
             <button className="mobile-btn" onClick={() => setOpen(true)}>
-              <Menu size={30} />
+              <Menu size={28} />
             </button>
           </div>
         </div>
@@ -123,7 +126,7 @@ function Navbar() {
         <div className="drawer-header">
           <img src={logo} alt="Logo" />
           <button onClick={() => setOpen(false)}>
-            <X />
+            <X size={20} />
           </button>
         </div>
 
@@ -153,35 +156,46 @@ function Navbar() {
             </NavLink>
           ))}
 
-          {/* Replace the user ternary code inside your <aside> element with this: */}
-          {user ? (
-            <div className="user-menu">
-              <div className="user-btn">
-                <User size={18} />
-                <span>{user.name}</span>
+          {/* Mobile CTA and Auth Area */}
+          <div className="mobile-drawer-actions">
+            <Link 
+              to="/contact" 
+              className="drawer-quote-btn"
+              onClick={() => setOpen(false)}
+            >
+              Get Quote
+              <ArrowRight size={16} />
+            </Link>
+
+            {user ? (
+              <div className="user-menu">
+                <div className="user-btn">
+                  <User size={16} />
+                  <span>{user.name}</span>
+                </div>
+                <button
+                  className="logout-btn"
+                  onClick={() => {
+                    logout();
+                    setOpen(false); 
+                  }}
+                >
+                  <LogOut size={16} />
+                  Logout
+                </button>
               </div>
+            ) : (
               <button
-                className="logout-btn"
+                className="login-btn"
                 onClick={() => {
-                  logout();
+                  openLogin();
                   setOpen(false); 
                 }}
               >
-                <LogOut size={18} />
-                Logout
+                Login
               </button>
-            </div>
-          ) : (
-            <button
-              className="login-btn"
-              onClick={() => {
-                openLogin();
-                setOpen(false); // Closes drawer so user can see login modal
-              }}
-            >
-              Login
-            </button>
-          )}
+            )}
+          </div>
         </nav>
       </aside>
     </>

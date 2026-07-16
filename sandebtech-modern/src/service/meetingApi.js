@@ -1,57 +1,53 @@
-// Temporary mock APIs.
-// Later these will call Spring Boot.
+import axios from "axios";
+import toast from "react-hot-toast";
+import { toLocalDateString } from "../utils/dateUtils";
+
+const API = axios.create({
+    baseURL: "http://localhost:8080/api"
+});
+
+API.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+});
+
+API.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        const data = error.response?.data;
+
+        if (data?.errors && Object.keys(data.errors).length > 0) {
+            Object.values(data.errors).forEach((msg) => toast.error(msg));
+        } else {
+            toast.error(data?.message || "Something went wrong. Please try again.");
+        }
+
+        return Promise.reject(error);
+    }
+);
 
 export async function getAvailableSlots(date) {
+    const formattedDate = toLocalDateString(date);
 
-  console.log("Fetching slots for:", date);
+    const response = await API.get(
+        `/meeting/available-slots?date=${formattedDate}`
+    );
 
-  return [
-    {
-      time: "09:00 AM",
-      available: true,
-    },
-    {
-      time: "09:30 AM",
-      available: true,
-    },
-    {
-      time: "10:00 AM",
-      available: false,
-    },
-    {
-      time: "10:30 AM",
-      available: true,
-    },
-    {
-      time: "11:00 AM",
-      available: true,
-    },
-    {
-      time: "02:00 PM",
-      available: true,
-    },
-    {
-      time: "02:30 PM",
-      available: false,
-    },
-    {
-      time: "03:00 PM",
-      available: true,
-    },
-  ];
-
+    return response.data;
 }
 
 export async function bookMeeting(data) {
+    const response = await API.post(
+        "/meeting",
+        data
+    );
 
-  console.log(data);
+    toast.success("Meeting booked successfully!");
 
-  return {
-
-    success: true,
-
-    message: "Meeting booked successfully."
-
-  };
-
+    return response.data;
 }

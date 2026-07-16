@@ -23,51 +23,49 @@ function LoginModal({
 
     const handleContinue = async () => {
 
-        setError("");
+    setError("");
 
-        if (!email.trim()) {
+    if (!email.trim()) {
+        setError("Email is required.");
+        return;
+    }
 
-            setError("Email is required.");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+    if (!emailRegex.test(email)) {
+        setError("Enter a valid email.");
+        return;
+    }
+
+    try {
+        setLoading(true);
+
+        const result = await sendOTP(email);
+
+        if (!result.success) {
+            setError(result.message);
             return;
-
         }
 
-         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        setLoginOpen(false);
+        setOtpOpen(true);
 
-        if (!emailRegex.test(email)) {
+    } catch (err) {
+        console.error("sendOTP failed:", err);
 
-            setError("Enter a valid email.");
-
-            return;
-
+        if (err.response) {
+            // Backend responded with an error status
+            setError( "Failed to send OTP. Please try again.");
+        } else if (err.request) {
+            // Request went out, no response received (CORS, server down, etc)
+            setError("Unable to reach the server. Please try again.");
+        } else {
+            setError("Something went wrong. Please try again.");
         }
-
-        try {
-
-            setLoading(true);
-
-            const result = await sendOTP(email);
-
-            if (!result.success) {
-
-                setError(result.message);
-
-                return;
-
-            }
-
-            setLoginOpen(false);
-
-            setOtpOpen(true);
-
-        } finally {
-
-            setLoading(false);
-
-        }
-
-    };
+    } finally {
+        setLoading(false);
+    }
+};
 
     return (
 

@@ -21,6 +21,14 @@ import Loader from "../components/Loader/Loader";
 import NotFound from "../pages/NotFound";
 import AuthManager from "../components/auth/AuthManager";
 
+import AdminLayout from "../admin/layout/AdminLayout";
+import Dashboard from "../admin/pages/Dashboard";
+import Users from "../admin/pages/Users";
+import Meetings from "../admin/pages/Meetings";
+import Contacts from "../admin/pages/Contacts";
+import { Toaster } from "react-hot-toast";
+import AdminRoute from "./AdminRoutes";
+
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -43,6 +51,7 @@ function App() {
   }
   return (
     <>
+      <Toaster position="bottom-right" />
       <AnimatePresence mode="wait">
 
         <Routes location={location} key={location.pathname}>
@@ -90,7 +99,7 @@ function App() {
             />
 
 
-
+            
             <Route
               path="/contact"
               element={<Contact />}
@@ -101,7 +110,24 @@ function App() {
               element={<Meeting />}
             />
 
-            <Route path="/*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminLayout />
+              </AdminRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+
+            <Route path="users" element={<Users />} />
+
+            <Route path="meetings" element={<Meetings />} />
+
+            <Route path="contacts" element={<Contacts />} />
 
           </Route>
 

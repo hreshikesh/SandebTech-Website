@@ -11,4 +11,8 @@ public interface ContactRepository
 
     List<ContactMessage> findByStatus(ContactStatus status);
 
+    long count();
+
+    long countByStatus(ContactStatus status);
+
 }

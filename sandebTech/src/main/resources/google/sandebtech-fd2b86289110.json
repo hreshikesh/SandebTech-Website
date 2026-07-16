@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "sandebtech",
+  "private_key_id": "fd2b86289110915a0c90d39ea886658442b9078d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDwWIvPRccknZhf\niDjSw/Jfm6EflASM8Bs0Rx5bo0kcmEke8OuOGdjokyG8ZcM8hQjAMkysdyPjb/Se\nJma1Lm4fWqaM/9BHu4zi/WJchB4YCWnU85wL2Ye+UNgnAGbfLXw22dQMCjL2+XvZ\n8HZeiPXuHf9Wbx37xVbUKNNJ0LpfLBVrlRJPxflE4h6PHOVjTfN7wvXeWqWx0pnU\nP44FdzzZ3dcauyrP2Dla/a6TJWrPumCg9zRjlNLnnCVP8RRBf7+ufZC7C/pNWWEN\nCthaNg0WusDPkfLWerk1vbInT2C/vzBKr4/5cS9O7PdfWBxtygoXv9Zo+nI+DaLW\nDc//MzAjAgMBAAECggEAcms898p4wTIzaXtgzdnRx3lADdf6CJx/3vXiem60LiRD\nXzMDeM1OSX5N57IsbWHJ5jGr9cjsMWjJdAbFC4kUjOGre2GHZrbfHerRykhtSTUm\nCGaHCc8fw9cZ6AtVbfbp9PTjcW3jkFb6AqlquJuMNLVcKupQRF1QdkUPPUtchlR6\ninqyXfmfoiYd/5xC8cp18A+dthG8J1b27T+ITpNZGbau+/m66pV3kTbrtTkR1npO\nZsjMDJfarcXjnfGGdtsqlwnHJqDRwvge4M9zgI0WBvsi/mEAfVmR9fQOkBjkruUd\ncBn81tVCtPN7+FN0yCSgCX/5sIQZVrhfCyKW580AAQKBgQD96Z8H8ieEcrOWYgYb\n+CBNmeUIGo4wiYVJSd5oRqrsIT+F3ik0UjC7f3ZaPyF5ZpL3ehuK0u28g4Wt7BR2\nLwwedWr1PmcacRSvvwJdCs164d3W0w9nCULWsBeKUB+nlGXzVx2IQXWmT2VPnHbu\nSun6wXiBDoZAQ3cJkFciepIAAQKBgQDyUl9sAcLbqujKRZArvN3Wb84efYEwYFBy\nY7y1oLQ8TDqNU5aYefu985Dn1C//HgRnbICvDiYZOpwPqzSSBgxhHAXmZLrk6Ixo\nZtKXUJGc+bB6h7Q51h7aJwrRT4y7Uy/QsY49ZAiib9RiIxdLA4pEsd6oSLIBs1pD\nZm5T3T0wIwKBgQCAcitp+Jz3CpNAsuvGQFoPB5ft5okhkp/jeEPTWlRiyVr6HG2Z\nsy5F23ACrUcAw9v650GBk7yCDcKVPgUH2Dr4OYvW7i94F9ZQJX9LlAhoblQrtW9o\nPy4ZrtDpviiVPKPqWpps8DhU3nswr8UWPL1qhW6xUqilX7ubEfKSVZEAAQKBgB7l\nac03nESt0eiYXf11o0NIFhvFHMeyQA+Vr+Xoi5J0lbKXScg/JV3exEcKwuPgS+dz\n6iRnxWvKEUPeLGHB66omDIqHpVyyWdSl54vrdeVx4JJ+4vfM2TovaC2v2t23iY0u\nVlh1fLRZVdb9ambiGKsRkrYaLrgQyh113fNLbhXJAoGBAM16gSR18LX5+WJGZwQF\no6QbZLldwy2WFNOXDuS2qbTCek7kROSU1Luye8HvfggQPjZ9gca/uJ1CjdGM+csA\nPmvItCDsQcAvtPfhLDRW2EF7kB+GrSMSjCFMNk8bAehn/sjduJ/vD/+b3Ajimmw/\nvJb59fsSmTs1oj2MNEL0Zg/P\n-----END PRIVATE KEY-----\n",
+  "client_email": "sandebtech@sandebtech.iam.gserviceaccount.com",
+  "client_id": "113710809785926402014",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sandebtech%40sandebtech.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

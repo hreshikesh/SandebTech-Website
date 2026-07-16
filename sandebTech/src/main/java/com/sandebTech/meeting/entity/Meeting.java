@@ -52,8 +52,6 @@ public class Meeting {
     @Column(length = 500)
     private String googleMeetLink;
 
-    @Column(length = 200)
-    private String googleCalendarEventId;
 
     @Column(length = 1000)
     private String adminRemarks;

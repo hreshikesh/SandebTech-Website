@@ -10,6 +10,13 @@ public interface EmailService {
 
     void sendContactInquiry(ContactMessage contact);
     void sendMeetingRequest(Meeting meeting);
+    void sendMeetingConfirmation(Meeting meeting);
+
+    void sendMeetingRejected(Meeting meeting);
+
+    void sendMeetingCancellation(Meeting meeting);
+
+    void sendMeetingCompleted(Meeting meeting);
 
 
 }

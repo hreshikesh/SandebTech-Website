@@ -40,4 +40,8 @@ public interface MeetingRepository extends JpaRepository<Meeting, Long> {
             MeetingStatus status
     );
 
+    long count();
+
+    long countByStatus(MeetingStatus status);
+
 }

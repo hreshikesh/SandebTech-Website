@@ -38,18 +38,28 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers(
-                                "/swagger-ui/**",
-                                "/swagger-ui.html",
-                                "/v3/api-docs/**",
-                                "/api/auth/**"
-                        ).permitAll()
+                                "/google/connect",
+                                "/google/oauth2callback",
+                                "/oauth2callback"
+                        )
+                        .permitAll()
 
-                        .requestMatchers("/api/meeting")
-                        .authenticated()
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/api/auth/**"
+                        )
+                        .permitAll()
 
                         .requestMatchers("/api/admin/**")
                         .hasRole("ADMIN")
 
+                        .requestMatchers(
+                                "/api/contact/**",
+                                "/api/meeting/**"
+                        )
+                        .authenticated()
 
                         .anyRequest()
                         .authenticated()

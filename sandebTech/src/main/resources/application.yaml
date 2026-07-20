@@ -50,4 +50,4 @@ google:
   client:
     id: "519701626953-vjjjc73nbm289mn2pabenfj6q6cisi93.apps.googleusercontent.com"
     secret: "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"
-    redirect-uri: "http://localhost:8080/google/oauth2callback"
+    redirect-uri: "https://sandebtech-website.onrender.com/google/oauth2callback"

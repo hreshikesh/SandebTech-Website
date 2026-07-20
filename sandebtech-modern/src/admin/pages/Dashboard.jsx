@@ -3,13 +3,15 @@ import {
     FaUsers,
     FaCalendarAlt,
     FaEnvelope,
-    FaClock
+    FaClock,
+    FaSpinner
 } from "react-icons/fa";
 import StatCard from "../components/StatCard";
 import { getDashboard } from "../service/adminApi";
 import "../css/dashboard.css";
 
 function Dashboard() {
+    const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({
         totalUsers: 0,
         totalMeetings: 0,
@@ -19,15 +21,43 @@ function Dashboard() {
 
     useEffect(() => {
         async function loadDashboard() {
+            setLoading(true);
+            const startTime = Date.now();
+            
             try {
                 const res = await getDashboard();
-                setStats(res.data);
+                
+                // Enforce structural 3-second minimum loading transition sequence
+                const elapsedTime = Date.now() - startTime;
+                const targetDelay = 3000;
+                if (elapsedTime < targetDelay) {
+                    await new Promise(resolve => setTimeout(resolve, targetDelay - elapsedTime));
+                }
+                
+                if (res && res.data) {
+                    setStats(res.data);
+                }
             } catch (err) {
-                console.error(err);
+                console.error("Failed to parse administration matrices:", err);
+            } finally {
+                setLoading(false);
             }
         }
         loadDashboard();
     }, []);
+
+    // Display the matching premium full-screen loader layout during initial server sync
+    if (loading) {
+        return (
+            <div className="premium-loader-container">
+                <div className="premium-loader-card">
+                    <FaSpinner className="spinner-loading-icon-animated" />
+                    <h3>Synchronizing System Analytics</h3>
+                    <p>Compiling cross-platform node telemetry and metrics...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="dashboard-container">

@@ -68,3 +68,210 @@
     border-radius: 8px;
     display: block;
 }
+
+/* --- Premium 3-Second Loader Styles --- */
+.premium-loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    width: 100%;
+}
+
+.premium-loader-card {
+    text-align: center;
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f5;
+}
+
+.spinner-loading-icon-animated {
+    font-size: 2.5rem;
+    color: #4f46e5;
+    animation: spin 1.2s linear infinite;
+    margin-bottom: 1.2rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Responsive Premium Control Toolbar --- */
+.premium-toolbar-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.toolbar-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.premium-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.premium-filter-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.premium-dropdown {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: #334155;
+    outline: none;
+    cursor: pointer;
+}
+
+/* --- Fluid Table Adjustments --- */
+.table-overflow-frame {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+/* --- Premium Pagination Controls --- */
+.premium-pagination-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-top: 16px;
+}
+
+.pagination-metrics {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.highlight-metric {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: #334155;
+    transition: all 0.2s ease;
+}
+
+.pagination-nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-pages-list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pagination-page-node {
+    min-width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: #334155;
+    transition: all 0.2s ease;
+}
+
+.pagination-page-node:hover:not(.active-node) {
+    background: #f1f5f9;
+}
+
+.pagination-page-node.active-node {
+    background: #4f46e5;
+    color: #ffffff;
+    border-color: #4f46e5;
+    font-weight: 600;
+}
+
+/* --- Media Breakpoint Overrides for 100% Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .premium-toolbar-card, 
+    .premium-pagination-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .meetings-search-box {
+        width: 100%;
+    }
+    
+    .toolbar-actions-group {
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .premium-filter-btn, .size-selector-wrapper, .premium-dropdown {
+        flex-grow: 1;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .pagination-controls {
+        justify-content: space-between;
+        width: 100%;
+    }
+    
+    .pagination-pages-list {
+        display: none; /* Collapses page numbers on mobile structures to preserve safety layout */
+    }
+}

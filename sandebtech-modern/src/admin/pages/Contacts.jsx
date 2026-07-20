@@ -1,7 +1,19 @@
-import { useEffect, useState } from "react";
-import { FaSearch, FaEye, FaTrash, FaPlay, FaCheck, FaTimes, FaInbox } from "react-icons/fa";
+import { useEffect, useState, useCallback } from "react";
+import { 
+    FaSearch, 
+    FaEye, 
+    FaTrash, 
+    FaPlay, 
+    FaCheck, 
+    FaTimes, 
+    FaInbox,
+    FaSortAmountDown,
+    FaSortAmountUp,
+    FaChevronLeft,
+    FaChevronRight
+} from "react-icons/fa";
 import { getContacts, updateContactStatus, deleteContact } from "../service/adminApi";
-import "../css/contact.css"
+import "../css/contact.css";
 
 function Contacts() {
     const [contacts, setContacts] = useState([]);
@@ -11,30 +23,58 @@ function Contacts() {
     // Modal state management for viewing the deep inquiry details
     const [selectedContact, setSelectedContact] = useState(null);
 
-    const loadContacts = async () => {
+    // --- Pagination & Sorting State ---
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize, setPageSize] = useState(10);
+    const [totalPages, setTotalPages] = useState(0);
+    const [totalElements, setTotalElements] = useState(0);
+    const [sortDirection, setSortDirection] = useState("desc"); // 'desc' = Newest, 'asc' = Oldest
+
+    // Fetch data safely synchronized with backend Pageable state
+    const loadContacts = useCallback(async () => {
+        setLoading(true);
         try {
-            const response = await getContacts();
-            setContacts(response.data.content || []);
+            // Ties into Page<ContactResponse> backend parameters
+            const response = await getContacts(currentPage, pageSize, "createdAt", sortDirection);
+            const data = response?.data;
+            
+            if (data && data.content) {
+                setContacts(data.content);
+                setTotalPages(data.totalPages || 0);
+                setTotalElements(data.totalElements || 0);
+            } else {
+                setContacts(Array.isArray(data) ? data : []);
+                setTotalPages(1);
+                setTotalElements(Array.isArray(data) ? data.length : 0);
+            }
         } catch (error) {
             console.error("Failed to load contacts", error);
         } finally {
             setLoading(false);
         }
-    };
+    }, [currentPage, pageSize, sortDirection]);
 
     useEffect(() => {
         loadContacts();
-    }, []);
+    }, [loadContacts]);
 
     const changeStatus = async (id, status) => {
-        await updateContactStatus(id, status);
-        loadContacts();
+        try {
+            await updateContactStatus(id, status);
+            loadContacts();
+        } catch (error) {
+            console.error("Failed to modify contact workflow status", error);
+        }
     };
 
     const remove = async (id) => {
         if (!window.confirm("Are you sure you want to permanently delete this inquiry?")) return;
-        await deleteContact(id);
-        loadContacts();
+        try {
+            await deleteContact(id);
+            loadContacts();
+        } catch (error) {
+            console.error("Failed to delete record", error);
+        }
     };
 
     // Render loading placeholders with a modern premium skeleton structure
@@ -52,6 +92,7 @@ function Contacts() {
         );
     }
 
+    // Client-side instant filter processing for items strictly loaded on the active page frame
     const filteredContacts = contacts.filter(c =>
         c.name?.toLowerCase().includes(search.toLowerCase()) ||
         c.subject?.toLowerCase().includes(search.toLowerCase()) ||
@@ -68,8 +109,8 @@ function Contacts() {
             </div>
 
             {/* Premium Action Toolbar Controls */}
-            <div className="table-toolbar">
-                <div className="search-wrapper">
+            <div className="table-toolbar" style={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "space-between", alignItems: "center" }}>
+                <div className="search-wrapper" style={{ flexGrow: 1, maxWidth: "500px" }}>
                     <FaSearch className="search-icon-field" />
                     <input
                         type="text"
@@ -77,6 +118,35 @@ function Contacts() {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
+                </div>
+
+                <div className="toolbar-actions-group" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    {/* Date Sorting Filter Toggle */}
+                    <button 
+                        type="button"
+                        className="premium-filter-btn"
+                        onClick={() => setSortDirection(prev => prev === "desc" ? "asc" : "desc")}
+                        title={sortDirection === "desc" ? "Sorting: Newest First" : "Sorting: Oldest First"}
+                    >
+                        {sortDirection === "desc" ? <FaSortAmountDown /> : <FaSortAmountUp />}
+                        <span>Date: {sortDirection === "desc" ? "Newest First" : "Oldest First"}</span>
+                    </button>
+
+                    {/* Page Size Selection Context */}
+                    <div className="size-selector-wrapper">
+                        <select 
+                            value={pageSize} 
+                            onChange={(e) => {
+                                setPageSize(Number(e.target.value));
+                                setCurrentPage(0); // Safely reset index to page 0 upon structural resizing
+                            }}
+                            className="premium-dropdown"
+                        >
+                            <option value={5}>5 per page</option>
+                            <option value={10}>10 per page</option>
+                            <option value={25}>25 per page</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -110,7 +180,7 @@ function Contacts() {
                                         </span>
                                     </td>
                                     <td>
-                                        <div className="action-button-group">
+                                        <div className="action-button-group" style={{ justifyContent: "flex-end" }}>
                                             {contact.status === "NEW" && (
                                                 <button
                                                     className="action-btn btn-start"
@@ -161,6 +231,54 @@ function Contacts() {
                     </tbody>
                 </table>
             </div>
+
+            {/* Synchronized Pagination Engine Footer */}
+            {totalPages > 0 && (
+                <div className="premium-pagination-footer" style={{ marginTop: "16px" }}>
+                    <div className="pagination-metrics">
+                        Showing <span className="highlight-metric">{currentPage * pageSize + 1}</span> to{" "}
+                        <span className="highlight-metric">
+                            {Math.min((currentPage + 1) * pageSize, totalElements)}
+                        </span>{" "}
+                        of <span className="highlight-metric">{totalElements}</span> message structures
+                    </div>
+                    
+                    <div className="pagination-controls">
+                        <button
+                            type="button"
+                            className="pagination-nav-btn"
+                            disabled={currentPage === 0}
+                            onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                        >
+                            <FaChevronLeft size={12} />
+                            <span>Previous</span>
+                        </button>
+
+                        <div className="pagination-pages-list">
+                            {[...Array(totalPages).keys()].map((pageIndex) => (
+                                <button
+                                    key={pageIndex}
+                                    type="button"
+                                    className={`pagination-page-node ${currentPage === pageIndex ? "active-node" : ""}`}
+                                    onClick={() => setCurrentPage(pageIndex)}
+                                >
+                                    {pageIndex + 1}
+                                </button>
+                            ))}
+                        </div>
+
+                        <button
+                            type="button"
+                            className="pagination-nav-btn"
+                            disabled={currentPage >= totalPages - 1}
+                            onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+                        >
+                            <span>Next</span>
+                            <FaChevronRight size={12} />
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Premium Details Lightbox Modal Overlay */}
             {selectedContact && (

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-    FaSearch,
-    FaCalendarCheck,
-    FaVideo,
-    FaExternalLinkAlt,
+import { 
+    FaSearch, 
+    FaCalendarCheck, 
+    FaVideo, 
+    FaExternalLinkAlt, 
     FaSpinner,
     FaTimes
 } from "react-icons/fa";
@@ -28,29 +28,16 @@ function Meetings() {
     const loadMeetings = async () => {
         try {
             setError("");
-
             const response = await getMeetings();
-
-            console.log("Meeting API Response:", response.data);
-
-            const data = response.data;
-
-            if (Array.isArray(data)) {
-                setMeetings(data);
-            } else if (Array.isArray(data.content)) {
-                setMeetings(data.content);
-            } else {
-                setMeetings([]);
-            }
-
+            setMeetings(response.data?.content || response.data || []);
         } catch (err) {
-            console.error(err);
-            setMeetings([]);
+            console.error("Failed to load meetings:", err);
             setError("Failed to synchronize server metrics. Please reload.");
         } finally {
             setLoading(false);
         }
     };
+
     useEffect(() => {
         loadMeetings();
     }, []);
@@ -93,9 +80,8 @@ function Meetings() {
         );
     }
 
-    const filteredMeetings = (Array.isArray(meetings) ? meetings : []).filter((m) => {
+    const filteredMeetings = meetings.filter(m => {
         const query = search.toLowerCase();
-
         return (
             (m.name || "").toLowerCase().includes(query) ||
             (m.purpose || "").toLowerCase().includes(query) ||
@@ -155,9 +141,9 @@ function Meetings() {
                                     </td>
                                     <td>
                                         {meeting.googleMeetLink ? (
-                                            <a
-                                                href={meeting.googleMeetLink}
-                                                target="_blank"
+                                            <a 
+                                                href={meeting.googleMeetLink} 
+                                                target="_blank" 
                                                 rel="noopener noreferrer"
                                                 className="meet-integration-link"
                                             >
@@ -231,9 +217,9 @@ function Meetings() {
                ========================================================================== */}
             {statusModal.isOpen && (
                 <div className="modal-backdrop" onClick={handleCloseModal}>
-                    <form
-                        className="modal-card"
-                        onClick={(e) => e.stopPropagation()}
+                    <form 
+                        className="modal-card" 
+                        onClick={(e) => e.stopPropagation()} 
                         onSubmit={handleStatusSubmit}
                     >
                         <div className="modal-header">
@@ -267,8 +253,8 @@ function Meetings() {
                             <button type="button" className="primary-modal-close" onClick={handleCloseModal}>
                                 Cancel
                             </button>
-                            <button
-                                type="submit"
+                            <button 
+                                type="submit" 
                                 className="action-btn btn-resolve"
                                 style={{ padding: "10px 20px" }}
                             >

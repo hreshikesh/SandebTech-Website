@@ -8,7 +8,7 @@ const API = axios.create({
 
 export async function sendOTP(email) {
 
-    const response = await API.post("/login", {
+    const response = await API.post("/api/auth/login", {
 
         email
 
@@ -20,7 +20,7 @@ export async function sendOTP(email) {
 
 export async function verifyOTP(email, otp) {
 
-    const response = await API.post("/verify", {
+    const response = await API.post("/api/auth/verify", {
 
         email,
 
@@ -34,9 +34,8 @@ export async function verifyOTP(email, otp) {
 
 export async function register(data) {
 
-    const response = await API.post("/register", data);
+    const response = await API.post("/api/auth/register", data);
 
     return response.data;
 
 }
-

@@ -453,16 +453,6 @@
     cursor: pointer;
 }
 
-/* --- Fluid Table Adjustments --- */
-.table-overflow-frame {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    background: #ffffff;
-}
-
 /* --- Premium Pagination Controls --- */
 .premium-pagination-footer {
     display: flex;

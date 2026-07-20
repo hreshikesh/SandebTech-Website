@@ -283,209 +283,153 @@
     to { transform: rotate(360deg); }
 }
 
-/* --- Premium 3-Second Loader Styles --- */
-.premium-loader-container {
+/* ==========================================================================
+   Remarks Lightbox Modal Styles
+   ADDED: Meetings.jsx renders a modal using these classes (.modal-backdrop,
+   .modal-card, .modal-header, .modal-close-btn, .modal-body, .info-block,
+   .message-bubble, .modal-footer, .primary-modal-close, .subject-highlight,
+   .page-subtitle) plus a submit button using .action-btn.btn-resolve — none
+   of which existed anywhere in this file. The modal and its submit button
+   were rendering completely unstyled. Added here, matching this file's own
+   dark-theme variables so it's visually consistent with the rest of the page.
+   ========================================================================== */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 10, 18, 0.8);
+    backdrop-filter: blur(8px);
     display: flex;
-    align-items: center;
     justify-content: center;
-    min-height: 70vh;
-    width: 100%;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    animation: fadeIn 0.2s ease;
 }
 
-.premium-loader-card {
-    text-align: center;
-    padding: 2.5rem;
-    background: #ffffff;
+.modal-card {
+    background: var(--panel-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--border-line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bright-text);
+}
+
+.page-subtitle {
+    color: var(--soft-text);
+    font-size: 14px;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--soft-text);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover { color: var(--bright-text); }
+
+.modal-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.info-block label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--soft-text);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.subject-highlight {
+    font-weight: 600 !important;
+    color: var(--cyan-glow);
+}
+
+.message-bubble {
+    background: var(--input-dark);
+    border: 1px solid var(--border-line);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eef2f5;
-}
-
-.spinner-loading-icon-animated {
-    font-size: 2.5rem;
-    color: #4f46e5;
-    animation: spin 1.2s linear infinite;
-    margin-bottom: 1.2rem;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* --- Responsive Premium Control Toolbar --- */
-.premium-toolbar-card {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: space-between;
-    align-items: center;
-    background: #ffffff;
     padding: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e2e8f0;
+    white-space: pre-wrap;
+}
+
+.modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid var(--border-line);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.primary-modal-close {
+    background: var(--input-dark);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--bright-text);
+    padding: 10px 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-    margin-bottom: 20px;
-    border: 1px solid #e2e8f0;
-}
-
-.toolbar-actions-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.premium-filter-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #334155;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.premium-filter-btn:hover {
-    background: #f1f5f9;
-    border-color: #94a3b8;
-}
-
-.premium-dropdown {
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    padding: 10px 14px;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    color: #334155;
-    outline: none;
-    cursor: pointer;
-}
-
-/* --- Fluid Table Adjustments --- */
-.table-overflow-frame {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    background: #ffffff;
-}
-
-/* --- Premium Pagination Controls --- */
-.premium-pagination-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 16px;
-    background: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    margin-top: 16px;
-}
-
-.pagination-metrics {
-    font-size: 0.875rem;
-    color: #64748b;
-}
-
-.highlight-metric {
     font-weight: 600;
-    color: #1e293b;
-}
-
-.pagination-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.pagination-nav-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
-    border: 1px solid #cbd5e1;
-    background: #ffffff;
-    border-radius: 6px;
-    font-size: 0.875rem;
     cursor: pointer;
-    color: #334155;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease;
 }
 
-.pagination-nav-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
+.primary-modal-close:hover { background: rgba(255,255,255,0.08); }
 
-.pagination-pages-list {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.pagination-page-node {
-    min-width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #e2e8f0;
-    background: #ffffff;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    cursor: pointer;
-    color: #334155;
-    transition: all 0.2s ease;
-}
-
-.pagination-page-node:hover:not(.active-node) {
-    background: #f1f5f9;
-}
-
-.pagination-page-node.active-node {
-    background: #4f46e5;
-    color: #ffffff;
-    border-color: #4f46e5;
+/* Generic action button used for the modal's submit control. Distinct from
+   the table row's .action-btn-pill (different classnames, same idea). */
+.action-btn {
+    border: 1px solid var(--border-line);
+    padding: 6px 12px;
+    border-radius: 10px;
     font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-/* --- Media Breakpoint Overrides for 100% Mobile Responsiveness --- */
-@media (max-width: 768px) {
-    .premium-toolbar-card, 
-    .premium-pagination-footer {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .meetings-search-box {
-        width: 100%;
-    }
-    
-    .toolbar-actions-group {
-        justify-content: space-between;
-        width: 100%;
-    }
-    
-    .premium-filter-btn, .size-selector-wrapper, .premium-dropdown {
-        flex-grow: 1;
-        text-align: center;
-        justify-content: center;
-    }
-
-    .pagination-controls {
-        justify-content: space-between;
-        width: 100%;
-    }
-    
-    .pagination-pages-list {
-        display: none; /* Collapses page numbers on mobile structures to preserve safety layout */
-    }
+.action-btn.btn-resolve {
+    background: var(--c-txt);
+    border-color: var(--c-txt);
+    color: #0b1320;
 }
+
+.action-btn.btn-resolve:hover {
+    opacity: 0.9;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleUp { from { transform: scale(0.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }

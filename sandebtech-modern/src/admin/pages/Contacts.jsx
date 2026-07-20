@@ -20,7 +20,7 @@ function Contacts() {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     
-    // Modal state management for viewing the deep inquiry details
+    // Modal state management for viewing deep inquiry details
     const [selectedContact, setSelectedContact] = useState(null);
 
     // --- Pagination & Sorting State ---
@@ -234,7 +234,7 @@ function Contacts() {
 
             {/* Synchronized Pagination Engine Footer */}
             {totalPages > 0 && (
-                <div className="premium-pagination-footer" style={{ marginTop: "16px" }}>
+                <div className="premium-pagination-footer">
                     <div className="pagination-metrics">
                         Showing <span className="highlight-metric">{currentPage * pageSize + 1}</span> to{" "}
                         <span className="highlight-metric">

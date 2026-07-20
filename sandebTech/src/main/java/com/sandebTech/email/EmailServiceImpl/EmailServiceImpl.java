@@ -93,7 +93,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     @Async
     public void sendMeetingRequest(Meeting meeting) {
-        dispatchEmail(contactRecipient, "📅 New Meeting Request", meeting, "meeting-requested");
+        dispatchEmail(contactRecipient, "📅 New Meeting Request", meeting, "meeting-request");
     }
 
     @Override

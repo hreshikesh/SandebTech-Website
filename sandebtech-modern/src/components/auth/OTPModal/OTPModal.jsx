@@ -18,6 +18,9 @@ function OTPModal({
     const [timer, setTimer] = useState(30);
     const [error, setError] = useState("");
     const [verifying, setVerifying] = useState(false);
+    // Incrementing this forces the countdown effect below to re-run and
+    // start a fresh interval on every resend, not just on initial open.
+    const [resendKey, setResendKey] = useState(0);
 
     const {
         login,
@@ -43,11 +46,11 @@ function OTPModal({
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [open]);
+    }, [open, resendKey]);
 
     const handleResend = () => {
-        setTimer(30);
         setError("");
+        setResendKey((prev) => prev + 1);
         onResend();
     };
 

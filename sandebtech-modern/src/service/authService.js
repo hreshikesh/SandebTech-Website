@@ -2,13 +2,13 @@ import axios from "axios";
 
 const API = axios.create({
 
-    baseURL: "https://sandebtech-website.onrender.com"
+    baseURL: "https://sandebtech-website.onrender.com/api/auth"
 
 });
 
 export async function sendOTP(email) {
 
-    const response = await API.post("/api/auth/login", {
+    const response = await API.post("/login", {
 
         email
 
@@ -20,7 +20,7 @@ export async function sendOTP(email) {
 
 export async function verifyOTP(email, otp) {
 
-    const response = await API.post("/api/auth/verify", {
+    const response = await API.post("/verify", {
 
         email,
 
@@ -34,7 +34,7 @@ export async function verifyOTP(email, otp) {
 
 export async function register(data) {
 
-    const response = await API.post("/api/auth/register", data);
+    const response = await API.post("register", data);
 
     return response.data;
 

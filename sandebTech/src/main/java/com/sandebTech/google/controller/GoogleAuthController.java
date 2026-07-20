@@ -1,4 +1,4 @@
-package com.sandebTech.config;
+package com.sandebTech.google.controller;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.TokenResponse;

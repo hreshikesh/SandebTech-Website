@@ -28,7 +28,7 @@ public class EmailServiceImpl implements EmailService {
     private String contactRecipient;
 
     @Override
-    @Async
+
     public void sendOtp(String to, String otp) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
@@ -59,7 +59,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    @Async
+
     public void sendContactInquiry(ContactMessage contact) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -91,32 +91,32 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    @Async
+
     public void sendMeetingRequest(Meeting meeting) {
         dispatchEmail(contactRecipient, "📅 New Meeting Request", meeting, "meeting-request");
     }
 
     @Override
-    @Async
+
     public void sendMeetingConfirmation(Meeting meeting) {
         dispatchEmail(meeting.getUser().getEmail(), "✅ Meeting Confirmed", meeting, "meeting-approved");
     }
 
     @Override
-    @Async
+
     public void sendMeetingCompleted(Meeting meeting) {
         // Reuse confirmation or direct to a specific template if preferred
         dispatchEmail(meeting.getUser().getEmail(), "✅ Meeting Completed", meeting, "meeting-capproved");
     }
 
     @Override
-    @Async
+
     public void sendMeetingRejected(Meeting meeting) {
         dispatchEmail(meeting.getUser().getEmail(), "❌ Meeting Rejected", meeting, "meeting-rejected");
     }
 
     @Override
-    @Async
+
     public void sendMeetingCancellation(Meeting meeting) {
         dispatchEmail(meeting.getUser().getEmail(), "🚫 Meeting Cancelled", meeting, "meeting-rejected");
     }

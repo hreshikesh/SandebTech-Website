@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { 
     FaSearch, 
     FaCalendarCheck, 
     FaVideo, 
     FaExternalLinkAlt, 
     FaSpinner,
-    FaTimes
+    FaTimes,
+    FaSortAmountDown,
+    FaSortAmountUp,
+    FaChevronLeft,
+    FaChevronRight
 } from "react-icons/fa";
 import { getMeetings, updateMeetingStatus } from "../service/adminApi";
 import "../css/meeting.css";
@@ -17,7 +21,14 @@ function Meetings() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // --- State controlling the new custom remarks modal pipeline ---
+    // --- Pagination & Sorting State ---
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize, setPageSize] = useState(10);
+    const [totalPages, setTotalPages] = useState(0);
+    const [totalElements, setTotalElements] = useState(0);
+    const [sortDirection, setSortDirection] = useState("desc"); // 'desc' = Newest, 'asc' = Oldest
+
+    // --- Custom remarks modal control state ---
     const [statusModal, setStatusModal] = useState({
         isOpen: false,
         meetingId: null,
@@ -25,24 +36,46 @@ function Meetings() {
         remarks: ""
     });
 
-    const loadMeetings = async () => {
+    // Synchronize data fetch with backend pageable structures
+    const loadMeetings = useCallback(async () => {
+        setLoading(true);
+        setError("");
+        const startTime = Date.now();
+
         try {
-            setError("");
-            const response = await getMeetings();
-            setMeetings(response.data?.content || response.data || []);
+            // Passes pagination parameters directly matching your Spring Boot controller
+            const response = await getMeetings(currentPage, pageSize, "meetingDate", sortDirection);
+            const data = response?.data;
+
+            // Enforce strict 3-second spinner visibility rule for smooth UX transitions
+            const elapsedTime = Date.now() - startTime;
+            const targetDelay = 3000;
+            if (elapsedTime < targetDelay) {
+                await new Promise(resolve => setTimeout(resolve, targetDelay - elapsedTime));
+            }
+
+            if (data && data.content) {
+                setMeetings(data.content);
+                setTotalPages(data.totalPages || 0);
+                setTotalElements(data.totalElements || 0);
+            } else {
+                // Fallback handle for non-paged direct array responses
+                setMeetings(Array.isArray(data) ? data : []);
+                setTotalPages(1);
+                setTotalElements(Array.isArray(data) ? data.length : 0);
+            }
         } catch (err) {
             console.error("Failed to load meetings:", err);
             setError("Failed to synchronize server metrics. Please reload.");
         } finally {
             setLoading(false);
         }
-    };
+    }, [currentPage, pageSize, sortDirection]);
 
     useEffect(() => {
         loadMeetings();
-    }, []);
+    }, [loadMeetings]);
 
-    // 1. Triggered by action buttons: opens custom modal instead of prompt()
     const handleStatusInitiation = (id, status) => {
         setStatusModal({
             isOpen: true,
@@ -52,12 +85,10 @@ function Meetings() {
         });
     };
 
-    // 2. Closes modal and resets internal control buffers
     const handleCloseModal = () => {
         setStatusModal({ isOpen: false, meetingId: null, targetStatus: "", remarks: "" });
     };
 
-    // 3. Dispatches payload asynchronously to the server
     const handleStatusSubmit = async (e) => {
         e.preventDefault();
         const { meetingId, targetStatus, remarks } = statusModal;
@@ -71,15 +102,7 @@ function Meetings() {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="meetings-loading-fallback">
-                <FaSpinner className="spinner-loading-icon" />
-                <p>Loading synchronization pipeline...</p>
-            </div>
-        );
-    }
-
+    // Client-side quick filter for items loaded inside the current page frame
     const filteredMeetings = meetings.filter(m => {
         const query = search.toLowerCase();
         return (
@@ -90,6 +113,18 @@ function Meetings() {
         );
     });
 
+    if (loading) {
+        return (
+            <div className="premium-loader-container">
+                <div className="premium-loader-card">
+                    <FaSpinner className="spinner-loading-icon-animated" />
+                    <h3>Synchronizing Schedule Pipeline</h3>
+                    <p>Fetching secure virtual conference data structures...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="admin-page text-layer-base">
             <div className="meetings-header-block">
@@ -97,20 +132,51 @@ function Meetings() {
                 <p className="meetings-subtitle">Track, approve, manage, and dispatch live virtual conference room entries.</p>
             </div>
 
-            <div className="meetings-toolbar-row">
+            {/* Premium Interactive Control Bar */}
+            <div className="premium-toolbar-card">
                 <div className="meetings-search-box">
                     <FaSearch className="search-embedded-icon" />
                     <input
                         type="text"
-                        placeholder="Search meetings by name, intent objective, status, or channel mode..."
+                        placeholder="Filter current view by name, objective, status..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
+                </div>
+
+                <div className="toolbar-actions-group">
+                    {/* Date Sorting Filter Widget */}
+                    <button 
+                        type="button"
+                        className="premium-filter-btn"
+                        onClick={() => setSortDirection(prev => prev === "desc" ? "asc" : "desc")}
+                        title={sortDirection === "desc" ? "Sorting: Newest First" : "Sorting: Oldest First"}
+                    >
+                        {sortDirection === "desc" ? <FaSortAmountDown /> : <FaSortAmountUp />}
+                        <span>Date: {sortDirection === "desc" ? "Newest First" : "Oldest First"}</span>
+                    </button>
+
+                    {/* Page Size Selector */}
+                    <div className="size-selector-wrapper">
+                        <select 
+                            value={pageSize} 
+                            onChange={(e) => {
+                                setPageSize(Number(e.target.value));
+                                setCurrentPage(0); // Reset to page 0 on frame dimension adjustments
+                            }}
+                            className="premium-dropdown"
+                        >
+                            <option value={5}>5 per page</option>
+                            <option value={10}>10 per page</option>
+                            <option value={25}>25 per page</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             {error && <div className="system-error-banner">{error}</div>}
 
+            {/* Responsive Data Grid Frame */}
             <div className="table-overflow-frame">
                 <table className="meeting-table container-data-grid">
                     <thead>
@@ -212,9 +278,54 @@ function Meetings() {
                 </table>
             </div>
 
-            {/* ==========================================================================
-                Premium Remarks Input Lightbox Modal Insertion
-               ========================================================================== */}
+            {/* Premium Responsive Pagination Control Footer */}
+            {totalPages > 0 && (
+                <div className="premium-pagination-footer">
+                    <div className="pagination-metrics">
+                        Showing <span className="highlight-metric">{currentPage * pageSize + 1}</span> to{" "}
+                        <span className="highlight-metric">
+                            {Math.min((currentPage + 1) * pageSize, totalElements)}
+                        </span>{" "}
+                        of <span className="highlight-metric">{totalElements}</span> system deployment records
+                    </div>
+                    <div className="pagination-controls">
+                        <button
+                            type="button"
+                            className="pagination-nav-btn"
+                            disabled={currentPage === 0}
+                            onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                        >
+                            <FaChevronLeft size={12} />
+                            <span>Previous</span>
+                        </button>
+
+                        <div className="pagination-pages-list">
+                            {[...Array(totalPages).keys()].map((pageIndex) => (
+                                <button
+                                    key={pageIndex}
+                                    type="button"
+                                    className={`pagination-page-node ${currentPage === pageIndex ? "active-node" : ""}`}
+                                    onClick={() => setCurrentPage(pageIndex)}
+                                >
+                                    {pageIndex + 1}
+                                </button>
+                            ))}
+                        </div>
+
+                        <button
+                            type="button"
+                            className="pagination-nav-btn"
+                            disabled={currentPage >= totalPages - 1}
+                            onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+                        >
+                            <span>Next</span>
+                            <FaChevronRight size={12} />
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* Remarks Lightbox Modal */}
             {statusModal.isOpen && (
                 <div className="modal-backdrop" onClick={handleCloseModal}>
                     <form 
@@ -253,11 +364,7 @@ function Meetings() {
                             <button type="button" className="primary-modal-close" onClick={handleCloseModal}>
                                 Cancel
                             </button>
-                            <button 
-                                type="submit" 
-                                className="action-btn btn-resolve"
-                                style={{ padding: "10px 20px" }}
-                            >
+                            <button type="submit" className="action-btn btn-resolve" style={{ padding: "10px 20px" }}>
                                 Confirm Action
                             </button>
                         </div>

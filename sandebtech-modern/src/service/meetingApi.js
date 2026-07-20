@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { toLocalDateString } from "../utils/dateUtils";
 
 const API = axios.create({
-    baseURL: "http://localhost:8080/api"
+    baseURL: "https://sandebtech-website.onrender.com"
 });
 
 API.interceptors.request.use((config) => {

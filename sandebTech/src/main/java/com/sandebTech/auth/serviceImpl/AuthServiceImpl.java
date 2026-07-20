@@ -39,6 +39,7 @@ public class AuthServiceImpl implements AuthService {
         String otp = otpService.generateOtp(request.getEmail());
 
         emailService.sendOtp(request.getEmail(), otp);
+        log.info(otp);
 
         log.info("OTP sent successfully to {}", request.getEmail());
 

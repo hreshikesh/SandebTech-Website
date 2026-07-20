@@ -98,13 +98,31 @@ function RegisterModal({
     return Object.keys(newErrors).length === 0;
   };
 
+  // Normalizes whatever shape the backend actually returns into a plain
+  // user object. Handles the most common Spring Boot response patterns:
+  //   { success: true, user: {...} }
+  //   { success: true, data: {...} }
+  //   { user: {...} }               (no explicit "success" flag)
+  //   { name, email, ... }          (the user object returned flat, no wrapper)
+  function extractUser(result) {
+    if (!result || typeof result !== "object") return null;
+    // Backend's AuthResponse DTO serializes the user under "userResponse".
+    if (result.userResponse && typeof result.userResponse === "object") return result.userResponse;
+    if (result.user && typeof result.user === "object") return result.user;
+    if (result.data && typeof result.data === "object") return result.data;
+    // If the response itself looks like a user (has a name/email), treat it as one.
+    if (result.name || result.email) return result;
+    return null;
+  }
+
   const handleRegister = async () => {
 
     if (!validateForm()) return;
 
     const result = await register(form);
 
-    if (!result.success) {
+    // Confirmed shape: { success, newUser, token, message, userResponse }
+    if (!result?.success) {
       setErrors((prev) => ({
         ...prev,
         form: result.message || "Registration failed. Please try again.",
@@ -112,7 +130,25 @@ function RegisterModal({
       return;
     }
 
-    login(result.user);
+    const userData = extractUser(result);
+
+    if (!userData) {
+      console.error(
+        "register() succeeded but no user object could be found in the response. " +
+        "Expected it under result.userResponse — check the console.log above if this still fails."
+      );
+      setErrors((prev) => ({
+        ...prev,
+        form: "Registered, but couldn't load your profile. Please try logging in.",
+      }));
+      return;
+    }
+
+    if (result.token) {
+      localStorage.setItem("token", result.token);
+    }
+
+    login(userData);
 
     setRegisterOpen(false);
 

@@ -8,7 +8,7 @@ import {
 
 import "./Hero.css";
 
-import heroImage from "../../assets/images/hero/hero.webp";
+import heroImage from "../../assets/images/hero/Hero.webp";
 
 const services = [
   {

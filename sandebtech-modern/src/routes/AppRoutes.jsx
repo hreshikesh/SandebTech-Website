@@ -55,7 +55,7 @@ function App() {
     <>
       <Toaster position="bottom-right" />
 
-      <SessionTimeout>
+      <SessionTimeout/>
 
         <AuthManager />
 
@@ -118,8 +118,7 @@ function App() {
           </Routes>
 
         </AnimatePresence>
-
-      </SessionTimeout>
+        
     </>
   );
 }

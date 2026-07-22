@@ -2,27 +2,33 @@ import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
+const SESSION_TIMEOUT = 30 * 60 * 1000;
 
-export default function SessionTimeout() {
+export default function SessionTimeout({ children }) {
+
   const navigate = useNavigate();
-  const timer = useRef();
+  const timer = useRef(null);
 
   const logout = () => {
+
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    toast.error("Session Timeout...Please Login Again")
+    toast.error("Session expired. Please login again.");
 
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
+
   };
 
   const resetTimer = () => {
+
     clearTimeout(timer.current);
     timer.current = setTimeout(logout, SESSION_TIMEOUT);
+
   };
 
   useEffect(() => {
+
     const events = [
       "mousemove",
       "mousedown",
@@ -39,13 +45,16 @@ export default function SessionTimeout() {
     resetTimer();
 
     return () => {
+
       clearTimeout(timer.current);
 
       events.forEach(event =>
         window.removeEventListener(event, resetTimer)
       );
+
     };
+
   }, []);
 
-  return null;
+  return <>{children}</>;
 }

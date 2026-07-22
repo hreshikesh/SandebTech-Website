@@ -42,7 +42,7 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-
+                        .requestMatchers("/api/chatbot/**").permitAll()
                         .requestMatchers(
                                 "/google/connect",
                                 "/google/oauth2callback",

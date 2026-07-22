@@ -6,9 +6,9 @@ spring:
     name: sandebTech
 
   datasource:
-    url: jdbc:postgresql://dpg-d9eqk5f41pts73fdi350-a.ohio-postgres.render.com:5432/sandebtech
-    username: sandebtech_user
-    password: 76hQ9ms0OCYJyuvyp7H7vRzKycf5zshg
+    url: jdbc:postgresql://localhost:5432/sandebtech
+    username: postgres
+    password: hrishi@sql
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -51,3 +51,7 @@ google:
     id: "519701626953-vjjjc73nbm289mn2pabenfj6q6cisi93.apps.googleusercontent.com"
     secret: "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"
     redirect-uri: "https://sandebtech-website.onrender.com/google/oauth2callback"
+
+gemini:
+  api:
+    key: AQ.Ab8RN6K2LrLA0AMJKwAsMz5d113KEdaDpb53KrHjIn_Xus92QA

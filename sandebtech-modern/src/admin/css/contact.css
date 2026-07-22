@@ -204,6 +204,8 @@
 /* Empty Table States */
 .empty-state-cell {
     padding: 60px 0 !important;
+    justify-content: center;
+    align-items: center;
 }
 
 .empty-state {

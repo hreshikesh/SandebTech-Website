@@ -75,7 +75,7 @@ function Meetings() {
         return (
             <div className="meetings-loading-fallback">
                 <FaSpinner className="spinner-loading-icon" />
-                <p>Loading synchronization pipeline...</p>
+                <p>Loading Meeting Details...</p>
             </div>
         );
     }

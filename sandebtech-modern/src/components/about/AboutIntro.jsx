@@ -3,12 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 
 import companyImage from "../../assets/images/about/about2.webp"
 
-const features = [
-  "Engineering Consulting",
-  "Industrial Automation",
-  "Electrical Engineering",
-  "Innovation & Integrity",
-];
+
 
 function AboutIntro() {
   return (
@@ -54,23 +49,7 @@ function AboutIntro() {
               solutions across diverse industries.
             </p>
 
-            <div className="feature-grid">
-
-              {features.map((item) => (
-
-                <div
-                  key={item}
-                  className="feature-item"
-                >
-                  <CheckCircle2 size={20} />
-
-                  <span>{item}</span>
-
-                </div>
-
-              ))}
-
-            </div>
+            
 
           </div>
 

@@ -117,7 +117,7 @@ function Footer() {
               <MapPin size={18} />
 
               <span>
-                Mangalore,
+                Bangalore,
                 Karnataka,
                 India
               </span>

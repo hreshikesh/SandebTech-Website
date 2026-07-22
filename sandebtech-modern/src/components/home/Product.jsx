@@ -1,99 +1,63 @@
 import "./Products.css";
-import { ArrowRight } from "lucide-react";
+import { TrendingUp, Lightbulb, Coins } from "lucide-react";
 
-import panel from "../../assets/images/products/panel.webp";
-import automation from "../../assets/images/products/automation.webp";
-import electrical from "../../assets/images/products/electrical.webp";
-import industry from "../../assets/images/products/industry.webp";
-
-const products = [
+const benefits = [
   {
     id: 1,
-    image: panel,
-    title: "Control Panels",
-    desc: "Custom PCC, MCC and PLC panels engineered for industrial applications."
+    icon: TrendingUp,
+    title: "Productivity Gains",
+    desc: "Automation of sectors, diffusion of simulation within the company. Acceleration of validation cycles and decision-making."
   },
   {
     id: 2,
-    image: automation,
-    title: "Automation Systems",
-    desc: "Complete PLC, SCADA and process automation solutions."
+    icon: Lightbulb,
+    title: "Innovative Solutions",
+    desc: "Specialized solutions, with high technical content, flexible and complementary to market standards."
   },
   {
     id: 3,
-    image: electrical,
-    title: "Electrical Equipment",
-    desc: "Reliable electrical products and engineered power distribution solutions."
-  },
-  {
-    id: 4,
-    image: industry,
-    title: "Industrial Solutions",
-    desc: "End-to-end engineering solutions for modern manufacturing industries."
+    icon: Coins,
+    title: "Cost Reduction",
+    desc: "Reduction in the number of prototypes and physical tests, improvement in product quality."
   }
 ];
 
 function Products() {
   return (
     <section className="products">
-
       <div className="container">
-
         <div className="products-heading">
-
-          <span>OUR PRODUCTS</span>
+          <span>OUR VALUE PROPOSITION</span>
 
           <h2>
-            Innovative Products
+            Driving Efficiency &
             <br />
-            Built For Industry
+            Engineering Innovation
           </h2>
 
           <p>
-            Delivering dependable products that improve
-            efficiency, productivity and operational safety.
+            Delivering measurable performance gains, cost efficiency, and high-precision technical solutions for complex engineering challenges.
           </p>
-
         </div>
 
         <div className="products-grid">
+          {benefits.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div className="product-card" key={item.id}>
+                <div className="card-icon-box">
+                  <Icon size={28} />
+                </div>
 
-          {products.map((item) => (
-
-            <div
-              className="product-card"
-              key={item.id}
-            >
-
-              <img
-                src={item.image}
-                alt={item.title}
-              />
-
-              <div className="product-content">
-
-                <h3>{item.title}</h3>
-
-                <p>{item.desc}</p>
-
-                <button>
-
-                  Explore
-
-                  <ArrowRight size={18} />
-
-                </button>
-
+                <div className="product-content">
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </div>
               </div>
-
-            </div>
-
-          ))}
-
+            );
+          })}
         </div>
-
       </div>
-
     </section>
   );
 }

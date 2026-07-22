@@ -29,6 +29,7 @@ import Contacts from "../admin/pages/Contacts";
 import { Toaster } from "react-hot-toast";
 import AdminRoute from "./AdminRoutes";
 
+
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -135,6 +136,7 @@ function App() {
 
       </AnimatePresence>
       <AuthManager />
+  
     </>
   );
 }

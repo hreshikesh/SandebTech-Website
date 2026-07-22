@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import ScrollToTop from "../common/ScrollToTop";
 import FloatingMeetingButton from "../meeting/FloatingMeetingButton";
 import useAuth from "../../hooks/useAuth";
+import ChatBot from "../../chatbot/components/Chatbot";
 
 function Layout() {
   const {requireAuth}=useAuth();
@@ -12,6 +13,7 @@ function Layout() {
     <ScrollToTop/>
       <Navbar />
       <Outlet />
+      <ChatBot/>
       <FloatingMeetingButton/>
       <Footer />
     </>

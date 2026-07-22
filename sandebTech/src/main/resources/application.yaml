@@ -38,7 +38,7 @@ logging:
 
 jwt:
   secret: 8H1P2Q9R5M7K4N8V2X6Z1L3J9T7A5F6D8C4B2N7P1Q9R6M3X5V8L2K4J1H7F9A6
-  expiration: 86400000
+  expiration: 1800000
 
 sandebtech:
   mail:

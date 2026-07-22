@@ -28,6 +28,7 @@ import Meetings from "../admin/pages/Meetings";
 import Contacts from "../admin/pages/Contacts";
 import { Toaster } from "react-hot-toast";
 import AdminRoute from "./AdminRoutes";
+import SessionTimeout from "../components/auth/SessionTimeout";
 
 
 function App() {
@@ -53,90 +54,72 @@ function App() {
   return (
     <>
       <Toaster position="bottom-right" />
-      <AnimatePresence mode="wait">
 
-        <Routes location={location} key={location.pathname}>
+      <SessionTimeout>
 
-          <Route element={<Layout />}>
+        <AuthManager />
 
-            <Route
-              path="/"
-              element={<Home />}
-            />
+        <AnimatePresence mode="wait">
 
-            <Route
-              path="/about"
-              element={<About />}
-            />
+          <Routes location={location} key={location.pathname}>
 
-            <Route
-              path="/services"
-              element={<Services />}
-            />
+            <Route element={<Layout />}>
 
-            <Route
-              path="/solutions"
-              element={<Solutions />}
-            />
+              <Route path="/" element={<Home />} />
 
-            <Route
-              path="/solutions/shipflow-cfd"
-              element={<ShipflowCFD />}
-            />
+              <Route path="/about" element={<About />} />
 
-            <Route
-              path="/solutions/caeses"
-              element={<Caeses />}
-            />
+              <Route path="/services" element={<Services />} />
 
-            <Route
-              path="/solutions/turbomachinery"
-              element={<Turbomachinery />}
-            />
+              <Route path="/solutions" element={<Solutions />} />
 
-            <Route
-              path="/solutions/lotus-marine"
-              element={<LotusMarine />}
-            />
+              <Route
+                path="/solutions/shipflow-cfd"
+                element={<ShipflowCFD />}
+              />
 
+              <Route
+                path="/solutions/caeses"
+                element={<Caeses />}
+              />
 
-            
-            <Route
-              path="/contact"
-              element={<Contact />}
-            />
+              <Route
+                path="/solutions/turbomachinery"
+                element={<Turbomachinery />}
+              />
+
+              <Route
+                path="/solutions/lotus-marine"
+                element={<LotusMarine />}
+              />
+
+              <Route path="/contact" element={<Contact />} />
+
+              <Route path="/meeting" element={<Meeting />} />
+
+              <Route path="*" element={<NotFound />} />
+
+            </Route>
 
             <Route
-              path="/meeting"
-              element={<Meeting />}
-            />
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminLayout />
+                </AdminRoute>
+              }
+            >
+              <Route index element={<Dashboard />} />
+              <Route path="users" element={<Users />} />
+              <Route path="meetings" element={<Meetings />} />
+              <Route path="contacts" element={<Contacts />} />
+            </Route>
 
-            <Route path="*" element={<NotFound />} />
-          </Route>
+          </Routes>
 
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminLayout />
-              </AdminRoute>
-            }
-          >
-            <Route index element={<Dashboard />} />
+        </AnimatePresence>
 
-            <Route path="users" element={<Users />} />
-
-            <Route path="meetings" element={<Meetings />} />
-
-            <Route path="contacts" element={<Contacts />} />
-
-          </Route>
-
-        </Routes>
-
-      </AnimatePresence>
-      <AuthManager />
-  
+      </SessionTimeout>
     </>
   );
 }

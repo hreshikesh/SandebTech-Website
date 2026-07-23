@@ -8,7 +8,7 @@ import { register } from "../../../service/authService";
 import useAuth from "../../../hooks/useAuth";
 
 import "./RegisterModal.css";
-import Logo from "../../../assets/images/logo/logo1.webp";
+import Logo from "../../../assets/images/logo/logo.webp";
 
 const NAME_MAX_LENGTH = 20;
 const COMPANY_MAX_LENGTH = 40;

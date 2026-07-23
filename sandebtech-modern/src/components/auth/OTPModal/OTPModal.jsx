@@ -5,7 +5,7 @@ import { verifyOTP } from "../../../service/authService";
 import useAuth from "../../../hooks/useAuth";
 import OTPInput from "../OTPInput/OTPInput";
 import "./OTPModal.css";
-import Logo from "../../../assets/images/logo/logo1.webp";
+import Logo from "../../../assets/images/logo/logo.webp";
 
 function OTPModal({
     open,

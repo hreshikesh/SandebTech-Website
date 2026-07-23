@@ -4,7 +4,7 @@ import { sendOTP } from "../../../service/authService";
 import useAuth from "../../../hooks/useAuth";
 import "./LoginModal.css";
 import { useState } from "react";
-import Logo from "../../../assets/images/logo/logo2.webp"
+import Logo from "../../../assets/images/logo/logo.webp"
 
 function LoginModal({
     open,

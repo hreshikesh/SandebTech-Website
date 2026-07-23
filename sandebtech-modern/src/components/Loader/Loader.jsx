@@ -1,6 +1,6 @@
 import "./Loader.css";
 
-import logo from "../../assets/images/logo/logo.webp";
+import logo from "../../assets/images/logo/logo1.webp";
 
 function Loader() {
   return (

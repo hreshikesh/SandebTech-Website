@@ -9,13 +9,15 @@
     gap:60px;
 }
 
-.footer-logo{
-    height:60px;
-    width:auto;
-    background:#fff;
-    padding:10px;
-    border-radius:10px;
-    margin-bottom:24px;
+.footer-logo {
+  display: inline-block;
+  height: 200px;           /* Standard footer logo height (adjust between 40px–80px as needed) */
+  width: auto;            /* Maintains aspect ratio */
+  max-width: 100%;        /* Prevents overflow on mobile screens */
+  object-fit: contain;    /* Prevents image distortion */
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 24px;
 }
 
 .company p{

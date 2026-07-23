@@ -12,7 +12,7 @@ import {
 
 import { FaLinkedinIn } from "react-icons/fa6";
 
-import logo from "../../assets/images/logo/logo.webp";
+import logo from "../../assets/images/logo/logo1.webp";
 import { links } from "../../constants/navigation";
 
 function Footer() {

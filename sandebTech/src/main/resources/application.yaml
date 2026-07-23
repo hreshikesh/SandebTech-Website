@@ -6,9 +6,9 @@ spring:
     name: sandebTech
 
   datasource:
-    url: jdbc:postgresql://dpg-d9eqk5f41pts73fdi350-a.ohio-postgres.render.com:5432/sandebtech
-    username: sandebtech_user
-    password: 76hQ9ms0OCYJyuvyp7H7vRzKycf5zshg
+    url: jdbc:postgresql://localhost:5432/sandebtech
+    username: postgres
+    password: hrishi@sql
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -21,7 +21,7 @@ spring:
 
   mail:
     host: smtp.gmail.com
-    port: 465
+    port: 587
     username: ailhreshikesh@gmail.com
     password: mfbl tuzg xjsl zilu
     properties:

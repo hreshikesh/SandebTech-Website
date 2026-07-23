@@ -4,6 +4,7 @@ import { sendOTP } from "../../../service/authService";
 import useAuth from "../../../hooks/useAuth";
 import "./LoginModal.css";
 import { useState } from "react";
+import Logo from "../../../assets/images/logo/logo2.webp"
 
 function LoginModal({
     open,
@@ -97,7 +98,7 @@ function LoginModal({
 
                     <div className="login-logo">
 
-                        ST
+                        <img src={Logo} alt="SandebTech Logo"/>
 
                     </div>
 

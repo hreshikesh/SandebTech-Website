@@ -8,6 +8,7 @@ import { register } from "../../../service/authService";
 import useAuth from "../../../hooks/useAuth";
 
 import "./RegisterModal.css";
+import Logo from "../../../assets/images/logo/logo1.webp";
 
 const NAME_MAX_LENGTH = 20;
 const COMPANY_MAX_LENGTH = 40;
@@ -175,11 +176,12 @@ function RegisterModal({
           transition={{ duration: .25 }}
         >
 
-          <div className="register-logo">
+          <div className="login-logo">
 
-            ST
+            <img src={Logo} alt="SandebTech Logo" />
 
           </div>
+
 
           <h2>
 

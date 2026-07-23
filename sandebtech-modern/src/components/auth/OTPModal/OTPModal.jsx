@@ -5,6 +5,7 @@ import { verifyOTP } from "../../../service/authService";
 import useAuth from "../../../hooks/useAuth";
 import OTPInput from "../OTPInput/OTPInput";
 import "./OTPModal.css";
+import Logo from "../../../assets/images/logo/logo1.webp";
 
 function OTPModal({
     open,
@@ -56,7 +57,7 @@ function OTPModal({
 
     const handleVerify = async () => {
         setError("");
-        
+
         // Defensive check if otp is an array or string
         const code = Array.isArray(otp) ? otp.join("") : String(otp);
 
@@ -119,7 +120,12 @@ function OTPModal({
                             <X size={22} />
                         </button>
 
-                        <div className="otp-logo">ST</div>
+                        <div className="login-logo">
+
+                            <img src={Logo} alt="SandebTech Logo" />
+
+                        </div>
+
 
                         <h2>Verify Email</h2>
 

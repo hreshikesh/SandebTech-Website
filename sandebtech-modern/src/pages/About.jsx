@@ -3,6 +3,7 @@ import AboutIntro from "../components/about/AboutIntro";
 import CoreTeam from "../components/about/CoreTeam";
 import MentorSection from "../components/about/MentorSection";
 import PageTransition from "../components/PageTransition/PageTransition";
+import AboutCompany from "../components/about/AboutCompany";
 
 
 function About() {
@@ -16,6 +17,7 @@ function About() {
 
             <AboutIntro />
 
+            <AboutCompany />
             <CoreTeam />
 
             <MentorSection />

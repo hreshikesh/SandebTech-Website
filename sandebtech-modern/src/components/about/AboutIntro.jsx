@@ -2,6 +2,7 @@ import "./AboutIntro.css";
 import { CheckCircle2 } from "lucide-react";
 
 import companyImage from "../../assets/images/about/about2.webp"
+import Logo2 from "../../assets/images/logo/logo1.webp"
 
 
 
@@ -17,7 +18,7 @@ function AboutIntro() {
           <div className="about-image">
 
             <img
-              src={companyImage}
+              src={Logo2}
               alt="SandebTech"
             />
 

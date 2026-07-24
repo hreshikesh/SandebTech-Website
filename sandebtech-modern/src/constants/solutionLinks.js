@@ -1,18 +1,16 @@
 export const solutionLinks = [
   {
-    title: "SHIPFLOW CFD",
-    path: "/solutions/shipflow-cfd",
+    category: "Software Solutions",
+    items: [
+      { title: "SHIPFLOW CFD", path: "/solutions/shipflow-cfd" },
+      { title: "CAESES", path: "/solutions/caeses" },
+    ],
   },
   {
-    title: "CAESES",
-    path: "/solutions/caeses",
-  },
-  {
-    title: "Lotus Microsystems",
-    path: "solutions/lotus-marine",
-  },
-  {
-    title: "Turbomachinery",
-    path: "/solutions/turbomachinery",
+    category: "Thermal Solutions",
+    items: [
+      { title: "Lotus Microsystems", path: "/solutions/lotus-micro" },
+      { title: "Turbomachinery", path: "/solutions/turbomachinery" },
+    ],
   },
 ];

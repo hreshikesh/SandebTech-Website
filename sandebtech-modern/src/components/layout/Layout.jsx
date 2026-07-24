@@ -5,6 +5,7 @@ import ScrollToTop from "../common/ScrollToTop";
 import FloatingMeetingButton from "../meeting/FloatingMeetingButton";
 import useAuth from "../../hooks/useAuth";
 import ChatBot from "../../chatbot/components/Chatbot";
+import FloatingWhatsAppButton from "../meeting/FloatingWhatsAppButton";
 
 function Layout() {
   const {requireAuth}=useAuth();
@@ -13,6 +14,8 @@ function Layout() {
     <ScrollToTop/>
       <Navbar />
       <Outlet />
+      
+      <FloatingWhatsAppButton/>
       <ChatBot/>
       <FloatingMeetingButton/>
       <Footer />

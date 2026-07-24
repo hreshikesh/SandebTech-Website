@@ -182,3 +182,30 @@
     border-right-color: var(--border);
   }
 }
+/* ==========================================
+   Left Side Widget
+   ========================================== */
+.meeting-fab {
+  bottom: 24px !important;
+  left: 24px !important;
+  right: auto !important;
+  z-index: 998;
+}
+
+/* ==========================================
+   Right Side Widgets
+   ========================================== */
+/* ChatBot at the bottom right */
+.chatbot-trigger,
+.chatbot-container {
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 1000;
+}
+
+/* WhatsApp above ChatBot */
+.whatsapp-fab {
+  bottom: 90px !important;
+  right: 24px !important;
+  z-index: 999;
+}

@@ -7,6 +7,7 @@ import {
   Mail,
   ArrowRight,
   ChevronDown,
+  ChevronRight,
   User,
   LogOut,
 } from "lucide-react";
@@ -69,16 +70,30 @@ function Navbar() {
             <NavLink to="/about">About</NavLink>
             <NavLink to="/services">Services</NavLink>
 
+            {/* Nested Solutions Dropdown */}
             <div className="dropdown">
               <NavLink to="/solutions" className="dropdown-trigger">
                 Solutions
                 <ChevronDown size={14} />
               </NavLink>
+
               <div className="dropdown-menu">
-                {solutionLinks.map((item) => (
-                  <NavLink key={item.title} to={item.path}>
-                    {item.title}
-                  </NavLink>
+                {solutionLinks.map((category) => (
+                  <div key={category.category} className="dropdown-submenu-item">
+                    <div className="submenu-trigger">
+                      <span>{category.category}</span>
+                      <ChevronRight size={14} />
+                    </div>
+
+                    {/* Flyout Submenu on Hover */}
+                    <div className="submenu">
+                      {category.items.map((item) => (
+                        <NavLink key={item.title} to={item.path}>
+                          {item.title}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -86,7 +101,7 @@ function Navbar() {
             <NavLink to="/contact">Contact</NavLink>
           </nav>
 
-          {/* Action Area (Desktop Auth & Button Actions) */}
+          {/* Action Area */}
           <div className="navbar-actions">
             {user ? (
               <div className="desktop-user-menu">
@@ -94,7 +109,11 @@ function Navbar() {
                   <User size={15} />
                   {user.name}
                 </span>
-                <button className="logout-action-btn" onClick={logout} title="Logout">
+                <button
+                  className="logout-action-btn"
+                  onClick={logout}
+                  title="Logout"
+                >
                   <LogOut size={15} />
                 </button>
               </div>
@@ -130,7 +149,7 @@ function Navbar() {
           </button>
         </div>
 
-        <nav>
+        <nav className="drawer-nav">
           {links.map((item) => (
             <NavLink
               key={item.id}
@@ -141,25 +160,37 @@ function Navbar() {
             </NavLink>
           ))}
 
-          <NavLink to="/solutions" onClick={() => setOpen(false)}>
-            Solutions
-          </NavLink>
-
-          {solutionLinks.map((item) => (
+          {/* Mobile Solutions Section */}
+          <div className="mobile-solutions-group">
             <NavLink
-              key={item.title}
-              to={item.path}
-              className="mobile-sub-link"
+              to="/solutions"
+              className="mobile-parent-link"
               onClick={() => setOpen(false)}
             >
-              {item.title}
+              Solutions
             </NavLink>
-          ))}
+
+            {solutionLinks.map((category) => (
+              <div key={category.category} className="mobile-subcategory">
+                <span className="mobile-cat-header">{category.category}</span>
+                {category.items.map((item) => (
+                  <NavLink
+                    key={item.title}
+                    to={item.path}
+                    className="mobile-sub-link"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.title}
+                  </NavLink>
+                ))}
+              </div>
+            ))}
+          </div>
 
           {/* Mobile CTA and Auth Area */}
           <div className="mobile-drawer-actions">
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               className="drawer-quote-btn"
               onClick={() => setOpen(false)}
             >
@@ -177,7 +208,7 @@ function Navbar() {
                   className="logout-btn"
                   onClick={() => {
                     logout();
-                    setOpen(false); 
+                    setOpen(false);
                   }}
                 >
                   <LogOut size={16} />
@@ -189,7 +220,7 @@ function Navbar() {
                 className="login-btn"
                 onClick={() => {
                   openLogin();
-                  setOpen(false); 
+                  setOpen(false);
                 }}
               >
                 Login

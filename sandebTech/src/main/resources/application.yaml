@@ -19,6 +19,7 @@ spring:
       hibernate:
         format_sql: true
 
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -30,6 +31,11 @@ spring:
           auth: true
           starttls:
             enable: true
+            required: true
+          # Timeout after 5 seconds so your app never hangs on Render
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
 
 logging:
   level:

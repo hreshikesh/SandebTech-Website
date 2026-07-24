@@ -39,7 +39,7 @@ function Navbar() {
 
   return (
     <>
-      {/* Top Bar */}
+      {/* Top Bar (Shows ALL details on desktop, hidden completely on mobile/tablet) */}
       <div className="topbar">
         <div className="container topbar-content">
           <div className="top-left">
@@ -58,7 +58,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Navbar */}
+      {/* Main Navbar */}
       <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <div className="container navbar-wrapper">
           <Link to="/" className="logo">
@@ -85,7 +85,6 @@ function Navbar() {
                       <ChevronRight size={14} />
                     </div>
 
-                    {/* Flyout Submenu on Hover */}
                     <div className="submenu">
                       {category.items.map((item) => (
                         <NavLink key={item.title} to={item.path}>
@@ -101,7 +100,7 @@ function Navbar() {
             <NavLink to="/contact">Contact</NavLink>
           </nav>
 
-          {/* Action Area */}
+          {/* Action Buttons */}
           <div className="navbar-actions">
             {user ? (
               <div className="desktop-user-menu">
@@ -128,14 +127,18 @@ function Navbar() {
               <ArrowRight size={15} className="arrow-icon" />
             </Link>
 
-            <button className="mobile-btn" onClick={() => setOpen(true)}>
+            <button
+              className="mobile-btn"
+              onClick={() => setOpen(true)}
+              aria-label="Toggle Menu"
+            >
               <Menu size={28} />
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Sidebar Navigation */}
+      {/* Mobile Drawer Navigation */}
       <div
         className={`overlay ${open ? "show" : ""}`}
         onClick={() => setOpen(false)}
@@ -144,7 +147,7 @@ function Navbar() {
       <aside className={`drawer ${open ? "drawer-show" : ""}`}>
         <div className="drawer-header">
           <img src={logo} alt="Logo" />
-          <button onClick={() => setOpen(false)}>
+          <button onClick={() => setOpen(false)} aria-label="Close Menu">
             <X size={20} />
           </button>
         </div>

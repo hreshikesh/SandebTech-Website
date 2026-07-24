@@ -9,7 +9,7 @@ export const solutionLinks = [
   {
     category: "Thermal Solutions",
     items: [
-      { title: "Lotus Microsystems", path: "/solutions/lotus-micro" },
+      { title: "Lotus Microsystems", path: "/solutions/lotus-marine" },
       { title: "Turbomachinery", path: "/solutions/turbomachinery" },
     ],
   },

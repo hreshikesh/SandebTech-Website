@@ -35,6 +35,7 @@ import Cae from "../components/cae/Cae";
 import NewsPage from "../pages/NewsPage/NewsPage";
 import WebinarsPage from "../pages/WebnairPage/WebinarsPage";
 import Hvac from "../pages/havc/Havc";
+import Resources from "../pages/resources/Resources";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -113,6 +114,11 @@ function App() {
             <Route 
             path="/solutions/hvac"
             element ={<Hvac/>}/>
+
+            <Route 
+            path="/resources"
+            element={<Resources/>}/>
+
 
 
             <Route path="/contact" element={<Contact />} />

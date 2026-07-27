@@ -65,6 +65,16 @@
    RESPONSIVE MEDIA QUERY
    ========================================== */
 @media (max-width: 992px) {
+
+  .about-image-wrapper{
+    width:100%;
+}
+
+.about-image img{
+    width:100%;
+    max-width:600px;
+    height:auto;
+}
   .about {
     padding: 60px 0;
   }
@@ -110,3 +120,54 @@
     text-align: center;
   }
 }
+
+.about-image-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .2s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+}
+
+.image-backdrop{
+  position:absolute;
+  inset:-14px;
+  border-radius:34px;
+  background:linear-gradient(
+      135deg,
+      rgba(15,76,129,.12),
+      rgba(56,189,248,.08),
+      rgba(249,115,22,.05)
+  );
+  transform:rotate(-2deg);
+  z-index:1;
+}
+
+.about-image{
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+  border-radius:28px;
+  background:#fff;
+  border:8px solid #fff;
+  box-shadow:0 25px 60px rgba(0,0,0,.12);
+  transition:
+      box-shadow .35s ease,
+      transform .35s ease;
+}
+
+.about-image img{
+  width:100%;
+  height:560px;
+  object-fit:cover;
+  display:block;
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+
+.about-image-wrapper:hover .about-image{
+  box-shadow:0 35px 80px rgba(15,76,129,.18);
+}
+
+.about-image-wrapper:hover img{
+  transform:scale(1.05);
+}
+

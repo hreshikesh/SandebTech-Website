@@ -1,18 +1,24 @@
-/* ===========================
-   1. TOP BAR
-=========================== */
+/* ==========================================
+   1. PREMIUM TOPBAR (3/4 Width Floating Pill)
+   ========================================== */
+/* ==========================================
+   1. SEAMLESS ALIGNED TOPBAR
+   ========================================== */
+.topbar-container {
+  width: 100%;
+  background: #080f23; /* Deep navy background */
+  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+  padding: 7px 0;
+}
+
 .topbar {
-  background: #0f4c81;
-  color: #fff;
-  min-height: 40px;
+  max-width: 1200px; /* Matches your main navbar container max-width */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   align-items: center;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
-  overflow: hidden;
+  justify-content: space-between;
 }
 
 .topbar-content {
@@ -20,32 +26,75 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 16px;
 }
 
 .top-left {
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-wrap: nowrap;
+  gap: 16px;
 }
 
-.top-left span {
-  display: flex;
+.top-info-pill {
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  opacity: 0.9;
-  white-space: nowrap;
-}
-
-.top-right {
-  opacity: 0.85;
+  color: #94a3b8;
+  text-decoration: none;
   font-size: 12px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  letter-spacing: 0.4px;
+  font-weight: 500;
+  transition: all 0.25s ease;
 }
 
+.top-info-pill:hover {
+  color: #38bdf8;
+}
+
+.top-icon {
+  color: #38bdf8;
+}
+
+.top-divider {
+  color: rgba(148, 163, 184, 0.3);
+  font-size: 10px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(2, 132, 199, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #00f2fe;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00f2fe;
+  animation: neonPulse 1.8s infinite ease-in-out;
+}
+
+.status-text {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #38bdf8;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+}
 /* ===========================
    2. NAVBAR CONTAINER
 =========================== */
@@ -68,7 +117,7 @@
 }
 
 .navbar-wrapper {
-  height: 80px;
+  height: 74px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -78,7 +127,7 @@
    3. LOGO
 =========================== */
 .logo img {
-  height: 52px;
+  height: 48px;
   width: auto;
   display: block;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -177,7 +226,6 @@
   transform: translateY(0);
 }
 
-/* Direct Links inside Dropdowns (e.g., Resources Dropdown) */
 .dropdown-menu > a {
   display: block;
   padding: 10px 18px;
@@ -199,7 +247,6 @@
   padding-left: 22px;
 }
 
-/* Nested Submenus (e.g., Solutions Dropdown) */
 .dropdown-submenu-item {
   position: relative;
 }
@@ -489,7 +536,6 @@
   padding-left: 6px;
 }
 
-/* Mobile Accordions (Solutions & Resources) */
 .mobile-solutions-group {
   display: flex;
   flex-direction: column;
@@ -571,7 +617,6 @@
   background-color: transparent;
 }
 
-/* Mobile Actions Block */
 .mobile-drawer-actions {
   margin-top: auto;
   display: flex;
@@ -651,16 +696,17 @@
 /* ===========================
    8. MEDIA QUERIES
 =========================== */
-/* Intermediate Desktop Gap Scaling */
 @media (max-width: 1200px) {
+  .topbar {
+    width: 85%;
+  }
   .desktop-nav {
     gap: 20px;
   }
 }
 
-/* Tablet & Mobile Switchover (< 992px) */
 @media (max-width: 992px) {
-  .topbar {
+  .topbar-container {
     display: none !important;
   }
 
@@ -684,7 +730,6 @@
   }
 }
 
-/* Small Screen Adjustments */
 @media (max-width: 576px) {
   .navbar-wrapper {
     height: 68px;

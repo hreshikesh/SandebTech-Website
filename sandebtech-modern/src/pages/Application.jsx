@@ -6,6 +6,7 @@ import {
   Cpu,
   Flame,
   ChevronRight,
+  ChevronDown,
   ShieldCheck,
   CheckCircle2,
 } from "lucide-react";
@@ -20,6 +21,7 @@ import lotusImg from "../assets/images/lotus/products/lbk0504.webp";
 import lotusImg2 from "../assets/images/lotus/products/lmu20p1.webp";
 import hvacImg from "../assets/images/solutions/havc.webp";
 import hvacImg2 from "../assets/images/solutions/havc2.webp";
+
 const applicationData = {
   marine: {
     id: "marine",
@@ -40,7 +42,7 @@ const applicationData = {
         title: "SHIPFLOW CFD Analysis",
         subtitle: "Hydrodynamic Engine",
         description:
-          "Specialized CFD tool calculating potential flow, viscous resistance, trim, sinkage, and self-propulsion.",
+          "Specialized CFD tool calculating potential flow, viscous resistance, trim, sinkage, and self-propulsion across varying sea conditions and speed profiles.",
         image: shipflowImg,
         link: "/solutions/shipflow-cfd",
         tags: ["Potential Flow", "Viscous RANS", "Propulsor Interaction"],
@@ -50,7 +52,7 @@ const applicationData = {
         title: "CAESES Hull Form Optimization",
         subtitle: "Parametric CAD",
         description:
-          "Automate hull shape variation coupled with CFD solvers to discover fuel-saving vessel geometries.",
+          "Automate hull shape variation coupled with CFD solvers to discover fuel-saving vessel geometries and minimize wave resistance dynamically.",
         image: caesesImg,
         link: "/solutions/caeses",
         tags: ["Parametric CAD", "Automated Optimization", "Wave Resistance"],
@@ -76,7 +78,7 @@ const applicationData = {
         title: "Pump & Compressor CFD",
         subtitle: "3D Efficiency Analysis",
         description:
-          "Analyze secondary flows, blade loading, and tip leakage to maximize overall aerodynamic efficiency.",
+          "Analyze secondary flows, blade loading, and tip leakage to maximize overall aerodynamic efficiency and operating lifecycle.",
         image: turboImg,
         link: "/solutions/caeses",
         tags: ["Cavitation Analysis", "Blade Profiling", "Isentropic Efficiency"],
@@ -86,7 +88,7 @@ const applicationData = {
         title: "Parametric Impeller Design",
         subtitle: "Blade Optimization",
         description:
-          "Create robust, parametric 3D models of impellers, diffusers, and volutes engineered for automated CFD runs.",
+          "Create robust, parametric 3D models of impellers, diffusers, and volutes engineered specifically for high-throughput automated CFD batch runs.",
         image: caesesImg,
         link: "/solutions/caeses",
         tags: ["Volute Design", "Automated Meshing", "Blade Geometry"],
@@ -112,7 +114,7 @@ const applicationData = {
         title: "Lotus Microsystems Silicon Cooling",
         subtitle: "Silicon Interposers",
         description:
-          "Direct-on-chip liquid cooling technology delivering ultra-low thermal resistance for high-power semiconductors.",
+          "Direct-on-chip liquid cooling technology delivering ultra-low thermal resistance for high-power semiconductors and modular server racks.",
         image: lotusImg,
         link: "/solutions/lotus-marine",
         tags: ["Direct Liquid Cooling", "Microchannels", "Power Density"],
@@ -122,7 +124,7 @@ const applicationData = {
         title: "Convective & Conductive Thermal CFD",
         subtitle: "System-Level Heat Transfer",
         description:
-          "Simulate conjugate heat transfer (CHT) to resolve thermal hotspots and optimize heat sink fin geometries.",
+          "Simulate conjugate heat transfer (CHT) to resolve thermal hotspots, balance pressure drop, and optimize custom heat sink fin geometries.",
         image: lotusImg2,
         link: "/solutions/lotus-marine",
         tags: ["CHT Simulation", "Junction Temp", "Heat Sinks"],
@@ -148,7 +150,7 @@ const applicationData = {
         title: "Fire & Smoke Dispersion CFD",
         subtitle: "Life Safety Ventilation",
         description:
-          "Model thermal radiation, smoke visibility limits, and toxic gas propagation to validate emergency smoke control systems.",
+          "Model thermal radiation, smoke visibility limits, and toxic gas propagation to validate emergency smoke control and egress systems.",
         image: hvacImg2,
         link: "/solutions/hvac",
         tags: ["Smoke Extraction", "Tenability Analysis", "NFPA Compliance"],
@@ -158,7 +160,7 @@ const applicationData = {
         title: "HVAC & Thermal Comfort",
         subtitle: "IAQ & Flow Distribution",
         description:
-          "Simulate air velocity profiles, age-of-air, PMV/PPD indices, and cleanroom contaminant dispersal.",
+          "Simulate air velocity profiles, mean age of air, PMV/PPD indices, and cleanroom contaminant dispersal patterns.",
         image: hvacImg,
         link: "/solutions/hvac",
         tags: ["Air Age", "PMV / PPD Index", "Duct Distribution"],
@@ -169,11 +171,17 @@ const applicationData = {
 
 function Applications() {
   const [activeTab, setActiveTab] = useState("marine");
+  const [expandedCardId, setExpandedCardId] = useState(null);
+
   const currentCategory = applicationData[activeTab];
+
+  const handleCardToggle = (cardId) => {
+    setExpandedCardId((prev) => (prev === cardId ? null : cardId));
+  };
 
   return (
     <div className="applications-page">
-      {/* ================= HERO SECTION (Compact) ================= */}
+      {/* ================= HERO SECTION ================= */}
       <section className="app-hero">
         <div
           className="app-hero-bg"
@@ -197,7 +205,7 @@ function Applications() {
       {/* ================= MAIN CONTENT & TABS ================= */}
       <section className="app-section">
         <div className="container">
-          {/* Tab Navigation Controls (Horizontal Pill Bar) */}
+          {/* Tab Navigation Controls */}
           <div className="app-tabs-wrapper">
             <div className="app-tabs" role="tablist">
               {Object.keys(applicationData).map((key) => {
@@ -208,7 +216,10 @@ function Applications() {
                 return (
                   <button
                     key={key}
-                    onClick={() => setActiveTab(key)}
+                    onClick={() => {
+                      setActiveTab(key);
+                      setExpandedCardId(null);
+                    }}
                     className={`app-tab-btn ${isActive ? "active" : ""}`}
                     role="tab"
                     aria-selected={isActive}
@@ -239,34 +250,71 @@ function Applications() {
             </div>
           </div>
 
-          {/* Compact Solutions Cards Grid */}
+          {/* Accordion-Enabled Solutions Grid */}
           <div className="app-cards-grid">
-            {currentCategory.cards.map((card) => (
-              <div key={card.id} className="app-card">
-                <div className="app-card-img-wrapper">
-                  <img src={card.image} alt={card.title} loading="lazy" />
-                  <span className="app-card-subtitle">{card.subtitle}</span>
-                </div>
+            {currentCategory.cards.map((card) => {
+              const isExpanded = expandedCardId === card.id;
 
-                <div className="app-card-body">
-                  <h3>{card.title}</h3>
-                  <p>{card.description}</p>
+              return (
+                <div
+                  key={card.id}
+                  className={`app-card ${isExpanded ? "is-expanded" : ""}`}
+                  onClick={() => handleCardToggle(card.id)}
+                  tabIndex={0}
+                  role="button"
+                  aria-expanded={isExpanded}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleCardToggle(card.id);
+                    }
+                  }}
+                >
+                  <div className="app-card-img-wrapper">
+                    <img src={card.image} alt={card.title} loading="lazy" />
+                    <div className="app-card-img-overlay"></div>
+                    <span className="app-card-subtitle">{card.subtitle}</span>
 
-                  <div className="app-card-tags">
-                    {card.tags.map((tag, idx) => (
-                      <span key={idx} className="card-mini-tag">
-                        {tag}
-                      </span>
-                    ))}
+                    {/* Expand/Decompress Indicator Badge */}
+                    <div className="card-expand-badge">
+                      <span>{isExpanded ? "Minimize" : "Full View"}</span>
+                      <ChevronDown size={14} className="chevron-icon" />
+                    </div>
                   </div>
 
-                  <Link to={card.link} className="app-card-btn">
-                    <span>Explore Solution</span>
-                    <ChevronRight size={15} />
-                  </Link>
+                  <div className="app-card-body">
+                    <h3>{card.title}</h3>
+
+                    {/* Compressed Teaser Description */}
+                    <p className="app-card-description">{card.description}</p>
+
+                    {/* CSS Grid Accordion Expansion Container */}
+                    <div className="card-accordion-wrapper">
+                      <div className="card-accordion-inner">
+                        <div className="app-card-tags">
+                          {card.tags.map((tag, idx) => (
+                            <span key={idx} className="card-mini-tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="app-card-footer">
+                      <Link
+                        to={card.link}
+                        className="app-card-btn"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <span>Explore Solution</span>
+                        <ChevronRight size={15} />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

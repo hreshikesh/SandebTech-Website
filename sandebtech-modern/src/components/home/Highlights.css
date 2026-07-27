@@ -1,30 +1,76 @@
+/* ==========================================
+   1. MAIN SECTION & HEADINGS
+   ========================================== */
 .highlights {
   padding: 90px 0;
-  background: #fff;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
 }
 
 .section-head {
   text-align: center;
   max-width: 720px;
-  margin: auto auto 60px;
-  padding-inline: 20px; /* FIX: prevents badge/heading from touching edges on mobile */
+  margin: 0 auto 60px;
+  padding-inline: 20px;
 }
 
-.section-head span {
-  display: inline-block;
-  padding: 10px 18px;
+/* ==========================================
+   FIXED HEADING CAPSULE (BADGE)
+   ========================================== */
+.section-head .badge-capsule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
   background: #eef6ff;
+  border: 1px solid rgba(15, 76, 129, 0.2);
   border-radius: 999px;
+  margin-bottom: 20px;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(15, 76, 129, 0.08);
+}
+
+.badge-text {
   color: #0F4C81;
   font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  line-height: 1;
+}
+
+/* Glowing Pulse Dot */
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #0F4C81;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 0 0 rgba(15, 76, 129, 0.4);
+  animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(15, 76, 129, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(15, 76, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(15, 76, 129, 0);
+  }
 }
 
 .section-head h2 {
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-size: 42px;
-  line-height: 1.2;
+  font-weight: 700;
+  line-height: 1.25;
   color: #1e293b;
   margin-bottom: 20px;
 }
@@ -35,55 +81,144 @@
   line-height: 1.8;
 }
 
+/* ==========================================
+   2. HIGHLIGHT GRID
+   ========================================== */
 .highlight-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
-
-  /* FIX: fallback max-width + side padding so the grid never
-     touches the viewport edge, same fix pattern as .hero-wrapper */
   max-width: 1280px;
   margin-inline: auto;
   padding-inline: 24px;
 }
 
+/* ==========================================
+   3. INTERACTIVE CARDS & SPOTLIGHT
+   ========================================== */
 .highlight-card {
-  background: #fff;
+  position: relative;
+  background: #ffffff;
   padding: 35px;
   border-radius: 24px;
-  box-shadow: 0 15px 40px rgba(0,0,0,.06);
-  transition: .35s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
   border: 1px solid #edf2f7;
-  min-width: 0; /* FIX: stops card content forcing grid track overflow */
+  min-width: 0;
+  cursor: pointer;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Dynamic Cursor Spotlight Layer */
+.card-spotlight {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(15, 76, 129, 0.06),
+    transparent 80%
+  );
+  z-index: 1;
+}
+
+.highlight-card:hover .card-spotlight {
+  opacity: 1;
+}
+
+/* Top Accent Line Animation */
+.card-accent-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0F4C81 0%, #38bdf8 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 24px 24px 0 0;
+}
+
+.highlight-card:hover .card-accent-line,
+.highlight-card.is-active .card-accent-line {
+  transform: scaleX(1);
+}
+
+/* Card Hover and Active States */
 .highlight-card:hover {
   transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(15, 76, 129, 0.09);
+  border-color: rgba(15, 76, 129, 0.2);
+}
+
+.highlight-card.is-active {
+  border-color: #0F4C81;
+  box-shadow: 0 0 0 2px rgba(15, 76, 129, 0.15), 0 15px 35px rgba(0, 0, 0, 0.06);
+}
+
+/* ==========================================
+   4. ICON & CONTENT STYLING
+   ========================================== */
+.highlight-icon-wrapper {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 24px;
 }
 
 .highlight-icon {
-  width: 70px;
-  height: 70px;
+  width: 68px;
+  height: 68px;
   border-radius: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #eef6ff;
   color: #0F4C81;
-  margin-bottom: 24px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.35s ease,
+              color 0.35s ease;
+}
+
+.highlight-card:hover .highlight-icon {
+  transform: scale(1.08) rotate(-3deg);
+  background: #0F4C81;
+  color: #ffffff;
 }
 
 .highlight-card h3 {
-  font-size: 22px;
-  margin-bottom: 14px;
-  font-family: "Poppins";
+  position: relative;
+  z-index: 2;
+  font-size: 21px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-family: "Poppins", sans-serif;
+  color: #1e293b;
+  transition: color 0.25s ease;
+}
+
+.highlight-card:hover h3 {
+  color: #0F4C81;
 }
 
 .highlight-card p {
-  line-height: 1.8;
+  position: relative;
+  z-index: 2;
+  font-size: 15px;
+  line-height: 1.75;
   color: #64748b;
+  margin: 0;
 }
 
+/* ==========================================
+   5. RESPONSIVE BREAKPOINTS
+   ========================================== */
 @media (max-width: 1100px) {
   .highlight-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -91,40 +226,68 @@
 }
 
 @media (max-width: 700px) {
+  .highlights {
+    padding: 60px 0;
+  }
+
+  .section-head {
+    margin-bottom: 40px;
+  }
+
+  .section-head .badge-capsule {
+    padding: 6px 14px;
+    margin-bottom: 16px;
+  }
+
+  .badge-text {
+    font-size: 12px;
+  }
+
+  .section-head h2 {
+    font-size: 28px;
+  }
+
+  .desktop-br {
+    display: none;
+  }
+
   .highlight-grid {
-    grid-template-columns: repeat(2, 1fr); /* FIX: was invalid "2fr" — now correctly 2-per-row */
-    gap: 16px; /* FIX: tighter gap so 2 cards fit comfortably on narrow phones */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
     padding-inline: 16px;
   }
 
   .highlight-card {
-    padding: 22px; /* FIX: reduced padding so text doesn't feel cramped at 2-up on small screens */
+    padding: 22px;
+    border-radius: 18px;
   }
 
   .highlight-icon {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 16px;
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+  }
+
+  .highlight-icon svg {
+    width: 26px;
+    height: 26px;
   }
 
   .highlight-card h3 {
-    font-size: 18px;
+    font-size: 17px;
+    margin-bottom: 8px;
   }
 
   .highlight-card p {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .section-head h2 {
-    font-size: 32px;
+    font-size: 13.5px;
+    line-height: 1.6;
   }
 }
 
-/* FIX: extra-small phones — 2-up can get tight below ~380px */
 @media (max-width: 380px) {
   .highlight-grid {
     gap: 12px;
+    padding-inline: 12px;
   }
 
   .highlight-card {
@@ -132,6 +295,10 @@
   }
 
   .highlight-card h3 {
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .highlight-card p {
+    font-size: 12.5px;
   }
 }

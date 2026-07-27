@@ -59,21 +59,27 @@ function Navbar() {
 
   return (
     <>
-      {/* Top Bar (Desktop Only) */}
-      <div className="topbar">
+      {/* Premium Floating Top Bar (3/4 Width Desktop Only) */}
+      {/* Full-Width Aligned Topbar */}
+      <div className="topbar-container">
         <div className="container topbar-content">
           <div className="top-left">
-            <span>
-              <Phone size={14} />
-              {SITE.phone}
-            </span>
-            <span>
-              <Mail size={14} />
-              {SITE.email}
-            </span>
+            <a href={`tel:${SITE.phone}`} className="top-info-pill">
+              <Phone size={13} className="top-icon" />
+              <span>{SITE.phone}</span>
+            </a>
+            <span className="top-divider">•</span>
+            <a href={`mailto:${SITE.email}`} className="top-info-pill">
+              <Mail size={13} className="top-icon" />
+              <span>{SITE.email}</span>
+            </a>
           </div>
+
           <div className="top-right">
-            Simulate • Optimize • Sustain
+            <div className="status-badge">
+              <span className="status-dot"></span>
+              <span className="status-text">Simulate • Optimize • Sustain</span>
+            </div>
           </div>
         </div>
       </div>
@@ -88,7 +94,6 @@ function Navbar() {
           {/* Desktop Nav Links */}
           <nav className="desktop-nav">
             <NavLink to="/">Home</NavLink>
-           
             <NavLink to="/application">Application</NavLink>
             <NavLink to="/services">Services</NavLink>
 
@@ -136,7 +141,7 @@ function Navbar() {
             </div>
 
             <NavLink to="/contact">Contact</NavLink>
-             <NavLink to="/about">About</NavLink>
+            <NavLink to="/about">About</NavLink>
           </nav>
 
           {/* Action Buttons */}
@@ -228,9 +233,8 @@ function Navbar() {
               >
                 <ChevronDown
                   size={16}
-                  className={`chevron-icon ${
-                    activeMobileMenu === "solutions" ? "rotate" : ""
-                  }`}
+                  className={`chevron-icon ${activeMobileMenu === "solutions" ? "rotate" : ""
+                    }`}
                 />
               </button>
             </div>
@@ -274,9 +278,8 @@ function Navbar() {
               >
                 <ChevronDown
                   size={16}
-                  className={`chevron-icon ${
-                    activeMobileMenu === "resources" ? "rotate" : ""
-                  }`}
+                  className={`chevron-icon ${activeMobileMenu === "resources" ? "rotate" : ""
+                    }`}
                 />
               </button>
             </div>

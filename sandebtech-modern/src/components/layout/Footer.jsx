@@ -43,7 +43,7 @@ function Footer() {
       { id: "shipflow", title: "SHIPFLOW CFD", path: "/solutions/shipflow-cfd" },
       { id: "caeses", title: "CAESES", path: "/solutions/caeses" },
       { id: "lotus-micro", title: "Lotus Microsystems", path: "/solutions/lotus-micro" },
-      {id:"cloud-cae",title:"Cloud-CAE Solutiond",path:"/solutions/cloud-cae"}
+      { id: "cloud-cae", title: "Cloud-CAE Solutions", path: "/solutions/cloud-cae" },
     ];
 
   return (
@@ -54,8 +54,8 @@ function Footer() {
           
           {/* Column 1: Brand & Government Recognition */}
           <div className="footer-column company">
-            <Link to="/" className="footer-logo-link">
-              <img src={logo} alt="SandebTech" className="footer-logo" />
+            <Link to="/" className="footer-logo-link" aria-label="SandebTech Home">
+              <img src={logo} alt="SandebTech Logo" className="footer-logo" />
             </Link>
 
             <p className="company-desc">
@@ -69,7 +69,7 @@ function Footer() {
                 href="https://www.linkedin.com/company/sandebtech/?originalSubdomain=in"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
+                aria-label="LinkedIn Profile"
                 className="social-pill"
               >
                 <FaLinkedinIn />
@@ -79,7 +79,7 @@ function Footer() {
             {/* Government Certification Badge Card */}
             <div className="cert-badge-card">
               <div className="cert-badge-header">
-                <ShieldCheck size={15} />
+                <ShieldCheck size={16} />
                 <span>Government Registered Enterprise</span>
               </div>
               <div className="footer-certifications">
@@ -96,7 +96,7 @@ function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Navigation Links (Mirrors Navbar main items) */}
+          {/* Column 2: Navigation Links */}
           <div className="footer-column">
             <h3 className="column-title">Quick Links</h3>
             <ul className="footer-nav-list">
@@ -110,7 +110,7 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Solutions (Mirrors Navbar sub-items / dropdown) */}
+          {/* Column 3: Solutions */}
           <div className="footer-column">
             <h3 className="column-title">Solutions</h3>
             <ul className="footer-nav-list">
@@ -133,7 +133,7 @@ function Footer() {
                   <MapPin size={16} />
                 </div>
                 <span>
-                  SANDEB TECH PVT LTD
+                  <strong>SANDEB TECH PVT LTD</strong>
                   <br />
                   166 5th Cross KEB Layout Sanjaynagar
                   <br />
@@ -145,8 +145,8 @@ function Footer() {
                 <div className="contact-icon">
                   <Phone size={16} />
                 </div>
-                <a href={`tel:${+919108994209  || ""}`}>
-                  +91 9108994209 
+                <a href="tel:+919108994209">
+                  +91 9108994209
                 </a>
               </div>
 

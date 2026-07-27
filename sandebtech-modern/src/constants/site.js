@@ -1,5 +1,5 @@
 export const SITE = {
   name: "SandebTech",
-  phone: "+918049536469|+919108994209",
+  phone: "+9180-49536469",
   email: "contact@sandebtech.com",
 };

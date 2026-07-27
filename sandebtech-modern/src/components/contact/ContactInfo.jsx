@@ -1,5 +1,6 @@
 import "./ContactInfo.css";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom"; // <--- Added React Router import
 import {
   Phone,
   Mail,
@@ -15,6 +16,8 @@ import { submitContact } from "../../service/contactApi";
 
 function ContactInfo() {
   const { user, requireAuth } = useAuth();
+  const location = useLocation(); // <--- Access route state
+
   const initialForm = {
     name: "",
     email: "",
@@ -86,14 +89,17 @@ function ContactInfo() {
         phone: form.phone,
         company: form.company,
         subject: form.subject,
-        message: form.message
+        message: form.message,
       });
 
       setForm(initialForm);
       setErrors({});
       setShowSuccess(true);
     } catch (error) {
-      setSubmitError(error?.response?.data?.message || "Failed to submit request parameters. Please verify your connection.");
+      setSubmitError(
+        error?.response?.data?.message ||
+        "Failed to submit request parameters. Please verify your connection."
+      );
     } finally {
       setLoading(false);
     }
@@ -104,16 +110,20 @@ function ContactInfo() {
     requireAuth(submitForm);
   };
 
+  // Populate User Info and Navigation State (Pre-filled Subject & Message)
   useEffect(() => {
-    if (!user) return;
     setForm((prev) => ({
       ...prev,
-      name: user.name || "",
-      email: user.email || "",
-      phone: user.phone || "",
-      company: user.company || "",
+      ...(user && {
+        name: user.name || prev.name,
+        email: user.email || prev.email,
+        phone: user.phone || prev.phone,
+        company: user.company || prev.company,
+      }),
+      ...(location.state?.subject && { subject: location.state.subject }),
+      ...(location.state?.message && { message: location.state.message }),
     }));
-  }, [user]);
+  }, [user, location.state]);
 
   return (
     <section className="contact-section">
@@ -133,7 +143,7 @@ function ContactInfo() {
               <Phone size={20} />
               <div>
                 <h4>Phone</h4>
-                <p>+91 XXXXX XXXXX</p>
+                <p>+91 80-49536469</p>
               </div>
             </div>
 
@@ -141,7 +151,7 @@ function ContactInfo() {
               <Mail size={20} />
               <div>
                 <h4>Email</h4>
-                <p>info@sandebtech.com</p>
+                <p>contact@sandebtech.com</p>
               </div>
             </div>
 
@@ -149,7 +159,9 @@ function ContactInfo() {
               <MapPin size={20} />
               <div>
                 <h4>Office</h4>
-                <p>Mangalore, Karnataka, India</p>
+                <p>SANDEB TECH PVT LTD
+                  166 5th Cross KEB Layout Sanjaynagar
+                  Bangalore(Bengaluru) -560094, India</p>
               </div>
             </div>
 
@@ -157,7 +169,7 @@ function ContactInfo() {
               <Clock size={20} />
               <div>
                 <h4>Working Hours</h4>
-                <p>Monday - Saturday</p>
+                <p>Monday - Friday</p>
                 <p>9:00 AM - 6:00 PM</p>
               </div>
             </div>

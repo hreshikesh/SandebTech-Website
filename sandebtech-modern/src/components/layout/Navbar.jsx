@@ -15,15 +15,17 @@ import {
 import "./Navbar.css";
 import logo from "../../assets/images/logo/logo.webp";
 import { SITE } from "../../constants/site";
-import { links } from "../../constants/navigation";
 import { solutionLinks } from "../../constants/solutionLinks";
+import { resourceLinks } from "../../constants/resourceLinks";
 import { useAuth } from "../../context/AuthContext";
 
 function Navbar() {
   const { user, logout, openLogin } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeMobileMenu, setActiveMobileMenu] = useState(null); // 'solutions' | 'resources' | null
 
+  // Handle sticky header on scroll
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -33,13 +35,31 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scrolling when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "auto";
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [open]);
+
+  const closeDrawer = () => {
+    setOpen(false);
+    setActiveMobileMenu(null);
+  };
+
+  const toggleMobileSubmenu = (menuName) => {
+    setActiveMobileMenu((prev) => (prev === menuName ? null : menuName));
+  };
 
   return (
     <>
-      {/* Top Bar (Shows ALL details on desktop, hidden completely on mobile/tablet) */}
+      {/* Top Bar (Desktop Only) */}
       <div className="topbar">
         <div className="container topbar-content">
           <div className="top-left">
@@ -53,24 +73,26 @@ function Navbar() {
             </span>
           </div>
           <div className="top-right">
-            Engineering • Automation • Electrical Solutions
+            Simulate • Optimize • Sustain
           </div>
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* Main Header */}
       <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <div className="container navbar-wrapper">
-          <Link to="/" className="logo">
-            <img src={logo} alt="SandebTech" />
+          <Link to="/" className="logo" onClick={closeDrawer}>
+            <img src={logo} alt="SandebTech Logo" />
           </Link>
 
+          {/* Desktop Nav Links */}
           <nav className="desktop-nav">
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
+           
+            <NavLink to="/application">Application</NavLink>
             <NavLink to="/services">Services</NavLink>
 
-            {/* Nested Solutions Dropdown */}
+            {/* Solutions Dropdown */}
             <div className="dropdown">
               <NavLink to="/solutions" className="dropdown-trigger">
                 Solutions
@@ -97,7 +119,24 @@ function Navbar() {
               </div>
             </div>
 
+            {/* Resources Dropdown */}
+            <div className="dropdown">
+              <NavLink to="/resources" className="dropdown-trigger">
+                Resources
+                <ChevronDown size={14} />
+              </NavLink>
+
+              <div className="dropdown-menu">
+                {resourceLinks.map((item) => (
+                  <NavLink key={item.title} to={item.path}>
+                    {item.title}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+
             <NavLink to="/contact">Contact</NavLink>
+             <NavLink to="/about">About</NavLink>
           </nav>
 
           {/* Action Buttons */}
@@ -130,7 +169,7 @@ function Navbar() {
             <button
               className="mobile-btn"
               onClick={() => setOpen(true)}
-              aria-label="Toggle Menu"
+              aria-label="Toggle Navigation Menu"
             >
               <Menu size={28} />
             </button>
@@ -138,64 +177,138 @@ function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Overlay */}
       <div
         className={`overlay ${open ? "show" : ""}`}
-        onClick={() => setOpen(false)}
+        onClick={closeDrawer}
+        aria-hidden="true"
       />
 
+      {/* Mobile Drawer Navigation */}
       <aside className={`drawer ${open ? "drawer-show" : ""}`}>
         <div className="drawer-header">
           <img src={logo} alt="Logo" />
-          <button onClick={() => setOpen(false)} aria-label="Close Menu">
+          <button onClick={closeDrawer} aria-label="Close Navigation Menu">
             <X size={20} />
           </button>
         </div>
 
         <nav className="drawer-nav">
-          {links.map((item) => (
-            <NavLink
-              key={item.id}
-              to={item.path}
-              onClick={() => setOpen(false)}
-            >
-              {item.title}
-            </NavLink>
-          ))}
+          <NavLink to="/" onClick={closeDrawer}>
+            Home
+          </NavLink>
 
-          {/* Mobile Solutions Section */}
+          <NavLink to="/about" onClick={closeDrawer}>
+            About
+          </NavLink>
+
+          <NavLink to="/application" onClick={closeDrawer}>
+            Application
+          </NavLink>
+
+          <NavLink to="/services" onClick={closeDrawer}>
+            Services
+          </NavLink>
+
+          {/* Mobile Accordion - Solutions */}
           <div className="mobile-solutions-group">
-            <NavLink
-              to="/solutions"
-              className="mobile-parent-link"
-              onClick={() => setOpen(false)}
-            >
-              Solutions
-            </NavLink>
+            <div className="mobile-accordion-header">
+              <NavLink
+                to="/solutions"
+                className="mobile-parent-link"
+                onClick={closeDrawer}
+              >
+                Solutions
+              </NavLink>
+              <button
+                type="button"
+                className="mobile-toggle-btn"
+                onClick={() => toggleMobileSubmenu("solutions")}
+                aria-label="Toggle Solutions Menu"
+              >
+                <ChevronDown
+                  size={16}
+                  className={`chevron-icon ${
+                    activeMobileMenu === "solutions" ? "rotate" : ""
+                  }`}
+                />
+              </button>
+            </div>
 
-            {solutionLinks.map((category) => (
-              <div key={category.category} className="mobile-subcategory">
-                <span className="mobile-cat-header">{category.category}</span>
-                {category.items.map((item) => (
-                  <NavLink
-                    key={item.title}
-                    to={item.path}
-                    className="mobile-sub-link"
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.title}
-                  </NavLink>
+            {activeMobileMenu === "solutions" && (
+              <div className="mobile-accordion-body">
+                {solutionLinks.map((category) => (
+                  <div key={category.category} className="mobile-subcategory">
+                    <span className="mobile-cat-header">{category.category}</span>
+                    {category.items.map((item) => (
+                      <NavLink
+                        key={item.title}
+                        to={item.path}
+                        className="mobile-sub-link"
+                        onClick={closeDrawer}
+                      >
+                        {item.title}
+                      </NavLink>
+                    ))}
+                  </div>
                 ))}
               </div>
-            ))}
+            )}
           </div>
 
-          {/* Mobile CTA and Auth Area */}
+          {/* Mobile Accordion - Resources */}
+          <div className="mobile-solutions-group">
+            <div className="mobile-accordion-header">
+              <NavLink
+                to="/resources"
+                className="mobile-parent-link"
+                onClick={closeDrawer}
+              >
+                Resources
+              </NavLink>
+              <button
+                type="button"
+                className="mobile-toggle-btn"
+                onClick={() => toggleMobileSubmenu("resources")}
+                aria-label="Toggle Resources Menu"
+              >
+                <ChevronDown
+                  size={16}
+                  className={`chevron-icon ${
+                    activeMobileMenu === "resources" ? "rotate" : ""
+                  }`}
+                />
+              </button>
+            </div>
+
+            {activeMobileMenu === "resources" && (
+              <div className="mobile-accordion-body">
+                <div className="mobile-subcategory">
+                  {resourceLinks.map((item) => (
+                    <NavLink
+                      key={item.title}
+                      to={item.path}
+                      className="mobile-sub-link"
+                      onClick={closeDrawer}
+                    >
+                      {item.title}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <NavLink to="/contact" onClick={closeDrawer}>
+            Contact
+          </NavLink>
+
+          {/* Mobile Drawer Actions */}
           <div className="mobile-drawer-actions">
             <Link
               to="/contact"
               className="drawer-quote-btn"
-              onClick={() => setOpen(false)}
+              onClick={closeDrawer}
             >
               Get Quote
               <ArrowRight size={16} />
@@ -211,7 +324,7 @@ function Navbar() {
                   className="logout-btn"
                   onClick={() => {
                     logout();
-                    setOpen(false);
+                    closeDrawer();
                   }}
                 >
                   <LogOut size={16} />
@@ -223,7 +336,7 @@ function Navbar() {
                 className="login-btn"
                 onClick={() => {
                   openLogin();
-                  setOpen(false);
+                  closeDrawer();
                 }}
               >
                 Login

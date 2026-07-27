@@ -1,7 +1,7 @@
 import "./ProductSuite.css";
 
 import { ExternalLink } from "lucide-react";
-import ProtectedAction from "../auth/ProtectedAction";
+
 
 
 const openProduct = (url) => {
@@ -70,18 +70,17 @@ function ProductSuite() {
 
               <p>{product.description}</p>
 
-              <ProtectedAction
-                action={() => openProduct(product.link)}
-              >
-                <button className="product-link">
+            
+                
+              
+                <button className="product-link" onClick={() => openProduct(product.link)}>
 
                   Visit Official Page
 
                   <ExternalLink size={18} />
 
                 </button>
-              </ProtectedAction>
-
+       
             </div>
 
           ))}

@@ -1,345 +1,488 @@
-/* ===========================
-   HERO
-=========================== */
-
+/* ==========================================
+   HERO CONTAINER & BLUEPRINT BACKGROUND
+   ========================================== */
 .hero {
     position: relative;
-    padding: 80px 0 100px;
-    background: linear-gradient(to bottom, #f8fbff 0%, #ffffff 100%);
+    padding: 100px 0 120px;
+    background: #FFFFFF;
     overflow: hidden;
 }
 
-.hero::before {
-    content: "";
+/* Engineering Tech Grid Overlay */
+.hero-grid-pattern {
     position: absolute;
-    width: 600px;
-    height: 600px;
-    top: -220px;
-    right: -180px;
-    border-radius: 50%;
-    background: rgba(15, 76, 129, 0.05);
+    inset: 0;
+    background-image: 
+        linear-gradient(to right, rgba(15, 76, 129, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 76, 129, 0.04) 1px, transparent 1px);
+    background-size: 45px 45px;
+    z-index: 1;
+    pointer-events: none;
 }
 
-.hero::after {
-    content: "";
+/* Ambient Ambient Glowing Orbs */
+.hero-orb {
     position: absolute;
-    width: 350px;
-    height: 350px;
-    bottom: -150px;
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-orb-blue {
+    width: 500px;
+    height: 500px;
+    top: -100px;
     left: -100px;
-    border-radius: 50%;
-    background: rgba(249, 115, 22, 0.05);
+    background: rgba(15, 76, 129, 0.09);
 }
 
-/* ===========================
-   GRID
-=========================== */
+.hero-orb-orange {
+    width: 400px;
+    height: 400px;
+    bottom: -100px;
+    right: -50px;
+    background: rgba(249, 115, 22, 0.06);
+}
 
+/* ==========================================
+   GRID LAYOUT (Visual Left, Content Right)
+   ========================================== */
 .hero-wrapper {
     position: relative;
     z-index: 2;
-
     display: grid;
-    grid-template-columns: 1.15fr .85fr;
+    grid-template-columns: 0.95fr 1.05fr; /* Left visual, Right content */
     align-items: center;
-    gap: 70px;
-
-    /* FIX: fallback horizontal padding + max-width so content never
-     touches the viewport edge, even if no wrapping .container exists */
-    max-width: 1280px;
+    gap: 75px;
+    max-width: 1320px;
     margin-inline: auto;
     padding-inline: 24px;
 }
 
-/* ===========================
-   CONTENT
-=========================== */
+/* ==========================================
+   LEFT COLUMN: HIGH-TECH VISUAL & TELEMETRY
+   ========================================== */
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.visual-frame {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+}
+
+/* Technical Corner Crosshairs (+ symbols) */
+.frame-crosshair {
+    position: absolute;
+    font-family: monospace;
+    font-size: 16px;
+    color: rgba(15, 76, 129, 0.4);
+    z-index: 4;
+    pointer-events: none;
+}
+.top-left { top: -15px; left: -15px; }
+.top-right { top: -15px; right: -15px; }
+.bottom-left { bottom: -15px; left: -15px; }
+.bottom-right { bottom: -15px; right: -15px; }
+
+/* Dynamic Ambient Glow Behind Main Image */
+.hero-image-glow {
+    position: absolute;
+    inset: -10px;
+    background: linear-gradient(135deg, rgba(15, 76, 129, 0.2), rgba(249, 115, 22, 0.15));
+    border-radius: 36px;
+    filter: blur(20px);
+    z-index: 1;
+}
+
+.hero-main-img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 30px;
+    border: 4px solid #FFFFFF;
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.16);
+}
+
+/* Floating Glassmorphism Telemetry Cards */
+.telemetry-card {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.telemetry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(15, 76, 129, 0.18);
+}
+
+.top-telemetry {
+    top: 35px;
+    left: -30px;
+    animation: floatSmooth 5s ease-in-out infinite alternate;
+}
+
+.bottom-telemetry {
+    bottom: 45px;
+    right: -25px;
+    animation: floatSmooth 6s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatSmooth {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.telemetry-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.blue-bg {
+    background: #EEF6FF;
+    color: #0F4C81;
+}
+
+.orange-bg {
+    background: #FFF0E6;
+    color: #F97316;
+}
+
+.telemetry-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.telemetry-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 2px 0 0 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.tech-spec-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    color: #FFFFFF;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   RIGHT COLUMN: CONTENT & TYPOGRAPHY
+   ========================================== */
 .hero-content {
-    max-width: 650px;
+    max-width: 660px;
 }
 
 .hero-badge {
     display: inline-flex;
-    padding: 10px 18px;
-    background: #e9f4ff;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: #EEF6FF;
     color: #0F4C81;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.2px;
     border-radius: 999px;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(15, 76, 129, 0.15);
+}
+
+.live-dot {
+    width: 7px;
+    height: 7px;
+    background: #F97316;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #F97316;
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.6); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(249, 115, 22, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
 }
 
 .hero h1 {
-    font-size: 58px;
-    line-height: 1.08;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    line-height: 1.12;
     font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 26px;
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+}
+
+.hero-gradient-text {
+    background: linear-gradient(135deg, #0F4C81 0%, #38BDF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-    font-size: 18px;
-    line-height: 1.9;
-    color: #64748b;
-    margin-bottom: 40px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #334155;
+    margin-bottom: 35px;
+    font-weight: 400;
 }
 
-/* ===========================
-   BUTTONS
-=========================== */
-
+/* ==========================================
+   BUTTONS (Shimmer & Border Effects)
+   ========================================== */
 .hero-buttons {
     display: flex;
-    gap: 18px;
-    margin-bottom: 55px;
+    gap: 16px;
+    margin-bottom: 45px;
     flex-wrap: wrap;
 }
 
 .hero-primary {
-    display: flex;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 16px 28px;
+    padding: 16px 32px;
     background: #0F4C81;
-    color: #fff;
+    color: #FFFFFF;
     font-weight: 600;
+    font-size: 15px;
     border-radius: 50px;
-    transition: .35s;
-    box-shadow: 0 15px 35px rgba(15, 76, 129, .18);
-    white-space: nowrap;
-    /* FIX: prevents text wrapping awkwardly inside pill */
+    text-decoration: none;
+    box-shadow: 0 15px 30px rgba(15, 76, 129, 0.22);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(60deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+    transform: rotate(30deg) translateX(-100%);
+    transition: transform 0.7s ease-in-out;
+}
+
+.hero-primary:hover::after {
+    transform: rotate(30deg) translateX(100%);
 }
 
 .hero-primary:hover {
+    background: #082A4A;
     transform: translateY(-4px);
-    background: #09375d;
+    box-shadow: 0 20px 40px rgba(15, 76, 129, 0.32);
+}
+
+.hero-primary:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+.btn-arrow {
+    transition: transform 0.3s ease;
 }
 
 .hero-secondary {
-    padding: 16px 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 32px;
     border: 2px solid #0F4C81;
     border-radius: 50px;
     font-weight: 600;
+    font-size: 15px;
     color: #0F4C81;
-    transition: .3s;
-    white-space: nowrap;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .hero-secondary:hover {
     background: #0F4C81;
-    color: #fff;
+    color: #FFFFFF;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(15, 76, 129, 0.15);
 }
 
-/* ===========================
-   SERVICE CARDS
-=========================== */
-
+/* ==========================================
+   3-CARD QUICK SERVICES STRIP
+   ========================================== */
 .hero-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    gap: 14px;
 }
 
 .hero-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, .07);
-    transition: .35s;
-    border: 1px solid #edf2f7;
-    min-width: 0;
-    /* FIX: prevents grid items from overflowing their track */
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
+    border-color: #0F4C81;
+    box-shadow: 0 15px 35px rgba(15, 76, 129, 0.12);
 }
 
 .card-icon {
-    width: 52px;
-    height: 52px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #EEF6FF;
+    color: #0F4C81;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #eef6ff;
-    border-radius: 14px;
-    color: #0F4C81;
-    margin-bottom: 18px;
+    transition: all 0.3s ease;
 }
 
-.hero-card h4 {
-    font-size: 17px;
-    font-weight: 600;
-    color: #1e293b;
+.hero-card:hover .card-icon {
+    background: #0F4C81;
+    color: #FFFFFF;
+    transform: rotate(6deg) scale(1.05);
+}
+
+.card-text h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0F172A;
+    font-family: "Poppins", sans-serif;
+    margin: 0 0 4px 0;
+}
+
+.card-text p {
+    font-size: 12px;
+    color: #64748B;
+    margin: 0;
     line-height: 1.4;
 }
 
-/* ===========================
-   IMAGE
-=========================== */
-
-.hero-image {
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-.hero-image img {
-    width: 100%;
-    max-width: 520px;
-    height: 640px;
-    object-fit: cover;
-    border-radius: 30px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, .15);
-}
-
-/* ===========================
-   FLOAT CARD
-=========================== */
-
-.experience-card {
-    position: absolute;
-    left: -30px;
-    bottom: 40px;
-    background: #fff;
-    padding: 24px;
-    border-radius: 22px;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, .12);
-    max-width: 220px;
-    /* FIX: prevents card from growing wide on tablet widths */
-}
-
-.experience-card span {
-    display: block;
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 8px;
-}
-
-.experience-card h3 {
-    font-size: 26px;
-    font-family: "Poppins";
-    color: #0F172A;
-    line-height: 1.2;
-}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-
-
-@media (max-width: 1300px) {
-    .hero-wrapper {
-        padding-inline: 20px;
-    }
-}
-
-/* ===========================
-   RESPONSIVE MODIFICATIONS
-=========================== */
-
+/* ==========================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================== */
 @media (max-width: 1100px) {
     .hero-wrapper {
         grid-template-columns: 1fr;
+        gap: 60px;
     }
 
-    /* CHANGED: Changed from -1 to 1 so text content comes FIRST, image comes SECOND */
-    .hero-image {
-        order: 1;
-        margin-top: 40px;
-        /* Optional: adds nice breathing room above the image */
+    /* Content flows first on Tablet/Mobile, Visual second */
+    .hero-visual {
+        order: 2;
+        max-width: 550px;
+        margin: 0 auto;
+        width: 100%;
     }
 
     .hero-content {
+        order: 1;
         max-width: 100%;
+        text-align: center;
     }
 
-    .hero h1 {
-        font-size: 46px;
+    .hero-badge {
+        margin-inline: auto;
     }
 
-    .hero-image img {
-        height: 500px;
+    .hero-buttons {
+        justify-content: center;
     }
 
-    .experience-card {
-        left: 16px;
+    .hero-cards {
+        max-width: 800px;
+        margin-inline: auto;
+    }
+
+    .top-telemetry {
+        left: 0px;
+    }
+
+    .bottom-telemetry {
+        right: 0px;
     }
 }
 
 @media (max-width: 768px) {
-    /* ... keep your other 768px styles identical ... */
+    .hero {
+        padding: 60px 0 80px;
+    }
+
+    .hero-main-img {
+        height: 420px;
+    }
 
     .hero-cards {
-        display: grid;
-        /* FIX: Added the missing "repeat" keyword so the browser can parse it properly */
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
-    .hero-cards> :last-child {
-        grid-column: span 2;
-        justify-self: center;
-        /* FIX: changed to 100% or auto so it matches the full width of the mobile container */
-        width: 100%;
+    .hero-card {
+        flex-direction: row;
+        align-items: center;
     }
-
-    .hero {
-        padding: 50px 0 70px;
-    }
-
-    .hero-wrapper {
-        padding-inline: 16px;
-        /* FIX: tighter edge padding on mobile */
-        gap: 40px;
-    }
-
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero h1 span {
-        color: #0F4C81;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
 
     .hero-buttons {
         flex-direction: column;
+        width: 100%;
     }
 
-    .hero-primary,
-    .hero-secondary {
+    .hero-primary, .hero-secondary {
+        width: 100%;
         justify-content: center;
     }
 
-    .experience-card {
-        display: none;
+    .telemetry-card {
+        padding: 10px 14px;
     }
 
-    .hero-image img {
-        height: 380px;
-    }
-}
-
-/* FIX: extra-small phones (< 400px) — headline and image
-   were still too large relative to viewport */
-@media (max-width: 400px) {
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .hero-image img {
-        height: 300px;
-    }
-
-    .hero-badge {
+    .telemetry-value {
         font-size: 12px;
-        padding: 8px 14px;
     }
 }

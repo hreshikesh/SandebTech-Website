@@ -3,7 +3,7 @@ import "./CaesesIntro.css";
 import { ExternalLink } from "lucide-react";
 
 import introImg from "../../assets/images/caeses/caeses.webp";
-import ProtectedAction from "../auth/ProtectedAction";
+
 
 
 const openProduct = (url) => {
@@ -54,18 +54,14 @@ function CaesesIntro() {
 
       
 
-            <ProtectedAction
-              action={() => openProduct("https://www.caeses.com/")}
-            >
-              <button className="caeses-btn">
+              <button className="caeses-btn" onClick={() => openProduct("https://www.caeses.com/")}>
 
                 Visit Official Website
 
                 <ExternalLink size={18} />
 
               </button>
-            </ProtectedAction>
-
+          
           </div>
 
         </div>

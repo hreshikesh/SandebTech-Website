@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { applications } from "../../constants/applications";
 
-import ProtectedAction from "../auth/ProtectedAction";
+
 
 
 const openProduct = (url) => {
@@ -75,17 +75,17 @@ function CaesesApplications() {
 
 
 
-                      <ProtectedAction
-                        action={() => openProduct(item.link)}
-                      >
-                        <button className="sub-link">
+                      
+                        
+                      
+                        <button className="sub-link" onClick={() => openProduct(item.link)}>
 
                           Learn More
 
                           <ArrowUpRight size={18} />
 
                         </button>
-                      </ProtectedAction>
+                    
 
                     </div>
 

@@ -1,142 +1,184 @@
+import React, { useState } from "react";
+import { FileText, Eye, Download } from "lucide-react";
+
+// Asset Imports
+import ltgImg from "../../assets/images/lotus/products/ltg.webp";
+import pdf1 from "../../assets/images/lotus/documents/pdf1.pdf";
+import pdf2 from "../../assets/images/lotus/documents/application note.pdf";
+import pdf3 from "../../assets/images/lotus/documents/whitepaper.pdf";
+import pdf4 from "../../assets/images/lotus/documents/technical solution breif.pdf";
+
+// Component Imports
+import PdfViewerModal from "./PdfViewerModal";
 import "./LotusProducts.css";
 
-import { Check, ArrowUpRight } from "lucide-react";
-
-import ltgImg from "../../assets/images/lotus/products/ltg.webp";
-import lmuImg from "../../assets/images/lotus/products/lmu20p1.webp";
-import lbkImg from "../../assets/images/lotus/products/lbk0504.webp";
-
-import ProtectedAction from "../auth/ProtectedAction";
-
-
-const openProduct = (url) => {
-  window.open(url, "_blank", "noopener,noreferrer");
-};
-
-
-const products = [
+// Thermal PDF Documents Data
+const thermalDocuments = [
   {
-    title: "LTG Family",
-    image: ltgImg,
-    features: [
-      "Advanced Thermal Management",
-      "Integrated Power Modules",
-      "High Power Density",
-      "Optimized System Efficiency",
-    ],
-    link: "https://www.lotus-microsystems.com/thermal-management",
+    id: "ltg-datasheet",
+    category: "Datasheet",
+    title: "LTG Series Thermal Substrate Datasheet",
+    description: "Detailed thermal resistance, mechanical profiles, and material properties.",
+    fileUrl: pdf1
   },
-
   {
-    title: "LMU20P1",
-    image: lmuImg,
-    features: [
-      "Integrated Power Module",
-      "Compact Package Design",
-      "High Conversion Efficiency",
-      "Reliable Thermal Performance",
-    ],
-    link: "https://www.lotus-microsystems.com/products/lmu20p1",
+    id: "ltg-app-note",
+    category: "Application Note",
+    title: "LTG Thermal Integration & Design Guide",
+    description: "Guidelines for direct substrate bonding and local hot-spot elimination.",
+    fileUrl: pdf2
   },
-
   {
-    title: "LBK0504",
-    image: lbkImg,
-    features: [
-      "Compact Buck Converter",
-      "Stable Output Performance",
-      "Low Power Loss",
-      "Designed for Embedded Applications",
-    ],
-    link: "https://www.lotus-microsystems.com/products/lbk0504",
+    id: "ltg-whitepaper",
+    category: "White Paper",
+    title: "Nanoscale Silicon Substrate Thermal Performance",
+    description: "In-depth thermal conductivity benchmarks and heat-dissipation case studies.",
+    fileUrl: pdf3
   },
+  {
+    id: "ltg-solution-brief",
+    category: "Solution Brief",
+    title: "LTG Thermal Architecture for High-Density ICs",
+    description: "Executive summary on optimizing thermal management in advanced 2.5D packaging.",
+    fileUrl: pdf4
+  }
 ];
 
-function LotusProducts() {
+const thermalSpecs = [
+  { model: "LTG0201", length: "0.6 ± 3%", width: "0.3 ± 3%", height: "0.3 ± 3%" },
+  { model: "LTG0402", length: "1.0 ± 3%", width: "0.5 ± 3%", height: "0.8 ± 3%" },
+  { model: "LTG0603", length: "1.6 ± 3%", width: "0.8 ± 3%", height: "0.8 ± 3%" },
+  { model: "LTG0805", length: "2.0 ± 3%", width: "1.2 ± 3%", height: "0.8 ± 3%" },
+  { model: "LTG1206", length: "3.2 ± 3%", width: "1.6 ± 3%", height: "0.8 ± 3%" }
+];
+
+export default function LotusProducts() {
+  // Modal state
+  const [activePdf, setActivePdf] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenPdf = (doc) => {
+    setActivePdf(doc);
+    setIsModalOpen(true);
+  };
+
+  const handleClosePdf = () => {
+    setIsModalOpen(false);
+    setActivePdf(null);
+  };
+
+  const handleDownloadPdf = (doc) => {
+    const link = document.createElement("a");
+    link.href = doc.fileUrl;
+    link.download = `${doc.title}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="lotus-products">
-
       <div className="container">
+        
+        {/* -------------------------------------------------------------
+            CATEGORY 3: Thermal Management + Interactive PDF Center
+           ------------------------------------------------------------- */}
+        <div className="product-category-group">
+          <div className="category-header">
+            <h3>3. Thermal Management (LTG Series)</h3>
+            <span className="category-subtitle">
+              Nanoscale silicon thermal substrates engineered to eliminate local hot spots in dense IC packages.
+            </span>
+          </div>
 
-        <div className="section-title">
-
-          <span>PRODUCT PORTFOLIO</span>
-
-          <h2>
-            Integrated Power Solutions
-          </h2>
-
-          <p>
-            Explore Lotus Microsystems' innovative product portfolio
-            engineered to deliver compact, efficient and reliable
-            power management solutions.
-          </p>
-
-        </div>
-
-        <div className="lotus-product-grid">
-
-          {products.map((product) => (
-
-            <div
-              key={product.title}
-              className="lotus-card"
-            >
-
-              <div className="lotus-card-image">
-
-                <img
-                  src={product.image}
-                  alt={product.title}
-                />
-
+          <div className="thermal-wrapper-grid">
+            {/* Visual Highlight Card */}
+            <div className="thermal-image-card">
+              <img src={ltgImg} alt="LTG Thermal Substrate" />
+              <div className="thermal-caption">
+                <h5>LTG Thermal Solution</h5>
+                <p>Ultra-thin silicon-based thermal distribution for high-density silicon interposers.</p>
               </div>
-
-              <div className="lotus-card-content">
-
-                <h3>{product.title}</h3>
-
-                <ul>
-
-                  {product.features.map((feature) => (
-
-                    <li key={feature}>
-
-                      <Check size={18} />
-
-                      {feature}
-
-                    </li>
-
-                  ))}
-
-                </ul>
-
-
-                <ProtectedAction
-                  action={() => openProduct(product.link)}
-                >
-                  <button className="lotus-link">
-
-                    Visit Product
-
-                    <ArrowUpRight size={18} />
-
-                  </button>
-                </ProtectedAction>
-
-              </div>
-
             </div>
 
-          ))}
+            {/* Dimensions Data Table */}
+            <div className="thermal-table-card">
+              <h4>LTG Physical Dimension Matrix</h4>
+              <p>Standard surface-mount dimensions across the LTG family portfolio:</p>
+
+              <div className="table-container">
+                <table className="lotus-table">
+                  <thead>
+                    <tr>
+                      <th>Part Number</th>
+                      <th>Length (mm)</th>
+                      <th>Width (mm)</th>
+                      <th>Height (mm)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {thermalSpecs.map((row) => (
+                      <tr key={row.model}>
+                        <td className="model-cell">{row.model}</td>
+                        <td>{row.length}</td>
+                        <td>{row.width}</td>
+                        <td>{row.height}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* Upgraded PDF Grid Section */}
+          <div className="thermal-docs-container">
+            <div className="docs-header">
+              <h4>Thermal Technical Documentation & Datasheets</h4>
+              <p>Access complete product specs, application guides, and whitepapers.</p>
+            </div>
+
+            <div className="docs-grid">
+              {thermalDocuments.map((doc) => (
+                <div className="doc-card" key={doc.id}>
+                  <div className="doc-card-header">
+                    <span className="doc-badge">{doc.category}</span>
+                    <FileText className="doc-card-icon" size={22} />
+                  </div>
+
+                  <div className="doc-card-body">
+                    <h5>{doc.title}</h5>
+                    <p>{doc.description}</p>
+                  </div>
+
+                  <div className="doc-card-actions">
+                    {/* View Button -> Opens Modal */}
+                    <button
+                      type="button"
+                      className="btn-view-doc"
+                      onClick={() => handleOpenPdf(doc)}
+                    >
+                      <Eye size={16} />
+                      <span>View</span>
+                    </button>
+
+                   
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
         </div>
-
       </div>
 
+
+      <PdfViewerModal
+        isOpen={isModalOpen}
+        onClose={handleClosePdf}
+        pdfUrl={activePdf?.fileUrl}
+        title={activePdf?.title}
+      />
     </section>
   );
 }
-
-export default LotusProducts;

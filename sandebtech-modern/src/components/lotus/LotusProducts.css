@@ -1,142 +1,286 @@
-.lotus-products{
-    padding:110px 0;
-    background:#f8fafc;
+/* ==========================================================================
+   Lotus Products Section
+   ========================================================================== */
+
+.lotus-products {
+    padding: 110px 0;
+    background: #f8fafc;
 }
 
-.lotus-product-grid{
-    margin-top:70px;
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:30px;
+.lotus-products .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.lotus-card{
-    background:#fff;
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    border:1px solid #e5e7eb;
-
-    transition:.35s;
-
-    box-shadow:0 12px 30px rgba(15,23,42,.05);
+/* Category Groups */
+.product-category-group {
+    margin-bottom: 70px;
 }
 
-.lotus-card:hover{
-    transform:translateY(-8px);
-
-    box-shadow:0 20px 45px rgba(15,23,42,.10);
+.category-header {
+    margin-bottom: 24px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 12px;
 }
 
-.lotus-card-image{
-    overflow:hidden;
+.category-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0F4C81;
 }
 
-.lotus-card-image img{
-    width:100%;
-
-    height:250px;
-
-    object-fit:contain;
-
-    background:#fff;
-
-    padding:20px;
-
-    transition:.4s;
+.category-subtitle {
+    font-size: 14px;
+    color: #64748b;
 }
 
-.lotus-card:hover img{
-    transform:scale(1.05);
+/* Category 3: Thermal Wrapper Grid */
+.thermal-wrapper-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 30px;
 }
 
-.lotus-card-content{
-    padding:30px;
+.thermal-image-card {
+    background: linear-gradient(135deg, #0F4C81 0%, #082d4d 100%);
+    border-radius: 20px;
+    padding: 30px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.lotus-card-content h3{
-    font-size:28px;
-
-    color:#1e293b;
-
-    margin-bottom:24px;
+.thermal-image-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background: #ffffff;
+    padding: 16px;
 }
 
-.lotus-card-content ul{
-    list-style:none;
-
-    margin-bottom:30px;
+.thermal-caption h5 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
-.lotus-card-content li{
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    margin-bottom:16px;
-
-    color:#475569;
-
-    line-height:1.6;
+.thermal-caption p {
+    font-size: 13px;
+    color: #cbd5e1;
 }
 
-.lotus-card-content li svg{
-    color:#0F4C81;
-
-    flex-shrink:0;
+/* Dimensions Table Card */
+.thermal-table-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
 
-.lotus-link{
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    color:#0F4C81;
-
-    font-weight:600;
-
-    text-decoration:none;
-
-    transition:.3s;
+.thermal-table-card h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
 }
 
-.lotus-link:hover{
-    gap:14px;
+.thermal-table-card p {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
 }
 
-@media(max-width:992px){
-
-.lotus-product-grid{
-    grid-template-columns:1fr;
+.table-container {
+    overflow-x: auto;
 }
 
+.lotus-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
 }
 
-@media(max-width:768px){
-
-.lotus-products{
-    padding:80px 0;
+.lotus-table th {
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 700;
+    padding: 14px;
+    border-bottom: 2px solid #e2e8f0;
 }
 
-.lotus-card-image img{
-    height:220px;
+.lotus-table td {
+    padding: 14px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
 }
 
-.lotus-card-content{
-    padding:24px;
+.model-cell {
+    font-weight: 700;
+    color: #0F4C81;
 }
 
-.lotus-card-content h3{
-    font-size:24px;
+/* ==========================================================================
+   Upgraded 2-Column PDF Documentation Section
+   ========================================================================== */
+
+.thermal-docs-container {
+    margin-top: 30px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
 
+.docs-header {
+    margin-bottom: 24px;
+}
+
+.docs-header h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 6px 0;
+}
+
+.docs-header p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Responsive 2-Column Grid */
+.docs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Interactive Card Component */
+.doc-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.doc-card:hover {
+    background: #ffffff;
+    border-color: #0F4C81;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(15, 76, 129, 0.08);
+}
+
+.doc-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.doc-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.doc-card-icon {
+    color: #0F4C81;
+}
+
+.doc-card-body h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.doc-card-body p {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+/* Action Buttons Grid */
+.doc-card-actions {
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.btn-view-doc,
+.btn-download-doc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-view-doc {
+    background: #ffffff;
+    color: #0F4C81;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-view-doc:hover {
+    background: #f1f5f9;
+    border-color: #0F4C81;
+    color: #0b375e;
+}
+
+.btn-download-doc {
+    background: #0F4C81;
+    color: #ffffff;
+    border: 1px solid #0F4C81;
+}
+
+.btn-download-doc:hover {
+    background: #0b375e;
+    border-color: #0b375e;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+    .thermal-wrapper-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .docs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .thermal-docs-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .doc-card-actions {
+        grid-template-columns: 1fr;
+    }
 }

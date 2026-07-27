@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import hullImg from "../../assets/images/shipflow/applications/hull.webp";
 import bulbImg from "../../assets/images/shipflow/applications/bulb.webp";
 import aftbodyImg from "../../assets/images/shipflow/applications/aftbody.webp";
-import ProtectedAction from "../auth/ProtectedAction";
+
 
 
 const openProduct = (url) => {
@@ -86,17 +86,14 @@ function Applications() {
               <p>{app.description}</p>
 
         
-               <ProtectedAction
-                action={() => openProduct(app.link)}
-              >
-                <button className="case-link">
+                <button className="case-link" onClick={() => openProduct(app.link)}>
 
                   View Detailed Case Study
 
                    <ArrowUpRight size={18} />
 
                 </button>
-              </ProtectedAction>
+ 
 
             </div>
 

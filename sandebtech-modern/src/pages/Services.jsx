@@ -8,6 +8,7 @@ import EnergySaving from "../components/services/EnergySaving";
 
 import SeaKeeping from "../components/services/SeaKeeping";
 import PageTransition from "../components/PageTransition/PageTransition";
+import HvacSummary from "../components/services/HvacSummary";
 
 function Services() {
   return (
@@ -25,6 +26,8 @@ function Services() {
       <EnergySaving />
 
       <SeaKeeping />
+
+      <HvacSummary/>
     </>
   );
 }

@@ -7,7 +7,9 @@ import shipflowImg from "../../assets/images/solutions/shipflow.webp";
 import caesesImg from "../../assets/images/solutions/caeses.webp";
 import turboImg from "../../assets/images/solutions/turbomachinery.webp";
 import lotusImg from "../../assets/images/solutions/lotus.webp";
-
+import tcaeImg from "../../assets/images/tcae/tcae.webp"
+import havc from "../../assets/images/solutions/havc.webp";
+import cloudeCae from "../../assets/images/solutions/cae.webp";
 const solutionsData = [
   {
     id: 1,
@@ -23,9 +25,9 @@ const solutionsData = [
   },
   {
     id: 3,
-    title: "Turbomachinery",
-    image: turboImg,
-    link: "/solutions/turbomachinery",
+    title: "HAVC",
+    image: havc,
+    link: "/solutions/havc",
   },
   {
     id: 4,
@@ -33,6 +35,20 @@ const solutionsData = [
     image: lotusImg,
     link: "/solutions/lotus-marine",
   },
+  {
+    id: 5,
+    title: "TCAE",
+    image: lotusImg,
+    link: "/solutions/lotus-marine",
+
+  },
+   {
+    id: 6,
+    title: "Cloud CAE",
+    image: cloudeCae,
+    link: "/solutions/cloud-cae",
+
+  }
 ];
 
 function Solutions() {

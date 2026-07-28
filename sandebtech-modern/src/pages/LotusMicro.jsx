@@ -7,12 +7,12 @@ function LotusMicro() {
   return (
     <>
       <PageTransition />
-      <PageBanner
+      {/* <PageBanner
         title="Lotus Microsystems"
         subtitle="High-Performance Integrated Power Modules"
       />
 
-      <LotusIntro />
+      <LotusIntro /> */}
 
       <LotusProducts />
     </>

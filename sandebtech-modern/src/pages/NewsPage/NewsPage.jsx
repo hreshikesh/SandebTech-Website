@@ -22,8 +22,8 @@ import "./NewsPage.css";
 // verified (fetched or found in live search results) at time of writing.
 // Note: "Cloud CAE", "Lotus", and "HVAC" in earlier drafts of this page
 // referred to products/domains that don't exist. They've been replaced
-// with real vendors covering the same niches: SimScale (cloud CFD/FEA),
-// Cadence Celsius (electronics thermal), and IES VE (HVAC/building sim).
+
+
 const rawNewsData = [
   {
     id: "caeses-1",
@@ -38,19 +38,7 @@ const rawNewsData = [
     featured: true,
     tags: ["Maya HTT", "Acquisition", "Parametric CAD"]
   },
-  {
-    id: "iesve-1",
-    product: "IESVE",
-    category: "IESVE",
-    icon: Wind,
-    title: "De-risking High-Performance Data Centres with Dynamic Simulation",
-    description:
-      "IES published new guidance on using physics-based dynamic simulation and CFD to plan cooling, power, and control strategies for AI-driven, high-density data centre loads, aimed at improving resilience and PUE.",
-    date: "July 21, 2026",
-    newsUrl: "https://www.iesve.com/discoveries",
-    featured: false,
-    tags: ["HVAC Simulation", "Data Centres", "IESVE"]
-  },
+  
   {
     id: "tcae-1",
     product: "TCAE",
@@ -77,42 +65,15 @@ const rawNewsData = [
     featured: false,
     tags: ["Marine CFD", "FLOWTECH", "Hydrodynamics"]
   },
-  {
-    id: "celsius-1",
-    product: "Celsius",
-    category: "Celsius",
-    icon: Flame,
-    title: "Celsius Studio: AI Thermal Design Platform for Electronic Systems",
-    description:
-      "Cadence's Celsius Studio Platform converges electrothermal co-simulation, electronics cooling, and thermal stress analysis into a single environment spanning chips, packages, PCBs, and full enclosures, with generative-AI-assisted optimization.",
-    date: "2026",
-    newsUrl: "https://www.cadence.com/en_US/home/tools/system-analysis/thermal-solutions/celsius-studio.html",
-    featured: false,
-    tags: ["Cadence Celsius", "Thermal Management", "Electronics Packaging"]
-  },
-  {
-    id: "simscale-1",
-    product: "SimScale",
-    category: "SimScale",
-    icon: Cloud,
-    title: "SimScale Summer 2026 Product Updates",
-    description:
-      "SimScale's latest platform release introduces Engineering AI to compress simulation lead times, a mesh-free GPU-accelerated CFD solver via PAMICS SPH integration, motion coupling in the electromagnetics solver, and a new time-harmonic AC solver.",
-    date: "June 2026",
-    newsUrl: "https://www.simscale.com/blog/webinar-highlights-simscale-summer-2026-product-updates/",
-    featured: false,
-    tags: ["Cloud CFD", "Engineering AI", "SimScale"]
-  }
+
 ];
 
 const categories = [
   { id: "all", name: "All News" },
   { id: "SHIPFLOW", name: "SHIPFLOW", icon: Ship },
   { id: "CAESES", name: "CAESES", icon: Layers },
-  { id: "IESVE", name: "IESVE (HVAC)", icon: Wind },
-  { id: "Celsius", name: "Celsius", icon: Flame },
   { id: "TCAE", name: "TCAE", icon: Cpu },
-  { id: "SimScale", name: "SimScale", icon: Cloud }
+
 ];
 
 export default function NewsPage() {
@@ -157,9 +118,7 @@ export default function NewsPage() {
         <div className="hero-glow-orb orb-2"></div>
         <div className="container">
           <div className="hero-content">
-            <div className="hero-badge">
-              <span>Official Release & Engineering Hub</span>
-            </div>
+          
             <h1>Product News & Technical Releases</h1>
             <p>
               Stay up to date with official releases, technical documentation, and product breakthroughs directly from primary engineering portals.
@@ -170,7 +129,7 @@ export default function NewsPage() {
               <Search className="search-icon" size={20} />
               <input
                 type="text"
-                placeholder="Search releases, products (e.g. CAESES, TCAE, SimScale)..."
+                placeholder="Search releases, products (e.g. CAESES, TCAE)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -364,9 +323,7 @@ export default function NewsPage() {
               <a href="https://www.cfdsupport.com/news/" target="_blank" rel="noopener noreferrer" className="quick-badge">
                 <Cpu size={15} /><span>TCAE Portal</span>
               </a>
-              <a href="https://www.simscale.com/" target="_blank" rel="noopener noreferrer" className="quick-badge">
-                <Cloud size={15} /><span>SimScale Portal</span>
-              </a>
+             
             </div>
           </div>
         </section>

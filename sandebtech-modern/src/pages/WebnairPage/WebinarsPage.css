@@ -212,9 +212,18 @@
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(2, 132, 199, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(2, 132, 199, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0);
+  }
 }
 
 .featured-date-time {
@@ -389,7 +398,9 @@
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .filter-tabs-grid {
@@ -596,14 +607,33 @@
   margin-bottom: 14px;
 }
 
-.sk-header { height: 24px; width: 45%; }
-.sk-title { height: 28px; width: 90%; margin-top: 12px; }
-.sk-desc { height: 16px; width: 100%; margin-bottom: 24px; }
-.sk-btn { height: 40px; width: 100%; margin-top: auto; }
+.sk-header {
+  height: 24px;
+  width: 45%;
+}
+.sk-title {
+  height: 28px;
+  width: 90%;
+  margin-top: 12px;
+}
+.sk-desc {
+  height: 16px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.sk-btn {
+  height: 40px;
+  width: 100%;
+  margin-top: auto;
+}
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* No Results State */

@@ -94,7 +94,7 @@ function App() {
             />
 
             <Route
-              path="/solutions/lotus-marine"
+              path="/solutions/lotus-micro"
               element={<LotusMarine />}
             />
             <Route

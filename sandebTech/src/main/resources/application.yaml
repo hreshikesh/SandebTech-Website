@@ -55,8 +55,8 @@ google:
   calendar:
     id: primary
   client:
-    id: "519701626953-vjjjc73nbm289mn2pabenfj6q6cisi93.apps.googleusercontent.com"
-    secret: "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"
+    id: "286174570324-vojm40s47qhtrejg038mcdldpqedlbk2.apps.googleusercontent.com"
+    secret: "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"
     redirect-uri: "https://sandebtech-website.onrender.com/google/oauth2callback"
 
 gemini:

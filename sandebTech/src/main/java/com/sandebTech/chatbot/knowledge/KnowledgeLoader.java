@@ -52,14 +52,11 @@ public class KnowledgeLoader {
 
                 }
 
-                System.out.println("Loaded : " + resource.getFilename());
+
 
             }
 
-            System.out.println("--------------------------------");
-            System.out.println("Knowledge Loaded Successfully");
-            System.out.println("Total Documents : " + documents.size());
-            System.out.println("--------------------------------");
+
 
         } catch (Exception e) {
 

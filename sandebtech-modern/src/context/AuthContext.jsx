@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
@@ -7,33 +7,8 @@ export function AuthProvider({ children }) {
         const storedUser = localStorage.getItem("sandebtech-user");
         return storedUser ? JSON.parse(storedUser) : null;
     });
+
     const [pendingAction, setPendingAction] = useState(null);
-    const executePendingAction = () => {
-
-        if (pendingAction) {
-
-            pendingAction();
-
-            setPendingAction(null);
-
-        }
-
-    };
-    const requireAuth = (callback) => {
-
-        if (user) {
-
-            callback();
-
-            return;
-
-        }
-
-        setPendingAction(() => callback);
-
-        setLoginOpen(true);
-
-    };
 
     const [loginOpen, setLoginOpen] = useState(false);
     const [otpOpen, setOtpOpen] = useState(false);
@@ -60,15 +35,44 @@ export function AuthProvider({ children }) {
         );
     };
 
-  const logout = () => {
+    const logout = () => {
+        setUser(null);
 
-    setUser(null);
+        localStorage.removeItem("sandebtech-user");
+        localStorage.removeItem("token");
 
-    localStorage.removeItem("sandebtech-user");
+        setLoginOpen(false);
+        setOtpOpen(false);
+        setRegisterOpen(false);
+        setSuccessOpen(false);
+    };
 
-    localStorage.removeItem("token");
+    useEffect(() => {
+        const forceLogout = () => logout();
 
-};
+        window.addEventListener("forceLogout", forceLogout);
+
+        return () => {
+            window.removeEventListener("forceLogout", forceLogout);
+        };
+    }, []);
+
+    const executePendingAction = () => {
+        if (pendingAction) {
+            pendingAction();
+            setPendingAction(null);
+        }
+    };
+
+    const requireAuth = (callback) => {
+        if (user) {
+            callback();
+            return;
+        }
+
+        setPendingAction(() => callback);
+        setLoginOpen(true);
+    };
 
     const openLogin = () => {
         setLoginOpen(true);
@@ -88,6 +92,8 @@ export function AuthProvider({ children }) {
                 login,
                 logout,
                 requireAuth,
+                executePendingAction,
+
                 loginOpen,
                 otpOpen,
                 registerOpen,
@@ -113,5 +119,4 @@ export function AuthProvider({ children }) {
     );
 }
 
-export const useAuth = () =>
-    useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);

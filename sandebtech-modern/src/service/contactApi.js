@@ -23,15 +23,16 @@ API.interceptors.response.use(
     const status = error.response?.status;
     const data = error.response?.data;
 
-    if (status === 401) {
-      localStorage.removeItem("token");
+   if (status === 401 && localStorage.getItem("token")) {
 
-      toast.error("Session expired. Please login again.");
+    window.dispatchEvent(new Event("forceLogout"));
 
-      window.location.href = "/";
+    toast.error("Session expired. Please login again.");
 
-      return Promise.reject(error);
-    }
+    window.location.href = "/";
+
+    return Promise.reject(error);
+}
 
     if (data?.errors && Object.keys(data.errors).length > 0) {
       Object.values(data.errors).forEach((msg) => toast.error(msg));

@@ -22,7 +22,8 @@ API.interceptors.response.use(
         const data = error.response?.data;
 
         if (status === 401 && localStorage.getItem("token")) {
-            localStorage.removeItem("token");
+
+            window.dispatchEvent(new Event("forceLogout"));
 
             toast.error("Session expired. Please login again.");
 
@@ -30,7 +31,6 @@ API.interceptors.response.use(
 
             return Promise.reject(error);
         }
-
         return Promise.reject(error);
     }
 );

@@ -24,14 +24,15 @@ API.interceptors.response.use(
 
         // Session expired
         if (status === 401 && localStorage.getItem("token")) {
-            localStorage.removeItem("token");
+
+            window.dispatchEvent(new Event("forceLogout"));
 
             toast.error("Session expired. Please login again.");
 
             window.location.href = "/";
+
             return Promise.reject(error);
         }
-
         if (data?.errors && Object.keys(data.errors).length > 0) {
             Object.values(data.errors).forEach((msg) => toast.error(msg));
         } else {

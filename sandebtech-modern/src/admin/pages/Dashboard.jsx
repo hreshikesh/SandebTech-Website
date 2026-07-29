@@ -80,7 +80,7 @@ function Dashboard() {
                 </div>
                 <div className="calendar-iframe-body">
                     <iframe
-                        src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FKolkata&showPrint=0&src=Y29udGFjdEBzYW5kZWJ0ZWNoLmNvbQ&color=%23039be5"
+                        src="https://calendar.google.com/calendar/embed?src=contact%40sandebtech.com&ctz=Asia%2FKolkata"
                         style={{ border: '1px solid #777' }}
                         width="800"
                         height="600"

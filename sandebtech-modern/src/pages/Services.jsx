@@ -2,13 +2,9 @@ import PageBanner from "../components/common/PageBanner";
 
 import ServicesIntro from "../components/services/ServicesIntro";
 
-import HullOptimization from "../components/services/HullOptimization";
-
-import EnergySaving from "../components/services/EnergySaving";
-
-import SeaKeeping from "../components/services/SeaKeeping";
 import PageTransition from "../components/PageTransition/PageTransition";
-import HvacSummary from "../components/services/HvacSummary";
+import ServiceProduct from "../components/services/ServiceProduct";
+
 
 function Services() {
   return (
@@ -19,15 +15,8 @@ function Services() {
         subtitle="Ship Design • Special Training • Joint Projects"
       />
 
-      <ServicesIntro />
+      <ServiceProduct />
 
-      <HullOptimization />
-
-      <EnergySaving />
-
-      <SeaKeeping />
-
-      <HvacSummary/>
     </>
   );
 }

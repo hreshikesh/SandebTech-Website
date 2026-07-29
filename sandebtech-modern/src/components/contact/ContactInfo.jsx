@@ -1,6 +1,6 @@
 import "./ContactInfo.css";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"; // <--- Added React Router import
+import { useLocation } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -16,7 +16,7 @@ import { submitContact } from "../../service/contactApi";
 
 function ContactInfo() {
   const { user, requireAuth } = useAuth();
-  const location = useLocation(); // <--- Access route state
+  const location = useLocation();
 
   const initialForm = {
     name: "",
@@ -65,8 +65,8 @@ function ContactInfo() {
       newErrors.phone = "Please enter a valid phone number.";
     }
 
-    if (!form.subject.trim()) {
-      newErrors.subject = "Subject is required.";
+    if (!form.subject || !form.subject.trim()) {
+      newErrors.subject = "Please select or specify a subject.";
     }
 
     if (form.message.trim().length < 20) {
@@ -224,14 +224,42 @@ function ContactInfo() {
             </div>
 
             <div className="form-input-group">
-              <input
-                type="text"
-                placeholder="Subject"
+              <select
                 name="subject"
-                value={form.subject}
-                onChange={handleChange}
+                value={
+                  ["Wanted to know about Shipflow", "About CAESES Lotus", "HVAC"].includes(form.subject)
+                    ? form.subject
+                    : form.subject ? "Other" : ""
+                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val !== "Other") {
+                    handleChange(e);
+                  } else {
+                    handleChange({ target: { name: "subject", value: "" } });
+                  }
+                }}
                 required
-              />
+              >
+                <option value="" disabled>Select a subject...</option>
+                <option value="Wanted to know about Shipflow">Wanted to know about Shipflow</option>
+                <option value="About CAESES Lotus">About CAESES Lotus</option>
+                <option value="HVAC">HVAC</option>
+                <option value="Other">Other</option>
+              </select>
+
+              {!["Wanted to know about Shipflow", "About CAESES Lotus", "HVAC"].includes(form.subject) && (
+                <input
+                  type="text"
+                  placeholder="Please specify your subject"
+                  name="subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  required
+                  style={{ marginTop: "10px" }}
+                />
+              )}
+
               {errors.subject && <span className="form-error">{errors.subject}</span>}
             </div>
 

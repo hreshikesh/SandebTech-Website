@@ -36,6 +36,7 @@ import NewsPage from "../pages/NewsPage/NewsPage";
 import WebinarsPage from "../pages/WebnairPage/WebinarsPage";
 import Hvac from "../pages/havc/Havc";
 import Resources from "../pages/resources/Resources";
+import Careers from "../pages/Carreer";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -109,16 +110,20 @@ function App() {
               element={<NewsPage />} />
             <Route
               path="resources/webinar"
-              element={<WebinarsPage/>} />
+              element={<WebinarsPage />} />
 
-            <Route 
-            path="/solutions/hvac"
-            element ={<Hvac/>}/>
+            <Route
+              path="/solutions/hvac"
+              element={<Hvac />} />
 
-            <Route 
-            path="/resources"
-            element={<Resources/>}/>
+            <Route
+              path="/resources"
+              element={<Resources />} />
 
+            <Route
+              path="/career"
+              element={<Careers/>}
+            />
 
 
             <Route path="/contact" element={<Contact />} />

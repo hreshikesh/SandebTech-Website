@@ -1,0 +1,46 @@
+.career-form-section {
+  padding: 100px 0;
+  background: var(--white);
+}
+
+.career-form-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 60px;
+}
+
+.career-form-header h2 {
+  margin: 18px 0;
+}
+
+.career-form-header h2 span {
+  color: var(--primary);
+}
+
+.career-form-header p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.career-form-wrapper {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+}
+
+.career-form-wrapper iframe {
+  width: 100%;
+  height: 1550px;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+
+  .career-form-wrapper iframe {
+    height: 1800px;
+  }
+
+}

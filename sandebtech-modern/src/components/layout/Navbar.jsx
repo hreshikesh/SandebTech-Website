@@ -139,7 +139,7 @@ function Navbar() {
                 ))}
               </div>
             </div>
-
+            <NavLink to="/career">Career</NavLink>
             <NavLink to="/contact">Contact</NavLink>
             <NavLink to="/about">About</NavLink>
           </nav>
@@ -301,7 +301,7 @@ function Navbar() {
               </div>
             )}
           </div>
-
+          <NavLink to="/career">Career</NavLink>
           <NavLink to="/contact" onClick={closeDrawer}>
             Contact
           </NavLink>

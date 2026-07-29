@@ -21,8 +21,8 @@ export default API;
 // --- Dashboard Matrix ---
 export const getDashboard = () => API.get("/dashboard");
 
-// --- Meetings Endpoint (Fully Upgraded for Sorting & Page Sizing) ---
-export const getMeetings = (page = 0, size = 10, sortBy = "meetingDate", direction = "desc") =>
+// --- Meetings Endpoint (Upgraded for Server-Side Pagination & Sorting) ---
+export const getMeetings = (page = 0, size = 5, sortBy = "createdAt", direction = "desc") =>
     API.get("/meeting", {
         params: {
             page,
@@ -38,7 +38,9 @@ export const updateMeetingStatus = (id, status, adminRemarks) =>
         adminRemarks
     });
 
-// --- Users Endpoints (Upgraded parameters for scaling) ---
+export const deleteMeeting = (id) => API.delete(`/meeting/${id}`);
+
+// --- Users Endpoints ---
 export const getUsers = (page = 0, size = 10) =>
     API.get("/users", {
         params: { page, size }
@@ -53,7 +55,7 @@ export const updateUserRole = (id, role) =>
 
 export const deleteUser = (id) => API.delete(`/users/${id}`);
 
-// --- Contacts Endpoints (Upgraded parameters for scaling) ---
+// --- Contacts Endpoints ---
 export const getContacts = (page = 0, size = 10, sortBy = "createdAt", direction = "desc") =>
     API.get("/contact", { params: { page, size, sortBy, direction } });
 

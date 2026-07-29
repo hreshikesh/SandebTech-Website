@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { 
     FaSearch, 
     FaCalendarCheck, 
@@ -7,8 +7,7 @@ import {
     FaSpinner,
     FaTimes,
     FaTrash,
-    FaCalendarDay,
-    FaFilter
+    FaCalendarDay
 } from "react-icons/fa";
 import { getMeetings, updateMeetingStatus, deleteMeeting } from "../service/adminApi";
 import "../css/meeting.css";
@@ -20,11 +19,15 @@ function Meetings() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // --- Filtering & Pagination States ---
+    // --- Server-Side Pagination States ---
+    const [currentPage, setCurrentPage] = useState(0); // Spring Data is 0-indexed
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalElements, setTotalElements] = useState(0);
+    const pageSize = 5;
+
+    // --- Filtering States ---
     const [filterDate, setFilterDate] = useState("");
     const [isTodayOnly, setIsTodayOnly] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
 
     // --- State controlling custom remarks modal pipeline ---
     const [statusModal, setStatusModal] = useState({
@@ -35,24 +38,29 @@ function Meetings() {
     });
     const [modalLoading, setModalLoading] = useState(false);
 
-    const loadMeetings = async () => {
+    const loadMeetings = useCallback(async (pageToFetch = 0) => {
         try {
             setError("");
-            const response = await getMeetings();
-            setMeetings(response.data?.content || response.data || []);
+            setLoading(true);
+            const response = await getMeetings(pageToFetch, pageSize, "createdAt", "desc");
+            const pageData = response.data;
+            
+            setMeetings(pageData.content || pageData || []);
+            setTotalPages(pageData.totalPages || 1);
+            setTotalElements(pageData.totalElements || (pageData.content ? pageData.content.length : 0));
         } catch (err) {
             console.error("Failed to load meetings:", err);
             setError("Failed to synchronize server metrics. Please reload.");
         } finally {
             setLoading(false);
         }
-    };
+    }, [pageSize]);
 
     useEffect(() => {
-        loadMeetings();
-    }, []);
+        loadMeetings(currentPage);
+    }, [currentPage, loadMeetings]);
 
-    // 1. Triggered by action buttons: opens custom modal instead of prompt()
+    // 1. Triggered by action buttons: opens custom modal
     const handleStatusInitiation = (id, status) => {
         setStatusModal({
             isOpen: true,
@@ -77,7 +85,7 @@ function Meetings() {
             setModalLoading(true);
             await updateMeetingStatus(meetingId, targetStatus, remarks);
             handleCloseModal();
-            loadMeetings();
+            loadMeetings(currentPage);
         } catch (err) {
             console.error("Failed to update meeting status:", err);
             setError("Failed to update meeting status. Please try again.");
@@ -92,23 +100,14 @@ function Meetings() {
         try {
             setError("");
             await deleteMeeting(id);
-            loadMeetings();
+            loadMeetings(currentPage);
         } catch (err) {
             console.error("Failed to delete meeting:", err);
             setError("Failed to delete meeting. Please try again.");
         }
     };
 
-    if (loading) {
-        return (
-            <div className="meetings-loading-fallback">
-                <FaSpinner className="spinner-loading-icon" />
-                <p>Loading Meeting Details...</p>
-            </div>
-        );
-    }
-
-    // --- Filtering Logic ---
+    // --- Filtering Logic (Applied on current page view) ---
     const filteredMeetings = meetings.filter(m => {
         const query = search.toLowerCase();
         const matchesSearch = (
@@ -129,16 +128,14 @@ function Meetings() {
         return matchesSearch && matchesDate;
     });
 
-    // --- Pagination Logic ---
-    const totalPages = Math.ceil(filteredMeetings.length / itemsPerPage) || 1;
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentMeetings = filteredMeetings.slice(indexOfFirstItem, indexOfLastItem);
-
-    // Reset page on search or filter updates
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [search, filterDate, isTodayOnly]);
+    if (loading && meetings.length === 0) {
+        return (
+            <div className="meetings-loading-fallback">
+                <FaSpinner className="spinner-loading-icon" />
+                <p>Loading Meeting Details...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="admin-page text-layer-base">
@@ -217,8 +214,8 @@ function Meetings() {
                     </thead>
 
                     <tbody>
-                        {currentMeetings.length > 0 ? (
-                            currentMeetings.map((meeting) => (
+                        {filteredMeetings.length > 0 ? (
+                            filteredMeetings.map((meeting) => (
                                 <tr key={meeting.id}>
                                     <td className="strong-cell-text">{meeting.name || "—"}</td>
                                     <td>{meeting.meetingDate}</td>
@@ -310,27 +307,27 @@ function Meetings() {
                     </tbody>
                 </table>
 
-                {/* --- Pagination Footer Bar --- */}
-                {filteredMeetings.length > 0 && (
+                {/* --- Server-Side Pagination Footer Bar --- */}
+                {totalElements > 0 && (
                     <div className="pagination-bar">
                         <span className="pagination-info">
-                            Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, filteredMeetings.length)} of {filteredMeetings.length} meetings
+                            Page {currentPage + 1} of {totalPages} (Total: {totalElements} meetings)
                         </span>
                         <div className="pagination-controls">
                             <button
                                 className="pagination-btn"
-                                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                                disabled={currentPage === 1}
+                                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 0))}
+                                disabled={currentPage === 0 || loading}
                             >
                                 Previous
                             </button>
                             <span className="pagination-page-indicator">
-                                Page {currentPage} of {totalPages}
+                                {currentPage + 1} / {totalPages}
                             </span>
                             <button
                                 className="pagination-btn"
-                                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                                disabled={currentPage === totalPages}
+                                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages - 1))}
+                                disabled={currentPage >= totalPages - 1 || loading}
                             >
                                 Next
                             </button>

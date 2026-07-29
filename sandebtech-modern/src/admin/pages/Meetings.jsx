@@ -300,7 +300,6 @@ function Meetings() {
                                 <td colSpan="7" className="meetings-empty-grid-placeholder">
                                     <FaCalendarCheck size={36} className="empty-state-icon-svg" />
                                     <h4>No records matched search conditions</h4>
-                                    <p>Try structural queries or check system variables.</p>
                                 </td>
                             </tr>
                         )}

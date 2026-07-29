@@ -5,9 +5,12 @@ import {
     FaVideo, 
     FaExternalLinkAlt, 
     FaSpinner,
-    FaTimes
+    FaTimes,
+    FaTrash,
+    FaCalendarDay,
+    FaFilter
 } from "react-icons/fa";
-import { getMeetings, updateMeetingStatus } from "../service/adminApi";
+import { getMeetings, updateMeetingStatus, deleteMeeting } from "../service/adminApi";
 import "../css/meeting.css";
 import "../css/dashboard.css";
 
@@ -17,13 +20,20 @@ function Meetings() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // --- State controlling the new custom remarks modal pipeline ---
+    // --- Filtering & Pagination States ---
+    const [filterDate, setFilterDate] = useState("");
+    const [isTodayOnly, setIsTodayOnly] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+    // --- State controlling custom remarks modal pipeline ---
     const [statusModal, setStatusModal] = useState({
         isOpen: false,
         meetingId: null,
         targetStatus: "",
         remarks: ""
     });
+    const [modalLoading, setModalLoading] = useState(false);
 
     const loadMeetings = async () => {
         try {
@@ -54,20 +64,38 @@ function Meetings() {
 
     // 2. Closes modal and resets internal control buffers
     const handleCloseModal = () => {
+        if (modalLoading) return;
         setStatusModal({ isOpen: false, meetingId: null, targetStatus: "", remarks: "" });
     };
 
-    // 3. Dispatches payload asynchronously to the server
+    // 3. Dispatches payload asynchronously to the server with loading state
     const handleStatusSubmit = async (e) => {
         e.preventDefault();
         const { meetingId, targetStatus, remarks } = statusModal;
 
         try {
+            setModalLoading(true);
             await updateMeetingStatus(meetingId, targetStatus, remarks);
             handleCloseModal();
             loadMeetings();
         } catch (err) {
             console.error("Failed to update meeting status:", err);
+            setError("Failed to update meeting status. Please try again.");
+        } finally {
+            setModalLoading(false);
+        }
+    };
+
+    // 4. Handles meeting deletion with confirmation
+    const handleDeleteMeeting = async (id) => {
+        if (!window.confirm("Are you sure you want to delete this meeting record?")) return;
+        try {
+            setError("");
+            await deleteMeeting(id);
+            loadMeetings();
+        } catch (err) {
+            console.error("Failed to delete meeting:", err);
+            setError("Failed to delete meeting. Please try again.");
         }
     };
 
@@ -80,15 +108,37 @@ function Meetings() {
         );
     }
 
+    // --- Filtering Logic ---
     const filteredMeetings = meetings.filter(m => {
         const query = search.toLowerCase();
-        return (
+        const matchesSearch = (
             (m.name || "").toLowerCase().includes(query) ||
             (m.purpose || "").toLowerCase().includes(query) ||
             (m.meetingMode || "").toLowerCase().includes(query) ||
             (m.status || "").toLowerCase().includes(query)
         );
+
+        let matchesDate = true;
+        if (isTodayOnly) {
+            const todayStr = new Date().toISOString().split('T')[0];
+            matchesDate = m.meetingDate === todayStr || (m.meetingDate && m.meetingDate.startsWith(todayStr));
+        } else if (filterDate) {
+            matchesDate = m.meetingDate === filterDate || (m.meetingDate && m.meetingDate.includes(filterDate));
+        }
+
+        return matchesSearch && matchesDate;
     });
+
+    // --- Pagination Logic ---
+    const totalPages = Math.ceil(filteredMeetings.length / itemsPerPage) || 1;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentMeetings = filteredMeetings.slice(indexOfFirstItem, indexOfLastItem);
+
+    // Reset page on search or filter updates
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [search, filterDate, isTodayOnly]);
 
     return (
         <div className="admin-page text-layer-base">
@@ -102,10 +152,51 @@ function Meetings() {
                     <FaSearch className="search-embedded-icon" />
                     <input
                         type="text"
-                        placeholder="Search meetings by name, intent objective, status, or channel mode..."
+                        placeholder="Search meetings by name, intent objective, status..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
+                </div>
+
+                <div className="meetings-filter-group">
+                    <button 
+                        type="button"
+                        className={`filter-btn-pill ${isTodayOnly ? "active" : ""}`}
+                        onClick={() => {
+                            setIsTodayOnly(!isTodayOnly);
+                            if (!isTodayOnly) setFilterDate("");
+                        }}
+                    >
+                        <FaCalendarDay size={12} />
+                        <span>Today</span>
+                    </button>
+
+                    <div className="date-filter-wrapper">
+                        <input
+                            type="date"
+                            className="date-filter-input"
+                            value={filterDate}
+                            onChange={(e) => {
+                                setFilterDate(e.target.value);
+                                setIsTodayOnly(false);
+                            }}
+                            title="Filter by specific date"
+                        />
+                    </div>
+
+                    {(filterDate || isTodayOnly || search) && (
+                        <button 
+                            type="button" 
+                            className="action-btn-pill"
+                            onClick={() => {
+                                setSearch("");
+                                setFilterDate("");
+                                setIsTodayOnly(false);
+                            }}
+                        >
+                            Reset Filters
+                        </button>
+                    )}
                 </div>
             </div>
 
@@ -126,8 +217,8 @@ function Meetings() {
                     </thead>
 
                     <tbody>
-                        {filteredMeetings.length > 0 ? (
-                            filteredMeetings.map((meeting) => (
+                        {currentMeetings.length > 0 ? (
+                            currentMeetings.map((meeting) => (
                                 <tr key={meeting.id}>
                                     <td className="strong-cell-text">{meeting.name || "—"}</td>
                                     <td>{meeting.meetingDate}</td>
@@ -195,6 +286,14 @@ function Meetings() {
                                                     </button>
                                                 </>
                                             )}
+
+                                            <button
+                                                className="action-btn-pill btn-delete-accent"
+                                                onClick={() => handleDeleteMeeting(meeting.id)}
+                                                title="Delete Meeting"
+                                            >
+                                                <FaTrash size={12} />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -210,10 +309,38 @@ function Meetings() {
                         )}
                     </tbody>
                 </table>
+
+                {/* --- Pagination Footer Bar --- */}
+                {filteredMeetings.length > 0 && (
+                    <div className="pagination-bar">
+                        <span className="pagination-info">
+                            Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, filteredMeetings.length)} of {filteredMeetings.length} meetings
+                        </span>
+                        <div className="pagination-controls">
+                            <button
+                                className="pagination-btn"
+                                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                disabled={currentPage === 1}
+                            >
+                                Previous
+                            </button>
+                            <span className="pagination-page-indicator">
+                                Page {currentPage} of {totalPages}
+                            </span>
+                            <button
+                                className="pagination-btn"
+                                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                disabled={currentPage === totalPages}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* ==========================================================================
-                Premium Remarks Input Lightbox Modal Insertion
+                Modal with Loading State for Remarks/Status Update
                ========================================================================== */}
             {statusModal.isOpen && (
                 <div className="modal-backdrop" onClick={handleCloseModal}>
@@ -229,7 +356,7 @@ function Meetings() {
                                     Transitioning workflow target directly to <span className="subject-highlight">{statusModal.targetStatus}</span>
                                 </p>
                             </div>
-                            <button type="button" className="modal-close-btn" onClick={handleCloseModal}>
+                            <button type="button" className="modal-close-btn" onClick={handleCloseModal} disabled={modalLoading}>
                                 <FaTimes size={16} />
                             </button>
                         </div>
@@ -245,20 +372,23 @@ function Meetings() {
                                     value={statusModal.remarks}
                                     onChange={(e) => setStatusModal({ ...statusModal, remarks: e.target.value })}
                                     required
+                                    disabled={modalLoading}
                                 />
                             </div>
                         </div>
 
                         <div className="modal-footer" style={{ gap: "12px" }}>
-                            <button type="button" className="primary-modal-close" onClick={handleCloseModal}>
+                            <button type="button" className="primary-modal-close" onClick={handleCloseModal} disabled={modalLoading}>
                                 Cancel
                             </button>
                             <button 
                                 type="submit" 
                                 className="action-btn btn-resolve"
-                                style={{ padding: "10px 20px" }}
+                                style={{ padding: "10px 20px", display: "inline-flex", alignItems: "center", gap: "8px" }}
+                                disabled={modalLoading}
                             >
-                                Confirm Action
+                                {modalLoading && <FaSpinner className="spinner-loading-icon" style={{ fontSize: "14px" }} />}
+                                <span>{modalLoading ? "Saving..." : "Confirm Action"}</span>
                             </button>
                         </div>
                     </form>

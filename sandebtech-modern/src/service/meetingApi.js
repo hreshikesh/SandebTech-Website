@@ -19,7 +19,18 @@ API.interceptors.request.use((config) => {
 API.interceptors.response.use(
     (response) => response,
     (error) => {
+        const status = error.response?.status;
         const data = error.response?.data;
+
+        // Session expired
+        if (status === 401 && localStorage.getItem("token")) {
+            localStorage.removeItem("token");
+
+            toast.error("Session expired. Please login again.");
+
+            window.location.href = "/";
+            return Promise.reject(error);
+        }
 
         if (data?.errors && Object.keys(data.errors).length > 0) {
             Object.values(data.errors).forEach((msg) => toast.error(msg));

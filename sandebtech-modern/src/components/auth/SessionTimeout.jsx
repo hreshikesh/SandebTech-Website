@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const IDLE_TIME = 30 * 60 * 1000; // 30 mins
+const IDLE_TIME = 30 * 1000; // 30 mins
 
 export default function SessionTimeout() {
   const navigate = useNavigate();

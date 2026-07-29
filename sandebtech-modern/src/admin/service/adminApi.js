@@ -4,17 +4,25 @@ const API = axios.create({
     baseURL: "https://sandebtech-website.onrender.com/api/admin"
 });
 
-API.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
-    console.log("TOKEN =", token);
+API.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        const status = error.response?.status;
+        const data = error.response?.data;
 
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+        if (status === 401 && localStorage.getItem("token")) {
+
+            window.dispatchEvent(new Event("forceLogout"));
+
+            toast.error("Session expired. Please login again.");
+
+            window.location.href = "/";
+
+            return Promise.reject(error);
+        }
+        return Promise.reject(error);
     }
-
-    console.log(config.headers);
-    return config;
-});
+);
 
 export default API;
 

@@ -40,6 +40,7 @@ import Careers from "../pages/Carreer";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
 

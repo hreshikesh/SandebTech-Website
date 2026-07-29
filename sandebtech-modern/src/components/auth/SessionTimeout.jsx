@@ -1,33 +1,27 @@
-import { useEffect, useRef } from "react";
-import toast from "react-hot-toast";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
-const SESSION_TIMEOUT = 30 * 60 * 1000;
+const IDLE_TIME = 30 * 60 * 1000; // 30 mins
 
-export default function SessionTimeout({ children }) {
-
+export default function SessionTimeout() {
   const navigate = useNavigate();
-  const timer = useRef(null);
-
-  const logout = () => {
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-
-    toast.error("Session expired. Please login again.");
-
-    navigate("/", { replace: true });
-
-  };
-
-  const resetTimer = () => {
-
-    clearTimeout(timer.current);
-    timer.current = setTimeout(logout, SESSION_TIMEOUT);
-
-  };
 
   useEffect(() => {
+    let timeout;
+
+    const logout = () => {
+      localStorage.removeItem("token");
+
+      toast.error("Session expired. Please login again.");
+
+      navigate("/");
+    };
+
+    const resetTimer = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(logout, IDLE_TIME);
+    };
 
     const events = [
       "mousemove",
@@ -35,26 +29,23 @@ export default function SessionTimeout({ children }) {
       "keydown",
       "scroll",
       "touchstart",
-      "click"
+      "click",
     ];
 
-    events.forEach(event =>
+    events.forEach((event) =>
       window.addEventListener(event, resetTimer)
     );
 
     resetTimer();
 
     return () => {
+      clearTimeout(timeout);
 
-      clearTimeout(timer.current);
-
-      events.forEach(event =>
+      events.forEach((event) =>
         window.removeEventListener(event, resetTimer)
       );
-
     };
+  }, [navigate]);
 
-  }, []);
-
-  return <>{children}</>;
+  return null;
 }

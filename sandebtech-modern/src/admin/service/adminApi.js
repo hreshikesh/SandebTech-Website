@@ -4,12 +4,7 @@ const API = axios.create({
     baseURL: "https://sandebtech-website.onrender.com/api/admin"
 });
 
-import axios from "axios";
-import toast from "react-hot-toast";
 
-const API = axios.create({
-    baseURL: "https://sandebtech-website.onrender.com/api/admin"
-});
 
 // ADD THIS
 API.interceptors.request.use((config) => {

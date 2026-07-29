@@ -23,16 +23,25 @@ function CareerForm() {
 
         </div>
 
-        <div className="career-form-wrapper">
-          <div style="text-align: center; padding: 40px 20px;">
-            <h2>Apply for a Position at SandebTech</h2>
-            <p>Click below to open our application form and upload your documents.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-MUDv26isMiOezy35qkFSfYsCR6kdeFYo24JvSpNSFonKQw/viewform?usp=sharing"
-              target="_blank"
-              style="background-color: #0b57d0; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block;">
-              Open Application Form
-            </a>
-          </div>
+        <div style={{ textAlign: 'center', padding: '40px 20px' }}>
+          <h2>Apply for a Position at SandebTech</h2>
+          <p>Click below to open our application form and upload your documents.</p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd-MUDv26isMiOezy35qkFSfYsCR6kdeFYo24JvSpNSFonKQw/viewform?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              backgroundColor: '#0b57d0',
+              color: 'white',
+              padding: '12px 24px',
+              textDecoration: 'none',
+              fontWeight: 'bold',
+              borderRadius: '4px',
+              display: 'inline-block'
+            }}
+          >
+            Open Application Form
+          </a>
         </div>
 
       </div>

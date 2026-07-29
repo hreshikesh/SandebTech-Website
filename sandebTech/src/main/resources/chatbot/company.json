@@ -1,40 +1,85 @@
 {
-  "company": {
-    "name": "SandebTech",
-    "tagline": "Engineering Simulation & Digital Engineering Solutions",
-    "description": "SandebTech delivers advanced engineering simulation, Computational Fluid Dynamics (CFD), hydrodynamic optimization and digital engineering solutions for marine, offshore, defense and industrial sectors.",
-    "headquarters": "Bangalore, India",
-    "email": "info@sandebtech.com",
-    "industries": [
-      "Marine & Maritime",
-      "Naval Architecture",
-      "Defense",
-      "Offshore",
-      "Heavy Engineering",
-      "Turbomachinery"
-    ]
-  },
+  "domain": "company",
 
-  "services": [
+
+  "documents": [
+    {
+      "id": "company-about",
+      "type": "company",
+      "title": "About SandebTech",
+      "keywords": ["about", "company", "who are you", "sandebtech", "overview", "what is sandebtech", "introduce", "background"],
+      "phrases": ["about sandebtech", "who are you", "what is sandebtech", "tell me about the company"],
+      "content": "SandebTech is an engineering consulting company specializing in Computational Fluid Dynamics (CFD), marine engineering, digital engineering and simulation-driven product development. We deliver advanced engineering simulation, hydrodynamic optimization and digital engineering solutions for marine, offshore, defense and industrial sectors.",
+      "boost": 1.3,
+      "button": { "label": "About Us", "url": "/about" }
+    },
+    {
+      "id": "company-location",
+      "type": "company",
+      "title": "Location and Headquarters",
+      "keywords": ["location", "office", "address", "bangalore", "bengaluru", "where are you", "headquarters", "based", "india", "situated"],
+      "phrases": ["where are you located", "office address", "your headquarters", "where is your office"],
+      "content": "SandebTech is headquartered in Bangalore, Karnataka, India.",
+      "boost": 1.2
+    },
+    {
+      "id": "company-industries",
+      "type": "company",
+      "title": "Industries Served",
+      "keywords": ["industry", "industries", "sector", "sectors", "market", "clients", "domain", "who do you serve", "verticals"],
+      "phrases": ["which industries", "what sectors", "industries served"],
+      "content": "SandebTech serves Marine and Maritime, Naval Architecture, Defense, Offshore, Heavy Engineering and Turbomachinery sectors, alongside building services and electronics thermal management applications.",
+      "boost": 1.0
+    },
+    {
+      "id": "faq-pricing",
+      "type": "faq",
+      "title": "Pricing and Quotations",
+      "keywords": ["cost", "pricing", "price", "quotation", "quote", "estimate", "budget", "rate", "fee", "charge", "how much"],
+      "phrases": ["how much does it cost", "request a quote", "pricing information", "what are your rates"],
+      "content": "Project pricing depends on the scope, complexity and engineering effort involved. Contact our team for a customized quotation based on your specific requirements.",
+      "boost": 1.2,
+      "button": { "label": "Request Quote", "url": "/contact" }
+    },
+    {
+      "id": "faq-software",
+      "type": "faq",
+      "title": "Software Support and Licensing",
+      "keywords": ["software", "license", "licence", "shipflow", "caeses", "training", "implementation", "support", "reseller", "purchase"],
+      "phrases": ["software licensing", "do you provide training", "software support"],
+      "content": "We provide engineering consulting, implementation, training and support for SHIPFLOW and CAESES software solutions.",
+      "boost": 1.1
+    },
+    {
+      "id": "faq-meeting",
+      "type": "faq",
+      "title": "Book a Meeting",
+      "keywords": ["meeting", "appointment", "consultation", "schedule", "book", "call", "demo", "discuss", "talk", "arrange"],
+      "phrases": ["book a meeting", "schedule a call", "arrange a consultation", "book a demo"],
+      "content": "You can schedule a technical consultation with our engineering specialists at a time that suits you.",
+      "boost": 1.2,
+      "button": { "label": "Book Meeting", "url": "/meeting" }
+    },
+    {
+      "id": "faq-contact",
+      "type": "faq",
+      "title": "Contact SandebTech",
+      "keywords": ["contact", "phone", "email", "call", "reach", "get in touch", "enquiry", "inquiry", "speak", "connect"],
+      "phrases": ["how do i contact you", "get in touch", "contact details", "reach your team"],
+      "content": "You can reach SandebTech by email at info@sandebtech.com, or use the contact page to send your enquiry directly to our engineering team.",
+      "boost": 1.2,
+      "button": { "label": "Contact Us", "url": "/contact" }
+    }
+,
+
     {
       "id": "hull-form-optimization",
+      "type": "service",
       "title": "Hull Form Optimization",
-      "keywords": [
-        "hull",
-        "hull optimization",
-        "ship optimization",
-        "resistance",
-        "drag",
-        "ship resistance",
-        "cfd"
-      ],
-      "description": "Optimize vessel hull geometry using Computational Fluid Dynamics (CFD) to reduce resistance, improve propulsion efficiency and minimize fuel consumption.",
-      "capabilities": [
-        "Resistance Prediction",
-        "Hull Shape Optimization",
-        "Wave Pattern Analysis",
-        "Fuel Consumption Reduction"
-      ],
+      "keywords": ["hull", "hull optimization", "ship optimization", "resistance", "drag", "ship resistance", "cfd"],
+      "phrases": ["hull optimization", "ship resistance analysis", "optimize hull", "hull CFD"],
+      "content": "Optimize vessel hull geometry using Computational Fluid Dynamics (CFD) to reduce resistance, improve propulsion efficiency and minimize fuel consumption. Capabilities include resistance prediction, hull shape optimization, wave pattern analysis and fuel consumption reduction.",
+      "boost": 1.2,
       "button": {
         "label": "View Service",
         "url": "/services"
@@ -42,23 +87,12 @@
     },
     {
       "id": "energy-saving-devices",
+      "type": "service",
       "title": "Energy Saving Devices Optimization",
-      "keywords": [
-        "energy saving",
-        "energy saving device",
-        "esd",
-        "duct",
-        "rudder bulb",
-        "pre swirl",
-        "fuel saving"
-      ],
-      "description": "Design and optimize Energy Saving Devices (ESDs) using CFD to improve propulsion efficiency and reduce operational costs.",
-      "capabilities": [
-        "Wake Improvement",
-        "Propeller Interaction",
-        "Pre-Swirl Duct Optimization",
-        "Fuel Efficiency Analysis"
-      ],
+      "keywords": ["energy saving", "energy saving device", "esd", "duct", "rudder bulb", "pre swirl", "fuel saving"],
+      "phrases": ["energy saving devices", "ESD optimization", "fuel saving devices"],
+      "content": "Design and optimize Energy Saving Devices (ESDs) using CFD to improve propulsion efficiency and reduce operational costs. Includes wake improvement, propeller interaction, pre-swirl duct optimization and fuel efficiency analysis.",
+      "boost": 1.2,
       "button": {
         "label": "View Service",
         "url": "/services"
@@ -66,24 +100,12 @@
     },
     {
       "id": "seakeeping-analysis",
+      "type": "service",
       "title": "Seakeeping Analysis",
-      "keywords": [
-        "seakeeping",
-        "waves",
-        "ship motion",
-        "roll",
-        "pitch",
-        "heave",
-        "sea state",
-        "stability"
-      ],
-      "description": "Evaluate vessel performance in real sea conditions through advanced seakeeping simulations to improve safety, comfort and operability.",
-      "capabilities": [
-        "Motion Prediction",
-        "Wave Response Analysis",
-        "Operability Assessment",
-        "Performance Evaluation"
-      ],
+      "keywords": ["seakeeping", "waves", "ship motion", "roll", "pitch", "heave", "sea state", "stability"],
+      "phrases": ["seakeeping analysis", "ship motion analysis"],
+      "content": "Evaluate vessel performance in real sea conditions through advanced seakeeping simulations. Services include motion prediction, wave response analysis, operability assessment and performance evaluation.",
+      "boost": 1.2,
       "button": {
         "label": "View Service",
         "url": "/services"
@@ -91,45 +113,64 @@
     },
     {
       "id": "cfd-engineering",
+      "type": "service",
       "title": "CFD Engineering Consulting",
-      "keywords": [
-        "consulting",
-        "cfd",
-        "engineering",
-        "flow simulation",
-        "fluid",
-        "thermal",
-        "simulation"
-      ],
-      "description": "Professional CFD consulting services for marine, offshore, industrial and turbomachinery engineering projects.",
-      "capabilities": [
-        "Flow Simulation",
-        "Thermal Analysis",
-        "Design Validation",
-        "Engineering Consulting"
-      ],
+      "keywords": ["consulting", "cfd", "engineering", "flow simulation", "fluid", "thermal", "simulation"],
+      "phrases": ["CFD consulting", "engineering consulting"],
+      "content": "Professional CFD consulting services for marine, offshore, industrial and turbomachinery engineering projects including flow simulation, thermal analysis, design validation and engineering consulting.",
+      "boost": 1.2,
       "button": {
         "label": "View Service",
         "url": "/services"
       }
-    }
-  ],
-
-  "solutions": [
+    },
+    {
+      "id": "hvac-simulation",
+      "type": "service",
+      "title": "HVAC and Ventilation Simulation",
+      "keywords": ["hvac", "ventilation", "airflow", "thermal comfort", "cooling", "building"],
+      "phrases": ["HVAC simulation", "ventilation analysis"],
+      "content": "Airflow, thermal comfort and ventilation simulation for buildings, cleanrooms and industrial facilities including indoor air quality and energy efficiency analysis.",
+      "boost": 1.2,
+      "button": {
+        "label": "View Service",
+        "url": "/services"
+      }
+    },
+    {
+      "id": "fire-safety-engineering",
+      "type": "service",
+      "title": "Fire Safety Engineering",
+      "keywords": ["fire", "smoke", "evacuation", "fire safety", "smoke control", "life safety"],
+      "phrases": ["fire safety engineering", "smoke simulation"],
+      "content": "Performance-based fire and smoke modelling with evacuation analysis including smoke control design, fire dynamics, evacuation analysis and tenability assessment.",
+      "boost": 1.2,
+      "button": {
+        "label": "View Service",
+        "url": "/services"
+      }
+    },
+    {
+      "id": "electronics-thermal",
+      "type": "service",
+      "title": "Electronics Thermal Management",
+      "keywords": ["electronics cooling", "thermal", "heat sink", "pcb", "data center", "battery"],
+      "phrases": ["electronics cooling", "thermal management"],
+      "content": "Conjugate heat transfer analysis and thermal optimization for electronics, enclosures, data centers and battery systems including heat sink optimization, PCB thermal analysis, liquid cooling and data center cooling.",
+      "boost": 1.2,
+      "button": {
+        "label": "View Service",
+        "url": "/services"
+      }
+    },
     {
       "id": "shipflow",
+      "type": "solution",
       "title": "SHIPFLOW CFD",
-      "keywords": [
-        "shipflow",
-        "shipflow cfd",
-        "ship resistance",
-        "ship",
-        "propeller",
-        "hull",
-        "wave",
-        "naval architecture"
-      ],
-      "description": "SHIPFLOW is a specialized CFD solution for ship resistance prediction, propulsion analysis, self-propulsion simulations and hull optimization.",
+      "keywords": ["shipflow", "shipflow cfd", "ship resistance", "ship", "propeller", "hull"],
+      "phrases": ["SHIPFLOW", "SHIPFLOW CFD"],
+      "content": "SHIPFLOW is a specialized CFD solution for ship resistance prediction, propulsion analysis, self-propulsion simulations and hull optimization.",
+      "boost": 1.2,
       "button": {
         "label": "Explore SHIPFLOW",
         "url": "/solutions/shipflow-cfd"
@@ -137,16 +178,12 @@
     },
     {
       "id": "caeses",
+      "type": "solution",
       "title": "CAESES",
-      "keywords": [
-        "caeses",
-        "parametric",
-        "cad",
-        "geometry",
-        "optimization",
-        "design optimization"
-      ],
-      "description": "CAESES is a powerful parametric CAD and design optimization platform enabling automated engineering workflows and CFD-driven optimization.",
+      "keywords": ["caeses", "parametric", "cad", "geometry", "optimization"],
+      "phrases": ["CAESES software", "CAESES"],
+      "content": "CAESES is a parametric CAD and design optimization platform enabling automated engineering workflows and CFD-driven optimization.",
+      "boost": 1.2,
       "button": {
         "label": "Explore CAESES",
         "url": "/solutions/caeses"
@@ -154,17 +191,12 @@
     },
     {
       "id": "lotus-marine",
+      "type": "solution",
       "title": "Lotus Marine",
-      "keywords": [
-        "lotus",
-        "lotus marine",
-        "marine",
-        "offshore",
-        "mooring",
-        "floating structures",
-        "seakeeping"
-      ],
-      "description": "Lotus Marine delivers advanced marine engineering solutions for offshore structures, vessel dynamics and seakeeping analysis.",
+      "keywords": ["lotus", "lotus marine", "marine", "offshore", "seakeeping"],
+      "phrases": ["Lotus Marine"],
+      "content": "Lotus Marine delivers advanced marine engineering solutions for offshore structures, vessel dynamics and seakeeping analysis.",
+      "boost": 1.2,
       "button": {
         "label": "Explore Lotus Marine",
         "url": "/solutions/lotus-marine"
@@ -172,112 +204,18 @@
     },
     {
       "id": "turbomachinery",
+      "type": "solution",
       "title": "Turbomachinery",
-      "keywords": [
-        "turbomachinery",
-        "compressor",
-        "pump",
-        "fan",
-        "turbine",
-        "impeller"
-      ],
-      "description": "Advanced turbomachinery simulation and optimization for pumps, compressors, turbines and rotating equipment.",
+      "keywords": ["turbomachinery", "compressor", "pump", "fan", "turbine", "impeller"],
+      "phrases": ["turbomachinery simulation"],
+      "content": "Advanced turbomachinery simulation and optimization for pumps, compressors, turbines and rotating equipment.",
+      "boost": 1.2,
       "button": {
         "label": "Explore Turbomachinery",
         "url": "/solutions/turbomachinery"
       }
     }
-  ],
+]
 
-  "faq": [
-    {
-      "id": "about",
-      "keywords": [
-        "about",
-        "company",
-        "who are you",
-        "sandebtech"
-      ],
-      "answer": "SandebTech is an engineering consulting company specializing in Computational Fluid Dynamics (CFD), marine engineering, digital engineering and simulation-driven product development.",
-      "button": {
-        "label": "About Us",
-        "url": "/about"
-      }
-    },
-    {
-      "id": "location",
-      "keywords": [
-        "location",
-        "office",
-        "address",
-        "bangalore",
-        "where are you"
-      ],
-      "answer": "SandebTech is headquartered in Bangalore, Karnataka, India."
-    },
-    {
-      "id": "pricing",
-      "keywords": [
-        "cost",
-        "pricing",
-        "price",
-        "quotation",
-        "quote",
-        "estimate"
-      ],
-      "answer": "Project pricing depends on the scope, complexity and engineering effort. Contact our team for a customized quotation.",
-      "button": {
-        "label": "Request Quote",
-        "url": "/contact"
-      }
-    },
-    {
-      "id": "software",
-      "keywords": [
-        "software",
-        "license",
-        "shipflow",
-        "caeses"
-      ],
-      "answer": "We provide engineering consulting, implementation, training and support for SHIPFLOW and CAESES software solutions."
-    },
-    {
-      "id": "meeting",
-      "keywords": [
-        "meeting",
-        "appointment",
-        "consultation",
-        "schedule"
-      ],
-      "answer": "You can schedule a technical consultation with our engineering specialists.",
-      "button": {
-        "label": "Book Meeting",
-        "url": "/meeting"
-      }
-    }
-  ],
 
-  "actions": {
-    "contact": {
-      "message": "Need to discuss your engineering project? Our experts are ready to help.",
-      "button": {
-        "label": "Contact Us",
-        "url": "/contact"
-      }
-    },
-    "meeting": {
-      "message": "Schedule a technical consultation with our engineering team.",
-      "button": {
-        "label": "Book Meeting",
-        "url": "/meeting"
-      }
-    },
-    "fallback": {
-      "message": "I'm sorry, I couldn't find the information you're looking for. You can ask about our company, engineering services, solutions, meetings or contact information.",
-      "button": {
-        "label": "Contact Our Team",
-        "url": "/contact"
-      }
-    }
-  }
 }

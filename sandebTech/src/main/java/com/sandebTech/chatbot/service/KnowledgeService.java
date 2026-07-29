@@ -1,10 +1,8 @@
 package com.sandebTech.chatbot.service;
 
 import com.sandebTech.chatbot.dto.ChatResponse;
-import com.sandebTech.chatbot.knowledge.KnowledgeLoader;
-import com.sandebTech.chatbot.model.FaqKnowledge;
-import com.sandebTech.chatbot.model.ServiceKnowledge;
-import com.sandebTech.chatbot.model.SolutionKnowledge;
+import com.sandebTech.chatbot.knowledge.KnowledgeRegistry;
+import com.sandebTech.chatbot.model.KnowledgeDocument;
 import jakarta.annotation.PostConstruct; // Spring Boot 2.x: use javax.annotation.PostConstruct instead
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,16 +28,16 @@ import java.util.regex.Pattern;
 @Service
 @RequiredArgsConstructor
 public class KnowledgeService {
-
-    private final KnowledgeLoader loader;
-    private  final GeminiService geminiService;
+    private final DomainService domainService;
+    private final KnowledgeRegistry registry;
+    private final GeminiService geminiService;
 
     /** Below this cosine similarity, we treat the query as "no real match" and fall back. */
     private static final double MIN_SIMILARITY = 0.05;
 
     private static final Pattern TOKEN_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
 
-    private static final java.util.Set<String> STOPWORDS = java.util.Set.of(
+    private static final Set<String> STOPWORDS = Set.of(
             "a", "an", "the", "is", "are", "was", "were", "be", "been", "being",
             "of", "in", "on", "at", "for", "to", "and", "or", "with", "without",
             "what", "which", "who", "how", "can", "could", "would", "will",
@@ -48,257 +47,179 @@ public class KnowledgeService {
     );
 
     // --- built once at startup ---
-    private List<IndexedDoc> index = new ArrayList<>();
+    private final Map<String, List<IndexedDoc>> indexes = new HashMap<>();
     private Map<String, Double> idf = new HashMap<>();
 
-    private record RawDoc(String id, Map<String, Integer> termFreq, ChatResponse response) {}
+    private record RawDoc(String id, String domain, Map<String, Integer> termFreq, ChatResponse response) {}
 
     private record IndexedDoc(String id, Map<String, Double> vector, double norm, ChatResponse response) {}
 
     @PostConstruct
     void buildIndex() {
-
-        if (loader.getKnowledge() == null) {
-            throw new IllegalStateException(
-                    "KnowledgeLoader.getKnowledge() returned null. The knowledge base must be " +
-                            "fully loaded before KnowledgeService initializes its index — check that " +
-                            "the knowledge JSON file path is correct and that KnowledgeLoader populates " +
-                            "it eagerly (e.g. in its own constructor or @PostConstruct)."
-            );
-        }
-
         List<RawDoc> rawDocs = new ArrayList<>();
-
-        // FAQ
-        for (FaqKnowledge faq : safe(loader.getKnowledge().getFaq())) {
-            String text = joinSafe(faq.getKeywords()) + " " + nullToEmpty(faq.getAnswer());
-            rawDocs.add(toRawDoc("faq-" + faq.getId(), text,
-                    ChatResponse.builder().answer(faq.getAnswer()).button(faq.getButton()).build()));
-        }
-
-        // SERVICES (specific)
-        for (ServiceKnowledge s : safe(loader.getKnowledge().getServices())) {
-            String text = joinSafe(s.getKeywords()) + " " + nullToEmpty(s.getTitle()) + " " + nullToEmpty(s.getDescription());
-            rawDocs.add(toRawDoc("service-" + s.getId(), text,
-                    ChatResponse.builder().answer(s.getDescription()).button(s.getButton()).build()));
-        }
-
-        // SERVICES (generic overview) - built dynamically so it stays in sync with the JSON
-        {
-            StringBuilder overview = new StringBuilder("We offer the following engineering services:\n\n");
-            for (ServiceKnowledge s : safe(loader.getKnowledge().getServices())) {
-                overview.append("• ").append(nullToEmpty(s.getTitle())).append("\n");
-            }
-            overview.append("\nWhich service would you like to know more about?");
-
-            String text = "service services what services your services our services engineering services list of services offerings";
-            rawDocs.add(toRawDoc("services-overview", text,
-                    ChatResponse.builder().answer(overview.toString()).build()));
-        }
-
-        // SOLUTIONS (specific)
-        for (SolutionKnowledge sol : safe(loader.getKnowledge().getSolutions())) {
-            String text = joinSafe(sol.getKeywords()) + " " + nullToEmpty(sol.getTitle()) + " " + nullToEmpty(sol.getDescription());
-            rawDocs.add(toRawDoc("solution-" + sol.getId(), text,
-                    ChatResponse.builder().answer(sol.getDescription()).button(sol.getButton()).build()));
-        }
-
-        // SOLUTIONS (generic overview)
-        {
-            StringBuilder overview = new StringBuilder("We currently provide four major engineering solutions:\n\n");
-            for (SolutionKnowledge sol : safe(loader.getKnowledge().getSolutions())) {
-                overview.append("• ").append(nullToEmpty(sol.getTitle())).append("\n");
-            }
-            overview.append("\nWhich solution would you like to explore?");
-
-            String text = "solution solutions what solutions your solutions our solutions engineering solutions list of solutions offerings";
-            rawDocs.add(toRawDoc("solutions-overview", text,
-                    ChatResponse.builder().answer(overview.toString()).build()));
-        }
-
-        // CONTACT
-        if (loader.getKnowledge().getActions() == null || loader.getKnowledge().getActions().getContact() == null) {
-            throw new IllegalStateException("knowledge.json is missing actions.contact");
-        }
-        rawDocs.add(toRawDoc("contact",
-                "contact phone email call address reach office location get in touch "
-                        + nullToEmpty(loader.getKnowledge().getActions().getContact().getMessage()),
-                ChatResponse.builder()
-                        .answer(loader.getKnowledge().getActions().getContact().getMessage())
-                        .button(loader.getKnowledge().getActions().getContact().getButton())
-                        .build()));
-
-        // MEETING
-        if (loader.getKnowledge().getActions().getMeeting() == null) {
-            throw new IllegalStateException("knowledge.json is missing actions.meeting");
-        }
-        rawDocs.add(toRawDoc("meeting",
-                "meeting book appointment schedule consultation book a call arrange "
-                        + nullToEmpty(loader.getKnowledge().getActions().getMeeting().getMessage()),
-                ChatResponse.builder()
-                        .answer(loader.getKnowledge().getActions().getMeeting().getMessage())
-                        .button(loader.getKnowledge().getActions().getMeeting().getButton())
-                        .build()));
-
-        // COMPANY
-        if (loader.getKnowledge().getCompany() == null) {
-            throw new IllegalStateException("knowledge.json is missing the company section");
-        }
-        rawDocs.add(toRawDoc("company",
-                "company about sandebtech who are you what is sandebtech overview "
-                        + nullToEmpty(loader.getKnowledge().getCompany().getDescription()),
-                ChatResponse.builder().answer(loader.getKnowledge().getCompany().getDescription()).build()));
-
-        // ---- compute IDF across the corpus ----
-        int docCount = rawDocs.size();
         Map<String, Integer> docFrequency = new HashMap<>();
 
-        for (RawDoc doc : rawDocs) {
-            for (String term : doc.termFreq().keySet()) {
+        for (KnowledgeDocument doc : registry.getDocuments()) {
+
+            StringBuilder text = new StringBuilder();
+
+            int repeat = Math.max(1,
+                    doc.getBoost() == null ? 1 : (int) Math.round(doc.getBoost()));
+
+            // repeat the title to boost its weight in the term-frequency count
+            for (int i = 0; i < repeat; i++) {
+                if (doc.getTitle() != null) {
+                    text.append(doc.getTitle()).append(" ");
+                }
+            }
+
+            if (doc.getContent() != null)
+                text.append(doc.getContent()).append(" ");
+
+            if (doc.getKeywords() != null)
+                text.append(String.join(" ", doc.getKeywords())).append(" ");
+
+            if (doc.getPhrases() != null) {
+                for (String phrase : doc.getPhrases()) {
+                    for (int i = 0; i < repeat; i++) {
+                        text.append(phrase).append(" ");
+                    }
+                }
+            }
+
+            ChatResponse response = ChatResponse.builder()
+                    .answer(doc.getContent())
+                    .button(doc.getButton())
+                    .build();
+
+            Map<String, Integer> termFreq = tokenize(text.toString());
+
+            for (String term : termFreq.keySet()) {
                 docFrequency.merge(term, 1, Integer::sum);
             }
+
+            // NOTE: assumes KnowledgeDocument exposes a domain (e.g. getDomain()).
+            // Falls back to "all" so a doc with no domain is searchable regardless
+            // of what domain the user's question is routed to.
+            String domain = doc.getDomain() != null ? doc.getDomain() : "all";
+
+            rawDocs.add(new RawDoc(doc.getId(), domain, termFreq, response));
         }
 
-        Map<String, Double> computedIdf = new HashMap<>();
-        for (Map.Entry<String, Integer> entry : docFrequency.entrySet()) {
-            // smoothed idf: avoids zero/negative weights, always > 0
-            double value = Math.log((double) (docCount + 1) / (entry.getValue() + 1)) + 1.0;
-            computedIdf.put(entry.getKey(), value);
+        int totalDocs = Math.max(rawDocs.size(), 1);
+        Map<String, Double> newIdf = new HashMap<>();
+        for (Map.Entry<String, Integer> e : docFrequency.entrySet()) {
+            newIdf.put(e.getKey(), Math.log((double) (totalDocs + 1) / (e.getValue() + 1)) + 1);
         }
 
-        // ---- build TF-IDF vectors ----
-        List<IndexedDoc> newIndex = new ArrayList<>();
-        for (RawDoc doc : rawDocs) {
+        Map<String, List<IndexedDoc>> newIndexes = new HashMap<>();
+        for (RawDoc raw : rawDocs) {
             Map<String, Double> vector = new HashMap<>();
-            for (Map.Entry<String, Integer> tf : doc.termFreq().entrySet()) {
-                double weight = tf.getValue() * computedIdf.getOrDefault(tf.getKey(), 0.0);
-                vector.put(tf.getKey(), weight);
+            for (Map.Entry<String, Integer> e : raw.termFreq().entrySet()) {
+                double tfIdf = e.getValue() * newIdf.getOrDefault(e.getKey(), 0.0);
+                vector.put(e.getKey(), tfIdf);
             }
-            double norm = vectorNorm(vector);
-            newIndex.add(new IndexedDoc(doc.id(), vector, norm, doc.response()));
+            double norm = Math.sqrt(vector.values().stream().mapToDouble(v -> v * v).sum());
+
+            IndexedDoc indexedDoc = new IndexedDoc(raw.id(), vector, norm, raw.response());
+
+            newIndexes.computeIfAbsent(raw.domain(), k -> new ArrayList<>()).add(indexedDoc);
         }
 
-        this.idf = computedIdf;
-        this.index = newIndex;
+        idf = newIdf;
+        indexes.clear();
+        indexes.putAll(newIndexes);
     }
 
+    /**
+     * Answers a user's question by vectorizing it the same way as the indexed
+     * documents, then picking the best cosine-similarity match. We first search
+     * within the detected domain; if that turns up nothing (or nothing confident
+     * enough), we retry across every domain before giving up and asking Gemini.
+     */
     public ChatResponse ask(String question) {
+        String domain = domainService.detect(question);
 
-        Map<String, Integer> queryTf = tokenize(question);
-
-        Map<String, Double> queryVector = new HashMap<>();
-        for (Map.Entry<String, Integer> tf : queryTf.entrySet()) {
-            // unseen terms get the "rarest possible" idf so they still contribute signal
-            double weight = tf.getValue() * idf.getOrDefault(tf.getKey(), maxIdf());
-            queryVector.put(tf.getKey(), weight);
+        Map<String, Integer> qTermFreq = tokenize(question);
+        Map<String, Double> qVector = new HashMap<>();
+        for (Map.Entry<String, Integer> e : qTermFreq.entrySet()) {
+            qVector.put(e.getKey(), e.getValue() * idf.getOrDefault(e.getKey(), 0.0));
         }
+        double qNorm = Math.sqrt(qVector.values().stream().mapToDouble(v -> v * v).sum());
 
-        double queryNorm = vectorNorm(queryVector);
-
-        if (queryNorm == 0.0) {
-            return fallback();
-        }
-
+        // 1) Search the detected domain first (unless it's already "all").
         IndexedDoc best = null;
-        double bestSimilarity = 0.0;
+        double bestScore = MIN_SIMILARITY;
 
-        for (IndexedDoc doc : index) {
-            double similarity = cosineSimilarity(queryVector, queryNorm, doc.vector(), doc.norm());
-            if (similarity > bestSimilarity) {
-                bestSimilarity = similarity;
-                best = doc;
+        if (!"all".equals(domain)) {
+            List<IndexedDoc> domainDocs = indexes.getOrDefault(domain, List.of());
+            for (IndexedDoc doc : domainDocs) {
+                double score = cosineSimilarity(qVector, qNorm, doc.vector(), doc.norm());
+                if (score > bestScore) {
+                    bestScore = score;
+                    best = doc;
+                }
             }
         }
 
-        if (best == null || bestSimilarity < MIN_SIMILARITY) {
+        // 2) Nothing found (or domain was "all") — widen the search to every document.
+        if (best == null) {
+            List<IndexedDoc> allDocs = indexes.values()
+                    .stream()
+                    .flatMap(List::stream)
+                    .toList();
 
-
-                return ChatResponse.builder()
-                        .answer(geminiService.ask(question))
-                        .build();
-
-
+            for (IndexedDoc doc : allDocs) {
+                double score = cosineSimilarity(qVector, qNorm, doc.vector(), doc.norm());
+                if (score > bestScore) {
+                    bestScore = score;
+                    best = doc;
+                }
+            }
         }
 
-        return best.response();
-    }
+        if (best != null) {
+            return best.response();
+        }
 
-    // =========================================================
-    // helpers
-    // =========================================================
-
-    private RawDoc toRawDoc(String id, String text, ChatResponse response) {
-        return new RawDoc(id, tokenize(text), response);
-    }
-
-    /** Returns an empty list instead of null, so callers can safely iterate. */
-    private <T> List<T> safe(List<T> list) {
-        return list == null ? List.of() : list;
-    }
-
-    /** Joins a possibly-null list of keywords into a space-separated string. */
-    private String joinSafe(List<String> keywords) {
-        if (keywords == null || keywords.isEmpty()) return "";
-        return String.join(" ", keywords);
-    }
-
-    private String nullToEmpty(String s) {
-        return s == null ? "" : s;
+        // No confident match anywhere — hand off to Gemini.
+        return ChatResponse.builder()
+                .answer(geminiService.ask(question))
+                .build();
     }
 
     private Map<String, Integer> tokenize(String text) {
         Map<String, Integer> freq = new HashMap<>();
-        if (text == null) return freq;
+        Matcher m = TOKEN_PATTERN.matcher(text.toLowerCase());
+        while (m.find()) {
+            String token = m.group();
 
-        Matcher matcher = TOKEN_PATTERN.matcher(text.toLowerCase());
-        while (matcher.find()) {
-            String token = matcher.group();
-            if (token.length() < 2 || STOPWORDS.contains(token)) continue;
+            if (token.length() < 2)
+                continue;
+
+            if (STOPWORDS.contains(token))
+                continue;
+
             freq.merge(token, 1, Integer::sum);
         }
         return freq;
     }
 
-    private double vectorNorm(Map<String, Double> vector) {
-        double sumSquares = 0.0;
-        for (double v : vector.values()) {
-            sumSquares += v * v;
-        }
-        return Math.sqrt(sumSquares);
-    }
-
-    private double cosineSimilarity(Map<String, Double> a, double normA, Map<String, Double> b, double normB) {
-        if (normA == 0.0 || normB == 0.0) return 0.0;
+    private double cosineSimilarity(Map<String, Double> v1, double norm1, Map<String, Double> v2, double norm2) {
+        if (norm1 == 0 || norm2 == 0) return 0.0;
 
         // iterate the smaller map for efficiency
-        Map<String, Double> smaller = a.size() <= b.size() ? a : b;
-        Map<String, Double> larger = a.size() <= b.size() ? b : a;
+        Map<String, Double> smaller = v1.size() < v2.size() ? v1 : v2;
+        Map<String, Double> larger = v1.size() < v2.size() ? v2 : v1;
 
         double dot = 0.0;
-        for (Map.Entry<String, Double> entry : smaller.entrySet()) {
-            Double otherWeight = larger.get(entry.getKey());
-            if (otherWeight != null) {
-                dot += entry.getValue() * otherWeight;
+        for (Map.Entry<String, Double> e : smaller.entrySet()) {
+            Double otherVal = larger.get(e.getKey());
+            if (otherVal != null) {
+                dot += e.getValue() * otherVal;
             }
         }
 
-        return dot / (normA * normB);
-    }
-
-    private double maxIdf() {
-        return idf.values().stream().mapToDouble(Double::doubleValue).max().orElse(1.0);
-    }
-
-    private ChatResponse fallback() {
-        var fallback = loader.getKnowledge().getActions().getFallback();
-        if (fallback == null) {
-            return ChatResponse.builder()
-                    .answer("I'm sorry, I couldn't find the information you're looking for.")
-                    .build();
-        }
-        return ChatResponse.builder()
-                .answer(fallback.getMessage())
-                .button(fallback.getButton())
-                .build();
+        return dot / (norm1 * norm2);
     }
 }

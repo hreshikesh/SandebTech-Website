@@ -5,11 +5,13 @@ spring:
   application:
     name: sandebTech
 
+
   datasource:
     url: jdbc:postgresql://dpg-d9eqk5f41pts73fdi350-a.ohio-postgres.render.com:5432/sandebtech
     username: sandebtech_user
     password: 76hQ9ms0OCYJyuvyp7H7vRzKycf5zshg
     driver-class-name: org.postgresql.Driver
+
 
   jpa:
     hibernate:
@@ -32,7 +34,6 @@ spring:
           starttls:
             enable: true
             required: true
-          # Timeout after 5 seconds so your app never hangs on Render
           connectiontimeout: 5000
           timeout: 5000
           writetimeout: 5000

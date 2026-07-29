@@ -1,0 +1,85 @@
+{
+  "domain": "careers",
+  "documents": [
+    {
+      "id": "careers-overview",
+      "type": "career",
+      "title": "Careers at SandebTech",
+      "keywords": ["career", "careers", "job", "jobs", "vacancy", "opening", "hiring", "work", "employment", "position", "recruit", "apply", "join"],
+      "phrases": ["careers at sandebtech", "job openings", "are you hiring", "work with you", "job opportunities"],
+      "content": "SandebTech hires engineers across maritime CFD, turbomachinery, HVAC, fire safety and electronics thermal management. Roles range from graduate simulation engineer through to senior specialist and technical lead. Applications are submitted through the careers page with a CV and a short note describing relevant simulation experience; candidates are encouraged to include project examples or a portfolio. For current openings and to apply, visit the careers page.",
+      "boost": 1.3,
+      "button": { "label": "View Careers", "url": "/careers" }
+    },
+    {
+      "id": "career-maritime-engineer",
+      "type": "career",
+      "title": "Maritime Engineer",
+      "keywords": ["maritime engineer", "naval architect", "marine engineer", "ship engineer", "hydrodynamics engineer", "maritime job", "naval architecture job"],
+      "phrases": ["maritime engineer role", "naval architect job", "marine engineer position"],
+      "content": "Overview: A Maritime Engineer at SandebTech works on hull form development, resistance and propulsion prediction, and hydrodynamic optimization for commercial, naval and offshore vessels. Responsibilities: build and fit parametric hull models, set up and run resistance, self-propulsion and seakeeping simulations, interpret results against project targets, prepare technical reports for clients and class societies, and support model test correlation. Required skills: degree in Naval Architecture, Ocean or Marine Engineering; understanding of ship resistance components, propulsion and stability fundamentals; comfort with CFD workflows and result interpretation; clear technical writing. Preferred software: SHIPFLOW, CAESES, OpenFOAM, StarCCM+, Rhino or similar surface modelling, Python for scripting. Application process: apply via the careers page with your CV and a brief description of vessel projects you have worked on.",
+      "boost": 1.2,
+      "button": { "label": "Apply Now", "url": "/careers" }
+    },
+    {
+      "id": "career-cfd-engineer",
+      "type": "career",
+      "title": "CFD Engineer",
+      "keywords": ["cfd engineer", "simulation engineer", "cfd job", "computational fluid dynamics job", "analyst", "cfd analyst", "cfd role"],
+      "phrases": ["cfd engineer role", "cfd engineer job", "simulation engineer position"],
+      "content": "Overview: A CFD Engineer delivers flow and thermal simulation across the full range of SandebTech domains, from marine hydrodynamics to building services and electronics cooling. Responsibilities: prepare and clean geometry, generate quality meshes, select appropriate physics and turbulence models, run and monitor solutions, verify grid independence, post-process and present results, and automate repetitive workflows. Required skills: degree in Mechanical, Aerospace or Chemical Engineering or equivalent; solid grounding in fluid mechanics, heat transfer and numerical methods; understanding of turbulence modelling and near-wall treatment; meshing skill, which in practice separates good CFD engineers from average ones. Preferred software: OpenFOAM, TCAE, Ansys Fluent or CFX, StarCCM+, ParaView, Python and shell scripting, Linux and HPC job submission. Application process: apply via the careers page including a CV and, if possible, an example study showing your meshing and validation approach.",
+      "boost": 1.2,
+      "button": { "label": "Apply Now", "url": "/careers" }
+    },
+    {
+      "id": "career-hvac-engineer",
+      "type": "career",
+      "title": "HVAC Engineer",
+      "keywords": ["hvac engineer", "hvac job", "building services engineer", "ventilation engineer", "mep engineer", "hvac role"],
+      "phrases": ["hvac engineer role", "hvac engineer job", "building services position"],
+      "content": "Overview: An HVAC Engineer applies airflow and thermal simulation to building services projects covering ventilation, thermal comfort, cleanrooms and cooling systems. Responsibilities: translate mechanical designs into simulation models, define realistic loads and boundary conditions, evaluate comfort and indoor air quality against ASHRAE and ISO criteria, size and verify ventilation strategies, and communicate findings to architects and MEP consultants. Required skills: degree in Mechanical Engineering, Building Services or HVAC; understanding of psychrometrics, load calculation and duct design; familiarity with comfort standards such as ASHRAE 55 and ISO 7730 and ventilation codes; ability to work within a multidisciplinary design team. Preferred software: OpenFOAM or TCAE, IES VE or EnergyPlus, Revit and AutoCAD for coordination, ParaView, Python. Application process: apply through the careers page with your CV and details of building projects you have contributed to.",
+      "boost": 1.2,
+      "button": { "label": "Apply Now", "url": "/careers" }
+    },
+    {
+      "id": "career-fire-safety-engineer",
+      "type": "career",
+      "title": "Fire Safety Engineer",
+      "keywords": ["fire safety engineer", "fire engineer", "fire job", "life safety engineer", "smoke control engineer", "fire safety role"],
+      "phrases": ["fire safety engineer role", "fire engineer job", "fire safety position"],
+      "content": "Overview: A Fire Safety Engineer produces performance-based fire and smoke analyses that demonstrate life safety for complex buildings and infrastructure. Responsibilities: agree design fire scenarios and tenability criteria with stakeholders, build and run transient fire and smoke simulations, carry out evacuation modelling and ASET versus RSET comparison, size smoke control systems, and prepare reports suitable for authority and peer review. Required skills: degree in Fire Safety Engineering, Mechanical or Civil Engineering; understanding of fire dynamics, heat release rate characterisation and smoke movement; familiarity with relevant codes and standards; rigorous documentation habits, since the report is the deliverable that gets approved. Preferred software: FDS and PyroSim, Pathfinder or similar evacuation tools, OpenFOAM, ParaView or Smokeview, Python. Application process: apply through the careers page with your CV and a summary of any performance-based studies you have supported.",
+      "boost": 1.2,
+      "button": { "label": "Apply Now", "url": "/careers" }
+    },
+    {
+      "id": "career-turbomachinery-engineer",
+      "type": "career",
+      "title": "Turbomachinery Engineer",
+      "keywords": ["turbomachinery engineer", "turbomachinery job", "blade designer", "aerodynamics engineer", "pump engineer", "compressor engineer", "turbine engineer"],
+      "phrases": ["turbomachinery engineer role", "turbomachinery job", "blade design position"],
+      "content": "Overview: A Turbomachinery Engineer designs and optimizes pumps, compressors, turbines and fans using parametric geometry and automated CFD. Responsibilities: build parametric blade, volute and casing models, run meanline and CFD performance predictions, set up DOE and optimization campaigns, analyse trade-offs between efficiency, operating range and mechanical limits, and document design decisions for the client. Required skills: degree in Mechanical or Aerospace Engineering; grounding in turbomachinery theory including velocity triangles, specific speed and loss mechanisms; experience with rotating machinery CFD such as MRF and sliding mesh; understanding of manufacturing constraints on blade shapes. Preferred software: CAESES, TCAE or TCFD, OpenFOAM, Ansys CFX or TurboGrid, NUMECA, Python and optimization libraries. Application process: apply via the careers page with your CV and details of machines you have designed or analysed.",
+      "boost": 1.2,
+      "button": { "label": "Apply Now", "url": "/careers" }
+    },
+    {
+      "id": "career-electronic-cooling-engineer",
+      "type": "career",
+      "title": "Electronic Cooling Engineer",
+      "keywords": ["electronic cooling engineer", "thermal engineer", "electronics thermal", "thermal management engineer", "cooling job", "thermal design engineer"],
+      "phrases": ["electronic cooling engineer role", "thermal engineer job", "electronics thermal position"],
+      "content": "Overview: An Electronic Cooling Engineer delivers thermal design and verification for electronics, from component and PCB level through enclosures to data center and battery systems. Responsibilities: build conjugate heat transfer models of boards, packages and enclosures, optimize heat sinks and cold plates, select fans and define airflow paths, evaluate liquid cooling options where air is insufficient, run transient duty cycle studies, and correlate predictions against measured prototype data. Required skills: degree in Mechanical or Electronics Engineering; strong heat transfer fundamentals across conduction, convection and radiation; understanding of electronics packaging, thermal interface materials and reliability implications of temperature; practical measurement literacy with thermocouples and infrared imaging. Preferred software: OpenFOAM or TCAE, Ansys Icepak, FloTHERM or Simcenter, Ansys Mechanical for thermal-structural coupling, Python. Application process: apply through the careers page with your CV and examples of thermal designs you have taken through to validation.",
+      "boost": 1.2,
+      "button": { "label": "Apply Now", "url": "/careers" }
+    },
+    {
+      "id": "careers-application-process",
+      "type": "career",
+      "title": "Application Process",
+      "keywords": ["apply", "application", "how to apply", "process", "interview", "cv", "resume", "recruitment", "selection", "hiring process"],
+      "phrases": ["how to apply", "application process", "interview process", "send my cv"],
+      "content": "The application process starts with a submission through the careers page including your CV and a short note on your relevant simulation experience. Suitable candidates are invited to a technical discussion covering fundamentals and past project work, often including a walk-through of a study you have personally delivered. A practical exercise may follow for some roles. Final conversations cover team fit and role expectations. Candidates are welcome to include a portfolio, publications or open-source contributions. For current openings, visit the careers page.",
+      "boost": 1.1,
+      "button": { "label": "View Careers", "url": "/careers" }
+    }
+  ]
+}

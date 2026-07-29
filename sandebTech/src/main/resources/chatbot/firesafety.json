@@ -1,0 +1,117 @@
+{
+  "domain": "hvac",
+  "documents": [
+    {
+      "id": "hvac-overview",
+      "type": "application",
+      "title": "HVAC Engineering and Simulation",
+      "keywords": ["hvac", "heating", "ventilation", "air conditioning", "climate", "building services", "mep", "hvac engineering"],
+      "phrases": ["hvac engineering", "heating ventilation air conditioning", "building services", "hvac simulation"],
+      "content": "HVAC engineering at SandebTech applies CFD to design and analyze cooling, ventilation and refrigeration systems with accurate fluid flow and heat transfer simulation. Simulation reveals how air actually moves through a space, validating diffuser placement, duct sizing and supply and return strategy long before installation. Work covers commercial buildings, industrial facilities, cleanrooms, data halls and transport infrastructure.",
+      "boost": 1.3,
+      "button": { "label": "HVAC Services", "url": "/services" },
+      "source": { "name": "TCAE by CFD SUPPORT", "url": "https://www.cfdsupport.com/tcae/" }
+    },
+    {
+      "id": "hvac-airflow",
+      "type": "service",
+      "title": "Airflow Simulation and Distribution",
+      "keywords": ["airflow", "air flow", "air distribution", "diffuser", "grille", "duct", "supply", "return", "throw", "draft", "air change", "velocity"],
+      "phrases": ["airflow simulation", "air distribution", "diffuser placement", "air change rate", "duct design"],
+      "content": "Airflow simulation predicts velocity, temperature and age-of-air distribution throughout an occupied space. Typical studies cover supply and return duct placement and balancing, diffuser and grille selection with throw and spread analysis, air change effectiveness, and identification of stagnant zones or uncomfortable draughts. Because the result is a full field rather than a single design value, problems that a spreadsheet calculation would hide become visible.",
+      "boost": 1.2
+    },
+    {
+      "id": "hvac-ventilation",
+      "type": "service",
+      "title": "Building Ventilation and Indoor Air Quality",
+      "keywords": ["ventilation", "natural ventilation", "mixed mode", "indoor air quality", "iaq", "co2", "contaminant", "fresh air", "stack effect", "cross ventilation", "infiltration"],
+      "phrases": ["natural ventilation", "indoor air quality", "mixed mode ventilation", "contaminant dispersion", "stack effect"],
+      "content": "Ventilation studies address both mechanical and natural schemes. Natural and mixed-mode ventilation design uses buoyancy driven stack effect and wind driven cross ventilation, assessed against realistic external conditions. Indoor air quality work tracks CO2, humidity and contaminant transport to verify fresh air delivery where occupants actually are. This is increasingly decisive as demand for low energy buildings grows and mechanical cooling capacity is deliberately reduced.",
+      "boost": 1.2
+    },
+    {
+      "id": "hvac-thermal-comfort",
+      "type": "service",
+      "title": "Thermal Comfort Assessment",
+      "keywords": ["thermal comfort", "comfort", "pmv", "ppd", "draught", "stratification", "radiant", "occupant", "temperature gradient", "ashrae", "iso 7730"],
+      "phrases": ["thermal comfort", "pmv ppd", "temperature stratification", "draught rating", "comfort criteria"],
+      "content": "Thermal comfort assessment maps predicted mean vote and predicted percentage dissatisfied across the occupied zone, alongside draught rating and vertical temperature stratification. Radiant asymmetry from glazing and heated or chilled surfaces is included where relevant. Results are compared against ASHRAE 55 and ISO 7730 criteria, giving a defensible basis for design decisions rather than relying on a single room average temperature.",
+      "boost": 1.1
+    },
+    {
+      "id": "hvac-heat-transfer",
+      "type": "technology",
+      "title": "Heat Transfer Analysis",
+      "keywords": ["heat transfer", "conduction", "convection", "radiation", "conjugate", "cht", "thermal", "heat load", "solar gain", "insulation", "envelope"],
+      "phrases": ["heat transfer analysis", "conjugate heat transfer", "solar gain", "thermal load", "building envelope"],
+      "content": "Heat transfer analysis couples conduction through the building envelope, convection in the air, and radiation exchange between surfaces. Conjugate heat transfer solves the solid and fluid domains together so wall, glazing and equipment temperatures are predicted rather than assumed. Solar gain, internal equipment and occupancy loads are applied as realistic time-varying sources where transient behaviour matters.",
+      "boost": 1.1
+    },
+    {
+      "id": "hvac-cooling-systems",
+      "type": "service",
+      "title": "Cooling and Refrigeration Systems",
+      "keywords": ["cooling", "refrigeration", "chiller", "cold room", "cooling load", "coil", "condenser", "evaporator", "heat exchanger", "cooling system"],
+      "phrases": ["cooling system", "refrigeration system", "cold room", "cooling load", "heat exchanger performance"],
+      "content": "Cooling and refrigeration work covers chiller plant rooms, cold storage rooms, display cabinets and process cooling. Analysis addresses cooling load distribution, coil and heat exchanger performance, condenser airflow and recirculation, and temperature uniformity across stored product. Recirculation of hot condenser discharge back into the intake is a frequent and expensive real-world failure that simulation identifies immediately.",
+      "boost": 1.1
+    },
+    {
+      "id": "hvac-energy",
+      "type": "benefit",
+      "title": "HVAC Energy Efficiency",
+      "keywords": ["energy", "energy efficiency", "fan power", "pressure loss", "operating cost", "savings", "optimization", "adjoint", "leed", "sustainability"],
+      "phrases": ["energy efficiency", "fan power reduction", "pressure loss optimization", "operating cost"],
+      "content": "Energy work targets the fan and pump power that dominates HVAC operating cost. Duct pressure loss is reduced through bend, transition and plenum geometry improvement, including adjoint-based shape optimization where the gain justifies non-standard fabrication. Right-sizing equipment on the basis of simulated rather than worst-case-stacked loads avoids the oversizing that causes poor part-load efficiency and short cycling.",
+      "boost": 1.0
+    },
+    {
+      "id": "hvac-cleanroom",
+      "type": "application",
+      "title": "Cleanroom and Critical Environments",
+      "keywords": ["cleanroom", "clean room", "iso class", "laminar flow", "particle", "contamination", "pharmaceutical", "operating theatre", "laboratory", "fume", "containment"],
+      "phrases": ["cleanroom design", "laminar flow", "particle contamination", "operating theatre", "containment"],
+      "content": "Cleanroom and critical environment work validates layout and air delivery against ISO classification requirements. Studies cover unidirectional and turbulent flow regimes, particle transport and settling, recovery time after a disturbance, pressure cascade between adjacent rooms, and containment performance for fume hoods and safety cabinets. Applications include pharmaceutical manufacturing, semiconductor fabrication, laboratories and hospital operating theatres.",
+      "boost": 1.0
+    },
+    {
+      "id": "hvac-acoustics",
+      "type": "service",
+      "title": "HVAC Noise and Acoustics",
+      "keywords": ["noise", "acoustic", "sound", "aeroacoustic", "fan noise", "duct noise", "attenuator", "nr", "nc", "quiet"],
+      "phrases": ["hvac noise", "fan noise", "duct acoustics", "aeroacoustic analysis", "noise criteria"],
+      "content": "HVAC noise is treated as a coupled aerodynamic and acoustic problem. Aeroacoustic post-processing of the flow solution identifies noise generated at fans, dampers, bends and terminal units, which is often the true source rather than the fan itself. Results support attenuator sizing and geometry changes needed to meet NR or NC criteria in sensitive spaces such as auditoria, studios and patient rooms.",
+      "boost": 0.9,
+      "source": { "name": "TCAA Acoustics", "url": "https://www.cfdsupport.com/tcaa/" }
+    },
+    {
+      "id": "hvac-terms",
+      "type": "term",
+      "title": "HVAC Terminology",
+      "keywords": ["terminology", "glossary", "definition", "ach", "cfm", "sensible", "latent", "enthalpy", "psychrometric", "vav", "ahu", "meaning", "term"],
+      "phrases": ["air changes per hour", "sensible and latent", "psychrometric chart", "what does mean"],
+      "content": "Common terms: ACH is air changes per hour, the room volume exchanged in one hour. Sensible load changes temperature while latent load changes moisture content. Enthalpy combines both. A psychrometric chart maps air states through temperature, humidity and enthalpy. AHU is an air handling unit. VAV is variable air volume, modulating flow rather than temperature. PMV and PPD quantify predicted comfort. Pressure cascade is the deliberate pressure difference maintained between adjacent rooms to control airflow direction.",
+      "boost": 0.9
+    },
+    {
+      "id": "hvac-faq-when",
+      "type": "faq",
+      "title": "When should CFD be used in an HVAC project?",
+      "keywords": ["when", "need", "worth", "necessary", "stage", "early", "design stage", "should i", "justify"],
+      "phrases": ["when to use cfd", "do i need cfd", "which design stage"],
+      "content": "CFD is most valuable where standard sizing methods cannot answer the question: large or irregular volumes such as atria and warehouses, natural or mixed-mode ventilation, cleanrooms and containment areas, high heat density spaces such as data halls, and any project where comfort complaints or contamination would be costly. It is most effective during design development, when the layout is defined enough to model but still open to change.",
+      "boost": 1.0
+    },
+    {
+      "id": "hvac-faq-deliverables",
+      "type": "faq",
+      "title": "What are the deliverables of an HVAC CFD study?",
+      "keywords": ["deliverable", "report", "output", "results", "receive", "get", "documentation", "what do i get"],
+      "phrases": ["what deliverables", "what do i receive", "study outputs", "report contents"],
+      "content": "A typical HVAC CFD study delivers a technical report documenting assumptions, boundary conditions, mesh and solver settings, together with velocity, temperature, humidity and contaminant field plots on relevant planes, comfort and air quality metrics compared against the applicable criteria, and clear design recommendations. Animations and interactive 3D result files can be provided for design team and client review.",
+      "boost": 1.0,
+      "button": { "label": "Contact Us", "url": "/contact" }
+    }
+  ]
+}

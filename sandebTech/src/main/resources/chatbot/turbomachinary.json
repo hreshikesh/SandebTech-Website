@@ -1,0 +1,143 @@
+{
+  "domain": "turbomachinery",
+  "documents": [
+    {
+      "id": "turbo-overview",
+      "type": "application",
+      "title": "Turbomachinery Design and Optimization",
+      "keywords": ["turbomachinery", "turbo", "rotating equipment", "rotating machinery", "stage", "machine"],
+      "phrases": ["turbomachinery design", "turbomachinery optimization", "rotating equipment"],
+      "content": "Turbomachinery work generates and optimizes complex rotating machine geometries to achieve higher efficiency and better overall performance. Fully parametric blade, volute and casing geometries are created from scratch, or imported geometry is modified rapidly using advanced morphing. Robust design variations are generated with minimal failures while manufacturing and packaging constraints are respected automatically. Teams typically report around ninety percent less manual modelling and turnaround in days instead of weeks.",
+      "boost": 1.3,
+      "button": { "label": "Explore Turbomachinery", "url": "/solutions/turbomachinery" },
+      "source": { "name": "CAESES Turbomachinery", "url": "https://www.caeses.com/applications/turbo" }
+    },
+    {
+      "id": "turbo-compressor",
+      "type": "application",
+      "title": "Compressor Design",
+      "keywords": ["compressor", "centrifugal compressor", "axial compressor", "radial compressor", "stator", "diffuser", "surge", "choke", "pressure ratio", "turbocharger"],
+      "phrases": ["centrifugal compressor", "axial compressor", "compressor map", "pressure ratio", "surge margin"],
+      "content": "Compressor design covers radial and axial machines including compressor wheels, stators, diffusers and turbocharger stages. Optimization objectives typically include isentropic efficiency, pressure ratio, and the width of the stable operating range between surge and choke. Parametric blade definitions allow camber, thickness, lean, sweep and splitter arrangement to be varied systematically, with mechanical and manufacturing limits enforced during variant generation.",
+      "boost": 1.2,
+      "source": { "name": "CAESES Turbomachinery", "url": "https://www.caeses.com/applications/turbo" }
+    },
+    {
+      "id": "turbo-pump",
+      "type": "application",
+      "title": "Pump and Impeller Design",
+      "keywords": ["pump", "impeller", "centrifugal pump", "multistage", "inducer", "cavitation", "npsh", "head", "shrouded impeller", "two stage pump"],
+      "phrases": ["centrifugal pump", "pump impeller", "npsh margin", "shrouded impeller", "turbopump inducer"],
+      "content": "Pump design covers centrifugal and mixed flow machines, multistage arrangements, shrouded and open impellers, and turbopump inducers. Objectives usually include hydraulic efficiency, head curve shape and stability, and cavitation performance expressed as NPSH margin. Because the impeller and volute interact strongly, both are typically parameterized and optimized together rather than sequentially.",
+      "boost": 1.2,
+      "source": { "name": "CAESES Turbomachinery", "url": "https://www.caeses.com/applications/turbo" }
+    },
+    {
+      "id": "turbo-turbine",
+      "type": "application",
+      "title": "Turbine Design",
+      "keywords": ["turbine", "gas turbine", "steam turbine", "radial turbine", "axial turbine", "turbine wheel", "nozzle", "cooling channel", "stage", "expander"],
+      "phrases": ["gas turbine", "steam turbine", "radial turbine", "axial turbine stage", "blade cooling channels"],
+      "content": "Turbine design covers axial and radial machines for gas, steam and expander applications. Parametric definitions handle turbine wheels, nozzle rows and complete stages, including blades with internal cooling channels where thermal load governs life. Optimization balances stage efficiency against mechanical stress, cooling flow budget and manufacturability of the resulting blade shape.",
+      "boost": 1.2,
+      "source": { "name": "CAESES Turbomachinery", "url": "https://www.caeses.com/applications/turbo" }
+    },
+    {
+      "id": "turbo-blade-design",
+      "type": "service",
+      "title": "Parametric Blade Design",
+      "keywords": ["blade", "blade design", "parametric blade", "camber", "thickness", "lean", "sweep", "stacking", "profile", "airfoil", "meanline", "blade geometry"],
+      "phrases": ["parametric blade design", "blade geometry", "camber distribution", "blade stacking", "meanline design"],
+      "content": "Parametric blade design defines the blade through meaningful engineering parameters rather than raw control points: meanline and camber distribution, thickness law, leading and trailing edge treatment, lean, sweep and stacking. This produces smooth, manufacturable blades and ensures that every generated variant is valid. Over a thousand distinct blade geometries can be produced from a single well-built parametric model, feeding directly into automated CFD evaluation.",
+      "boost": 1.3,
+      "source": { "name": "CAESES Blade Design", "url": "https://www.caeses.com/applications/blade-design" }
+    },
+    {
+      "id": "turbo-volute",
+      "type": "application",
+      "title": "Volute and Casing Design",
+      "keywords": ["volute", "casing", "scroll", "single scroll", "twin scroll", "squirrel cage", "collector", "spiral casing", "tongue"],
+      "phrases": ["volute design", "twin scroll volute", "spiral casing", "squirrel cage fan"],
+      "content": "Volute and casing design covers single scroll, twin scroll and compressor volutes, two-stage pump casings and squirrel cage fan housings. Parameterization typically controls the area distribution around the azimuth, cross-section shape, tongue geometry and exit cone. Because the volute sets the circumferential pressure distribution seen by the impeller, it strongly influences both efficiency and radial thrust on the shaft.",
+      "boost": 1.1,
+      "source": { "name": "CAESES Volute Design", "url": "https://www.caeses.com/applications/volute-design" }
+    },
+    {
+      "id": "turbo-fan",
+      "type": "application",
+      "title": "Fan and Blower Design",
+      "keywords": ["fan", "axial fan", "blower", "toroidal fan", "serration", "skew", "noise", "ventilator", "cooling fan"],
+      "phrases": ["axial fan", "fan noise", "compact fan with serrations", "toroidal fan", "fan skew"],
+      "content": "Fan design spans axial fans with and without skew, compact fans with trailing edge serrations, toroidal fans and centrifugal blowers. Alongside aerodynamic efficiency and pressure rise, acoustic performance is often the deciding criterion, so blade skew, serrations and tip clearance are treated as design variables. Aeroacoustic post-processing complements the aerodynamic evaluation.",
+      "boost": 1.0,
+      "source": { "name": "CAESES Turbomachinery", "url": "https://www.caeses.com/applications/turbo" }
+    },
+    {
+      "id": "turbo-cfd",
+      "type": "technology",
+      "title": "Turbomachinery CFD",
+      "keywords": ["cfd", "simulation", "solver", "mesh", "rans", "mrf", "sliding mesh", "periodic", "tcfd", "tcae", "openfoam", "performance curve"],
+      "phrases": ["turbomachinery cfd", "performance curve", "sliding mesh", "multiple reference frame", "cfd simulation"],
+      "content": "Turbomachinery CFD evaluates each geometric variant to produce performance curves across the operating range. Single passage periodic models with multiple reference frames are used for fast screening, while full annulus or sliding mesh models capture unsteady rotor-stator interaction where it matters. Automated meshing and post-processing are essential because hundreds or thousands of cases must run without manual intervention. TCAE from CFD SUPPORT integrates CFD, FEA, FSI, acoustics and optimization into a single workflow suitable for this kind of automated study.",
+      "boost": 1.1,
+      "source": { "name": "TCAE by CFD SUPPORT", "url": "https://www.cfdsupport.com/tcae/" }
+    },
+    {
+      "id": "turbo-doe-optimization",
+      "type": "technology",
+      "title": "DOE and Design Optimization",
+      "keywords": ["doe", "design of experiments", "optimization", "sobol", "latin hypercube", "genetic algorithm", "nsga", "surrogate", "response surface", "pareto", "sensitivity", "machine learning"],
+      "phrases": ["design of experiments", "design space exploration", "genetic algorithm", "response surface", "pareto front", "sensitivity analysis"],
+      "content": "Optimization begins with a design of experiments such as Sobol or Latin hypercube sampling to explore the design space and reveal which parameters actually matter. Sensitivity analysis then reduces the problem to the influential variables. Formal optimization follows using gradient-free algorithms such as genetic and evolutionary methods, often accelerated by surrogate or response surface models built from the DOE results. Multi-objective runs produce a Pareto front so the trade-off between competing goals like efficiency and operating range is explicit rather than hidden.",
+      "boost": 1.2,
+      "source": { "name": "CAESES Functionalities", "url": "https://www.caeses.com/functionalities" }
+    },
+    {
+      "id": "turbo-flow-optimization",
+      "type": "service",
+      "title": "Flow Path and Passage Optimization",
+      "keywords": ["flow optimization", "flow path", "passage", "duct", "manifold", "inlet", "diffuser", "pressure loss", "separation", "uniformity", "secondary flow"],
+      "phrases": ["flow path optimization", "pressure loss reduction", "flow uniformity", "secondary flow", "passage design"],
+      "content": "Flow path optimization targets the ducts, manifolds, inlets and diffusers that surround the rotating component. Objectives include minimizing total pressure loss, improving flow uniformity into the impeller or blade row, suppressing separation, and controlling secondary flow and swirl. Poor inlet conditions can negate an otherwise excellent blade design, so the passage is treated as part of the machine rather than as boundary condition.",
+      "boost": 1.0
+    },
+    {
+      "id": "turbo-benefits",
+      "type": "benefit",
+      "title": "Benefits of Turbomachinery Optimization",
+      "keywords": ["benefit", "advantage", "value", "why", "faster", "efficiency gain", "savings", "benefits"],
+      "phrases": ["benefits of optimization", "why optimize", "time savings"],
+      "content": "Automated turbomachinery optimization typically eliminates around ninety percent of manual modelling effort and compresses design cycles from weeks to days. A single parametric model produces over a thousand valid blade geometries, so the design space is genuinely explored instead of sampled by intuition. Efficiency gains of one to several points are common on machines that have not previously been optimized systematically, and the resulting parametric model is reusable across the product family.",
+      "boost": 1.0,
+      "source": { "name": "CAESES Turbomachinery", "url": "https://www.caeses.com/applications/turbo" }
+    },
+    {
+      "id": "turbo-terms",
+      "type": "term",
+      "title": "Turbomachinery Terminology",
+      "keywords": ["terminology", "glossary", "definition", "specific speed", "slip factor", "degree of reaction", "incidence", "solidity", "tip clearance", "meaning", "term"],
+      "phrases": ["specific speed", "degree of reaction", "tip clearance", "slip factor", "what does mean"],
+      "content": "Common terms: Specific speed classifies a machine as radial, mixed or axial from flow, head and rotational speed. Degree of reaction is the share of static enthalpy change occurring in the rotor. Slip factor accounts for the deviation between blade angle and actual flow angle at impeller exit. Solidity is the chord to pitch ratio of a blade row. Incidence is the mismatch between inflow angle and blade angle. Tip clearance is the gap between blade tip and casing, a strong driver of leakage loss. Surge and choke bound the stable operating range of a compressor.",
+      "boost": 0.9
+    },
+    {
+      "id": "turbo-faq-variants",
+      "type": "faq",
+      "title": "How many design variants can be evaluated?",
+      "keywords": ["how many", "variants", "designs", "cases", "runs", "scale", "hundreds", "thousands"],
+      "phrases": ["how many variants", "number of designs", "how many cases"],
+      "content": "The practical limit is compute rather than modelling. A well-built parametric model can generate over a thousand valid blade geometries, and automated CFD workflows routinely evaluate several hundred to several thousand cases per study. Fast single-passage screening models are used for broad exploration, with a smaller shortlist promoted to high-fidelity unsteady analysis. Cloud or cluster execution makes large campaigns practical within normal project schedules.",
+      "boost": 1.0
+    },
+    {
+      "id": "turbo-faq-existing-geometry",
+      "type": "faq",
+      "title": "Can you optimize an existing machine rather than a new design?",
+      "keywords": ["existing", "legacy", "current design", "retrofit", "redesign", "improve", "import", "morphing", "reverse engineering"],
+      "phrases": ["existing design", "improve existing", "import geometry", "legacy machine"],
+      "content": "Yes. Existing geometry can be imported and modified using morphing techniques, which avoids rebuilding the machine from scratch. Alternatively a parametric model can be fitted to the existing shape so that the current design becomes the baseline point in the design space. This approach is common for retrofit and uprate projects where the housing, shaft or footprint must remain fixed while performance is improved.",
+      "boost": 1.0,
+      "button": { "label": "Contact Us", "url": "/contact" }
+    }
+  ]
+}

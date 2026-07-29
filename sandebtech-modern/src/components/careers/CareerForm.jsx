@@ -27,7 +27,7 @@ function CareerForm() {
 
           <iframe
             title="SandebTech Career Form"
-            src="https://forms.gle/SYr2T54ou71KHBKw6"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSd-MUDv26isMiOezy35qkFSfYsCR6kdeFYo24JvSpNSFonKQw/viewform?usp=sharing&ouid=107933695803050452309"
             loading="lazy"
             allowFullScreen
           />

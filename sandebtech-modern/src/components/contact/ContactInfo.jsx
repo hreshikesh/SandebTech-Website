@@ -223,11 +223,16 @@ function ContactInfo() {
               />
             </div>
 
-            <div className="form-input-group">
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px", width: "100%", boxSizing: "border-box" }}>
+              <label htmlFor="subject" style={{ fontWeight: "500", fontSize: "14px", color: "#374151" }}>
+                What would you like to discuss? <span style={{ color: "#ef4444" }}>*</span>
+              </label>
+
               <select
+                id="subject"
                 name="subject"
                 value={
-                  ["Wanted to know about Shipflow", "About CAESES Lotus", "HVAC"].includes(form.subject)
+                  ["Shipflow Inquiry", "CAESES & Lotus Inquiry", "HVAC Inquiry"].includes(form.subject)
                     ? form.subject
                     : form.subject ? "Other" : ""
                 }
@@ -240,29 +245,83 @@ function ContactInfo() {
                   }
                 }}
                 required
+                style={{
+                  width: "100%",
+                  maxWidth: "100%",
+                  boxSizing: "border-box",
+                  padding: "12px 14px",
+                  fontSize: "16px", // Prevents mobile browser auto-zoom
+                  border: "1px solid #d1d5db",
+                  borderRadius: "6px",
+                  backgroundColor: "#ffffff",
+                  color: "#1f2937",
+                  outline: "none",
+                  cursor: "pointer",
+                  boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                  appearance: "none", // Ensures cross-browser styling consistency on mobile
+                  backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.364%22%20height%3D%22292.364%22%3E%3Cpath%20fill%3D%22%236B7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 14px center",
+                  backgroundSize: "12px",
+                  paddingRight: "36px",
+                  transition: "border-color 0.2s ease, box-shadow 0.2s ease"
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "#3b82f6";
+                  e.target.style.boxShadow = "0 0 0 3px rgba(59, 130, 246, 0.15)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#d1d5db";
+                  e.target.style.boxShadow = "0 1px 2px 0 rgba(0, 0, 0, 0.05)";
+                }}
               >
-                <option value="" disabled>Select a subject...</option>
-                <option value="Wanted to know about Shipflow">Wanted to know about Shipflow</option>
-                <option value="About CAESES Lotus">About CAESES Lotus</option>
-                <option value="HVAC">HVAC</option>
+                <option value="" disabled>Please select a subject...</option>
+                <option value="Shipflow Inquiry">Shipflow Inquiry</option>
+                <option value="CAESES & Lotus Inquiry">CAESES & Lotus Inquiry</option>
+                <option value="HVAC Inquiry">HVAC Inquiry</option>
                 <option value="Other">Other</option>
               </select>
 
-              {!["Wanted to know about Shipflow", "About CAESES Lotus", "HVAC"].includes(form.subject) && (
+              {!["Shipflow Inquiry", "CAESES & Lotus Inquiry", "HVAC Inquiry"].includes(form.subject) && (
                 <input
                   type="text"
-                  placeholder="Please specify your subject"
+                  placeholder="Please specify your subject..."
                   name="subject"
                   value={form.subject}
                   onChange={handleChange}
                   required
-                  style={{ marginTop: "10px" }}
+                  style={{
+                    width: "100%",
+                    maxWidth: "100%",
+                    boxSizing: "border-box",
+                    padding: "12px 14px",
+                    fontSize: "16px", // Prevents mobile browser auto-zoom
+                    border: "1px solid #d1d5db",
+                    borderRadius: "6px",
+                    backgroundColor: "#ffffff",
+                    color: "#1f2937",
+                    outline: "none",
+                    marginTop: "4px",
+                    boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                    transition: "border-color 0.2s ease, box-shadow 0.2s ease"
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "#3b82f6";
+                    e.target.style.boxShadow = "0 0 0 3px rgba(59, 130, 246, 0.15)";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "#d1d5db";
+                    e.target.style.boxShadow = "0 1px 2px 0 rgba(0, 0, 0, 0.05)";
+                  }}
                 />
               )}
 
-              {errors.subject && <span className="form-error">{errors.subject}</span>}
+              {errors.subject && (
+                <span style={{ fontSize: "12px", color: "#ef4444", marginTop: "2px", fontWeight: "400" }}>
+                  {errors.subject}
+                </span>
+              )}
             </div>
-
             <div className="form-input-group">
               <textarea
                 rows="6"

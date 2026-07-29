@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-const IDLE_TIME = 30 * 1000;
+const IDLE_TIME = 30 *60* 1000;
 
 export default function SessionTimeout() {
     const navigate = useNavigate();

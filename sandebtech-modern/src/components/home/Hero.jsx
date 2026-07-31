@@ -10,24 +10,28 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import "./Hero.css";
+import heroImage1 from "../../assets/images/hero/hero.webp";
+import heroImage2 from "../../assets/images/hero/hero1.webp";
+import heroImage3 from "../../assets/images/hero/hero2.webp";
+import heroImage4 from "../../assets/images/hero/hero3.webp"
 
 // Updated images to high-resolution maritime & CFD hydrodynamic placeholders.
 // Replace these paths with your local public paths (e.g., "/images/hero/hero1.webp") as needed.
 const heroImages = [
   {
-    src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200&auto=format&fit=crop",
+    src: heroImage1,
     alt: "SHIPFLOW CFD hydrodynamic pressure distribution analysis on hull",
   },
   {
-    src: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1200&auto=format&fit=crop",
+    src: heroImage2,
     alt: "Maritime vessel wave resistance and flow velocity simulation",
   },
   {
-    src: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop",
+    src: heroImage3,
     alt: "Ship propulsion propeller wake field and flow dynamics",
   },
   {
-    src: "https://images.unsplash.com/photo-1505705694340-019e1e335916?q=80&w=1200&auto=format&fit=crop",
+    src: heroImage4,
     alt: "Naval architecture hull optimization and seakeeping engineering",
   },
 ];

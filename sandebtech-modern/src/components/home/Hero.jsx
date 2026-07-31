@@ -61,7 +61,7 @@ const heroImages = sources.map((src, i) => ({
   alt: ALT_TEXT[i] || `SHIPFLOW marine CFD simulation ${i + 1}`,
 }));
 
-const SLIDE_MS = 5000;
+const SLIDE_MS = 2000;
 
 const services = [
   { id: 1, icon: <Zap size={22} />, title: "Hydrodynamics" },

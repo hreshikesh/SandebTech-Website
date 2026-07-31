@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "https://sandebtech-website.onrender.com"
+    baseURL: "${import.meta.env.VITE_API_URL}"
 });
 
 export async function sendChat(message) {

@@ -11,26 +11,26 @@ const items = [
   {
     id: 1,
     icon: <Zap size={32} />,
-    title: "Electrical Engineering",
-    desc: "Reliable electrical engineering solutions for industrial and commercial applications.",
+    title: "Maritime ,Ship-Design & Turbomachinery",
+   
   },
   {
     id: 2,
     icon: <Cpu size={32} />,
-    title: "Industrial Automation",
-    desc: "Automation systems designed to improve productivity and operational efficiency.",
+    title: "Solutions for Built in Environment",
+  
   },
   {
     id: 3,
     icon: <Settings size={32} />,
-    title: "Control Panels",
-    desc: "Custom-built control panels designed to meet industry standards.",
+    title: "Electronics Cooling And Product Support ",
+  
   },
   {
     id: 4,
     icon: <ShieldCheck size={32} />,
-    title: "Quality & Safety",
-    desc: "Committed to delivering reliable, safe and high-quality engineering solutions.",
+    title: "Fire Safety and Evacuation Training",
+   
   },
 ];
 
@@ -94,7 +94,6 @@ function Highlights() {
 
               <h3>{item.title}</h3>
 
-              <p>{item.desc}</p>
             </div>
           ))}
         </div>

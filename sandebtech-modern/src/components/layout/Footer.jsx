@@ -37,7 +37,6 @@ function Footer() {
   );
 
   const solutions =
-    navigation.solutionsLinks ||
     solutionsMenuItem?.subLinks ||
     solutionsMenuItem?.children || [
       { id: "shipflow", title: "SHIPFLOW CFD", path: "/solutions/shipflow-cfd" },

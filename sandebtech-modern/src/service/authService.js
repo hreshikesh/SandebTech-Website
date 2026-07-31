@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const API = axios.create({
-    baseURL: "https://sandebtech-website.onrender.com/api/auth"
+    baseURL: "${import.meta.env.VITE_API_URL}"
 });
 
 API.interceptors.request.use((config) => {
@@ -36,7 +36,7 @@ API.interceptors.response.use(
 );
 
 export async function sendOTP(email) {
-    const response = await API.post("/login", { email });
+    const response = await API.post("/api/auth/login", { email });
     return response.data;
 }
 
@@ -50,6 +50,6 @@ export async function verifyOTP(email, otp) {
 }
 
 export async function register(data) {
-    const response = await API.post("/register", data);
+    const response = await API.post("/api/auth/register", data);
     return response.data;
 }

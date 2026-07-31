@@ -159,11 +159,6 @@ function Hero() {
               </div>
             </div>
 
-            {/* Tech Badge Overlay */}
-            <div className="tech-spec-tag">
-              <Sliders size={14} />
-              <span>ISO 9001:2015 CERTIFIED</span>
-            </div>
           </div>
         </motion.div>
 

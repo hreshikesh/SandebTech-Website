@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const API = axios.create({
-  baseURL: "https://sandebtech-website.onrender.com/api",
+  baseURL: "${import.meta.env.VITE_API_URL}",
 });
 
 // Send JWT with every request
@@ -45,6 +45,6 @@ API.interceptors.response.use(
 );
 
 export async function submitContact(data) {
-  const response = await API.post("/contact", data);
+  const response = await API.post("/api/contact", data);
   return response.data;
 }

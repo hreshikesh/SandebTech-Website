@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import "./About.css";
 import { Link } from "react-router-dom";
-import aboutImage from "../../assets/images/about/about1.webp";
+import aboutImage from "../../assets/images/logo/logo2.webp";
 
 function About() {
   const imageRef = useRef(null);

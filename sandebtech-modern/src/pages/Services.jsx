@@ -12,7 +12,7 @@ function Services() {
       <PageTransition />
       <PageBanner
         title="CFD Based Services"
-        subtitle="Ship Design • Special Training • Joint Projects"
+        subtitle="Design • Training • Projects"
       />
 
       <ServiceProduct />

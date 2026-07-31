@@ -383,8 +383,7 @@
 
 /* Grouped capability blocks */
 .cap-group-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
     gap: 14px;
 }
 
@@ -547,8 +546,7 @@
 }
 
 .svc-docs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+   
     gap: 16px;
 }
 

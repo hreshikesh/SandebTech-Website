@@ -37,6 +37,8 @@ import WebinarsPage from "../pages/WebnairPage/WebinarsPage";
 import Hvac from "../pages/havc/Havc";
 import Resources from "../pages/resources/Resources";
 import Careers from "../pages/Carreer";
+import TutorialsPage from "../pages/tutorial/TutorialsPage";
+import TrainingPage from "../pages/training/TrainingPage";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -112,6 +114,12 @@ function App() {
             <Route
               path="resources/webinar"
               element={<WebinarsPage />} />
+                <Route
+              path="resources/tutorials"
+              element={<TutorialsPage/>} />
+                <Route
+              path="resources/training"
+              element={<TrainingPage/>} />
 
             <Route
               path="/solutions/hvac"

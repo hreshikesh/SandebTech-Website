@@ -1,47 +1,50 @@
 import "./CareerForm.css";
+import applyImage from "../../assets/images/logo/logo2.webp";
 
 function CareerForm() {
   return (
     <section className="career-form-section">
       <div className="container">
+        
+        {/* Wrapper for Flexbox layout */}
+        <div className="career-form-content-wrapper">
+          
+          {/* LEFT COLUMN - Image */}
+          <img 
+            src={applyImage} 
+            alt="Team collaborating" 
+            className="career-form-image"
+            // If using local import: src={applyImage}
+            loading="lazy" // Good practice for performance
+          />
 
-        <div className="career-form-header">
+          {/* RIGHT COLUMN - Text and Button */}
+          <div className="career-form-text-block">
+            <div className="career-form-header">
+              <span className="section-tag">Application</span>
+              <h2>
+                Apply <span>Now</span>
+              </h2>
+              <p>
+                Interested in joining SandebTech? Complete the application
+                form below. Our recruitment team will carefully review your
+                application and contact shortlisted candidates.
+              </p>
+            </div>
 
-          <span className="section-tag">
-            Application
-          </span>
+            <div className="career-form-cta">
+              {/* Removed inline styles, using CSS classes now */}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSd-MUDv26isMiOezy35qkFSfYsCR6kdeFYo24JvSpNSFonKQw/viewform?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary" // Assuming you have a global .btn-primary class based on your previous inline styles
+              >
+                Open Application Form
+              </a>
+            </div>
+          </div>
 
-          <h2>
-            Apply <span>Now</span>
-          </h2>
-
-          <p>
-            Interested in joining SandebTech? Complete the application
-            form below. Our recruitment team will carefully review your
-            application and contact shortlisted candidates.
-          </p>
-
-        </div>
-
-        <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-          <h2>Apply for a Position at SandebTech</h2>
-          <p>Click below to open our application form and upload your documents.</p>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSd-MUDv26isMiOezy35qkFSfYsCR6kdeFYo24JvSpNSFonKQw/viewform?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              backgroundColor: '#0b57d0',
-              color: 'white',
-              padding: '22px 24px',
-              textDecoration: 'none',
-              fontWeight: 'bold',
-              borderRadius: '4px',
-              display: 'inline-block'
-            }}
-          >
-            Open Application Form
-          </a>
         </div>
 
       </div>

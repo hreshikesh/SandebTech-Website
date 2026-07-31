@@ -6,6 +6,7 @@
   --res-primary-dark: #071321;
   --res-accent-blue: #38bdf8;
   --res-accent-purple: #8b5cf6;
+  --res-accent-teal: #0d9488;
   --res-text-main: #0f172a;
   --res-text-muted: #64748b;
   --res-bg-light: #f8fafc;
@@ -99,6 +100,18 @@
   gap: 32px;
 }
 
+/*
+  Two cards per row. With an odd number of cards the final one would sit
+  alone on the left, so it is centred across both columns while keeping the
+  exact same width as the cards above it.
+*/
+.resources-grid > .resource-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc((1140px - 48px - 32px) / 2);
+  width: 100%;
+  justify-self: center;
+}
+
 .resource-card {
   background: #ffffff;
   border: 1px solid var(--res-border);
@@ -144,6 +157,11 @@
 .webinar-icon {
   background: #f3e8ff;
   color: var(--res-accent-purple);
+}
+
+.tutorial-icon {
+  background: #ccfbf1;
+  color: var(--res-accent-teal);
 }
 
 .resource-card:hover .icon-wrapper {
@@ -236,6 +254,17 @@
   color: #ffffff;
 }
 
+.tutorial-btn {
+  background: #f0fdfa;
+  color: var(--res-accent-teal);
+  border: 1px solid #99f6e4;
+}
+
+.tutorial-btn:hover {
+  background: var(--res-accent-teal);
+  color: #ffffff;
+}
+
 .btn-arrow {
   transition: transform 0.25s ease;
 }
@@ -247,10 +276,26 @@
 /* ==========================================
    RESPONSIVE DESIGN
    ========================================== */
+
+/* Below the fixed container width the centred card must track the fluid
+   column width instead of the 1140px calculation. */
+@media (max-width: 1188px) {
+  .resources-grid > .resource-card:last-child:nth-child(odd) {
+    max-width: calc((100% - 32px) / 2);
+  }
+}
+
 @media (max-width: 868px) {
   .resources-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  /* Single column: the last card spans normally, no centring needed */
+  .resources-grid > .resource-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: 100%;
+    justify-self: stretch;
   }
 
   .resources-hero h1 {
@@ -259,5 +304,31 @@
 
   .resources-hero p {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resources-container {
+    padding: 0 16px;
+  }
+
+  .resources-hero {
+    padding: 56px 0 48px 0;
+  }
+
+  .resources-hero h1 {
+    font-size: 24px;
+  }
+
+  .resources-section {
+    padding: 40px 0 60px 0;
+  }
+
+  .resource-card {
+    padding: 24px;
+  }
+
+  .card-body h2 {
+    font-size: 20px;
   }
 }

@@ -116,7 +116,7 @@ const applicationData = {
         description:
           "Direct-on-chip liquid cooling technology delivering ultra-low thermal resistance for high-power semiconductors and modular server racks.",
         image: lotusImg,
-        link: "/solutions/lotus-marine",
+        link: "/solutions/lotus-micro",
         tags: ["Direct Liquid Cooling", "Microchannels", "Power Density"],
       },
       {
@@ -126,7 +126,7 @@ const applicationData = {
         description:
           "Simulate conjugate heat transfer (CHT) to resolve thermal hotspots, balance pressure drop, and optimize custom heat sink fin geometries.",
         image: lotusImg2,
-        link: "/solutions/lotus-marine",
+        link: "/solutions/lotus-micro",
         tags: ["CHT Simulation", "Junction Temp", "Heat Sinks"],
       },
     ],

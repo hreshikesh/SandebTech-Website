@@ -1,3 +1,4 @@
+import { FaLinkedinIn } from "react-icons/fa6";
 import "./MentorSection.css";
 import { mentors } from "../../data/team";
 
@@ -7,35 +8,42 @@ function MentorSection() {
       <div className="container">
 
         <div className="section-heading">
-
           <span>GUIDANCE</span>
-
-          <h2>Mentor & Advisors</h2>
-
+          <h2>Mentor &amp; Advisors</h2>
           <p>
             Our growth is supported by experienced mentors who provide
             valuable guidance, technical insight and strategic direction.
           </p>
-
         </div>
 
         <div className="mentor-grid">
 
           {mentors.map((mentor) => (
-            <div
-              key={mentor.id}
-              className="mentor-card"
-            >
+            <div key={mentor.id} className="mentor-card">
+
               <div className="mentor-image">
+                <img src={mentor.image} alt={mentor.name} />
 
-                <img
-                  src={mentor.image}
-                  alt={mentor.name}
-                />
-
+                {/* LinkedIn overlay — slides up on hover, always visible on touch */}
+                {mentor.linkedin && (
+                  <a
+                    href={mentor.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mentor-social"
+                    aria-label={`${mentor.name} on LinkedIn`}
+                  >
+                    <FaLinkedinIn />
+                  </a>
+                )}
               </div>
 
-              <h3>{mentor.name}</h3>
+              <div className="mentor-info">
+                <h3>{mentor.name}</h3>
+                {mentor.designation && (
+                  <p className="mentor-designation">{mentor.designation}</p>
+                )}
+              </div>
 
             </div>
           ))}

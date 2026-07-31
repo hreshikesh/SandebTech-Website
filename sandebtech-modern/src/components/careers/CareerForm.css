@@ -3,14 +3,39 @@
   background: var(--white);
 }
 
+/* Main container to hold image and text side-by-side */
+.career-form-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px; /* Space between text and image */
+}
+
+/* Left Column - The Image */
+.career-form-image {
+  flex: 1; /* Takes up 50% width */
+  max-width: 50%;
+  height: auto;
+  border-radius: 24px;
+  object-fit: cover; /* Ensures image covers area without stretching */
+  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+}
+
+/* Right Column - The Text and Button */
+.career-form-text-block {
+  flex: 1; /* Takes up 50% width */
+  text-align: left; /* Aligns text to the left */
+}
+
 .career-form-header {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto 60px;
+  max-width: 100%; /* Full width within the flex column */
+  margin: 0 0 40px 0; /* Adjusted margin */
 }
 
 .career-form-header h2 {
   margin: 18px 0;
+  font-size: 48px; /* Example size, adjust as needed */
+  line-height: 1.2;
 }
 
 .career-form-header h2 span {
@@ -20,27 +45,39 @@
 .career-form-header p {
   color: var(--text-secondary);
   line-height: 1.8;
+  font-size: 18px;
 }
 
-.career-form-wrapper {
-  background: #fff;
-  border-radius: 24px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+/* Button styling wrapper */
+.career-form-cta {
+  text-align: left; /* Ensures button aligns with text */
 }
 
-.career-form-wrapper iframe {
-  width: 100%;
-  height: 1550px;
-  border: none;
-  display: block;
-}
-
+/* Responsive: Tablet and Mobile */
 @media (max-width: 768px) {
-
-  .career-form-wrapper iframe {
-    height: 1800px;
+  .career-form-section {
+    padding: 50px 0;
   }
 
+  .career-form-content-wrapper {
+    flex-direction: column-reverse; /* Image goes below text on mobile */
+    gap: 30px;
+  }
+
+  .career-form-image {
+    max-width: 100%; /* Image takes full width */
+  }
+
+  .career-form-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .career-form-header h2 {
+    font-size: 36px;
+  }
+
+  .career-form-cta {
+    text-align: center; /* Center button on mobile */
+  }
 }

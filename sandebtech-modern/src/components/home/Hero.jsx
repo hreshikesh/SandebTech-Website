@@ -11,28 +11,33 @@ import {
 } from "lucide-react";
 import "./Hero.css";
 
-// --- DYNAMIC IMAGE IMPORTS ---
-// Webp recommended for performance. Add/remove entries in heroImages below.
-import heroImg1 from "../../assets/images/hero/hero.webp";
-import heroImg2 from "../../assets/images/hero/hero1.webp";
-import heroImg3 from "../../assets/images/hero/hero2.webp";
-import heroImg4 from "../../assets/images/hero/hero3.webp";
-
-// Alt text paired with each slide — descriptive alt beats "Slide 3" for
-// both screen readers and SEO.
+// Updated images to high-resolution maritime & CFD hydrodynamic placeholders.
+// Replace these paths with your local public paths (e.g., "/images/hero/hero1.webp") as needed.
 const heroImages = [
-  { src: heroImg1, alt: "Engineering simulation of industrial equipment" },
-  { src: heroImg2, alt: "CFD analysis visualising internal flow" },
-  { src: heroImg3, alt: "Precision automation and control systems" },
-  { src: heroImg4, alt: "Industrial infrastructure engineering project" },
+  {
+    src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200&auto=format&fit=crop",
+    alt: "SHIPFLOW CFD hydrodynamic pressure distribution analysis on hull",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1200&auto=format&fit=crop",
+    alt: "Maritime vessel wave resistance and flow velocity simulation",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop",
+    alt: "Ship propulsion propeller wake field and flow dynamics",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1505705694340-019e1e335916?q=80&w=1200&auto=format&fit=crop",
+    alt: "Naval architecture hull optimization and seakeeping engineering",
+  },
 ];
 
 const SLIDE_MS = 5000;
 
 const services = [
-  { id: 1, icon: <Zap size={22} />, title: "Reliability" },
-  { id: 2, icon: <Settings size={22} />, title: "Expertise" },
-  { id: 3, icon: <Cpu size={22} />, title: "Customer Focus" },
+  { id: 1, icon: <Zap size={22} />, title: "Hydrodynamics" },
+  { id: 2, icon: <Settings size={22} />, title: "RANS CFD" },
+  { id: 3, icon: <Cpu size={22} />, title: "Hull Optimization" },
 ];
 
 // Motion animation variants for entry sequence
@@ -53,7 +58,7 @@ const itemVariants = {
   },
 };
 
-// Cross-fade with a slow Ken Burns drift for a more premium feel
+// Cross-fade with a slow Ken Burns drift for a premium marine HUD feel
 const imageVariants = {
   enter: { opacity: 0, scale: 1.08 },
   center: { opacity: 1, scale: 1 },
@@ -68,15 +73,14 @@ function Hero() {
 
   const goTo = useCallback((i) => setImageIndex(i), []);
 
-  // Preload the next slide so the cross-fade never shows a blank frame.
+  // Preload next slide so cross-fade never shows a blank frame
   useEffect(() => {
     const next = (imageIndex + 1) % heroImages.length;
     const img = new Image();
     img.src = heroImages[next].src;
   }, [imageIndex]);
 
-  // Autoplay — pauses on hover/focus and when the tab is hidden, so the
-  // slideshow isn't burning cycles or desyncing in a background tab.
+  // Autoplay - pauses on hover/focus and background tab
   useEffect(() => {
     if (isPaused || prefersReducedMotion || heroImages.length < 2) return;
 
@@ -105,13 +109,12 @@ function Hero() {
 
   return (
     <section className="hero">
-      {/* Background Engineering Blueprint & Glowing Orbs */}
+      {/* Background Blueprint Grid & Hydro Orbs */}
       <div className="hero-grid-pattern"></div>
       <div className="hero-orb hero-orb-blue"></div>
       <div className="hero-orb hero-orb-orange"></div>
 
       <div className="container hero-wrapper">
-
         {/* ========================================================= */}
         {/* LEFT COLUMN: CONTENT, HEADLINE, CTAs & SERVICE STRIP      */}
         {/* ========================================================= */}
@@ -124,28 +127,25 @@ function Hero() {
           <motion.div variants={itemVariants}>
             <span className="hero-badge">
               <span className="live-dot"></span>
-              Simulate • Optimize • Sustain
+              Simulate • Optimize • Excel
             </span>
           </motion.div>
 
           <motion.h1 variants={itemVariants}>
-            Accelerate Design Cycles <br />
-            <span className="hero-gradient-text">Through Simulation</span>
+            Accelerate Marine Design <br />
+            <span className="hero-gradient-text">Through SHIPFLOW</span>
           </motion.h1>
 
           <motion.p variants={itemVariants}>
-            We design, automate, and optimize critical industrial
-            infrastructure. From high-voltage electrical distribution to
-            precision PLC automation, SandebTech delivers turnkey engineering
-            reliability.
+            Engineered for naval architects and hydrodynamicists. SHIPFLOW delivers high-fidelity CFD simulations, automated hull shape optimization, wave resistance predictions, and complex viscous flow analysis.
           </motion.p>
 
           <motion.div variants={itemVariants} className="hero-buttons">
-            <Link to="/services" className="hero-primary">
-              <span>Explore Services</span>
+            <Link to="/products-overview" className="hero-primary">
+              <span>Explore Products</span>
               <ArrowRight size={18} className="btn-arrow" />
             </Link>
-            <Link to="/contact" className="hero-secondary">
+            <Link to="/how-to-buy" className="hero-secondary">
               Request Consultation
             </Link>
           </motion.div>
@@ -178,7 +178,7 @@ function Hero() {
             onFocusCapture={() => setIsPaused(true)}
             onBlurCapture={() => setIsPaused(false)}
           >
-            {/* Decorators — sit OUTSIDE .frame-media so they are never clipped */}
+            {/* Corner Decorators */}
             <span className="frame-crosshair top-left">+</span>
             <span className="frame-crosshair top-right">+</span>
             <span className="frame-crosshair bottom-left">+</span>
@@ -186,11 +186,6 @@ function Hero() {
 
             <div className="hero-image-glow"></div>
 
-            {/*
-              .frame-media owns the aspect ratio and the overflow clip.
-              Keeping the clip on this inner element means the glow,
-              crosshairs and telemetry cards can still overhang the edges.
-            */}
             <div className="frame-media">
               <AnimatePresence mode="sync" initial={false}>
                 <motion.img
@@ -212,7 +207,7 @@ function Hero() {
                 />
               </AnimatePresence>
 
-              {/* Bottom scrim keeps the dots readable over bright photos */}
+              {/* Bottom scrim for readability */}
               <div className="frame-scrim"></div>
 
               {/* Slide indicators */}
@@ -237,13 +232,13 @@ function Hero() {
               </div>
             </div>
 
-            {/* Floating Cards (static over slideshow) */}
+            {/* Floating Telemetry Badges */}
             <div className="telemetry-card top-telemetry">
               <div className="telemetry-icon blue-bg">
                 <Activity size={20} />
               </div>
               <div>
-                <span className="telemetry-label">Innovative solutions</span>
+                <span className="telemetry-label">CFD Flow Accuracy</span>
               </div>
             </div>
 
@@ -252,7 +247,7 @@ function Hero() {
                 <CheckCircle2 size={20} />
               </div>
               <div>
-                <span className="telemetry-label">Cost reduction</span>
+                <span className="telemetry-label">Optimal Resistance</span>
               </div>
             </div>
           </div>

@@ -18,6 +18,7 @@ public class CorsConfig {
         config.addAllowedOrigin("http://localhost:5174");
         config.addAllowedOrigin("http://localhost:5173");
         config.addAllowedOrigin("https://sandeb-tech-website-5csb.vercel.app");
+        config.addAllowedOrigin("https://sandebtech.com/");
 
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");

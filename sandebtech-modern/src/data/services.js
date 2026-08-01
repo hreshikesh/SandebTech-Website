@@ -8,6 +8,10 @@ import electronicsImg from "../assets/images/services/thermal.webp";
 import hvacImg from "../assets/images/havc/datacenter.webp";
 import fireImg from "../assets/images/havc/fire.webp";
 import maritimeBrochure from "../assets/images/lotus/documents/SHIPFLOW CFD Service .pdf";
+import aeroSimImage from "../assets/images/services/aerosim.webp";
+import pedestrin from "../assets/images/services/pedestrin.webp";
+import facade from "../assets/images/services/facade.webp";
+import load from "../assets/images/services/load.webp";
 import {
   Ship,
   Fan,
@@ -34,7 +38,7 @@ export const services = [
     eyebrow: "SHIPFLOW · CAESES",
     title: "Design and optimization of maritime systems",
     summary:
-      "Decrease fuel consumption, reduce operational downtime, and maximize speed. SHIPFLOW from FLOWTECH is the world standard for ship hydrodynamics CFD — grids are generated automatically from the hull shape, and resistance and propulsion data are presented the naval architect's way. Paired with CAESES for fully parametric hull, appendage, and propulsor geometry, the two tools form a complete hull-to-power optimization loop.",
+      "We offer expert CFD consulting to optimize  service  for your vessel designs and solve complex hydrodynamic challenges.Decrease fuel consumption, reduce operational downtime, and maximize speed. SHIPFLOW from FLOWTECH is the world standard for ship hydrodynamics CFD — grids are generated automatically from the hull shape, and resistance and propulsion data are presented the naval architect's way. Paired with CAESES for fully parametric hull, appendage, and propulsor geometry, the two tools form a complete hull-to-power optimization loop.",
     detail:
       "SHIPFLOW's zonal approach combines the XPAN potential-flow panel method for rapid wave resistance and hull ranking, the XCHAP RANS solver for viscous effects, and SHIPFLOW MOTIONS for ship motions and added resistance in waves. CAESES then drives design variations, respecting geometric, stability, and arrangement constraints while connecting to external solvers.",
     stats: [
@@ -234,8 +238,8 @@ export const services = [
       ]
     },
     links: [
-      { label: "TCAE by CFD SUPPORT", url: "https://www.cfdsupport.com/tcae/" },
-      { label: "TCAA Acoustics", url: "https://www.cfdsupport.com/tcaa/" }
+      { label: "Learn More", url: "/services/hvac" },
+      { label: "Contact", url: "/contact" }
     ]
   },
   {
@@ -247,7 +251,7 @@ export const services = [
     eyebrow: "PyroSim · Pathfinder . Ventus",
     title: "Fire and evacuation studies",
     summary:
-      "Using PyroSim (NIST FDS) and Pathfinder, we combine fire and smoke simulation with agent-based egress modeling to quantify life-safety risk and demonstrate code compliance. Results feed directly into tenability criteria and evacuation strategy, supporting approvals where prescriptive code alone cannot demonstrate compliance.",
+      "SandebTech provides consultancy and training using PyroSim ,Ventus and Pathfinder, combining fire and smoke simulation with agent-based egress modeling to quantify life-safety risk and demonstrate code compliance. These simulation results feed directly into tenability criteria and evacuation strategies, supporting regulatory approvals where prescriptive code alone cannot.",
     detail:
       "Transient simulations resolve buoyancy-driven plumes, ceiling jets, and smoke layer descent, coupled with the mechanical smoke control system. Outputs — visibility distance, gas temperature, and toxic species concentration at occupant height — are compared against regulatory tenability limits over the required safe egress time.",
     stats: [
@@ -287,7 +291,8 @@ export const services = [
       ]
     },
     links: [
-      { label: "TCAE by CFD SUPPORT", url: "https://www.cfdsupport.com/tcae/" }
+      { label: "contact", url: "/contact" }
     ]
-  }
+  },
+ 
 ];

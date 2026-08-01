@@ -1,16 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Cpu, ShieldCheck } from "lucide-react";
-import PageBanner from "../common/PageBanner";
-import PageTransition from "../PageTransition/PageTransition";
+import PageBanner from "../../components/common/PageBanner";
+import PageTransition from "../../components/PageTransition/PageTransition";
 import cae from "../../assets/images/solutions/cae.webp";
 import "./Cae.css";
-
+import SEO from "../../components/seo/SEO";
 export default function CloudCaeSolutions() {
     const navigate = useNavigate();
 
     return (
         <>
+            <SEO
+                title="Cloud CAE Solutions | High-Performance Simulation on the Cloud"
+                description="Scale your engineering simulations effortlessly with Cloud CAE. Access high-performance computing (HPC) for heavy CFD and FEA workloads."
+                keywords="Cloud CAE, Cloud CFD, HPC Simulation, High Performance Computing, SaaS Simulation Engine, SandebTech"
+                url="https://sandebtech.com/solutions/cloud-cae"
+            />
             <PageTransition />
 
             {/* Page Banner Component */}

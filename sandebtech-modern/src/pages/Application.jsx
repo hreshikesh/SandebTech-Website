@@ -21,7 +21,7 @@ import lotusImg from "../assets/images/lotus/products/lbk0504.webp";
 import lotusImg2 from "../assets/images/lotus/products/lmu20p1.webp";
 import hvacImg from "../assets/images/solutions/havc.webp";
 import hvacImg2 from "../assets/images/solutions/havc2.webp";
-
+import SEO from "../components/seo/SEO";
 const applicationData = {
   marine: {
     id: "marine",
@@ -152,7 +152,7 @@ const applicationData = {
         description:
           "Model thermal radiation, smoke visibility limits, and toxic gas propagation to validate emergency smoke control and egress systems.",
         image: hvacImg2,
-        link: "/solutions/hvac",
+        link: "/services/hvac",
         tags: ["Smoke Extraction", "Tenability Analysis", "NFPA Compliance"],
       },
       {
@@ -162,7 +162,7 @@ const applicationData = {
         description:
           "Simulate air velocity profiles, mean age of air, PMV/PPD indices, and cleanroom contaminant dispersal patterns.",
         image: hvacImg,
-        link: "/solutions/hvac",
+        link: "/services/hvac",
         tags: ["Air Age", "PMV / PPD Index", "Duct Distribution"],
       },
     ],
@@ -182,6 +182,12 @@ function Applications() {
   return (
     <div className="applications-page">
       {/* ================= HERO SECTION ================= */}
+      <SEO
+        title="Industry Applications | Marine, Turbomachinery & HVAC CFD"
+        description="Discover how SandebTech's simulation solutions address complex engineering challenges across marine, turbomachinery, automotive, and HVAC sectors."
+        keywords="Marine CFD Applications, Turbomachinery Simulation, HVAC CFD, Automotive CAE, Aerospace Simulation"
+        url="https://sandebtech.com/application"
+      />
       <section className="app-hero">
         <div
           className="app-hero-bg"

@@ -1,10 +1,10 @@
 import React from "react";
-import PageBanner from "../common/PageBanner";
+import PageBanner from "../../components/common/PageBanner";
 import logo from "../../assets/images/tcae/tcaelogo.webp"
 import tcae from "../../assets/images/tcae/tcae.webp"
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
+import SEO from "../../components/seo/SEO";
 import {
     Layers,
     Zap,
@@ -160,6 +160,12 @@ function TCAEPage() {
     };
     return (
         <>
+            <SEO
+                title="TCAE | Turbomachinery CFD & FEA Simulation Environment"
+                description="TCAE provides an automated CFD/FEA simulation environment designed specifically for pumps, turbines, fans, and compressors."
+                keywords="TCAE, Turbomachinery Simulation, Pump CFD, Turbine Simulation, Fan CFD, Automated CAE Environment"
+                url="https://sandebtech.com/solutions/tcae"
+            />
             {/* Banner */}
             <PageBanner
                 title="CFD Software - TCAE®"

@@ -10,11 +10,16 @@ import {
   GraduationCap
 } from "lucide-react";
 import "./Resources.css";
-
+import SEO from "../../components/seo/SEO";
 export default function Resources() {
   return (
     <div className="resources-page">
-      {/* ================= HERO BANNER ================= */}
+      <SEO
+        title="Engineering Simulation Resources, Tutorials & Training | SandebTech"
+        description="Access SandebTech's knowledge hub for simulation insights, industry news, live webinars, technical tutorials, and professional training."
+        keywords="CFD Resources, CAE Tutorials, Engineering Webinars, Simulation Training, SandebTech Knowledge Base"
+        url="https://sandebtech.com/resources"
+      />
       <section className="resources-hero">
         <div className="resources-hero-overlay"></div>
         <div className="resources-container hero-content">
@@ -144,12 +149,12 @@ export default function Resources() {
                 <div className="icon-wrapper tutorial-icon">
                   <GraduationCap size={28} />
                 </div>
-               
+
               </div>
 
               <div className="card-body">
                 <h2>Training </h2>
-              
+
 
                 <ul className="card-features">
                   <li>

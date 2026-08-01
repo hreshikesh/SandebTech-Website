@@ -29,7 +29,7 @@ import trainingTemplatePdf from "../../assets/images/lotus/documents/PyroSim_Tra
 import PdfViewerModal from "../../components/lotus/PdfViewerModal";
 import "./TrainingPage.css";
 
-
+import SEO from "../../components/seo/SEO";
 
 const highlights = [
     { icon: Clock, value: "1 Day", label: "6 focused hours" },
@@ -86,6 +86,12 @@ export default function TrainingPage() {
 
     return (
         <section className="training-page">
+            <SEO
+                title="Professional Engineering Simulation Training | SandebTech"
+                description="In-depth, hands-on training courses covering CFD simulation, hydrodynamic optimization, turbomachinery design, and CAE software tools."
+                keywords="CFD Training Courses, CAE Professional Training, Simulation Workshops, Hydrodynamics Course, SandebTech"
+                url="https://sandebtech.com/resources/training"
+            />
             <div className="container">
                 {/* ---------------------------------------------------------------
             INTRO
@@ -105,7 +111,7 @@ export default function TrainingPage() {
             COURSE BANNER
            --------------------------------------------------------------- */}
                 <div className="trn-banner">
-                    
+
                     <div className="trn-banner-body">
                         <h3>Give your team the skills to design safer buildings</h3>
                         <p>

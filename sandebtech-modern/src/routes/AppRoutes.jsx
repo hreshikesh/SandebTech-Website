@@ -30,8 +30,8 @@ import { Toaster } from "react-hot-toast";
 import AdminRoute from "./AdminRoutes";
 import SessionTimeout from "../components/auth/SessionTimeout";
 import Application from "../pages/Application";
-import TCAEPage from "../components/TCAE/TCAEPage";
-import Cae from "../components/cae/Cae";
+import TCAEPage from "../pages/TCAE/TCAEPage";
+import Cae from "../pages/cae/Cae"
 import NewsPage from "../pages/NewsPage/NewsPage";
 import WebinarsPage from "../pages/WebnairPage/WebinarsPage";
 import Hvac from "../pages/havc/Havc";
@@ -39,10 +39,11 @@ import Resources from "../pages/resources/Resources";
 import Careers from "../pages/Carreer";
 import TutorialsPage from "../pages/tutorial/TutorialsPage";
 import TrainingPage from "../pages/training/TrainingPage";
+import AeroSim from "../pages/aerosim/AeroSim";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
-  
+
 
   useEffect(() => {
 
@@ -102,11 +103,15 @@ function App() {
               element={<LotusMarine />}
             />
             <Route
-              path="solutions/tcae"
+              path="/solutions/tcae"
               element={<TCAEPage></TCAEPage>}
             />
             <Route
-              path="solutions/cloud-cae"
+              path="/solutions/aerosim"
+              element={<AeroSim />}
+            />
+            <Route
+              path="/solutions/cloud-cae"
               element={<Cae />} />
             <Route
               path="resources/news"
@@ -114,16 +119,14 @@ function App() {
             <Route
               path="resources/webinar"
               element={<WebinarsPage />} />
-                <Route
-              path="resources/tutorials"
-              element={<TutorialsPage/>} />
-                <Route
-              path="resources/training"
-              element={<TrainingPage/>} />
-
             <Route
-              path="/solutions/hvac"
-              element={<Hvac />} />
+              path="resources/tutorials"
+              element={<TutorialsPage />} />
+            <Route
+              path="resources/training"
+              element={<TrainingPage />} />
+
+
 
             <Route
               path="/resources"
@@ -131,9 +134,10 @@ function App() {
 
             <Route
               path="/career"
-              element={<Careers/>}
+              element={<Careers />}
             />
 
+            <Route path="/services/hvac" element={<Hvac />} />
 
             <Route path="/contact" element={<Contact />} />
 

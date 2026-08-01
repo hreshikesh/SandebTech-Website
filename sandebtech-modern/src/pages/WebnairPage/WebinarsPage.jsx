@@ -16,12 +16,7 @@ import {
 } from "lucide-react";
 import "./WebinarsPage.css";
 
-/**
- * Official Webinar Data Source
- * Researched July 2026. Every entry points to a real vendor and a URL that was
- * verified at the time of writing. Where a vendor didn't have a scheduled future
- * session, the most recent verifiable webinar/event is used and marked On-Demand.
- */
+import SEO from "../../components/seo/SEO";
 const rawWebinarsData = [
   {
     id: "webinar-2",
@@ -134,15 +129,18 @@ export default function WebinarsPage() {
 
   return (
     <main className="webinars-page">
-      {/* -------------------------------------------------------------
-          1. HERO HEADER WITH GLOW ORBS
-         ------------------------------------------------------------- */}
+      <SEO
+        title="Engineering Simulation Webinars | Live & On-Demand | SandebTech"
+        description="Watch live and recorded technical webinars on CFD optimization, hydrodynamics, turbomachinery design, and CAE best practices."
+        keywords="CFD Webinars, Simulation Webinars, Marine CFD Webinar, Turbomachinery Webinar, SandebTech Training"
+        url="https://sandebtech.com/resources/webinar"
+      />
       <header className="webinars-hero">
         <div className="hero-glow-orb orb-1" />
         <div className="hero-glow-orb orb-2" />
         <div className="container">
           <div className="hero-content">
-        
+
             <h1>Engineering Webinars &amp; Masterclasses</h1>
             <p>
               Deep-dive technical sessions hosted by leading simulation vendors.
@@ -246,9 +244,8 @@ export default function WebinarsPage() {
                   <button
                     key={status}
                     type="button"
-                    className={`status-chip ${
-                      statusFilter === status ? "active" : ""
-                    }`}
+                    className={`status-chip ${statusFilter === status ? "active" : ""
+                      }`}
                     onClick={() => setStatusFilter(status)}
                   >
                     {status === "all" ? "All" : status}
@@ -275,9 +272,8 @@ export default function WebinarsPage() {
                 <button
                   key={cat.id}
                   type="button"
-                  className={`tab-btn ${
-                    selectedCategory === cat.id ? "active" : ""
-                  }`}
+                  className={`tab-btn ${selectedCategory === cat.id ? "active" : ""
+                    }`}
                   onClick={() => setSelectedCategory(cat.id)}
                 >
                   {Icon && <Icon size={16} />}
@@ -316,9 +312,8 @@ export default function WebinarsPage() {
                         <span>{item.product}</span>
                       </div>
                       <span
-                        className={`status-badge ${
-                          isUpcoming ? "upcoming" : "ondemand"
-                        }`}
+                        className={`status-badge ${isUpcoming ? "upcoming" : "ondemand"
+                          }`}
                       >
                         {isUpcoming ? (
                           <Video size={12} />
@@ -356,9 +351,8 @@ export default function WebinarsPage() {
                         href={item.registrationUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`webinar-action-btn ${
-                          isUpcoming ? "register" : "watch"
-                        }`}
+                        className={`webinar-action-btn ${isUpcoming ? "register" : "watch"
+                          }`}
                       >
                         <span>
                           {isUpcoming

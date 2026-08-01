@@ -1,9 +1,4 @@
-/* ==========================================
-   1. PREMIUM TOPBAR (3/4 Width Floating Pill)
-   ========================================== */
-/* ==========================================
-   1. SEAMLESS ALIGNED TOPBAR
-   ========================================== */
+
 .topbar-container {
   width: 100%;
   background: #080f23; /* Deep navy background */
@@ -127,7 +122,7 @@
    3. LOGO
 =========================== */
 .logo img {
-  height: 48px;
+  height: 68px;
   width: auto;
   display: block;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);

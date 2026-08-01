@@ -3,13 +3,14 @@ import "./SolutionPage.css";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
-import shipflowImg from "../../assets/images/solutions/shipflow.webp";
-import caesesImg from "../../assets/images/solutions/caeses.webp";
+import shipflowImg from "../../assets/images/logo/shipflowlogo.webp";
+import caesesImg from "../../assets/images/logo/caeseslogo.webp";
 import turboImg from "../../assets/images/solutions/turbomachinery.webp";
 import lotusImg from "../../assets/images/solutions/lotus.webp";
 import tcaeImg from "../../assets/images/tcae/tcae.webp"
-import havc from "../../assets/images/solutions/havc.webp";
+import havc from "../../assets/images/logo/aerosimlogo.webp";
 import cloudeCae from "../../assets/images/solutions/cae.webp";
+import tcae from "../../assets/images/tcae/tcaelogo.webp";
 const solutionsData = [
   {
     id: 1,
@@ -25,21 +26,21 @@ const solutionsData = [
   },
   {
     id: 3,
-    title: "HAVC",
+    title: "AeroSim",
     image: havc,
-    link: "/solutions/havc",
+    link: "/solutions/aerosim",
   },
   {
     id: 4,
     title: "Lotus Marine",
     image: lotusImg,
-    link: "/solutions/lotus-marine",
+    link: "/solutions/lotus-micro",
   },
   {
     id: 5,
     title: "TCAE",
-    image: lotusImg,
-    link: "/solutions/lotus-marine",
+    image: tcae,
+    link: "/solutions/tcae",
 
   },
    {

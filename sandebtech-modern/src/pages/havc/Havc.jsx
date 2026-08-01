@@ -19,8 +19,7 @@ import {
 } from "lucide-react";
 
 import "./Hvac.css";
-
-// Image Imports (replace with your actual asset paths)
+import SEO from "../../components/seo/SEO";
 import hvacImg from "../../assets/images/havc/havc-cfd.webp";
 import datacenterImg from "../../assets/images/havc/datacenter.webp";
 
@@ -74,6 +73,12 @@ function Hvac() {
 
   return (
     <div className="hvac-page">
+      <SEO
+        title="HVAC & Data Center CFD Design Services | SandebTech"
+        description="Optimize thermal management, airflow distribution, and energy efficiency in data centers and industrial facilities with HVAC CFD analysis."
+        keywords="HVAC CFD, Data Center CFD, Thermal Management, Airflow Simulation, Cleanroom CFD, SandebTech"
+        url="https://sandebtech.com/solutions/havc"
+      />
       {/* Background Decorators */}
       <div className="hvac-blueprint-bg"></div>
       <div className="hvac-blob hvac-blob-blue"></div>

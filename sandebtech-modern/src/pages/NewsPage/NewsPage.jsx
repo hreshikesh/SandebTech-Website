@@ -16,7 +16,7 @@ import {
   RefreshCw
 } from "lucide-react";
 import "./NewsPage.css";
-
+import SEO from "../../components/seo/SEO";
 import { rawNewsData } from "../../data/rawNewsData";
 const categories = [
   { id: "all", name: "All News" },
@@ -60,15 +60,18 @@ export default function NewsPage() {
 
   return (
     <main className="news-page">
-      {/* -------------------------------------------------------------
-          1. HERO HEADER WITH GLOW ACCENTS
-         ------------------------------------------------------------- */}
+      <SEO
+        title="Latest Engineering & Company News | SandebTech"
+        description="Stay up to date with product releases, industry insights, events, and company announcements from SandebTech."
+        keywords="SandebTech News, CFD Industry Insights, Engineering Simulation Updates, Software Releases"
+        url="https://sandebtech.com/resources/news"
+      />
       <header className="news-hero">
         <div className="hero-glow-orb orb-1"></div>
         <div className="hero-glow-orb orb-2"></div>
         <div className="container">
           <div className="hero-content">
-          
+
             <h1>Product News & Technical Releases</h1>
             <p>
               Stay up to date with official releases, technical documentation, and product breakthroughs directly from primary engineering portals.
@@ -166,9 +169,8 @@ export default function NewsPage() {
               return (
                 <button
                   key={cat.id}
-                  className={`tab-btn ${
-                    selectedCategory === cat.id ? "active" : ""
-                  }`}
+                  className={`tab-btn ${selectedCategory === cat.id ? "active" : ""
+                    }`}
                   onClick={() => setSelectedCategory(cat.id)}
                 >
                   {Icon && <Icon size={16} />}
@@ -273,7 +275,7 @@ export default function NewsPage() {
               <a href="https://www.cfdsupport.com/news/" target="_blank" rel="noopener noreferrer" className="quick-badge">
                 <Cpu size={15} /><span>TCAE Portal</span>
               </a>
-             
+
             </div>
           </div>
         </section>

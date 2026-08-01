@@ -18,17 +18,7 @@ import {
 } from "lucide-react";
 import "./TutorialsPage.css";
 
-/**
- * Tutorials / Learning Resources.
- *
- * Route: /resources/tutorials
- *
- * Every link points at official vendor documentation, verified live:
- *   SHIPFLOW -> https://shipflow.se/pub/site/index.html
- *   CAESES   -> https://docs.caeses.com/docs/what-is-CAESES/
- * Nothing is mirrored or rehosted.
- */
-
+import SEO from "../../components/seo/SEO";
 const platforms = [
   {
     id: "shipflow",
@@ -225,6 +215,12 @@ export default function TutorialsPage() {
 
   return (
     <section className="tutorials-page">
+      <SEO
+        title="CFD & CAE Software Tutorials | SandebTech"
+        description="Step-by-step technical tutorials and practical guides to master ShipFlow, CAESES, TCAE, and modern simulation workflows."
+        keywords="CFD Tutorials, ShipFlow Tutorial, CAESES Guides, TCAE Walkthrough, CAE Software Learning"
+        url="https://sandebtech.com/resources/tutorials"
+      />
       <div className="container">
         {/* ---------------------------------------------------------------
             INTRO

@@ -41,7 +41,7 @@ export async function sendOTP(email) {
 }
 
 export async function verifyOTP(email, otp) {
-    const response = await API.post("/verify", {
+    const response = await API.post("/auth/verify", {
         email,
         otp
     });

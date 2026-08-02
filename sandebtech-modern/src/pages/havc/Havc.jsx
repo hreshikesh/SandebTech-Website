@@ -77,7 +77,7 @@ function Hvac() {
         title="HVAC & Data Center CFD Design Services | SandebTech"
         description="Optimize thermal management, airflow distribution, and energy efficiency in data centers and industrial facilities with HVAC CFD analysis."
         keywords="HVAC CFD, Data Center CFD, Thermal Management, Airflow Simulation, Cleanroom CFD, SandebTech"
-        url="https://sandebtech.com/solutions/havc"
+        url="https://sandebtech.com/services/hvac"
       />
       {/* Background Decorators */}
       <div className="hvac-blueprint-bg"></div>

@@ -32,7 +32,7 @@ const service = {
   eyebrow: "AeroSim · LES/LBM · GPU",
   title: "Wind engineering and computational wind studies",
   summary:
-    "SandebTech provides consultancy and training using AeroSim, a digital wind tunnel built on high-fidelity LES/LBM CFD and accelerated on GPU. Structural loads, facade pressure, and pedestrian comfort are resolved in hours rather than weeks, giving case-specific answers where generic code tables fall short on complex geometry or terrain. Results are validated against wind tunnel measurements and backed by a peer-reviewed solver.",
+    "SandebTech authorized is patner for AeroSim, a digital wind tunnel built on high-fidelity LES/LBM CFD and accelerated on GPU. Structural loads, facade pressure, and pedestrian comfort are resolved in hours rather than weeks, giving case-specific answers where generic code tables fall short on complex geometry or terrain. Results are validated against wind tunnel measurements and backed by a peer-reviewed solver.",
   detail:
     "Large-eddy simulations reproduce the atmospheric boundary layer with realistic inflow profiles and turbulence for every wind direction. Outputs — external pressure coefficients across the envelope, pedestrian-level velocity fields at 1.5 m, and pressure time series integrated into static and dynamic structural loads — are compared against international comfort and design criteria. A full 16-direction directional study completes in under three days on four GPUs.",
   stats: [

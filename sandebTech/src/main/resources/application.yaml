@@ -57,7 +57,7 @@ google:
   client:
     id: ${GOOGLE_CLIENT_ID}
     secret: ${GOOGLE_SECRET}
-    redirect-uri: "https://sandebtech-website.onrender.com/google/oauth2callback"
+    redirect-uri: "https://sandebtech.com/google/oauth2callback"
 
 gemini:
   api:

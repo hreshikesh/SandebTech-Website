@@ -47,7 +47,7 @@ export async function getAvailableSlots(date) {
     const formattedDate = toLocalDateString(date);
 
     const response = await API.get(
-        `/api/meeting/available-slots?date=${formattedDate}`
+        `/meeting/available-slots?date=${formattedDate}`
     );
 
     return response.data;
@@ -55,7 +55,7 @@ export async function getAvailableSlots(date) {
 
 export async function bookMeeting(data) {
     const response = await API.post(
-        "api/meeting",
+        "/meeting",
         data
     );
 

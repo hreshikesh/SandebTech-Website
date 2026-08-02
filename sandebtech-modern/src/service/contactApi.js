@@ -45,6 +45,6 @@ API.interceptors.response.use(
 );
 
 export async function submitContact(data) {
-  const response = await API.post("/api/contact", data);
+  const response = await API.post("/contact", data);
   return response.data;
 }

@@ -38,11 +38,11 @@ API.interceptors.response.use(
 export default API;
 
 // --- Dashboard Matrix ---
-export const getDashboard = () => API.get("api/admin/dashboard");
+export const getDashboard = () => API.get("/admin/dashboard");
 
 // --- Meetings Endpoint (Upgraded for Server-Side Pagination & Sorting) ---
 export const getMeetings = (page = 0, size = 5, sortBy = "createdAt", direction = "desc") =>
-    API.get("api/admin/meeting", {
+    API.get("/admin/meeting", {
         params: {
             page,
             size,
@@ -52,35 +52,35 @@ export const getMeetings = (page = 0, size = 5, sortBy = "createdAt", direction 
     });
 
 export const updateMeetingStatus = (id, status, adminRemarks) =>
-    API.patch(`api/admin/meeting/${id}/status`, {
+    API.patch(`/admin/meeting/${id}/status`, {
         status,
         adminRemarks
     });
 
-export const deleteMeeting = (id) => API.delete(`api/admin/meeting/${id}`);
+export const deleteMeeting = (id) => API.delete(`/admin/meeting/${id}`);
 
 // --- Users Endpoints ---
 export const getUsers = (page = 0, size = 10) =>
-    API.get("api/admin/users", {
+    API.get("/admin/users", {
         params: { page, size }
     });
 
-export const getUser = (id) => API.get(`api/admin/users/${id}`);
+export const getUser = (id) => API.get(`/admin/users/${id}`);
 
 export const updateUserRole = (id, role) =>
-    API.patch(`api/admin/users/${id}/role`, {
+    API.patch(`/admin/users/${id}/role`, {
         role
     });
 
-export const deleteUser = (id) => API.delete(`api/admin/users/${id}`);
+export const deleteUser = (id) => API.delete(`/admin/users/${id}`);
 
 // --- Contacts Endpoints ---
 export const getContacts = (page = 0, size = 10, sortBy = "createdAt", direction = "desc") =>
-    API.get("api/admin/contact", { params: { page, size, sortBy, direction } });
+    API.get("/admin/contact", { params: { page, size, sortBy, direction } });
 
 export const updateContactStatus = (id, status) =>
-    API.patch(`api/admin/contact/${id}/status`, {
+    API.patch(`/admin/contact/${id}/status`, {
         status
     });
 
-export const deleteContact = (id) => API.delete(`api/admin/contact/${id}`);
+export const deleteContact = (id) => API.delete(`/admin/contact/${id}`);

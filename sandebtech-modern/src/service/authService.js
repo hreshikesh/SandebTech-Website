@@ -36,7 +36,7 @@ API.interceptors.response.use(
 );
 
 export async function sendOTP(email) {
-    const response = await API.post("/api/auth/login", { email });
+    const response = await API.post("/auth/login", { email });
     return response.data;
 }
 
@@ -50,6 +50,6 @@ export async function verifyOTP(email, otp) {
 }
 
 export async function register(data) {
-    const response = await API.post("/api/auth/register", data);
+    const response = await API.post("/auth/register", data);
     return response.data;
 }

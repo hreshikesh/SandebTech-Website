@@ -1,6 +1,7 @@
 .career-form-section {
   padding: 100px 0;
   background: var(--white);
+  overflow: hidden; /* Prevent horizontal scroll */
 }
 
 /* Main container to hold image and text side-by-side */
@@ -8,33 +9,39 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 50px; /* Space between text and image */
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px; /* Prevent edge-to-edge on large screens */
 }
 
 /* Left Column - The Image */
 .career-form-image {
-  flex: 1; /* Takes up 50% width */
+  flex: 1;
   max-width: 50%;
   height: auto;
   border-radius: 24px;
-  object-fit: cover; /* Ensures image covers area without stretching */
-  box-shadow: 0 20px 60px rgba(0,0,0,.08);
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  width: 100%; /* Ensure it fills its flex container */
+  display: block; /* Removes inline spacing gap */
 }
 
 /* Right Column - The Text and Button */
 .career-form-text-block {
-  flex: 1; /* Takes up 50% width */
-  text-align: left; /* Aligns text to the left */
+  flex: 1;
+  text-align: left;
+  max-width: 550px; /* Prevents text from stretching too wide */
 }
 
 .career-form-header {
-  max-width: 100%; /* Full width within the flex column */
-  margin: 0 0 40px 0; /* Adjusted margin */
+  max-width: 100%;
+  margin: 0 0 40px 0;
 }
 
 .career-form-header h2 {
   margin: 18px 0;
-  font-size: 48px; /* Example size, adjust as needed */
+  font-size: 48px;
   line-height: 1.2;
 }
 
@@ -50,34 +57,154 @@
 
 /* Button styling wrapper */
 .career-form-cta {
-  text-align: left; /* Ensures button aligns with text */
+  text-align: left;
+  margin-top: 30px;
 }
 
-/* Responsive: Tablet and Mobile */
+/* Button — make it touch-friendly on mobile */
+.career-form-cta button,
+.career-form-cta a.button {
+  display: inline-block;
+  padding: 16px 36px;
+  font-size: 16px;
+  min-height: 48px; /* Apple's recommended touch target */
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+/* ============================================
+   TABLET (max-width: 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .career-form-content-wrapper {
+    gap: 40px;
+    padding: 0 30px;
+  }
+
+  .career-form-header h2 {
+    font-size: 42px;
+  }
+
+  .career-form-header p {
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+   MOBILE (max-width: 768px)
+   ============================================ */
 @media (max-width: 768px) {
   .career-form-section {
-    padding: 50px 0;
+    padding: 60px 0;
   }
 
   .career-form-content-wrapper {
-    flex-direction: column-reverse; /* Image goes below text on mobile */
+    flex-direction: column-reverse; /* Image goes below text */
     gap: 30px;
+    padding: 0 20px;
   }
 
   .career-form-image {
-    max-width: 100%; /* Image takes full width */
+    max-width: 100%;
+    border-radius: 16px; /* Slightly smaller radius on mobile */
+  }
+
+  .career-form-text-block {
+    text-align: center;
+    max-width: 100%;
   }
 
   .career-form-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
   }
-  
+
   .career-form-header h2 {
-    font-size: 36px;
+    font-size: 32px;
+    margin: 12px 0;
+  }
+
+  .career-form-header p {
+    font-size: 15px;
+    line-height: 1.7;
   }
 
   .career-form-cta {
-    text-align: center; /* Center button on mobile */
+    text-align: center;
+    margin-top: 24px;
   }
+
+  .career-form-cta button,
+  .career-form-cta a.button {
+    width: 100%; /* Full-width button for easy tapping */
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (max-width: 480px)
+   ============================================ */
+@media (max-width: 480px) {
+  .career-form-section {
+    padding: 40px 0;
+  }
+
+  .career-form-content-wrapper {
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .career-form-header h2 {
+    font-size: 26px;
+  }
+
+  .career-form-header p {
+    font-size: 14px;
+  }
+
+  .career-form-image {
+    border-radius: 12px;
+  }
+
+  .career-form-cta button,
+  .career-form-cta a.button {
+    padding: 14px 20px;
+    font-size: 14px;
+    min-height: 48px;
+  }
+}
+
+/* ============================================
+   FORM INPUTS — Make them mobile-friendly
+   (Adjust selectors to match your actual HTML)
+   ============================================ */
+.career-form-text-block input,
+.career-form-text-block textarea,
+.career-form-text-block select {
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 16px;
+  font-size: 16px; /* Prevents iOS zoom on focus */
+  border-radius: 12px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  margin-bottom: 16px;
+  box-sizing: border-box; /* Ensures padding doesn't overflow */
+  font-family: inherit;
+}
+
+.career-form-text-block textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ============================================
+   PREVENT HORIZONTAL SCROLL ON ANY DEVICE
+   ============================================ */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }

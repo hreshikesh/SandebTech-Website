@@ -16,8 +16,8 @@ const reasons = [
   {
     id: 2,
     icon: <ShieldCheck size={36} />,
-    title: "Safety First",
-    desc: "Safety and compliance remain our highest priorities throughout every stage of every project.",
+    title: "Innovative Solutions",
+    desc: "We leverage cutting-edge technology and creative approaches to deliver unique engineering solutions.",
   },
   {
     id: 3,

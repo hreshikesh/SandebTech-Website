@@ -276,13 +276,15 @@ function ContactInfo() {
                 }}
               >
                 <option value="" disabled>Please select a subject...</option>
-                <option value="Shipflow Inquiry">Shipflow Inquiry</option>
-                <option value="CAESES & Lotus Inquiry">CAESES & Lotus Inquiry</option>
-                <option value="HVAC Inquiry">HVAC Inquiry</option>
+                <option value="Shipflow, software/consultancy">Shipflow, software/consultancy</option>
+                <option value="CAESES">CAESES</option>
+                <option value="HVAC CFD Work">HVAC CFD Work</option>
+                <option value="Fire and Evacuation">Fire and Evacuation</option>
+                <option value="Training">Training</option>
                 <option value="Other">Other</option>
               </select>
 
-              {!["Shipflow Inquiry", "CAESES & Lotus Inquiry", "HVAC Inquiry"].includes(form.subject) && (
+              {!["Shipflow, software/consultancy", "CAESES", "HVAC CFD Work"].includes(form.subject) && (
                 <input
                   type="text"
                   placeholder="Please specify your subject..."

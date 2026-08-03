@@ -6,7 +6,8 @@ const API = axios.create({
 });
 
 API.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
+    // Read token from sessionStorage instead of localStorage
+    const token = sessionStorage.getItem("token");
 
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -19,18 +20,14 @@ API.interceptors.response.use(
     (response) => response,
     (error) => {
         const status = error.response?.status;
-        const data = error.response?.data;
 
-        if (status === 401 && localStorage.getItem("token")) {
-
+        if (status === 401 && sessionStorage.getItem("token")) {
             window.dispatchEvent(new Event("forceLogout"));
-
             toast.error("Session expired. Please login again.");
-
             window.location.href = "/";
-
             return Promise.reject(error);
         }
+
         return Promise.reject(error);
     }
 );
@@ -41,11 +38,7 @@ export async function sendOTP(email) {
 }
 
 export async function verifyOTP(email, otp) {
-    const response = await API.post("/auth/verify", {
-        email,
-        otp
-    });
-
+    const response = await API.post("/auth/verify", { email, otp });
     return response.data;
 }
 

@@ -3,16 +3,16 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
-const IDLE_TIME = 30 * 60 * 1000;            // 30 minutes idle
-const MAX_SESSION_TIME = 8 * 60 * 60 * 1000; // 8 hours max session
+const IDLE_TIME = 30 * 60 * 1000;            // 30 minutes
+const MAX_SESSION_TIME = 8 * 60 * 60 * 1000; // 8 hours
 
 export default function SessionTimeout() {
     const navigate = useNavigate();
     const { user, logout, getSessionStartTime } = useAuth();
     const idleTimerRef = useRef(null);
     const sessionTimerRef = useRef(null);
+    const warningToastRef = useRef(null);
 
-    // Logout with reason
     const logoutUser = useCallback((reason = "Session expired") => {
         logout();
 
@@ -24,30 +24,36 @@ export default function SessionTimeout() {
         navigate("/");
     }, [logout, navigate]);
 
-    // Reset idle timer on activity
     const resetIdleTimer = useCallback(() => {
         if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+
+        // Warn 5 minutes before idle logout
+        if (warningToastRef.current) clearTimeout(warningToastRef.current);
+
+        warningToastRef.current = setTimeout(() => {
+            toast("You will be logged out in 5 minutes due to inactivity", {
+                icon: "⚠️",
+                duration: 8000,
+                position: "top-center",
+            });
+        }, IDLE_TIME - 5 * 60 * 1000);
 
         idleTimerRef.current = setTimeout(() => {
             logoutUser("Inactive for too long");
         }, IDLE_TIME);
     }, [logoutUser]);
 
-    // Check and setup max session timer
     const setupMaxSessionTimer = useCallback(() => {
         const sessionStart = getSessionStartTime();
-
         if (!sessionStart) return false;
 
         const elapsed = Date.now() - sessionStart;
 
-        // Already exceeded
         if (elapsed >= MAX_SESSION_TIME) {
             logoutUser("Maximum session time reached");
             return true;
         }
 
-        // Set timer for remaining time
         const remaining = MAX_SESSION_TIME - elapsed;
 
         if (sessionTimerRef.current) clearTimeout(sessionTimerRef.current);
@@ -59,14 +65,11 @@ export default function SessionTimeout() {
         return false;
     }, [getSessionStartTime, logoutUser]);
 
-    // Main effect
     useEffect(() => {
         if (!user) return;
 
-        // Check max session first
         if (setupMaxSessionTimer()) return;
 
-        // Setup idle timer
         const events = [
             "mousemove",
             "mousedown",
@@ -85,6 +88,7 @@ export default function SessionTimeout() {
         return () => {
             if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
             if (sessionTimerRef.current) clearTimeout(sessionTimerRef.current);
+            if (warningToastRef.current) clearTimeout(warningToastRef.current);
 
             events.forEach((event) =>
                 window.removeEventListener(event, resetIdleTimer)

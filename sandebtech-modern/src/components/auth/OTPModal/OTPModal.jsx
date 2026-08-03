@@ -132,6 +132,8 @@ function OTPModal({
                         <p>
                             We've sent a 6-digit verification code to{" "}
                             <strong>{email}</strong>
+                            <p>Please Check Your Spam if you don't see the otp.</p>
+                            <p>Otp valid till 5 minutes</p>
                         </p>
 
                         <OTPInput value={otp} onChange={setOtp} />

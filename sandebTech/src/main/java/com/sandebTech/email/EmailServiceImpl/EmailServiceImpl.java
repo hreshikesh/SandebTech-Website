@@ -106,7 +106,7 @@ public class EmailServiceImpl implements EmailService {
     @Async
     public void sendMeetingCompleted(Meeting meeting) {
         // Reuse confirmation or direct to a specific template if preferred
-        dispatchEmail(meeting.getUser().getEmail(), "✅ Meeting Completed", meeting, "meeting-capproved");
+        dispatchEmail(meeting.getUser().getEmail(), "✅ Meeting Completed", meeting, "meeting-approved");
     }
 
     @Override

@@ -1,0 +1,30 @@
+{
+  "domain": "resources",
+  "documents": [
+    {
+      "id": "resources-tutorials",
+      "type": "resource",
+      "title": "Software Tutorials & Documentation",
+      "keywords": [
+        "tutorial", "tutorials", "documentation", "training material",
+        "software guide", "shipflow tutorial", "caeses tutorial",
+        "learning", "resources", "how to", "guide", "manual",
+        "vendor documentation", "simulation tutorials"
+      ],
+      "phrases": [
+        "software tutorials",
+        "simulation documentation",
+        "training resources",
+        "how to use shipflow",
+        "how to use caeses",
+        "tutorial resources"
+      ],
+      "content": "Official training material and documentation for the simulation platforms SandebTech supports, including SHIPFLOW and CAESES. Every link opens the vendor's own documentation so you always work from the current version rather than a stale copy. Resources cover setup, workflows, meshing, simulation configuration and result interpretation for each platform.",
+      "boost": 1.1,
+      "button": {
+        "label": "View Tutorials",
+        "url": "/resources/tutorials"
+      }
+    }
+  ]
+}

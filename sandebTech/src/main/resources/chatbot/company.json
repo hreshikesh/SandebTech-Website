@@ -66,7 +66,7 @@
       "title": "Contact SandebTech",
       "keywords": ["contact", "phone", "email", "call", "reach", "get in touch", "enquiry", "inquiry", "speak", "connect"],
       "phrases": ["how do i contact you", "get in touch", "contact details", "reach your team"],
-      "content": "You can reach SandebTech by email at info@sandebtech.com, or use the contact page to send your enquiry directly to our engineering team.",
+      "content": "You can reach SandebTech by email at contact@sandebtech.com, or use the contact page to send your enquiry directly to our engineering team.",
       "boost": 1.2,
       "button": { "label": "Contact Us", "url": "/contact" }
     }

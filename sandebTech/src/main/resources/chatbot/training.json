@@ -1,0 +1,35 @@
+{
+  "domain": "resources",
+  "documents": [
+    {
+      "id": "resources-training",
+      "type": "resource",
+      "title": "PyroSim Software Training",
+      "keywords": [
+        "pyrosim", "training", "fire training", "smoke modeling", "fds",
+        "fire dynamics simulator", "fire simulation training", "fire modeling",
+        "smoke simulation", "fire safety training", "building fire",
+        "hvac fire", "smoke control training", "smokeview", "fire protection",
+        "life safety", "building compliance", "fire engineer", "course",
+        "workshop", "one day course", "fire cfd", "performance based design",
+        "nist", "fire dynamics"
+      ],
+      "phrases": [
+        "PyroSim training",
+        "fire simulation training",
+        "smoke modeling course",
+        "fire dynamics simulator course",
+        "FDS training",
+        "fire safety training",
+        "PyroSim course",
+        "fire modeling training"
+      ],
+      "content": "SandebTech offers standard and tailormade PyroSim software training for fire protection engineers, life safety consultants and building compliance professionals. PyroSim is the leading graphical interface for the Fire Dynamics Simulator (FDS) by NIST. The hands-on one-day course covers the PyroSim interface and project workflow, 3D geometry and meshing, materials and fire definition, detection and sprinkler and smoke control configuration, results visualization in Smokeview, and a full hands-on case study validated against code criteria. The course runs for 6 focused hours, is capped at 12 participants, delivered in-person or virtually, and participants receive a certificate on completion. Suitable for fire protection engineers, code compliance reviewers and HVAC and smoke-control designers. No prior PyroSim experience required.",
+      "boost": 1.2,
+      "button": {
+        "label": "View Training",
+        "url": "/resources/training"
+      }
+    }
+  ]
+}

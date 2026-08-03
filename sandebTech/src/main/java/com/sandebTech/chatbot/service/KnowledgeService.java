@@ -98,9 +98,7 @@ public class KnowledgeService {
                 docFrequency.merge(term, 1, Integer::sum);
             }
 
-            // NOTE: assumes KnowledgeDocument exposes a domain (e.g. getDomain()).
-            // Falls back to "all" so a doc with no domain is searchable regardless
-            // of what domain the user's question is routed to.
+
             String domain = doc.getDomain() != null ? doc.getDomain() : "all";
 
             rawDocs.add(new RawDoc(doc.getId(), domain, termFreq, response));
@@ -131,12 +129,6 @@ public class KnowledgeService {
         indexes.putAll(newIndexes);
     }
 
-    /**
-     * Answers a user's question by vectorizing it the same way as the indexed
-     * documents, then picking the best cosine-similarity match. We first search
-     * within the detected domain; if that turns up nothing (or nothing confident
-     * enough), we retry across every domain before giving up and asking Gemini.
-     */
     public ChatResponse ask(String question) {
         String domain = domainService.detect(question);
 

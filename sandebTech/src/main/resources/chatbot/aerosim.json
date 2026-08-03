@@ -1,0 +1,40 @@
+{
+  "domain": "wind",
+  "documents": [
+    {
+      "id": "aerosim",
+      "type": "solution",
+      "title": "AeroSim – Wind Engineering & Computational Wind Studies",
+      "keywords": [
+        "aerosim", "wind engineering", "computational wind", "wind simulation",
+        "urban wind", "wind tunnel", "les", "lbm", "lattice boltzmann",
+        "gpu", "pedestrian comfort", "facade pressure", "structural wind loads",
+        "wind flow", "tall buildings", "pressure coefficients", "wind comfort",
+        "lawson", "nen 8100", "eurocode", "atmospheric boundary layer",
+        "wind speed", "vortex shedding", "pollutant dispersion", "gas dispersion",
+        "topographic factor", "wind direction", "cfd wind", "digital wind tunnel",
+        "building wind", "wind study", "wind analysis", "aerodynamics"
+      ],
+      "phrases": [
+        "wind engineering",
+        "computational wind study",
+        "urban wind flow simulation",
+        "pedestrian wind comfort",
+        "facade pressure analysis",
+        "structural wind loads",
+        "AeroSim",
+        "digital wind tunnel",
+        "wind pressure on buildings",
+        "wind comfort assessment",
+        "LES wind simulation",
+        "wind tunnel simulation"
+      ],
+      "content": "SandebTech is an authorized partner for AeroSim, a digital wind tunnel built on high-fidelity LES/LBM CFD and GPU-accelerated for urban wind flow and pressure simulation around tall buildings. AeroSim delivers structural loads, facade pressure coefficients and pedestrian wind comfort assessments in hours rather than weeks. Large-eddy simulations reproduce the atmospheric boundary layer with realistic inflow profiles and turbulence for every wind direction. A full 16-direction directional study completes in under three days on four GPUs. Capabilities include pedestrian comfort and safety rated by Lawson and NEN 8100 criteria, facade pressure mapping across the full envelope, static forces and dynamic structural analysis, topographic wind speed-up, site-specific basic wind speed, gas and pollutant dispersion, and studies for towers, podiums, plazas, terraces, bridges and urban developments. Studies are validated against physical wind tunnel measurements, aligned with Eurocode terrain categories and backed by a peer-reviewed solver published in JWEIA 274 (2026) 106465.",
+      "boost": 1.3,
+      "button": {
+        "label": "Explore AeroSim",
+        "url": "/solutions/aerosim"
+      }
+    }
+  ]
+}

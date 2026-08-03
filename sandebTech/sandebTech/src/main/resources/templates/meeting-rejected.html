@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meeting Update</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 25px; background: #f4f4f4; margin: 0;">
+<div style="max-width: 650px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+    <img src="cid:logo" width="170" alt="Logo" style="display: block; margin-bottom: 20px;"/>
+    <h2 style="color: #dc2626; margin-top: 0;">❌ Meeting Request Declined</h2>
+    <p style="color: #334155; font-size: 15px;">Dear <span th:text="${meeting.user.name}"></span>,</p>
+    <p style="color: #475569; line-height: 1.6;">Thank you for reaching out to us. We regret to inform you that we are unable to accommodate your session request at the designated time frame. This typically happens due to sudden schedule overlaps, resource constraints, or engineering down-times.</p>
+
+    <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+        <h4 style="margin: 0 0 5px 0; color: #991b1b;">Cancelled Details Reference:</h4>
+        <p style="margin: 4px 0; font-size: 14px; color: #555;"><strong style="color: #0f172a;">Requested Slot:</strong> <span th:text="${meeting.meetingDate}"></span> at <span th:text="${meeting.startTime}"></span></p>
+        <p style="margin: 4px 0; font-size: 14px; color: #555;"><strong style="color: #0f172a;">Stated Objective:</strong> <span th:text="${meeting.purpose}"></span></p>
+        <p th:if="${meeting.notes != null and !meeting.notes.empty}" style="margin: 4px 0; font-size: 14px; color: #555;"><strong style="color: #0f172a;">Your Notes:</strong> <span th:text="${meeting.notes}"></span></p>
+    </div>
+
+    <p style="color: #334155; line-height: 1.6;"><strong>Next Steps:</strong> You are welcome to log back into your portal profile dashboard to select a different open time slot, or contact our operations room at <a href="mailto:info@sandebtech.com" style="color: #2563eb; text-decoration: none;">info@sandebtech.com</a> for special overrides.</p>
+
+    <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-top: 25px; margin-bottom: 20px;">
+    <p style="margin: 0; color: #64748b; font-size: 14px;">Regards,</p>
+    <strong style="color: #0f172a; font-size: 16px;">SandebTech Operations Team</strong>
+</div>
+</body>
+</html>

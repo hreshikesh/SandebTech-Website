@@ -1,0 +1,737 @@
+/* ==========================================================================
+   TCAE DESIGN SYSTEM & DESIGN TOKENS
+   ========================================================================== */
+:root {
+  /* Brand Colors */
+  --tcae-primary-hsl: 200, 98%, 39%;
+  --tcae-primary: hsl(var(--tcae-primary-hsl));
+  --tcae-primary-hover: hsl(200, 98%, 32%);
+  --tcae-primary-light: hsla(var(--tcae-primary-hsl), 0.08);
+  --tcae-primary-glow: hsla(var(--tcae-primary-hsl), 0.18);
+
+  /* Accent & Status Colors */
+  --tcae-accent-cyan: #38bdf8;
+  --tcae-accent-emerald: #10b981;
+
+  /* Surface & Background Colors */
+  --tcae-dark-bg: #0f172a;
+  --tcae-dark-surface: #1e293b;
+  --tcae-card-bg: #ffffff;
+  --tcae-alt-bg: #f8fafc;
+
+  /* Borders & Dividers */
+  --tcae-border: #e2e8f0;
+  --tcae-border-hover: #cbd5e1;
+
+  /* Typography */
+  --tcae-text-dark: #0f172a;
+  --tcae-text-sub: #334155;
+  --tcae-text-muted: #64748b;
+  --tcae-font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  /* Elevation & Shadows */
+  --tcae-radius-sm: 8px;
+  --tcae-radius: 12px;
+  --tcae-radius-lg: 16px;
+  --tcae-radius-full: 9999px;
+
+  --tcae-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --tcae-shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.08),
+    0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --tcae-shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.12),
+    0 4px 12px -2px rgba(15, 23, 42, 0.08);
+  --tcae-shadow-glow: 0 10px 30px -5px hsla(var(--tcae-primary-hsl), 0.25);
+
+  /* Animation Timings */
+  --tcae-ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   BASE & LAYOUT CONSTRAINTS
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.tcae-page {
+  font-family: var(--tcae-font-stack);
+  color: var(--tcae-text-dark);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.tcae-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.tcae-section {
+  padding: clamp(2.5rem, 6vw, 5.5rem) 0;
+}
+
+.tcae-bg-alt {
+  background-color: var(--tcae-alt-bg);
+  border-top: 1px solid var(--tcae-border);
+  border-bottom: 1px solid var(--tcae-border);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & SECTION HEADERS
+   ========================================================================== */
+.tcae-section-header {
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.tcae-section-header.text-center {
+  text-align: center;
+}
+
+.section-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--tcae-primary);
+  background: var(--tcae-primary-light);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--tcae-radius-full);
+  margin-bottom: 0.85rem;
+  border: 1px solid hsla(var(--tcae-primary-hsl), 0.15);
+}
+
+.tcae-section-header h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--tcae-text-dark);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 0.85rem;
+}
+
+.tcae-section-header p {
+  font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+  color: var(--tcae-text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   HEADER / INTRO BAR
+   ========================================================================== */
+.tcae-intro-bar {
+  background: var(--tcae-dark-bg);
+  color: #ffffff;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tcae-intro-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.tcae-brand-badge {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(2, 132, 199, 0.18);
+  color: var(--tcae-accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--tcae-radius-full);
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s var(--tcae-ease-smooth);
+}
+
+.brand-link:hover,
+.brand-link:focus-visible {
+  color: #ffffff;
+  outline: none;
+}
+
+.tcae-hero-stats {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 800;
+  color: var(--tcae-accent-cyan);
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   SHOWCASE CARDS & IMAGE BANNERS
+   ========================================================================== */
+
+/* Image Showcase 1 (Why TCAE Feature Highlight) */
+.tcae-showcase-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--tcae-border);
+  border-radius: var(--tcae-radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: 3rem;
+  box-shadow: var(--tcae-shadow-md);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tcae-showcase-card:hover {
+  border-color: var(--tcae-border-hover);
+  box-shadow: var(--tcae-shadow-lg);
+}
+
+.showcase-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--tcae-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.showcase-content h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  font-weight: 800;
+  margin: 0.4rem 0 0.85rem 0;
+  line-height: 1.28;
+  color: var(--tcae-text-dark);
+}
+
+.showcase-content p {
+  color: var(--tcae-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-size: 0.98rem;
+}
+
+.showcase-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.showcase-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--tcae-text-dark);
+}
+
+.showcase-list svg {
+  color: var(--tcae-accent-emerald);
+  flex-shrink: 0;
+}
+
+.showcase-media {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  justify-self: center;
+}
+
+.media-frame {
+  position: relative;
+  border-radius: var(--tcae-radius);
+  overflow: hidden;
+  border: 1px solid var(--tcae-dark-surface);
+  box-shadow: var(--tcae-shadow-lg);
+  background: #090d16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 300px;
+  padding: 0.5rem;
+}
+
+.media-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.5s var(--tcae-ease-smooth);
+}
+
+.media-frame:hover img {
+  transform: scale(1.02);
+}
+
+.media-overlay-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--tcae-accent-cyan);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--tcae-radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 2;
+}
+
+/* Image Showcase 2 (Key Capabilities Banner) */
+.capabilities-visual-banner {
+  margin-bottom: 3.5rem;
+}
+
+.banner-image-container {
+  position: relative;
+  border-radius: var(--tcae-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--tcae-shadow-lg);
+  border: 1px solid var(--tcae-dark-surface);
+  background: #0b0f19;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+}
+
+.banner-glass-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(15, 23, 42, 0.75) 80%,
+    transparent 100%
+  );
+  padding: clamp(1.25rem, 3vw, 2rem);
+  color: #ffffff;
+  z-index: 2;
+}
+
+.banner-glass-caption h4 {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: #f8fafc;
+}
+
+.banner-glass-caption p {
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  max-width: 850px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   CARDS & GRIDS (2 CARDS PER ROW BY DEFAULT)
+   ========================================================================== */
+
+/* Why TCAE Grid */
+.why-tcae-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.why-tcae-card {
+  background: var(--tcae-card-bg);
+  border: 1px solid var(--tcae-border);
+  border-radius: var(--tcae-radius);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  transition: transform 0.3s var(--tcae-ease-smooth),
+    box-shadow 0.3s var(--tcae-ease-smooth),
+    border-color 0.3s var(--tcae-ease-smooth);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.why-tcae-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--tcae-shadow-glow), var(--tcae-shadow-md);
+  border-color: hsla(var(--tcae-primary-hsl), 0.3);
+}
+
+.why-card-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.why-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--tcae-primary-light);
+  color: var(--tcae-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.why-tcae-card:hover .why-icon-box {
+  background: var(--tcae-primary);
+  color: #ffffff;
+}
+
+.why-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--tcae-primary);
+  letter-spacing: 0.06em;
+}
+
+.why-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+  color: var(--tcae-text-dark);
+  line-height: 1.35;
+}
+
+.why-card-body {
+  background: var(--tcae-alt-bg);
+  padding: 1rem;
+  border-radius: var(--tcae-radius-sm);
+  border-left: 3px solid var(--tcae-primary);
+}
+
+.benefit-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--tcae-text-muted);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+.benefit-text {
+  font-size: 0.9rem;
+  color: var(--tcae-text-sub);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Capabilities Grid */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 per row */
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.capability-card {
+  background: var(--tcae-card-bg);
+  border: 1px solid var(--tcae-border);
+  border-radius: var(--tcae-radius);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  transition: transform 0.3s var(--tcae-ease-smooth),
+    box-shadow 0.3s var(--tcae-ease-smooth),
+    border-color 0.3s var(--tcae-ease-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.capability-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--tcae-shadow-md);
+  border-color: var(--tcae-border-hover);
+}
+
+.cap-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.cap-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--tcae-dark-bg);
+  color: var(--tcae-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--tcae-shadow-sm);
+  flex-shrink: 0;
+}
+
+.cap-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--tcae-alt-bg);
+  color: var(--tcae-text-muted);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid var(--tcae-border);
+}
+
+.cap-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--tcae-text-dark);
+}
+
+.cap-desc {
+  font-size: 0.92rem;
+  color: var(--tcae-text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.cap-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--tcae-border);
+}
+
+.cap-point {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e293b;
+  background: var(--tcae-alt-bg);
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.cap-point .point-icon {
+  color: var(--tcae-accent-emerald);
+}
+
+/* ==========================================================================
+   CALL TO ACTION (CTA) SECTION
+   ========================================================================== */
+.tcae-cta-section {
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+  background: #ffffff;
+}
+
+.tcae-cta-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: clamp(16px, 3vw, 24px);
+  padding: clamp(2.25rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
+  text-align: center;
+  box-shadow: var(--tcae-shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tcae-cta-card h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.tcae-cta-card p {
+  font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+  color: #94a3b8;
+  max-width: 620px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.tcae-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--tcae-radius-sm);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s var(--tcae-ease-smooth);
+}
+
+.white-btn {
+  background: #ffffff;
+  color: var(--tcae-dark-bg);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.white-btn:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+}
+
+.white-btn:focus-visible {
+  outline: 2px solid var(--tcae-accent-cyan);
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS & MOBILE ADAPTATIONS
+   ========================================================================== */
+
+/* Tablets & Small Laptops (Max Width: 900px) */
+@media (max-width: 900px) {
+  .tcae-showcase-card {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .showcase-media {
+    max-width: 100%;
+  }
+
+  .media-frame {
+    max-height: 260px;
+  }
+}
+
+/* Mobile Devices (Max Width: 768px) */
+@media (max-width: 768px) {
+  /* Collapse card grids from 2 columns to 1 column on mobile screens */
+  .why-tcae-grid,
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Adjust banner glass caption so it doesn't block vertical mobile viewport */
+  .banner-glass-caption {
+    position: relative;
+    background: #0f172a;
+    padding: 1.25rem 1rem;
+  }
+
+  .banner-image-container img {
+    max-height: 260px;
+  }
+}
+
+/* Small Mobile Screens (Max Width: 640px) */
+@media (max-width: 640px) {
+  .tcae-intro-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .tcae-brand-badge {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tcae-hero-stats {
+    width: 100%;
+    justify-content: space-around;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 0.85rem;
+  }
+
+  .banner-image-container img {
+    max-height: 220px;
+  }
+
+  .cta-buttons,
+  .tcae-btn {
+    width: 100%;
+  }
+}
+
+/* Ultra Small Screens (Max Width: 400px) */
+@media (max-width: 400px) {
+  .cap-highlights {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cap-point {
+    width: 100%;
+  }
+}

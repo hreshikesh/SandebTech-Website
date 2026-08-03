@@ -1,0 +1,70 @@
+{
+  "domain": "lotus-marine",
+  "documents": [
+    {
+      "id": "lotus-overview",
+      "type": "solution",
+      "title": "Lotus Marine Solutions",
+      "keywords": ["lotus", "lotus marine", "marine solution", "marine engineering", "vessel dynamics"],
+      "phrases": ["lotus marine", "marine engineering solutions", "vessel dynamics"],
+      "content": "Lotus Marine delivers advanced marine engineering solutions for offshore structures, vessel dynamics and seakeeping analysis. The offering spans hull design support, marine analysis, stability assessment and simulation-driven naval design workflows, connecting early concept exploration through to detailed verification.",
+      "boost": 1.2,
+      "button": { "label": "Explore Lotus Marine", "url": "/solutions/lotus-marine" }
+    },
+    {
+      "id": "lotus-hull-design",
+      "type": "service",
+      "title": "Hull Design Workflow",
+      "keywords": ["hull design", "lines", "lines plan", "fairing", "surface", "concept design", "hull form", "displacement", "hull modelling"],
+      "phrases": ["hull design workflow", "lines plan", "hull fairing", "concept hull design"],
+      "content": "Hull design begins with a concept form driven by mission requirements: deadweight or payload, speed, draft and beam limits, and any canal or port constraints. The surface is developed and faired, then checked against hydrostatic and stability requirements before hydrodynamic refinement begins. Working parametrically means the form can be adjusted late in the process without discarding the downstream analysis setup.",
+      "boost": 1.2
+    },
+    {
+      "id": "lotus-marine-analysis",
+      "type": "service",
+      "title": "Marine Analysis Services",
+      "keywords": ["marine analysis", "analysis", "hydrostatics", "loading", "structural", "load case", "trim", "draft", "assessment"],
+      "phrases": ["marine analysis", "hydrostatic analysis", "loading condition", "load cases"],
+      "content": "Marine analysis covers hydrostatics across the full range of loading conditions, trim and draft assessment, longitudinal strength and load case evaluation, and hydrodynamic loading for structural design. Results establish whether a design is viable before significant engineering effort is committed, and provide the load envelope used by structural and mooring teams downstream.",
+      "boost": 1.1
+    },
+    {
+      "id": "lotus-stability",
+      "type": "service",
+      "title": "Ship Stability Assessment",
+      "keywords": ["stability", "intact stability", "damage stability", "gz", "metacentric", "gm", "righting", "heel", "solas", "imo", "criteria", "freeboard"],
+      "phrases": ["ship stability", "intact stability", "damage stability", "gz curve", "metacentric height", "stability criteria"],
+      "content": "Stability assessment covers both intact and damage conditions. Intact stability evaluates the GZ righting lever curve, metacentric height GM, angle of vanishing stability and area-under-curve criteria across all loading conditions. Damage stability considers compartment flooding scenarios and residual righting capability. Assessments are performed against the applicable IMO and SOLAS criteria and class society rules for the vessel type and service.",
+      "boost": 1.2
+    },
+    {
+      "id": "lotus-simulation",
+      "type": "service",
+      "title": "Marine Simulation",
+      "keywords": ["marine simulation", "simulation", "manoeuvring", "maneuvering", "turning circle", "zigzag", "dynamic positioning", "mooring", "time domain", "motion"],
+      "phrases": ["marine simulation", "manoeuvring simulation", "turning circle", "dynamic positioning", "time domain simulation"],
+      "content": "Marine simulation extends beyond steady resistance into time domain behaviour. Manoeuvring studies produce turning circle and zigzag performance and verify IMO manoeuvring standards. Dynamic positioning and mooring simulations assess station keeping capability under combined wind, wave and current loading. Coupled motion simulations support operability windows for offshore installation and transfer operations.",
+      "boost": 1.1
+    },
+    {
+      "id": "lotus-workflow",
+      "type": "technology",
+      "title": "Naval Design Workflow",
+      "keywords": ["workflow", "naval design", "design spiral", "process", "concept", "preliminary", "detailed design", "integration", "methodology", "stages"],
+      "phrases": ["naval design workflow", "design spiral", "design process", "concept to detailed design"],
+      "content": "The naval design workflow follows the classic design spiral, revisited with simulation at each turn. Concept design fixes principal dimensions and mission fit. Preliminary design develops the hull form, general arrangement and powering estimate. Detailed design refines structure, systems and appendages. A simulation-driven workflow front-loads analysis so that hydrodynamic and stability feedback arrives while changes are still inexpensive, rather than after the arrangement is frozen.",
+      "boost": 1.1
+    },
+    {
+      "id": "lotus-faq-scope",
+      "type": "faq",
+      "title": "What vessel types does Lotus Marine support?",
+      "keywords": ["vessel type", "which ships", "support", "tanker", "bulk carrier", "container", "ferry", "naval", "workboat", "what ships"],
+      "phrases": ["what vessel types", "which vessels", "types of ships"],
+      "content": "Work covers commercial vessels including tankers, bulk carriers, container ships and RoPax ferries, alongside naval and patrol craft, workboats, offshore support vessels and floating offshore structures. Multihulls, SWATH forms and high speed planing craft are also supported. For a specific vessel type and scope, contact SandebTech to discuss the requirement.",
+      "boost": 1.0,
+      "button": { "label": "Contact Us", "url": "/contact" }
+    }
+  ]
+}

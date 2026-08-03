@@ -1,0 +1,48 @@
+.caeses-video{
+    padding:110px 0;
+    background:#f8fafc;
+}
+
+.video-heading{
+    max-width:760px;
+    margin:auto;
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.video-heading h2{
+    font-size:42px;
+    color:#1e293b;
+    margin:18px 0;
+}
+
+.video-heading p{
+    color:#64748b;
+    line-height:1.8;
+}
+
+.video-wrapper{
+    max-width:1000px;
+    margin:auto;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 18px 45px rgba(15,23,42,.08);
+}
+
+.video-wrapper iframe{
+    width:100%;
+    aspect-ratio:16/9;
+    border:none;
+}
+
+@media(max-width:768px){
+
+.caeses-video{
+    padding:80px 0;
+}
+
+.video-heading h2{
+    font-size:32px;
+}
+
+}

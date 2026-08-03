@@ -1,0 +1,129 @@
+:root {
+    --bg-surface: #111c2e;
+    --bg-card-hover: #16243d;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-glow: #00d9ff;
+    --success: #10b981;
+    --error: #ef4444;
+    --transition-speed: 0.25s;
+}
+
+.stat-card {
+    background: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Aligns items perfectly if text expands */
+    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover elevation with a slight ambient drop shadow */
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: var(--bg-card-hover);
+    border-color: rgba(0, 217, 255, 0.15);
+    box-shadow: 0 12px 30px rgba(0, 217, 255, 0.06);
+}
+
+/* Info container alignment */
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-title {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    color: var(--text-primary);
+    font-size: 36px;
+    font-weight: 700;
+    margin: 8px 0 0 0;
+    letter-spacing: -1px;
+}
+
+/* Trend & Description Contextual Block */
+.stat-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.stat-trend {
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.trend-up {
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.trend-down {
+    color: var(--error);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.stat-desc {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Premium Floating Icon Component Frame */
+.stat-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 217, 255, 0.06);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-glow);
+    font-size: 24px;
+    transition: all var(--transition-speed) ease;
+    border: 1px solid rgba(0, 217, 255, 0.1);
+    box-shadow: inset 0 0 12px rgba(0, 217, 255, 0.05);
+    flex-shrink: 0; /* Keeps the circle perfect on mobile constraints */
+}
+
+/* Icon reacts when the whole card is hovered */
+.stat-card:hover .stat-icon-wrapper {
+    background: var(--accent-glow);
+    color: #07111f;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Responsive Architecture Layout (Ensures readability on tight rows)
+   ========================================================================== */
+@media (max-width: 480px) {
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-value {
+        font-size: 28px;
+    }
+    
+    .stat-icon-wrapper {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+        border-radius: 12px;
+    }
+}

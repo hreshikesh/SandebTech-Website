@@ -1,0 +1,531 @@
+/* ==========================================================================
+   Cloud CAE Solutions Page Stylesheet (Pure CSS)
+   ========================================================================== */
+
+:root {
+  --cae-bg-dark: #090d16;
+  --cae-bg-card: #0f172a;
+  --cae-bg-card-hover: #1e293b;
+  --cae-border-color: rgba(255, 255, 255, 0.1);
+  --cae-border-active: rgba(6, 182, 212, 0.4);
+  --cae-primary-cyan: #06b6d4;
+  --cae-accent-teal: #2dd4bf;
+  --cae-text-primary: #f8fafc;
+  --cae-text-secondary: #94a3b8;
+  --cae-text-muted: #64748b;
+  --cae-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Page Base */
+.cae-page {
+  min-height: 100vh;
+  background-color: var(--cae-bg-dark);
+  color: var(--cae-text-primary);
+  font-family: var(--cae-font);
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.cae-page *, .cae-page *::before, .cae-page *::after {
+  box-sizing: inherit;
+}
+
+/* ==========================================================================
+   Page Banner / Hero
+   ========================================================================== */
+.cae-banner {
+  position: relative;
+  background: radial-gradient(circle at 50% -20%, rgba(6, 182, 212, 0.18), transparent 70%),
+              linear-gradient(180deg, #0b1329 0%, var(--cae-bg-dark) 100%);
+  padding: 4rem 1.5rem 3.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--cae-border-color);
+}
+
+.cae-banner-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Pill Tag */
+.cae-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  background-color: rgba(8, 51, 68, 0.8);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 9999px;
+  color: var(--cae-primary-cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.cae-pill-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Main Title */
+.cae-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 1rem;
+}
+
+.cae-title-gradient {
+  background: linear-gradient(135deg, var(--cae-primary-cyan) 0%, var(--cae-accent-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtitle */
+.cae-subtitle {
+  font-size: 1.05rem;
+  color: var(--cae-text-secondary);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Main Content Layout
+   ========================================================================== */
+.cae-main {
+  padding: 3.5rem 1.5rem;
+}
+
+.cae-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cae-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Media / Image Frame Section
+   ========================================================================== */
+.cae-image-card {
+  padding: 4px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(30, 41, 59, 0.6));
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.3s ease;
+}
+
+.cae-image-card:hover {
+  border-color: var(--cae-border-active);
+}
+
+.cae-image-frame {
+  position: relative;
+  background-color: #020617;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--cae-border-color);
+}
+
+.cae-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.cae-image-card:hover .cae-image {
+  transform: scale(1.03);
+}
+
+/* Overlay Glassmorphism Badge */
+.cae-overlay-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--cae-border-color);
+  padding: 0.75rem 1rem;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cae-status-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cae-pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: caePulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes caePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.cae-status-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cae-text-primary);
+  margin: 0;
+}
+
+.cae-status-sub {
+  font-size: 0.7rem;
+  color: var(--cae-text-secondary);
+  margin: 0;
+}
+
+.cae-metric-chip {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: var(--cae-primary-cyan);
+  background-color: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Content Column
+   ========================================================================== */
+.cae-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cae-section-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cae-primary-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cae-section-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.cae-paragraph {
+  font-size: 1rem;
+  color: var(--cae-text-secondary);
+  line-height: 1.7;
+  text-align: justify;
+  margin: 0;
+}
+
+.cae-paragraph strong {
+  color: var(--cae-primary-cyan);
+  font-weight: 700;
+}
+
+/* Feature Cards Grid */
+.cae-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.cae-feature-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--cae-bg-card);
+  border: 1px solid var(--cae-border-color);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.cae-feature-icon {
+  font-size: 1.1rem;
+}
+
+.cae-feature-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cae-text-primary);
+}
+
+/* CTA Button */
+.cae-cta-box {
+  margin-top: 0.5rem;
+}
+
+.cae-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.75rem;
+  background-color: var(--cae-primary-cyan);
+  color: #020617;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -5px rgba(6, 182, 212, 0.4);
+  transition: all 0.2s ease;
+}
+
+.cae-primary-btn:hover {
+  background-color: #22d3ee;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -5px rgba(6, 182, 212, 0.6);
+}
+
+.cae-primary-btn:active {
+  transform: translateY(0);
+}
+
+.cae-btn-arrow {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (min-width: 640px) {
+  .cae-title {
+    font-size: 3rem;
+  }
+  
+  .cae-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cae-banner {
+    padding: 5rem 2rem 4rem;
+  }
+
+  .cae-main {
+    padding: 5rem 2rem;
+  }
+
+  .cae-grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 3.5rem;
+  }
+
+  .cae-media-col {
+    grid-column: span 6;
+  }
+
+  .cae-content-col {
+    grid-column: span 6;
+  }
+}
+/* ==========================================================================
+   Cloud CAE Solutions Page Stylesheet (Standard Light Theme Layout)
+   ========================================================================== */
+
+.cae-solutions {
+    padding: 110px 0;
+    background: #ffffff;
+}
+
+.cae-solutions .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Row & Grid Structure */
+.cae-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.cae-row.reverse .cae-image {
+    order: 2;
+}
+
+.cae-row.reverse .cae-content {
+    order: 1;
+}
+
+/* Image Box */
+.cae-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cae-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 22px;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.10);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    object-fit: cover;
+}
+
+.cae-image img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
+}
+
+/* Badge Tag */
+.cae-badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #0F4C81;
+    background: rgba(15, 76, 129, 0.08);
+    padding: 6px 14px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+}
+
+/* Content & Typography */
+.cae-content h3 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.cae-content p {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.cae-content p strong {
+    color: #0F4C81;
+    font-weight: 700;
+}
+
+/* Feature Badges */
+.cae-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.cae-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.feature-icon {
+    color: #0F4C81;
+    flex-shrink: 0;
+}
+
+/* Action Link Button */
+.cae-action {
+    margin-top: 24px;
+}
+
+.case-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    background: transparent;
+    color: #0F4C81;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.case-link:hover {
+    gap: 14px;
+    color: #0b375e;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .cae-row {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .cae-row.reverse .cae-image,
+    .cae-row.reverse .cae-content {
+        order: unset;
+    }
+
+    .cae-content h3 {
+        font-size: 28px;
+    }
+
+    .cae-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .cae-solutions {
+        padding: 80px 0;
+    }
+
+    .cae-image img {
+        max-width: 100%;
+    }
+}

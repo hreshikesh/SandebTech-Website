@@ -1,0 +1,124 @@
+.contact-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45); /* Darker slate tone alpha blending */
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  z-index: 99999;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-modal {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 32px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: popup 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Snappy spring animation */
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: none;
+  background: #f1f5f9;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Rounded emerald soft shield containment ring */
+.success-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  background-color: #f0fdf4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+}
+
+.success-icon {
+  color: #16a34a;
+}
+
+.contact-modal h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.contact-modal p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 32px 0;
+}
+
+.success-btn {
+  width: 100%; /* Spans full modal width for mobile-friendly targets */
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  background: #0f4c81;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.success-btn:hover {
+  background: #0b3a63;
+}
+
+.success-btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.95) translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile responsive font tuning overrides */
+@media (max-width: 440px) {
+  .contact-modal {
+    padding: 32px 20px;
+  }
+  .contact-modal h2 {
+    font-size: 21px;
+  }
+}

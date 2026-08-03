@@ -1,0 +1,1065 @@
+/* ==========================================================================
+   Training Page  —  /resources/training
+   Brand theme: #0F4C81 primary · #f8fafc surface
+   Same tokens as ServiceProduct.css / TutorialsPage.css
+   ========================================================================== */
+
+.training-page {
+    background: #f8fafc;
+    padding: 70px 0 90px;
+    font-family: inherit;
+}
+
+.training-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   INTRO
+   ========================================================================== */
+
+.trn-intro {
+    max-width: 780px;
+    margin-bottom: 30px;
+}
+
+.trn-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #0369a1;
+    background: #e0f2fe;
+    padding: 6px 13px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.trn-intro h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.6px;
+    line-height: 1.22;
+    margin: 0 0 10px 0;
+}
+
+.trn-lede {
+    font-size: 16px;
+    line-height: 1.65;
+    color: #64748b;
+    font-style: italic;
+    margin: 0;
+}
+
+/* ==========================================================================
+   COURSE BANNER
+   ========================================================================== */
+
+.trn-banner {
+  
+
+    gap: 0;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 44px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.trn-banner-media {
+    position: relative;
+    background: linear-gradient(135deg, #0F4C81 0%, #082d4d 100%);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.trn-banner-media img {
+    width: 100%;
+    height: 100%;
+    min-height: 240px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+}
+
+.trn-banner-tag {
+    position: absolute;
+    left: 38px;
+    bottom: 38px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(6, 30, 51, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    color: #7dd3fc;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.trn-banner-body {
+    padding: 34px;
+}
+
+.trn-banner-body h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.32;
+    letter-spacing: -0.3px;
+    margin: 0 0 14px 0;
+}
+
+.trn-banner-body p {
+    font-size: 14.8px;
+    line-height: 1.74;
+    color: #475569;
+    margin: 0 0 14px 0;
+}
+
+.trn-banner-note {
+    font-size: 14px !important;
+    color: #64748b !important;
+    padding-left: 16px;
+    border-left: 3px solid #e0f2fe;
+}
+
+/* Highlight strip */
+.trn-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.trn-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 15px;
+}
+
+.trn-highlight svg {
+    color: #0F4C81;
+    margin-bottom: 3px;
+}
+
+.trn-highlight strong {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0F4C81;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+}
+
+.trn-highlight span {
+    font-size: 11.5px;
+    color: #64748b;
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+
+.trn-section {
+    margin-bottom: 44px;
+}
+
+.trn-section-head {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 20px;
+}
+
+.trn-section-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #e0f2fe;
+    color: #0F4C81;
+    flex-shrink: 0;
+}
+
+.trn-section-head h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+}
+
+.trn-rule {
+    flex: 1;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.trn-section-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: #94a3b8;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   OUTCOMES
+   ========================================================================== */
+
+.trn-outcomes {
+    list-style: none;
+    margin: 0;
+    padding: 26px 28px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 30px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+}
+
+.trn-outcomes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.trn-outcomes li svg {
+    color: #0F4C81;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* ==========================================================================
+   MODULES
+   ========================================================================== */
+
+.trn-module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.trn-module {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 22px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+}
+
+.trn-module:hover {
+    border-color: #0F4C81;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(15, 76, 129, 0.09);
+}
+
+.trn-module-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.trn-module-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: #e0f2fe;
+    color: #0F4C81;
+    transition: all 0.25s ease;
+}
+
+.trn-module:hover .trn-module-icon {
+    background: #0F4C81;
+    color: #ffffff;
+}
+
+.trn-module-num {
+    font-size: 20px;
+    font-weight: 800;
+    color: #e2e8f0;
+    letter-spacing: -0.5px;
+    transition: color 0.25s ease;
+}
+
+.trn-module:hover .trn-module-num {
+    color: #bae6fd;
+}
+
+.trn-module h5 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.4;
+    margin: 0 0 8px 0;
+}
+
+.trn-module p {
+    font-size: 13.3px;
+    line-height: 1.63;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ==========================================================================
+   AUDIENCE
+   ========================================================================== */
+
+.trn-audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.trn-audience {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #38bdf8;
+    border-radius: 14px;
+    padding: 20px 22px;
+    transition: all 0.2s ease;
+}
+
+.trn-audience:hover {
+    border-color: #0F4C81;
+    border-left-color: #0F4C81;
+    box-shadow: 0 10px 22px rgba(15, 76, 129, 0.07);
+}
+
+.trn-audience h5 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0F4C81;
+    margin: 0 0 7px 0;
+}
+
+.trn-audience p {
+    font-size: 13.3px;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0;
+}
+
+.trn-prereq {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #f0f9ff;
+    border: 1px solid #e0f2fe;
+    border-radius: 12px;
+    padding: 15px 18px;
+    font-size: 13.8px;
+    line-height: 1.6;
+    color: #475569;
+    margin: 0;
+}
+
+.trn-prereq svg {
+    color: #0F4C81;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.trn-prereq strong {
+    color: #0F4C81;
+}
+
+/* ==========================================================================
+   COURSE DETAILS + DOCUMENT
+   ========================================================================== */
+
+.trn-detail-split {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 22px;
+    margin-bottom: 44px;
+    align-items: start;
+}
+
+.trn-details {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 26px 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+}
+
+.trn-details .trn-section-head {
+    margin-bottom: 16px;
+}
+
+.trn-details > p {
+    font-size: 14.5px;
+    line-height: 1.72;
+    color: #475569;
+    margin: 0 0 22px 0;
+}
+
+.trn-includes-label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    color: #94a3b8;
+    margin-bottom: 14px;
+}
+
+.trn-includes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.trn-includes li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f9ff;
+    border: 1px solid #e0f2fe;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0F4C81;
+}
+
+.trn-includes svg {
+    flex-shrink: 0;
+}
+
+/* Document card */
+.trn-docs {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+}
+
+.trn-doc-card {
+    display: flex;
+    flex-direction: column;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trn-doc-card:hover {
+    background: #ffffff;
+    border-color: #0F4C81;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(15, 76, 129, 0.08);
+}
+
+.trn-doc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.trn-doc-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.trn-doc-icon {
+    color: #0F4C81;
+}
+
+.trn-doc-card h5 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.42;
+    margin: 0 0 7px 0;
+}
+
+.trn-doc-card p {
+    font-size: 12.8px;
+    line-height: 1.58;
+    color: #64748b;
+    margin: 0 0 18px 0;
+}
+
+.trn-doc-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-top: auto;
+}
+
+.btn-trn-view,
+.btn-trn-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 12px;
+    border-radius: 9px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-trn-view {
+    background: #ffffff;
+    color: #0F4C81;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-trn-view:hover {
+    background: #f1f5f9;
+    border-color: #0F4C81;
+}
+
+.btn-trn-download {
+    background: #0F4C81;
+    color: #ffffff;
+    border: 1px solid #0F4C81;
+}
+
+.btn-trn-download:hover {
+    background: #0b375e;
+    border-color: #0b375e;
+}
+
+/* ==========================================================================
+   CTA
+   ========================================================================== */
+
+.trn-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 26px;
+    flex-wrap: wrap;
+    background: linear-gradient(135deg, #0F4C81 0%, #061e33 100%);
+    border-radius: 22px;
+    padding: 32px 36px;
+    color: #ffffff;
+    box-shadow: 0 16px 36px rgba(15, 76, 129, 0.18);
+}
+
+.trn-cta-text h4 {
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.trn-cta-text p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #cbd5e1;
+    margin: 0;
+    max-width: 560px;
+}
+
+.trn-cta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-trn-primary,
+.btn-trn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.btn-trn-primary {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    color: #0F4C81;
+}
+
+.btn-trn-primary:hover {
+    background: #e0f2fe;
+    border-color: #e0f2fe;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+}
+
+.btn-trn-ghost {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    color: #ffffff;
+}
+
+.btn-trn-ghost:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   PDF VIEWER MODAL
+   Overlay + frame for the training template viewer.
+   ========================================================================== */
+
+.pdf-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background: rgba(6, 30, 51, 0.72);
+    backdrop-filter: blur(6px);
+    animation: pdfOverlayFade 0.22s ease;
+}
+
+@keyframes pdfOverlayFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.pdf-modal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1080px;
+    height: 100%;
+    max-height: 90vh;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(15, 23, 42, 0.35);
+    animation: pdfModalIn 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pdfModalIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, #0F4C81 0%, #082d4d 100%);
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.pdf-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+.pdf-modal-title svg {
+    color: #7dd3fc;
+    flex-shrink: 0;
+}
+
+.pdf-modal-title h4 {
+    font-size: 15.5px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pdf-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.pdf-modal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 15px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pdf-modal-btn:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #0F4C81;
+}
+
+.pdf-modal-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pdf-modal-close:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #0F4C81;
+    transform: rotate(90deg);
+}
+
+.pdf-modal-body {
+    flex: 1;
+    min-height: 0;
+    background: #f1f5f9;
+    padding: 14px;
+}
+
+.pdf-modal-frame {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #ffffff;
+    display: block;
+}
+
+.pdf-modal-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 12px;
+    text-align: center;
+    color: #64748b;
+    padding: 40px 20px;
+}
+
+.pdf-modal-fallback svg {
+    color: #cbd5e1;
+}
+
+.pdf-modal-fallback p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.pdf-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 22px;
+    border-top: 1px solid #f1f5f9;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.pdf-modal-hint {
+    font-size: 12.5px;
+    color: #94a3b8;
+}
+
+.pdf-modal-footer-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pdf-footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pdf-footer-btn.secondary {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #0F4C81;
+}
+
+.pdf-footer-btn.secondary:hover {
+    background: #f1f5f9;
+    border-color: #0F4C81;
+}
+
+.pdf-footer-btn.primary {
+    background: #0F4C81;
+    border: 1px solid #0F4C81;
+    color: #ffffff;
+}
+
+.pdf-footer-btn.primary:hover {
+    background: #0b375e;
+    border-color: #0b375e;
+}
+
+/* Locks background scroll while the modal is open (add to <body> in JS) */
+.pdf-modal-open {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .trn-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .trn-banner-media img {
+        min-height: 220px;
+        max-height: 280px;
+    }
+
+    .trn-module-grid,
+    .trn-audience-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trn-detail-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 860px) {
+    .training-page {
+        padding: 46px 0 70px;
+    }
+
+    .trn-intro h2 {
+        font-size: 27px;
+    }
+
+    .trn-lede {
+        font-size: 15px;
+    }
+
+    .trn-banner-body {
+        padding: 26px 22px;
+    }
+
+    .trn-banner-body h3 {
+        font-size: 19px;
+    }
+
+    .trn-highlights {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trn-outcomes {
+        grid-template-columns: 1fr;
+        padding: 22px;
+    }
+
+    .trn-module-grid,
+    .trn-audience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Modal goes fullscreen; header actions move to the footer */
+    .pdf-modal-overlay {
+        padding: 0;
+    }
+
+    .pdf-modal {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        border: none;
+    }
+
+    .pdf-modal-header {
+        padding: 14px 16px;
+    }
+
+    .pdf-modal-title h4 {
+        font-size: 14px;
+    }
+
+    .pdf-modal-btn {
+        display: none;
+    }
+
+    .pdf-modal-body {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 560px) {
+    .trn-intro h2 {
+        font-size: 23px;
+    }
+
+    .trn-banner-media {
+        padding: 16px;
+    }
+
+    .trn-banner-tag {
+        left: 26px;
+        bottom: 26px;
+        font-size: 11.5px;
+        padding: 7px 13px;
+    }
+
+    .trn-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .trn-highlight {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 9px;
+        flex-wrap: wrap;
+    }
+
+    .trn-details,
+    .trn-docs {
+        padding: 20px;
+    }
+
+    .trn-includes li {
+        width: 100%;
+    }
+
+    .trn-doc-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .trn-cta {
+        padding: 24px;
+    }
+
+    .trn-cta-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .btn-trn-primary,
+    .btn-trn-ghost {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .pdf-modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 12px 16px;
+    }
+
+    .pdf-modal-hint {
+        display: none;
+    }
+
+    .pdf-modal-footer-actions {
+        width: 100%;
+    }
+
+    .pdf-footer-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+/* The container holding the image and the tag */
+.trn-banner-media {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Adjust this value to your desired banner height */
+  overflow: hidden; /* Ensures the cropping stays within bounds */
+  border-radius: 8px; /* Optional: rounded corners for the banner */
+}
+
+/* The actual image */
+.trn-banner-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This is the magic: It resizes the image to fill the area while maintaining aspect ratio, cropping the excess. */
+  object-position: center; /* Ensures the center of the image is visible */
+  display: block;
+}
+
+/* The tag (kept in bottom left over the image) */
+.trn-banner-tag {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}

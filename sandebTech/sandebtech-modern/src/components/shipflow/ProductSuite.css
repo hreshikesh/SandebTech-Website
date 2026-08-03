@@ -1,0 +1,190 @@
+.product-suite{
+    padding:110px 0;
+    background:#f8fafc;
+}
+
+.section-title{
+    max-width:760px;
+    margin:0 auto 70px;
+    text-align:center;
+    padding: 0 20px;
+}
+
+.section-title span{
+    display:inline-block;
+    padding:10px 18px;
+    background:#eef6ff;
+    color:#0F4C81;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+.section-title h2{
+    font-size:44px;
+    color:#1e293b;
+    margin-bottom:20px;
+    line-height: 1.2;
+}
+
+.section-title p{
+    color:#64748b;
+    line-height:1.9;
+    font-size: 17px;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr); /* 2 columns by default */
+    gap:30px;
+}
+
+.product-card{
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    border-radius:24px;
+    padding:35px;
+    transition:.35s;
+    box-shadow:0 12px 30px rgba(15,23,42,.05);
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+    border-color:#0F4C81;
+    box-shadow:0 20px 45px rgba(15,23,42,.12);
+}
+
+.product-card h3{
+    font-size:24px;
+    color:#1e293b;
+    margin-bottom:18px;
+}
+
+.product-card p{
+    color:#64748b;
+    line-height:1.8;
+    margin-bottom:28px;
+}
+
+.product-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#0F4C81;
+    font-weight:600;
+    transition:.3s;
+}
+
+.product-link:hover{
+    gap:14px;
+}
+
+/* ==========================================
+   MEDIA QUERIES FOR RESPONSIVE DESIGN
+   ========================================== */
+
+/* Tablets & Small Laptops (Keeps 2 columns but packs them tighter) */
+@media(max-width:992px){
+    .product-grid{
+        grid-template-columns: repeat(2, 1fr); /* Explicitly maintaining 2 per row */
+        gap: 20px; /* Reduced gap to save horizontal space */
+    }
+    
+    .section-title{
+        margin-bottom: 50px;
+    }
+}
+
+/* Small Tablets */
+@media(max-width:768px){
+    .product-suite{
+        padding:80px 0;
+    }
+
+    .section-title h2{
+        font-size:34px;
+    }
+    
+    .section-title p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .product-card{
+        padding:24px; /* Slightly less padding to keep 2-column text readable */
+        border-radius: 20px;
+    }
+
+    .product-card h3 {
+        font-size: 20px;
+    }
+}
+
+/* Mobile Phones (Switches to 1 column so card details aren't crushed) */
+@media(max-width: 576px) {
+    .product-suite{
+        padding:60px 0;
+    }
+
+    .section-title {
+        padding: 0 15px;
+        margin-bottom: 40px;
+    }
+
+    .section-title span {
+        padding: 8px 14px;
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+
+    .section-title h2{
+        font-size:28px;
+        margin-bottom: 14px;
+    }
+
+    .product-grid{
+        grid-template-columns: 1fr; /* 1 column layout on mobile viewports */
+        gap: 20px;
+    }
+
+    .product-card{
+        padding: 22px;
+        border-radius: 16px;
+    }
+
+    .product-card:hover {
+        transform: none; 
+        border-color: #0F4C81;
+        box-shadow: 0 12px 30px rgba(15,23,42,.05);
+    }
+
+    .product-card p {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 22px;
+    }
+}
+
+.product-link{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+font:inherit;
+
+text-decoration:none;
+
+/* keep your existing styles */
+
+}

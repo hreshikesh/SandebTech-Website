@@ -1,0 +1,334 @@
+:root {
+    --panel-dark: #111c2e;
+    --input-dark: #0a121e;
+    --border-line: rgba(255, 255, 255, 0.05);
+    --soft-text: #94a3b8;
+    --bright-text: #f8fafc;
+    --cyan-glow: #00d9ff;
+    
+    /* Role and Action Palette */
+    --admin-bg: rgba(0, 217, 255, 0.1);
+    --admin-txt: #00d9ff;
+    --user-bg: rgba(148, 163, 184, 0.1);
+    --user-txt: #e2e8f0;
+    
+    --btn-view: #3b82f6;
+    --btn-role: #f59e0b;
+    --btn-del: #ef4444;
+}
+
+/* Page Header Structure */
+.admin-page {
+    padding: 24px;
+    color: var(--bright-text);
+}
+
+.users-header-block h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+    background: linear-gradient(135deg, #ffffff 0%, var(--soft-text) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.users-subtitle {
+    color: var(--soft-text);
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Operational Input Search Bar Toolbar Layout */
+.users-search-box input {
+    width: 100%;
+    max-width: 400px;
+    background: var(--input-dark);
+    border: 1px solid var(--border-line);
+    color: var(--bright-text);
+    padding: 11px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease;
+}
+
+.users-search-box input:focus {
+    outline: none;
+    border-color: var(--cyan-glow);
+    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.12);
+}
+
+.users-search-box input::placeholder {
+    color: var(--soft-text);
+    opacity: 0.7;
+}
+
+/* System Error Banner */
+.system-error-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--btn-del);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* High Fidelity Data Grid Framework Structure */
+.table-overflow-frame {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--panel-dark);
+    border: 1px solid var(--border-line);
+    border-radius: 12px;
+}
+
+.user-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+}
+
+.user-matrix-table th {
+    background: rgba(10, 18, 30, 0.4);
+    color: var(--soft-text);
+    padding: 16px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border-line);
+}
+
+.user-matrix-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-line);
+    color: var(--bright-text);
+    vertical-align: middle;
+}
+
+.user-matrix-table tr:last-child td {
+    border-bottom: none;
+}
+
+.user-matrix-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.strong-cell-text {
+    font-weight: 600;
+}
+
+/* Dynamic Badge Styling for User Roles */
+.role-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.role-admin {
+    background: var(--admin-bg);
+    color: var(--admin-txt);
+}
+
+.role-user {
+    background: var(--user-bg);
+    color: var(--user-txt);
+}
+
+.pill-decoration-icon {
+    opacity: 0.8;
+}
+
+/* Action Control Arrays Layout */
+.users-action-cell-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Custom Component Button States */
+.action-btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--input-dark);
+    border: 1px solid var(--border-line);
+    color: var(--bright-text);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.action-btn-pill:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.action-btn-pill svg {
+    font-size: 12px;
+}
+
+/* Button UI Micro-branding */
+.btn-view-accent:hover {
+    color: var(--btn-view);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.1);
+}
+
+.btn-role-accent:hover {
+    color: var(--btn-role);
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.1);
+}
+
+.btn-del-accent:hover {
+    color: var(--btn-del);
+    border-color: rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.1);
+}
+
+/* Empty State Styling */
+.users-empty-grid-placeholder {
+    text-align: center;
+    padding: 40px !important;
+    color: var(--soft-text);
+}
+
+.empty-state-icon-svg {
+    margin-bottom: 12px;
+    opacity: 0.4;
+}
+
+.users-empty-grid-placeholder h4 {
+    margin: 0 0 4px 0;
+    color: var(--bright-text);
+}
+
+.users-empty-grid-placeholder p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* Asynchronous Loading Fallback */
+.users-loading-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    color: var(--soft-text);
+    font-size: 16px;
+    font-weight: 500;
+    gap: 12px;
+}
+
+.spinner-loading-icon {
+    animation: spin 1s linear infinite;
+    font-size: 24px;
+    color: var(--cyan-glow);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Premium Custom Glassmorphic Detailed Inspection Card Modal Overlay */
+.identity-overlay-shield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 10, 18, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.identity-inspection-modal {
+    background: var(--panel-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.modal-header-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: rgba(10, 18, 30, 0.4);
+    border-bottom: 1px solid var(--border-line);
+}
+
+.modal-header-ribbon h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.modal-close-icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--soft-text);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.modal-close-icon-btn:hover {
+    color: var(--bright-text);
+}
+
+.modal-profile-payload {
+    padding: 20px;
+}
+
+.meta-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-line);
+}
+
+.meta-card-row:last-child {
+    border-bottom: none;
+}
+
+.meta-card-label {
+    color: var(--soft-text);
+    font-size: 13px;
+}
+
+.meta-card-value {
+    color: var(--bright-text);
+    font-weight: 500;
+    font-size: 14px;
+}

@@ -172,19 +172,17 @@ function Hero() {
           </motion.h1>
 
           <motion.p variants={itemVariants}>
-            Engineered for naval architects and hydrodynamicists. SHIPFLOW
-            delivers high-fidelity CFD simulations, automated hull shape
-            optimization, wave resistance predictions, and complex viscous flow
-            analysis.
+            Simulation-Driven Sustainability
+            From optimizing hull forms to reduce fuel consumption to designing HVAC systems to cut energy costs,Our simulation-led approach transforms sustainability from a goal into a measurable outcome.
           </motion.p>
 
           <motion.div variants={itemVariants} className="hero-buttons">
-            <Link to="/products-overview" className="hero-primary">
-              <span>Explore Products</span>
+            <Link to="/services" className="hero-primary">
+              <span>Explore Services</span>
               <ArrowRight size={18} className="btn-arrow" />
             </Link>
-            <Link to="/how-to-buy" className="hero-secondary">
-              Request Consultation
+            <Link to="/solutions" className="hero-secondary">
+              Our Solutions
             </Link>
           </motion.div>
 

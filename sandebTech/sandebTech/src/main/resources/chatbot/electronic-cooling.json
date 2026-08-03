@@ -1,0 +1,118 @@
+{
+  "domain": "electronic-cooling",
+  "documents": [
+    {
+      "id": "ec-overview",
+      "type": "application",
+      "title": "Electronics Cooling and Thermal Management",
+      "keywords": ["electronics cooling", "electronic cooling", "thermal management", "thermal", "cooling", "junction temperature", "hotspot", "heat dissipation", "chip"],
+      "phrases": ["electronics cooling", "thermal management", "junction temperature", "hotspot elimination", "heat dissipation"],
+      "content": "Electronics thermal management uses conjugate heat transfer analysis to resolve conduction through solids and convection in the surrounding fluid within a single coupled simulation. This predicts junction and case temperatures, identifies hotspots, and verifies that components stay within their thermal limits. Because component life falls sharply with temperature, thermal design directly determines product reliability and warranty cost as much as it determines performance.",
+      "boost": 1.3,
+      "button": { "label": "Thermal Services", "url": "/services" },
+      "source": { "name": "TCAE by CFD SUPPORT", "url": "https://www.cfdsupport.com/tcae/" }
+    },
+    {
+      "id": "ec-heat-sink",
+      "type": "service",
+      "title": "Heat Sink Design and Optimization",
+      "keywords": ["heat sink", "heatsink", "fin", "pin fin", "extruded", "vapour chamber", "heat pipe", "spreader", "thermal resistance", "surface area", "fin design"],
+      "phrases": ["heat sink design", "fin optimization", "thermal resistance", "heat pipe", "vapour chamber"],
+      "content": "Heat sink optimization balances thermal resistance against pressure drop, mass, cost and available volume. Design variables include fin count, thickness, height and spacing, base thickness for spreading, fin profile such as plate or pin, and the choice between extruded, skived, bonded or forged construction. Heat pipes and vapour chambers are introduced where the heat must be moved away from a constrained footprint before it can be rejected. Parametric studies find the genuine optimum rather than the first workable configuration.",
+      "boost": 1.2
+    },
+    {
+      "id": "ec-pcb-cooling",
+      "type": "service",
+      "title": "PCB and Component Level Cooling",
+      "keywords": ["pcb", "board", "component", "package", "copper", "via", "thermal via", "trace", "solder", "bga", "junction to ambient", "board level"],
+      "phrases": ["pcb cooling", "board level thermal", "thermal vias", "copper spreading", "component junction temperature"],
+      "content": "Board level thermal analysis models the PCB as an orthotropic conductor with realistic copper distribution rather than a uniform slab, because in-plane spreading through copper planes often dominates the heat path. Studies address thermal via arrays under hot packages, component placement to avoid downstream preheating, copper pour strategy, and junction-to-ambient resistance for individual packages. Detailed package models are used where the die, mould compound and lead frame matter.",
+      "boost": 1.2
+    },
+    {
+      "id": "ec-cht",
+      "type": "technology",
+      "title": "Conjugate Heat Transfer Analysis",
+      "keywords": ["conjugate heat transfer", "cht", "multi region", "coupled", "solid", "fluid", "interface", "non conformal", "openfoam", "boundary layer", "mesh"],
+      "phrases": ["conjugate heat transfer", "multi region mesh", "coupled solid fluid", "cht simulation"],
+      "content": "Conjugate heat transfer couples the solid and fluid domains so that interface temperatures are solved rather than imposed as a heat transfer coefficient guess. Multi-region meshes span air, coolant and solid regions across non-conformal interfaces, with boundary layers resolved at solid-fluid walls to capture near-wall gradients accurately. Both steady state and transient analyses are supported, the latter being necessary for duty cycles, thermal throttling behaviour and transient hotspot response.",
+      "boost": 1.2,
+      "source": { "name": "TCAE by CFD SUPPORT", "url": "https://www.cfdsupport.com/tcae/" }
+    },
+    {
+      "id": "ec-enclosure",
+      "type": "service",
+      "title": "Enclosure and System Level Cooling",
+      "keywords": ["enclosure", "chassis", "cabinet", "fan", "fan curve", "vent", "perforation", "natural convection", "forced convection", "airflow path", "recirculation", "filter"],
+      "phrases": ["enclosure cooling", "fan selection", "system level thermal", "natural convection", "airflow path"],
+      "content": "System level analysis covers the complete enclosure: fan selection and operating point from the intersection of fan curve and system impedance, inlet and exhaust vent placement and free area, internal baffling to direct flow over hot components, and avoidance of internal recirculation and short circuiting. Sealed and fanless enclosures relying on natural convection and radiation are analyzed where dust, noise or ingress protection rule out forced air. Filter loading and altitude derating are included where the deployment demands it.",
+      "boost": 1.1
+    },
+    {
+      "id": "ec-liquid-cooling",
+      "type": "service",
+      "title": "Liquid Cooling and Cold Plates",
+      "keywords": ["liquid cooling", "cold plate", "micro channel", "microchannel", "water cooling", "coolant", "immersion", "two phase", "pump", "flow rate", "direct to chip"],
+      "phrases": ["liquid cooling", "cold plate design", "micro channel", "direct to chip cooling", "immersion cooling"],
+      "content": "Liquid cooling becomes necessary as power density exceeds what air can remove economically. Cold plate design optimizes internal channel geometry, including serpentine and micro-channel layouts, to maximize heat transfer per unit pumping power while keeping temperature uniform across the die. Validated conjugate heat transfer models of serpentine micro-channel cold plates have demonstrated approximately ninety-seven percent of CPU generated heat transferred directly into the coolant. Direct-to-chip, rear door and immersion architectures are each assessed against the facility constraints.",
+      "boost": 1.2,
+      "source": { "name": "Conjugate Heat Transfer Modeling of a Cold Plate Design", "url": "https://www.mdpi.com/1996-1073/16/7/3088" }
+    },
+    {
+      "id": "ec-data-center",
+      "type": "application",
+      "title": "Data Center Cooling",
+      "keywords": ["data center", "datacenter", "data centre", "server", "rack", "cold aisle", "hot aisle", "containment", "crac", "crah", "pue", "bypass", "recirculation", "hybrid cooled"],
+      "phrases": ["data center cooling", "hot aisle containment", "cold aisle", "rack level cooling", "pue improvement"],
+      "content": "Data center thermal analysis works at room, row and rack scale. Studies address hot and cold aisle containment effectiveness, bypass and recirculation air that wastes cooling capacity, rack inlet temperature compliance against ASHRAE thermal guidelines, raised floor plenum and tile flow distribution, and CRAC or CRAH failure scenarios. Hybrid air and liquid cooled halls are modelled together so that the interaction between cold plate loops and residual air cooling is captured. Improvements translate directly into PUE and into reclaimed capacity from stranded cooling.",
+      "boost": 1.2,
+      "source": { "name": "Conjugate Heat Transfer Modeling of a Cold Plate Design", "url": "https://www.mdpi.com/1996-1073/16/7/3088" }
+    },
+    {
+      "id": "ec-battery",
+      "type": "application",
+      "title": "Battery Thermal Management",
+      "keywords": ["battery", "battery pack", "cell", "lithium", "thermal runaway", "bms", "ev", "electric vehicle", "charging", "cooling plate", "temperature uniformity", "energy storage"],
+      "phrases": ["battery thermal management", "thermal runaway", "cell temperature uniformity", "battery pack cooling", "fast charging"],
+      "content": "Battery thermal management targets both peak temperature and cell-to-cell uniformity, since imbalance accelerates ageing and reduces usable pack capacity. Analysis covers cell heat generation under drive and fast charge cycles, cooling plate and channel design, module and pack level flow distribution, and preconditioning in cold climates. Thermal runaway propagation studies assess whether a single cell failure can cascade through the module, which is central to safety certification for electric vehicles and grid storage.",
+      "boost": 1.1
+    },
+    {
+      "id": "ec-power-electronics",
+      "type": "application",
+      "title": "Power Electronics Cooling",
+      "keywords": ["power electronics", "igbt", "mosfet", "inverter", "converter", "sic", "gan", "switching loss", "tim", "thermal interface", "substrate", "module"],
+      "phrases": ["power electronics cooling", "igbt module", "thermal interface material", "inverter cooling", "switching losses"],
+      "content": "Power electronics cooling addresses IGBT, MOSFET and wide bandgap SiC and GaN devices where switching and conduction losses concentrate in very small areas. Analysis covers die to baseplate stack resistance, substrate and baseplate spreading, thermal interface material selection and bond line thickness, and coolant side design. Transient analysis matters because switching losses vary with duty cycle and short overloads can exceed steady state limits without reaching steady state at all.",
+      "boost": 1.0
+    },
+    {
+      "id": "ec-terms",
+      "type": "term",
+      "title": "Thermal Engineering Terminology",
+      "keywords": ["terminology", "glossary", "definition", "theta ja", "thermal resistance", "tim", "tdp", "nusselt", "heat flux", "derating", "meaning", "term"],
+      "phrases": ["thermal resistance", "thermal interface material", "what does mean", "junction to case"],
+      "content": "Common terms: Thermal resistance, expressed in kelvin per watt, relates temperature rise to dissipated power. Theta-JA is junction to ambient resistance, Theta-JC junction to case. TIM is thermal interface material, filling microscopic gaps between mating surfaces. TDP is thermal design power, the sustained heat load the cooling system must handle. Heat flux is power per unit area, the real driver of hotspot severity. Derating is reducing allowable power at elevated ambient or altitude. Nusselt number is the ratio of convective to conductive heat transfer.",
+      "boost": 0.9
+    },
+    {
+      "id": "ec-faq-when-liquid",
+      "type": "faq",
+      "title": "When is liquid cooling needed instead of air?",
+      "keywords": ["liquid or air", "when liquid", "air cooling limit", "switch", "power density", "watts", "decide", "choose"],
+      "phrases": ["liquid vs air cooling", "when is liquid cooling needed", "air cooling limits"],
+      "content": "Air cooling remains preferable while it works, because it avoids leak risk, pumps and coolant maintenance. The transition point depends on heat flux, allowable junction temperature and acoustic limits rather than total power alone. Air typically struggles above roughly one watt per square centimetre of die area in constrained enclosures, and in data centers above approximately twenty to thirty kilowatts per rack. Simulation establishes the crossover for a specific design rather than relying on a generic rule.",
+      "boost": 1.0
+    },
+    {
+      "id": "ec-faq-accuracy",
+      "type": "faq",
+      "title": "How accurate is electronics thermal simulation?",
+      "keywords": ["accurate", "accuracy", "validation", "measurement", "thermocouple", "correlation", "reliable", "trust"],
+      "phrases": ["how accurate", "validation against measurement", "simulation accuracy"],
+      "content": "With well-characterised material properties and boundary conditions, component temperature predictions typically agree with thermocouple and infrared measurements within a few degrees. The dominant uncertainties are usually thermal interface material performance in the assembled state, actual power dissipation versus datasheet figures, and contact resistance at bolted joints, rather than the flow solution itself. Correlating one physical prototype early substantially improves confidence for all subsequent design iterations.",
+      "boost": 1.0
+    }
+  ]
+}

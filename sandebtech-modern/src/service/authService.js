@@ -6,7 +6,7 @@ const API = axios.create({
 });
 
 API.interceptors.request.use((config) => {
-    // Read token from sessionStorage instead of localStorage
+
     const token = sessionStorage.getItem("token");
 
     if (token) {

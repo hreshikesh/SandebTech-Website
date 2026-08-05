@@ -262,14 +262,7 @@ export default function ServiceProduct() {
                             <Eye size={15} />
                             <span>View</span>
                           </button>
-                          <button
-                            type="button"
-                            className="btn-doc-download"
-                            onClick={() => handleDownloadPdf(doc)}
-                          >
-                            <Download size={15} />
-                            <span>Download</span>
-                          </button>
+                        
                         </div>
                       </div>
                     ))}

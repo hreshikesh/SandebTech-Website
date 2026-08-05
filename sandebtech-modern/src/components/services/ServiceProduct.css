@@ -609,8 +609,7 @@
 }
 
 .svc-doc-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
     gap: 9px;
     margin-top: auto;
 }

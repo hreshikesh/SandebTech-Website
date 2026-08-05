@@ -6,7 +6,8 @@ import {
     FaUsers,
     FaCalendarAlt,
     FaEnvelope,
-    FaSignOutAlt
+    FaSignOutAlt,
+    FaDownload,
 } from "react-icons/fa";
 
 import "../css/sidebar.css";
@@ -56,6 +57,10 @@ function Sidebar() {
                     <NavLink to="/admin/contacts">
                         <FaEnvelope className="nav-icon" size={20} />
                         <span className="nav-text">Contacts</span>
+                    </NavLink>
+                    <NavLink to="/admin/downloads">
+                        <FaDownload className="nav-icon" size={20} />
+                        <span className="nav-text">Downloads</span>
                     </NavLink>
                 </nav>
             </div>

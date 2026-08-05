@@ -5,9 +5,7 @@ const API = axios.create({
     baseURL: `${import.meta.env.VITE_API_URL}`
 });
 
-
-
-// ADD THIS
+// Request Interceptor: Attach JWT Token
 API.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
 
@@ -18,6 +16,7 @@ API.interceptors.request.use((config) => {
     return config;
 });
 
+// Response Interceptor: Handle Token Expiration
 API.interceptors.response.use(
     (response) => response,
     (error) => {
@@ -40,7 +39,18 @@ export default API;
 // --- Dashboard Matrix ---
 export const getDashboard = () => API.get("/admin/dashboard");
 
-// --- Meetings Endpoint (Upgraded for Server-Side Pagination & Sorting) ---
+// --- Downloads Endpoint ---
+export const getDownloadData = (page = 0, size = 10, sortBy = "downloadedAt", direction = "desc") =>
+    API.get("/admin/download", {
+        params: {
+            page,
+            size,
+            sortBy,
+            direction
+        }
+    });
+
+// --- Meetings Endpoint ---
 export const getMeetings = (page = 0, size = 5, sortBy = "createdAt", direction = "desc") =>
     API.get("/admin/meeting", {
         params: {

@@ -5,7 +5,8 @@ export const solutionLinks = [
       { title: "SHIPFLOW CFD", path: "/solutions/shipflow-cfd" },
       { title: "CAESES", path: "/solutions/caeses" },
       { title: "TCAE", path: "/solutions/tcae" },
-        { title: "AeroSim", path: "/solutions/aerosim" }, // Added after CAESES
+      { title: "AeroSim", path: "/solutions/aerosim" },
+      { title: "ColdStream", path: "/solutions/coldstream" },
     ],
   },
   {

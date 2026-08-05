@@ -22,6 +22,7 @@ import NotFound from "../pages/NotFound";
 import AuthManager from "../components/auth/AuthManager";
 
 import AdminLayout from "../admin/layout/AdminLayout";
+import Downloads from "../admin/pages/Download";
 import Dashboard from "../admin/pages/Dashboard";
 import Users from "../admin/pages/Users";
 import Meetings from "../admin/pages/Meetings";
@@ -40,6 +41,7 @@ import Careers from "../pages/Carreer";
 import TutorialsPage from "../pages/tutorial/TutorialsPage";
 import TrainingPage from "../pages/training/TrainingPage";
 import AeroSim from "../pages/aerosim/AeroSim";
+import ColdStream from "../pages/coldstream/ColdStream";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -136,6 +138,10 @@ function App() {
               path="/career"
               element={<Careers />}
             />
+            <Route
+              path="/solutions/coldstream"
+              element={<ColdStream />}
+            />
 
             <Route path="/services/hvac" element={<Hvac />} />
 
@@ -159,6 +165,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="meetings" element={<Meetings />} />
             <Route path="contacts" element={<Contacts />} />
+            <Route path="downloads" element={<Downloads />} />
           </Route>
 
         </Routes>

@@ -7,7 +7,7 @@
       "title": "Industry News and Vendor Updates",
       "keywords": ["news", "update", "announcement", "latest", "release", "blog", "article", "whats new"],
       "phrases": ["latest news", "industry news", "recent updates", "whats new"],
-      "content": "SandebTech maintains a curated news page linking to official vendor announcements across SHIPFLOW, CAESES, Lotus Marine, HVAC, fire safety and turbomachinery. Articles are not reproduced; each entry links directly to the publisher so you always read the authoritative version. Visit the news page for the current list.",
+      "content": "SandebTech maintains a curated news page linking to official vendor announcements across SHIPFLOW, CAESES, Lotus Micro, HVAC, fire safety and turbomachinery. Articles are not reproduced; each entry links directly to the publisher so you always read the authoritative version. Visit the news page for the current list.",
       "boost": 1.2,
       "button": { "label": "View News", "url": "/news" }
     },
@@ -101,14 +101,14 @@
     {
       "id": "news-lotus-solutions",
       "type": "news",
-      "category": "lotus-marine",
-      "categoryLabel": "Lotus Marine",
+      "category": "lotus-micro",
+      "categoryLabel": "Lotus Micro",
       "icon": "anchor",
-      "title": "Lotus Marine Engineering Solutions",
-      "keywords": ["lotus marine", "offshore", "vessel dynamics", "seakeeping", "naval design"],
+      "title": "Lotus Micro Engineering Solutions",
+      "keywords": ["lotus micro", "offshore", "vessel dynamics", "seakeeping", "naval design"],
       "content": "Advanced marine engineering solutions covering offshore structures, vessel dynamics and seakeeping analysis, alongside hull design support and simulation-driven naval design workflows.",
       "date": "Current",
-      "source": { "name": "SandebTech", "url": "/solutions/lotus-marine" }
+      "source": { "name": "SandebTech", "url": "/solutions/lotus-micro" }
     },
 
     {

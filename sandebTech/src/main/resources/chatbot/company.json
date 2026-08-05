@@ -190,16 +190,16 @@
       }
     },
     {
-      "id": "lotus-marine",
+      "id": "lotus-micro",
       "type": "solution",
       "title": "Lotus Marine",
-      "keywords": ["lotus", "lotus marine", "marine", "offshore", "seakeeping"],
-      "phrases": ["Lotus Marine"],
+      "keywords": ["lotus", "lotus micro", "marine", "offshore", "seakeeping"],
+      "phrases": ["Lotus Micro"],
       "content": "Lotus Marine delivers advanced marine engineering solutions for offshore structures, vessel dynamics and seakeeping analysis.",
       "boost": 1.2,
       "button": {
-        "label": "Explore Lotus Marine",
-        "url": "/solutions/lotus-marine"
+        "label": "Explore Lotus Micro",
+        "url": "/solutions/lotus-micro"
       }
     },
     {

@@ -1,15 +1,15 @@
 {
-  "domain": "lotus-marine",
+  "domain": "lotus-micro",
   "documents": [
     {
       "id": "lotus-overview",
       "type": "solution",
-      "title": "Lotus Marine Solutions",
-      "keywords": ["lotus", "lotus marine", "marine solution", "marine engineering", "vessel dynamics"],
-      "phrases": ["lotus marine", "marine engineering solutions", "vessel dynamics"],
-      "content": "Lotus Marine delivers advanced marine engineering solutions for offshore structures, vessel dynamics and seakeeping analysis. The offering spans hull design support, marine analysis, stability assessment and simulation-driven naval design workflows, connecting early concept exploration through to detailed verification.",
+      "title": "Lotus Micro Solutions",
+      "keywords": ["lotus", "lotus micro", "marine solution", "marine engineering", "vessel dynamics"],
+      "phrases": ["lotus micro", "marine engineering solutions", "vessel dynamics"],
+      "content": "Lotus micro delivers advanced marine engineering solutions for offshore structures, vessel dynamics and seakeeping analysis. The offering spans hull design support, marine analysis, stability assessment and simulation-driven naval design workflows, connecting early concept exploration through to detailed verification.",
       "boost": 1.2,
-      "button": { "label": "Explore Lotus Marine", "url": "/solutions/lotus-marine" }
+      "button": { "label": "Explore Lotus Micro", "url": "/solutions/lotus-micro" }
     },
     {
       "id": "lotus-hull-design",
@@ -21,7 +21,7 @@
       "boost": 1.2
     },
     {
-      "id": "lotus-marine-analysis",
+      "id": "lotus-micro-analysis",
       "type": "service",
       "title": "Marine Analysis Services",
       "keywords": ["marine analysis", "analysis", "hydrostatics", "loading", "structural", "load case", "trim", "draft", "assessment"],

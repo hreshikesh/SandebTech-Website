@@ -3,7 +3,8 @@
     --bg-main: #0a121e;
     --bg-surface: #111c2e;
     --bg-hover: #1a2942;
-    --accent-glow: #ff3b30; /* Transitioned cleanly from light cyber blue to glowing premium red */
+    --accent-glow: #ff3b30;
+    /* Transitioned cleanly from light cyber blue to glowing premium red */
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     --danger: #ef4444;
@@ -47,7 +48,7 @@
     height: 38px;
     object-fit: contain;
     border-radius: 6px;
-    filter: drop-shadow(0 0 4px rgba(255, 59, 48, 0.25));
+    background: linear-gradient(135deg, #ebedef, #5b85dfb5);
 }
 
 .logo-text-group {
@@ -114,7 +115,8 @@
 
 /* Red Active State Design Elements */
 .sidebar-nav a.active {
-    background: rgba(255, 59, 48, 0.08); /* Transparent Red Backdrop Wrapper */
+    background: rgba(255, 59, 48, 0.08);
+    /* Transparent Red Backdrop Wrapper */
     color: var(--accent-glow);
     font-weight: 600;
 }
@@ -173,7 +175,8 @@
     .logo-text-group,
     .nav-text,
     .logout-text {
-        display: none; /* Safely strips typography layouts on small viewports */
+        display: none;
+        /* Safely strips typography layouts on small viewports */
     }
 
     .sidebar-logo {
@@ -196,11 +199,13 @@
     }
 
     .sidebar-nav a:hover {
-        transform: scale(1.05); /* Avoid shifting sideways when collapsed */
+        transform: scale(1.05);
+        /* Avoid shifting sideways when collapsed */
     }
 
     .sidebar-nav a.active::before {
-        left: -12px; /* Pull active bar flush against viewport limit */
+        left: -12px;
+        /* Pull active bar flush against viewport limit */
     }
 
     .logout-btn {

@@ -1,0 +1,61 @@
+{
+  "domain": "coldstream",
+  "documents": [
+    {
+      "id": "coldstream-overview",
+      "type": "solution",
+      "title": "Diabatix ColdStream",
+      "keywords": ["coldstream", "diabatix", "ai cooling design", "thermal optimization", "heat sink optimization", "cold plate design"],
+      "phrases": ["diabatix coldstream", "ai driven cooling design", "thermal design optimization"],
+      "content": "ColdStream by Diabatix is an AI-driven thermal design platform that automatically generates and optimizes heat sinks and cold plates for maximum cooling performance. It leverages advanced simulation and artificial intelligence to explore thousands of design variations and deliver high-performance thermal solutions in a fraction of traditional design time.",
+      "boost": 1.2,
+      "button": { "label": "Explore ColdStream", "url": "/solutions/coldstream" }
+    },
+    {
+      "id": "coldstream-heat-sink",
+      "type": "service",
+      "title": "AI Heat Sink Optimization",
+      "keywords": ["heat sink", "heat sink design", "air cooling", "forced convection", "thermal resistance", "electronics cooling", "fins"],
+      "phrases": ["heat sink optimization", "ai heat sink design", "optimized fin geometry"],
+      "content": "ColdStream automatically designs high-performance air-cooled heat sinks by optimizing fin geometry, spacing, and overall topology for minimal thermal resistance and pressure drop. The AI engine evaluates thousands of configurations to achieve superior cooling performance while meeting manufacturing and spatial constraints.",
+      "boost": 1.2
+    },
+    {
+      "id": "coldstream-cold-plate",
+      "type": "service",
+      "title": "Liquid Cold Plate Design",
+      "keywords": ["cold plate", "liquid cooling", "water cooling", "microchannel", "pressure drop", "flow path", "liquid thermal management"],
+      "phrases": ["cold plate optimization", "liquid cooling design", "microchannel cold plate"],
+      "content": "ColdStream enables intelligent liquid cold plate design by optimizing internal channel layouts, flow distribution, and thermal performance. The AI-driven workflow balances heat transfer and pressure drop to deliver compact, high-efficiency cooling solutions suitable for high-power electronics and battery systems.",
+      "boost": 1.2
+    },
+    {
+      "id": "coldstream-automation",
+      "type": "technology",
+      "title": "AI-Driven Thermal Design Workflow",
+      "keywords": ["automation", "ai optimization", "design automation", "simulation driven design", "parametric optimization", "cloud simulation"],
+      "phrases": ["ai driven workflow", "automated thermal design", "cloud based optimization"],
+      "content": "ColdStream replaces manual iteration with automated AI-based optimization. Engineers define design constraints such as thermal load, allowable pressure drop, material, and envelope dimensions. The platform then autonomously generates, evaluates, and refines geometries using high-fidelity simulations, significantly reducing development time and engineering effort.",
+      "boost": 1.1
+    },
+    {
+      "id": "coldstream-applications",
+      "type": "solution",
+      "title": "Electronics & High-Power Applications",
+      "keywords": ["data center", "power electronics", "battery cooling", "automotive", "inverter", "semiconductor", "high heat flux"],
+      "phrases": ["data center cooling", "battery thermal management", "power electronics cooling"],
+      "content": "ColdStream is used for high-performance cooling applications including data centers, power electronics, automotive inverters, battery systems, and semiconductor devices. It supports both air and liquid cooling strategies and is particularly suited for high heat flux and space-constrained applications.",
+      "boost": 1.1
+    },
+    {
+      "id": "coldstream-benefits",
+      "type": "faq",
+      "title": "What are the benefits of ColdStream?",
+      "keywords": ["benefits", "advantages", "why coldstream", "design speed", "cost reduction", "performance improvement"],
+      "phrases": ["benefits of coldstream", "why use coldstream", "advantages of ai cooling design"],
+      "content": "ColdStream significantly reduces design time by automating thermal optimization. It improves cooling performance, reduces material usage, and lowers development costs by minimizing physical prototyping. The AI-based workflow enables engineers to focus on system integration while the platform handles geometry optimization.",
+      "boost": 1.0,
+      "button": { "label": "Contact Us", "url": "/solutions/coldstream" }
+    }
+  ]
+}

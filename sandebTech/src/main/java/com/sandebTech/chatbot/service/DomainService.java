@@ -29,6 +29,12 @@ public class DomainService {
         if (q.contains("lotus"))
             return "lotus";
 
+        // ✅ ColdStream / Diabatix
+        if (q.contains("coldstream") || q.contains("diabatix")
+                || q.contains("heat sink optimization") || q.contains("cold plate design")
+                || q.contains("ai cooling"))
+            return "coldstream";
+
         // CAESES
         if (q.contains("caeses") || q.contains("parametric") || q.contains("geometry optimization")
                 || q.contains("cad optimization"))

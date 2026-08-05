@@ -122,7 +122,7 @@
   position: relative;
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(225, 228, 232, 0.912);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--sb-radius-md);
   display: flex;

@@ -1,11 +1,11 @@
-import { X, RotateCcw, Sparkles } from "lucide-react";
-
+import { X, RotateCcw } from "lucide-react";
+import logo from "../../assets/images/logo/logo.webp";
 export default function ChatHeader({ onClose, onClear }) {
   return (
     <div className="chat-header">
       <div className="chat-header-info">
         <div className="avatar-badge">
-          <Sparkles size={16} />
+          <img src={logo} alt="Logo"/>
           <span className="status-indicator" title="Online" />
         </div>
         <div>

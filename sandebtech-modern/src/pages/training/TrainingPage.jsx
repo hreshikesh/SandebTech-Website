@@ -292,14 +292,7 @@ export default function TrainingPage() {
                                         <Eye size={15} />
                                         <span>View</span>
                                     </button>
-                                    <button
-                                        type="button"
-                                        className="btn-trn-download"
-                                        onClick={() => handleDownloadPdf(doc)}
-                                    >
-                                        <Download size={15} />
-                                        <span>Download</span>
-                                    </button>
+                                    
                                 </div>
                             </div>
                         ))}

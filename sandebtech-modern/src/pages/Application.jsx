@@ -21,6 +21,8 @@ import lotusImg from "../assets/images/lotus/products/lbk0504.webp";
 import lotusImg2 from "../assets/images/lotus/products/lmu20p1.webp";
 import hvacImg from "../assets/images/solutions/havc.webp";
 import hvacImg2 from "../assets/images/solutions/havc2.webp";
+import coldStream from "../assets/images/coldstream/coldstreamhero.webp";
+import electronicColling from "../assets/images/services/electronics.webp"
 import SEO from "../components/seo/SEO";
 const applicationData = {
   marine: {
@@ -125,10 +127,20 @@ const applicationData = {
         subtitle: "System-Level Heat Transfer",
         description:
           "Simulate conjugate heat transfer (CHT) to resolve thermal hotspots, balance pressure drop, and optimize custom heat sink fin geometries.",
-        image: lotusImg2,
-        link: "/solutions/lotus-micro",
-        tags: ["CHT Simulation", "Junction Temp", "Heat Sinks"],
+        image: electronicColling,
+        link: "/services/#electronics-cooling",
+        tags: ["CHT Simulation", "Junction Temp",],
       },
+      {
+        id: "ColdStream",
+        title: "Electronics Thermal CFD Made Simple",
+        subtitle: "Design-Driven Cooling Simulation",
+        description:
+          "Empower design engineers to run accurate thermal and airflow simulations on electronic assemblies early in the design cycle — reducing prototypes, cutting costs, and ensuring product reliability.",
+        image: coldStream,
+        link: "/solutions/coldstream",
+        tags: ["Early-Stage CFD", "Reliability", "Airflow & Heat"],
+      }
     ],
   },
   hvac: {

@@ -187,6 +187,7 @@ function Downloads() {
                             <th>User Details</th>
                             <th>Phone Number</th>
                             <th>Downloaded At</th>
+                            <th>Document</th>
                             <th className="text-right">Actions</th>
                         </tr>
                     </thead>
@@ -206,6 +207,9 @@ function Downloads() {
                                     </td>
                                     <td>
                                         <span>{formatDate(item.downloadedAt)}</span>
+                                    </td>
+                                    <td>
+                                        <span className="cell-subject-text">{item.documentTitle || "—"}</span>
                                     </td>
                                     <td>
                                         <div className="action-button-group" style={{ justifyContent: "flex-end" }}>
@@ -331,6 +335,10 @@ function Downloads() {
                                 <div className="info-block">
                                     <label>Timestamp</label>
                                     <p>{formatDate(selectedDownload.downloadedAt)}</p>
+                                </div>
+                                <div className="info-block">
+                                    <label>Document</label>
+                                    <p>{formatDate(selectedDownload.documentTitle)}</p>
                                 </div>
                             </div>
                         </div>

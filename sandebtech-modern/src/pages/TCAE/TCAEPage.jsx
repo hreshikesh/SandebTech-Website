@@ -214,7 +214,7 @@ function TCAEPage() {
                     <div className="tcae-container">
                         <div className="tcae-section-header text-center">
                             <span className="section-subtitle">
-                                <Sparkles size={14} /> Comparative Advantage
+                               Comparative Advantage
                             </span>
                             <h2>Why Choose TCAE?</h2>
                             <p>

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   Ship,
@@ -17,29 +18,48 @@ import {
   Layers
 } from "lucide-react";
 
-// Maritime documents
-
-
-// Component Imports
 import PdfViewerModal from "../lotus/PdfViewerModal";
 import "./ServiceProduct.css";
 
 import { services } from "../../data/services";
 
 export default function ServiceProduct() {
+  const location = useLocation();
+
   const [activeId, setActiveId] = useState(services[0].id);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  // PDF modal state
   const [activePdf, setActivePdf] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const active = services.find((s) => s.id === activeId) || services[0];
   const ActiveIcon = active.icon;
 
+  useEffect(() => {
+    const hash = location.hash?.replace("#", "");
+    if (!hash) return;
+
+    const match = services.find((s) => s.id === hash);
+    if (match) {
+      setActiveId(match.id);
+
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
+
   const handleSelect = (id) => {
     setActiveId(id);
     setMobileNavOpen(false);
+
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const handleOpenPdf = (doc) => {
@@ -65,7 +85,6 @@ export default function ServiceProduct() {
     <section className="services-page">
       <div className="container">
         <div className="services-split">
-          {/* LEFT — OPTION RAIL */}
           <aside className="services-rail">
             <div className="rail-heading">
               <span className="rail-eyebrow">Services</span>
@@ -96,27 +115,27 @@ export default function ServiceProduct() {
                 const Icon = s.icon;
                 const isActive = s.id === activeId;
                 return (
-                  <button
-                    key={s.id}
-                    type="button"
-                    className={`rail-item ${isActive ? "active" : ""}`}
-                    onClick={() => handleSelect(s.id)}
-                  >
-                    <span className="rail-item-index">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="rail-item-icon">
-                      <Icon size={17} />
-                    </span>
-                    <span className="rail-item-label">{s.label}</span>
-                    <span className="rail-item-marker" />
-                  </button>
+                  <section id={s.id} key={s.id} className="rail-item-section">
+                    <button
+                      type="button"
+                      className={`rail-item ${isActive ? "active" : ""}`}
+                      onClick={() => handleSelect(s.id)}
+                    >
+                      <span className="rail-item-index">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="rail-item-icon">
+                        <Icon size={17} />
+                      </span>
+                      <span className="rail-item-label">{s.label}</span>
+                      <span className="rail-item-marker" />
+                    </button>
+                  </section>
                 );
               })}
             </nav>
           </aside>
 
-          {/* RIGHT — CONTENT PANEL */}
           <div className="services-panel" key={active.id}>
             <div className="panel-media">
               <img src={active.image} alt={active.imageAlt} />
@@ -262,7 +281,6 @@ export default function ServiceProduct() {
                             <Eye size={15} />
                             <span>View</span>
                           </button>
-                        
                         </div>
                       </div>
                     ))}

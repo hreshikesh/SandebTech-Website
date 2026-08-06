@@ -33,6 +33,7 @@ public class DownloadServiceImpl implements DownloadService {
                     .email(downloadRequest.getEmail())
                     .phone(downloadRequest.getPhone())
                     .downloadedAt(LocalDateTime.now())
+                    .documentTitle(downloadRequest.getDocumentTitle())
                     .build();
 
             downloadRepository.save(downloadEntity);
@@ -71,6 +72,7 @@ public class DownloadServiceImpl implements DownloadService {
                 .email(downloadEntity.getEmail())
                 .phone(downloadEntity.getPhone())
                 .downloadedAt(downloadEntity.getDownloadedAt())
+                .documentTitle(downloadEntity.getDocumentTitle())
                 .build();
 
     }

@@ -1,6 +1,7 @@
 package com.sandebTech.download.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,9 +24,11 @@ public class DownloadEntity {
     @Column(nullable = false, length = 120)
     private String email;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String phone;
 
+    @Column(nullable = false, length = 120)
+    private String  documentTitle;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime downloadedAt;

@@ -18,6 +18,11 @@ public class DownloadRequest {
     @Email(message = "Invalid email.")
     private String email;
 
-    @NotBlank(message = "Phone is required.")
+
     private String phone;
+
+
+    @NotBlank(message = "Document title is required.")
+    private String  documentTitle;
+
 }

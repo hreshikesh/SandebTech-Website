@@ -18,4 +18,6 @@ public class DownloadResponse {
     private String phone;
 
     private LocalDateTime downloadedAt;
+
+    private String  documentTitle;
 }

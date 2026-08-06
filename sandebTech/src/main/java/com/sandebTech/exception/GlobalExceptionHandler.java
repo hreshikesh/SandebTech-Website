@@ -100,7 +100,7 @@ public class GlobalExceptionHandler {
 
         log.error("DTO Validation failed for path: {}", request.getRequestURI());
         return ResponseEntity.badRequest()
-                .body(build(HttpStatus.BAD_REQUEST, "Validation Failed", request.getRequestURI(), errors));
+                .body(build(HttpStatus.BAD_REQUEST, "Check The Data Entered", request.getRequestURI(), errors));
     }
 
     @ExceptionHandler(Exception.class)

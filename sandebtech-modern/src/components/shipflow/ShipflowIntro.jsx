@@ -1,6 +1,6 @@
 import "./ShipflowIntro.css";
 
-import intro1 from "../../assets/images/hero/hero1.webp";
+import intro1 from "../../assets/images/shipflow/shipflowIntro.webp";
 import intro2 from "../../assets/images/shipflow/intro2.webp";
 import intro3 from "../../assets/images/shipflow/intro3.webp";
 

@@ -41,7 +41,7 @@ const discovered = Object.keys(globbed)
  */
 const PUBLIC_FALLBACK = [
   "/images/hero/hero.webp",
-  "/images/hero/hero1.webp",
+  "/images/shipflow/shipflowIntro.webp",
   "/images/hero/hero2.webp",
   "/images/hero/hero3.webp",
 ];

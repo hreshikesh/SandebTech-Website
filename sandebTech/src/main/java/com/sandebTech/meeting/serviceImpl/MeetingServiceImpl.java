@@ -10,12 +10,14 @@ import com.sandebTech.meeting.dto.MeetingRequest;
 import com.sandebTech.meeting.dto.MeetingResponse;
 import com.sandebTech.meeting.dto.UpdateMeetingStatusRequest;
 import com.sandebTech.meeting.entity.Meeting;
+import com.sandebTech.meeting.entity.MeetingMode;
 import com.sandebTech.meeting.entity.MeetingStatus;
 import com.sandebTech.meeting.repository.MeetingRepository;
 import com.sandebTech.meeting.service.MeetingService;
 import com.sandebTech.user.entity.User;
 import com.sandebTech.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -96,7 +99,11 @@ public class MeetingServiceImpl implements MeetingService {
                 meeting.setStatus(MeetingStatus.CONFIRMED);
                 meeting.setAdminRemarks(request.getAdminRemarks());
 
-                meeting = googleCalendarService.createMeeting(meeting);
+                // ✅ Only generate Google Meet link for online meetings.
+                // For IN_PERSON and PHONE modes, no link is created.
+                if (isOnlineMode(meeting.getMeetingMode())) {
+                    meeting = googleCalendarService.createMeeting(meeting);
+                }
 
                 meetingRepository.save(meeting);
 
@@ -109,10 +116,13 @@ public class MeetingServiceImpl implements MeetingService {
                 meeting.setStatus(MeetingStatus.CANCELLED);
                 meeting.setAdminRemarks(request.getAdminRemarks());
 
-                googleCalendarService.deleteMeeting(meeting);
-
-                meeting.setGoogleEventId(null);
-                meeting.setGoogleMeetLink(null);
+                // ✅ Only delete Google event if one was actually created
+                // (i.e., online meetings with an existing eventId).
+                if (isOnlineMode(meeting.getMeetingMode()) && meeting.getGoogleEventId() != null) {
+                    googleCalendarService.deleteMeeting(meeting);
+                    meeting.setGoogleEventId(null);
+                    meeting.setGoogleMeetLink(null);
+                }
 
                 meetingRepository.save(meeting);
 
@@ -140,8 +150,7 @@ public class MeetingServiceImpl implements MeetingService {
 
                 meetingRepository.save(meeting);
 
-
-                 emailService.sendMeetingCompleted(meeting);
+                emailService.sendMeetingCompleted(meeting);
             }
 
             Meeting updated = meetingRepository.save(meeting);
@@ -196,6 +205,16 @@ public class MeetingServiceImpl implements MeetingService {
         }
 
         return slots;
+    }
+
+    // ==============================================================
+    // Helper: determines whether a meeting mode requires an online link
+    // ==============================================================
+    private boolean isOnlineMode(MeetingMode mode) {
+        if (mode == null) return false;
+        // Adjust these enum values to match your actual MeetingMode enum.
+        // Only ONLINE / GOOGLE_MEET / VIDEO modes will generate a Meet link.
+        return mode != MeetingMode.IN_PERSON && mode != MeetingMode.PHONE_CALL;
     }
 
     private MeetingResponse map(Meeting meeting) {

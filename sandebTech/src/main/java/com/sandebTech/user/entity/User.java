@@ -55,7 +55,7 @@ public class User extends BaseEntity implements UserDetails {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Meeting> meetings = new ArrayList<>();
+    private final List<Meeting> meetings = new ArrayList<>();
 
 
     @Override

@@ -13,6 +13,7 @@
 
     <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
         <h4 style="margin: 0 0 5px 0; color: #991b1b;">Cancelled Details Reference:</h4>
+        <p style="margin: 8px 0; color: #334155;"><strong style="color: #0f172a;">Remarks:</strong> <span th:text="${meeting.adminRemarks}"></span></p>
         <p style="margin: 4px 0; font-size: 14px; color: #555;"><strong style="color: #0f172a;">Requested Slot:</strong> <span th:text="${meeting.meetingDate}"></span> at <span th:text="${meeting.startTime}"></span></p>
         <p style="margin: 4px 0; font-size: 14px; color: #555;"><strong style="color: #0f172a;">Stated Objective:</strong> <span th:text="${meeting.purpose}"></span></p>
         <p th:if="${meeting.notes != null and !meeting.notes.empty}" style="margin: 4px 0; font-size: 14px; color: #555;"><strong style="color: #0f172a;">Your Notes:</strong> <span th:text="${meeting.notes}"></span></p>

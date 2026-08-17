@@ -281,6 +281,8 @@ function ContactInfo() {
                 <option value="HVAC CFD Work">HVAC CFD Work</option>
                 <option value="Fire and Evacuation">Fire and Evacuation</option>
                 <option value="Training">Training</option>
+                <option value="AEROSIM">AEROSIM</option>
+                <option value="ColdStream">ColdStream</option>
                 <option value="Other">Other</option>
               </select>
 

@@ -167,8 +167,8 @@ function Hero() {
           </motion.div>
 
           <motion.h1 variants={itemVariants}>
-            Accelerate Marine Design <br />
-            <span className="hero-gradient-text">Through SHIPFLOW</span>
+           Engineering  Solutions  with  <br />
+            <span className="hero-gradient-text">Sustainable Impact</span>
           </motion.h1>
 
           <motion.p variants={itemVariants}>

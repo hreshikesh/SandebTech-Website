@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./Applications.css";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileText, ExternalLink } from "lucide-react";
 
 import hullImg from "../../assets/images/shipflow/applications/hull.webp";
 import bulbImg from "../../assets/images/shipflow/applications/bulb.webp";
 import aftbodyImg from "../../assets/images/shipflow/applications/aftbody.webp";
 
-import pdf from "../../assets/images/pdf/Ocean Engineering .pdf";
+import { caseStudy } from "../../data/caseStudy";
 import PdfViewerModal from "../../components/lotus/PdfViewerModal";
 
 const applications = [
@@ -37,28 +37,20 @@ const applications = [
     link: "https://shipflow.se/cases/improvement-of-aftbody-hull-form",
     type: "external",
   },
-  {
-    id: 4,
-    title:
-      "Validation of full-scale delivered power CFD simulations",
-    image: null,
-    description:
-      "In this paper, computational fluid dynamics (CFD) simulation of steady ship motions at different drift angles, yaw rates, rudder angles, and their combinations are carried out for KRISO Very Large Crude Carrier 2 (KVLCC2) tanker ship. The simulations are conducted with the commercial steady state Reynolds averaged Navier-Stokes (RANS) flow solver SHIPFLOW®. The hydrodynamic forces in horizontal plane and the moment around the vertical axis acting on the ship are determined in deep- and shallow water. Resulting forces and moment are compared to experimental data found in literature. Influence of the water depth is shown with the forces and moment, with the velocity and the turbulent kinetic energy behind the ship and with the pressure distribution on the hull.",
-    link: pdf,
-    type: "pdf",
-  },
 ];
+
+
 
 function Applications() {
   const [activePdf, setActivePdf] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLinkClick = (app) => {
-    if (app.type === "pdf") {
-      setActivePdf(app);
+  const handleLinkClick = (item) => {
+    if (item.type === "pdf") {
+      setActivePdf(item);
       setIsModalOpen(true);
     } else {
-      window.open(app.link, "_blank", "noopener,noreferrer");
+      window.open(item.link, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -70,6 +62,7 @@ function Applications() {
   return (
     <section className="applications">
       <div className="container">
+        {/* --- MAIN APPLICATIONS SECTION --- */}
         <div className="section-title">
           <span>APPLICATIONS</span>
           <h2>Real Engineering Applications</h2>
@@ -80,40 +73,93 @@ function Applications() {
           </p>
         </div>
 
-        {applications.map((app, index) => (
-          <div
-            key={app.id}
-            className={`application-row ${index % 2 !== 0 ? "reverse" : ""} ${
-              !app.image ? "no-image" : ""
-            }`}
-          >
-            {app.image && (
-              <div className="application-image">
-                <img src={app.image} alt={app.title} />
-              </div>
-            )}
-
+        <div className="applications-list">
+          {applications.map((app, index) => (
             <div
-              className={`application-content ${!app.image ? "full-width" : ""}`}
+              key={app.id}
+              className={`application-row ${index % 2 !== 0 ? "reverse" : ""} ${
+                !app.image ? "no-image" : ""
+              }`}
             >
-              <h3>{app.title}</h3>
-              <p>{app.description}</p>
+              {app.image && (
+                <div className="application-image">
+                  <img src={app.image} alt={app.title} />
+                </div>
+              )}
 
-              <button
-                className="case-link"
-                onClick={() => handleLinkClick(app)}
+              <div
+                className={`application-content ${
+                  !app.image ? "full-width" : ""
+                }`}
               >
-                {app.type === "pdf"
-                  ? "View Research Paper"
-                  : "View Detailed Case Study"}
-                <ArrowUpRight size={18} />
-              </button>
+                <h3>{app.title}</h3>
+                <p>{app.description}</p>
+
+                <button
+                  className="case-link"
+                  onClick={() => handleLinkClick(app)}
+                >
+                  {app.type === "pdf"
+                    ? "View Research Paper"
+                    : "View Detailed Case Study"}
+                  <ArrowUpRight size={18} />
+                </button>
+              </div>
             </div>
+          ))}
+        </div>
+
+        {/* --- CASE STUDIES & RESEARCH PAPERS SECTION --- */}
+        <div className="case-studies-wrapper">
+          <div className="section-title sub-title">
+            <span>RESEARCH & VALIDATION</span>
+            <h2>Case Studies & Publications</h2>
+            <p>
+              Explore peer-reviewed papers, full-scale CFD validation studies,
+              and hydrodynamic research published using SHIPFLOW®.
+            </p>
           </div>
-        ))}
+
+          <div className="case-studies-grid">
+            {caseStudy.map((study) => (
+              <div key={study.id} className="case-study-card">
+                <div className="case-study-header">
+                  <span className={`type-badge ${study.type}`}>
+                    {study.type === "pdf" ? (
+                      <>
+                        <FileText size={14} /> PDF Document
+                      </>
+                    ) : (
+                      <>
+                        <ExternalLink size={14} /> External Paper
+                      </>
+                    )}
+                  </span>
+                </div>
+
+                <div className="case-study-body">
+                  <h4>{study.title}</h4>
+                  <p>{study.description}</p>
+                </div>
+
+                <div className="case-study-footer">
+                  <button
+                    className="case-study-btn"
+                    onClick={() => handleLinkClick(study)}
+                  >
+                    {study.type === "pdf"
+                      ? "Read Full Research Paper"
+                      : "View Article Source"}
+                    <ArrowUpRight size={16} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* PDF Modal — same pattern as LotusProducts */}
+      {/* PDF Modal */}
       <PdfViewerModal
         isOpen={isModalOpen}
         onClose={handleClosePdf}

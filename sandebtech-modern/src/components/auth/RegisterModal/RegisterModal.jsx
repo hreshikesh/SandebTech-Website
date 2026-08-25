@@ -146,7 +146,7 @@ function RegisterModal({
     }
 
     if (result.token) {
-      localStorage.setItem("token", result.token);
+      sessionStorage.setItem("token", result.token);
     }
 
     login(userData);

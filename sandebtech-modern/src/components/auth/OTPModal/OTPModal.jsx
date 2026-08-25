@@ -79,7 +79,7 @@ function OTPModal({
 
             if (!result.newUser) {
                 if (result.token) {
-                    localStorage.setItem("token", result.token);
+                    sessionStorage.setItem("token", result.token);
                 }
                 login(result.userResponse);
                 setOtpOpen(false);

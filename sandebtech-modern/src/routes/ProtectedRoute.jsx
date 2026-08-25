@@ -3,21 +3,23 @@ import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedRoute({ children }) {
   const { user, token, setLoginOpen } = useAuth();
-  const prompted = useRef(false);
 
   const isAuthenticated = Boolean(user || token);
+  const promptedRef = useRef(false);
 
   useEffect(() => {
-    if (!isAuthenticated && !prompted.current) {
-      prompted.current = true;
+    if (!isAuthenticated && !promptedRef.current) {
+      promptedRef.current = true;
       setLoginOpen(true);
     }
 
     if (isAuthenticated) {
-      prompted.current = false;
+      promptedRef.current = false;
     }
   }, [isAuthenticated, setLoginOpen]);
 
+  // Do not render Meeting until authenticated.
+  // LoginModal is rendered globally by AuthManager.
   if (!isAuthenticated) {
     return null;
   }

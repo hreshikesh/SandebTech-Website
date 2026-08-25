@@ -48,22 +48,18 @@ function App() {
   const [loading, setLoading] = useState(true);
 
 
-  useEffect(() => {
-
-    const timer = setTimeout(() => {
-
-      setLoading(false);
-
-    }, 1800);
-
-    return () => clearTimeout(timer);
-
-  }, []);
-  if (loading) {
-
-    return <Loader />;
-
+useEffect(() => {
+  if (location.pathname === "/meeting") {
+    setLoading(false);
+    return;
   }
+
+  const timer = setTimeout(() => {
+    setLoading(false);
+  }, 1800);
+
+  return () => clearTimeout(timer);
+}, [location.pathname]);
   return (
     <>
       <Toaster position="bottom-right" />

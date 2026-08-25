@@ -7,7 +7,7 @@ const API = axios.create({
 
 // Request Interceptor: Attach JWT Token
 API.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
@@ -22,7 +22,7 @@ API.interceptors.response.use(
     (error) => {
         const status = error.response?.status;
 
-        if (status === 401 && localStorage.getItem("token")) {
+        if (status === 401 && sessionStorage.getItem("token")) {
             window.dispatchEvent(new Event("forceLogout"));
 
             toast.error("Session expired. Please login again.");

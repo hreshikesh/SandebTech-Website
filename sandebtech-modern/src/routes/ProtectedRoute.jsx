@@ -1,34 +1,25 @@
 import { useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
-import "./ProtectedRoute.css";
 
 export default function ProtectedRoute({ children }) {
   const { user, token, setLoginOpen } = useAuth();
+  const prompted = useRef(false);
 
   const isAuthenticated = Boolean(user || token);
-  const hasPrompted = useRef(false);
 
   useEffect(() => {
-    if (!isAuthenticated && !hasPrompted.current) {
-      hasPrompted.current = true;
+    if (!isAuthenticated && !prompted.current) {
+      prompted.current = true;
       setLoginOpen(true);
+    }
+
+    if (isAuthenticated) {
+      prompted.current = false;
     }
   }, [isAuthenticated, setLoginOpen]);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      hasPrompted.current = false;
-    }
-  }, [isAuthenticated]);
-
   if (!isAuthenticated) {
-    return (
-      <div className="protected-route-container">
-        <p className="protected-route-text">
-          Please log in to access the meeting
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return children;

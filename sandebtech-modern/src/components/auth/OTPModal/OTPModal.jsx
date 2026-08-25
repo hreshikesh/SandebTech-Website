@@ -129,12 +129,10 @@ function OTPModal({
 
                         <h2>Verify Email</h2>
 
-                        <p>
-                            We've sent a 6-digit verification code to{" "}
-                            <strong>{email}</strong>
-                            <p>Please Check Your Spam if you don't see the otp.</p>
-                            <p>Otp valid till 5 minutes</p>
-                        </p>
+                        <div className="modal-description text-slate-400">
+                            <p>We have sent a 6-digit verification code to:</p>
+                            <p className="font-semibold text-white">{email}</p> {/* ✅ GOOD: Siblings inside a <div> */}
+                        </div>
 
                         <OTPInput value={otp} onChange={setOtp} />
 

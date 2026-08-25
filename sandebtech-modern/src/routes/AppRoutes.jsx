@@ -42,6 +42,7 @@ import TutorialsPage from "../pages/tutorial/TutorialsPage";
 import TrainingPage from "../pages/training/TrainingPage";
 import AeroSim from "../pages/aerosim/AeroSim";
 import ColdStream from "../pages/coldstream/ColdStream";
+import ProtectedRoute from "./ProtectedRoute";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -147,7 +148,7 @@ function App() {
 
             <Route path="/contact" element={<Contact />} />
 
-            <Route path="/meeting" element={<Meeting />} />
+            <Route path="/meeting" element={<ProtectedRoute><Meeting /></ProtectedRoute>} />
 
             <Route path="*" element={<NotFound />} />
 

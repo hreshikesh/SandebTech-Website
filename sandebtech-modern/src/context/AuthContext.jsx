@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 
 export const AuthContext = createContext();
 
@@ -7,126 +14,166 @@ const TOKEN_KEY = "token";
 const SESSION_START_KEY = "session_start_time";
 
 export function AuthProvider({ children }) {
+  const [user, setUser] = useState(() => {
+    try {
+      const storedUser = sessionStorage.getItem(USER_KEY);
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch {
+      return null;
+    }
+  });
 
-    // Use sessionStorage so closing tab/browser clears it automatically
-    const [user, setUser] = useState(() => {
-        const storedUser = sessionStorage.getItem(USER_KEY);
-        return storedUser ? JSON.parse(storedUser) : null;
-    });
+  const [token, setToken] = useState(() => {
+    return sessionStorage.getItem(TOKEN_KEY) || null;
+  });
 
-    const [pendingAction, setPendingAction] = useState(null);
-    const [loginOpen, setLoginOpen] = useState(false);
-    const [otpOpen, setOtpOpen] = useState(false);
-    const [registerOpen, setRegisterOpen] = useState(false);
-    const [successOpen, setSuccessOpen] = useState(false);
-    const [email, setEmail] = useState("");
-    const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [pendingAction, setPendingAction] = useState(null);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [otpOpen, setOtpOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
-    const login = useCallback((userData) => {
-        // Clear old session
-        sessionStorage.clear();
+  const login = useCallback((userData) => {
+    // Fresh session only
+    sessionStorage.clear();
 
-        // Set session start
-        sessionStorage.setItem(SESSION_START_KEY, Date.now().toString());
+    sessionStorage.setItem(SESSION_START_KEY, Date.now().toString());
+    sessionStorage.setItem(USER_KEY, JSON.stringify(userData));
 
-        // Store user and token in sessionStorage only
-        sessionStorage.setItem(USER_KEY, JSON.stringify(userData));
+    const extractedToken =
+      userData?.token || userData?.accessToken || null;
 
-        if (userData.token) {
-            sessionStorage.setItem(TOKEN_KEY, userData.token);
-        }
+    if (extractedToken) {
+      sessionStorage.setItem(TOKEN_KEY, extractedToken);
+      setToken(extractedToken);
+    } else {
+      // Still mark session as authenticated if API returns user without token field
+      sessionStorage.setItem(TOKEN_KEY, "authenticated");
+      setToken("authenticated");
+    }
 
-        setUser(userData);
-    }, []);
+    setUser(userData);
+  }, []);
 
-    const logout = useCallback(() => {
-        // Clear everything
-        sessionStorage.clear();
-        localStorage.removeItem(USER_KEY);
-        localStorage.removeItem(TOKEN_KEY);
-        localStorage.removeItem(SESSION_START_KEY);
+  const logout = useCallback(() => {
+    // Session-only cleanup
+    sessionStorage.removeItem(USER_KEY);
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(SESSION_START_KEY);
+    // Or wipe entire tab session:
+    // sessionStorage.clear();
 
-        // Reset state
-        setUser(null);
-        setLoginOpen(false);
-        setOtpOpen(false);
-        setRegisterOpen(false);
-        setSuccessOpen(false);
-    }, []);
+    setUser(null);
+    setToken(null);
+    setLoginOpen(false);
+    setOtpOpen(false);
+    setRegisterOpen(false);
+    setSuccessOpen(false);
+    setEmail("");
+    setOtp(["", "", "", "", "", ""]);
+    setPendingAction(null);
+  }, []);
 
-    const getSessionStartTime = useCallback(() => {
-        const startTime = sessionStorage.getItem(SESSION_START_KEY);
-        return startTime ? parseInt(startTime, 10) : null;
-    }, []);
+  const getSessionStartTime = useCallback(() => {
+    const startTime = sessionStorage.getItem(SESSION_START_KEY);
+    return startTime ? parseInt(startTime, 10) : null;
+  }, []);
 
-    const isSessionValid = useCallback((maxSessionTime) => {
-        const startTime = getSessionStartTime();
-        if (!startTime) return false;
-        const elapsed = Date.now() - startTime;
-        return elapsed < maxSessionTime;
-    }, [getSessionStartTime]);
+  const isSessionValid = useCallback(
+    (maxSessionTime) => {
+      const startTime = getSessionStartTime();
+      if (!startTime) return false;
+      return Date.now() - startTime < maxSessionTime;
+    },
+    [getSessionStartTime]
+  );
 
-    // Force logout event listener
-    useEffect(() => {
-        const forceLogout = () => logout();
-        window.addEventListener("forceLogout", forceLogout);
-        return () => window.removeEventListener("forceLogout", forceLogout);
-    }, [logout]);
+  useEffect(() => {
+    const forceLogout = () => logout();
+    window.addEventListener("forceLogout", forceLogout);
+    return () => window.removeEventListener("forceLogout", forceLogout);
+  }, [logout]);
 
-    const executePendingAction = () => {
-        if (pendingAction) {
-            pendingAction();
-            setPendingAction(null);
-        }
-    };
+  const executePendingAction = useCallback(() => {
+    if (pendingAction) {
+      pendingAction();
+      setPendingAction(null);
+    }
+  }, [pendingAction]);
 
-    const requireAuth = (callback) => {
-        if (user) {
-            callback();
-            return;
-        }
-        setPendingAction(() => callback);
-        setLoginOpen(true);
-    };
+  const requireAuth = useCallback(
+    (callback) => {
+      if (user || token) {
+        callback();
+        return;
+      }
+      setPendingAction(() => callback);
+      setLoginOpen(true);
+    },
+    [user, token]
+  );
 
-    const openLogin = () => setLoginOpen(true);
+  const openLogin = useCallback(() => setLoginOpen(true), []);
 
-    const closeAll = () => {
-        setLoginOpen(false);
-        setOtpOpen(false);
-        setRegisterOpen(false);
-        setSuccessOpen(false);
-    };
+  const closeAll = useCallback(() => {
+    setLoginOpen(false);
+    setOtpOpen(false);
+    setRegisterOpen(false);
+    setSuccessOpen(false);
+  }, []);
 
-    return (
-        <AuthContext.Provider
-            value={{
-                user,
-                login,
-                logout,
-                requireAuth,
-                executePendingAction,
-                getSessionStartTime,
-                isSessionValid,
-                loginOpen,
-                otpOpen,
-                registerOpen,
-                successOpen,
-                setLoginOpen,
-                setOtpOpen,
-                setRegisterOpen,
-                setSuccessOpen,
-                email,
-                setEmail,
-                otp,
-                setOtp,
-                openLogin,
-                closeAll,
-            }}
-        >
-            {children}
-        </AuthContext.Provider>
-    );
+  const contextValue = useMemo(
+    () => ({
+      user,
+      token,
+      login,
+      logout,
+      requireAuth,
+      executePendingAction,
+      getSessionStartTime,
+      isSessionValid,
+      loginOpen,
+      otpOpen,
+      registerOpen,
+      successOpen,
+      setLoginOpen,
+      setOtpOpen,
+      setRegisterOpen,
+      setSuccessOpen,
+      email,
+      setEmail,
+      otp,
+      setOtp,
+      openLogin,
+      closeAll,
+    }),
+    [
+      user,
+      token,
+      login,
+      logout,
+      requireAuth,
+      executePendingAction,
+      getSessionStartTime,
+      isSessionValid,
+      loginOpen,
+      otpOpen,
+      registerOpen,
+      successOpen,
+      email,
+      otp,
+      openLogin,
+      closeAll,
+    ]
+  );
+
+  return (
+    <AuthContext.Provider value={contextValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export const useAuth = () => useContext(AuthContext);

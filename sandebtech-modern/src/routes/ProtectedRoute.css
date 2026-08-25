@@ -1,0 +1,53 @@
+/* ProtectedRoute.css */
+
+.protected-route-container {
+  display: flex;
+  min-height: 70vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #02070d;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background radial glow */
+.protected-route-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.protected-route-text {
+  font-size: 0.75rem; /* 12px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #06b6d4; /* Cyan accent */
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: 1px solid rgba(6, 182, 212, 0.15);
+  background-color: rgba(6, 182, 212, 0.03);
+  backdrop-filter: blur(8px);
+  animation: marine-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes marine-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.05);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.98);
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+  }
+}

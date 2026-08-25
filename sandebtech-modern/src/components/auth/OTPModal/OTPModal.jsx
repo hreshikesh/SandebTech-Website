@@ -76,12 +76,12 @@ function OTPModal({
                 setError(result?.message || "Invalid validation code provided.");
                 return;
             }
-
             if (!result.newUser) {
-                if (result.token) {
-                    sessionStorage.setItem("token", result.token);
-                }
-                login(result.userResponse);
+                login({
+                    ...result.userResponse,
+                    token: result.token,
+                });
+
                 setOtpOpen(false);
                 setSuccessOpen(true);
                 return;

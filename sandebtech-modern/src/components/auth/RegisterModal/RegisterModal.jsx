@@ -145,11 +145,10 @@ function RegisterModal({
       return;
     }
 
-    if (result.token) {
-      sessionStorage.setItem("token", result.token);
-    }
-
-    login(userData);
+  login({
+    ...userData,
+    token: result.token,
+});
 
     setRegisterOpen(false);
 

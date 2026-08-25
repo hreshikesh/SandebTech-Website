@@ -35,28 +35,32 @@ export function AuthProvider({ children }) {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
-  const login = useCallback((userData) => {
-    // Fresh session only
-    sessionStorage.clear();
+ const login = useCallback((userData) => {
+    sessionStorage.setItem(
+        SESSION_START_KEY,
+        Date.now().toString()
+    );
 
-    sessionStorage.setItem(SESSION_START_KEY, Date.now().toString());
-    sessionStorage.setItem(USER_KEY, JSON.stringify(userData));
+    sessionStorage.setItem(
+        USER_KEY,
+        JSON.stringify(userData)
+    );
 
     const extractedToken =
-      userData?.token || userData?.accessToken || null;
+        userData?.token ||
+        userData?.accessToken ||
+        null;
 
     if (extractedToken) {
-      sessionStorage.setItem(TOKEN_KEY, extractedToken);
-      setToken(extractedToken);
+        sessionStorage.setItem(TOKEN_KEY, extractedToken);
+        setToken(extractedToken);
     } else {
-      // Still mark session as authenticated if API returns user without token field
-      sessionStorage.setItem(TOKEN_KEY, "authenticated");
-      setToken("authenticated");
+        sessionStorage.removeItem(TOKEN_KEY);
+        setToken(null);
     }
 
     setUser(userData);
-  }, []);
-
+}, []);
   const logout = useCallback(() => {
     // Session-only cleanup
     sessionStorage.removeItem(USER_KEY);

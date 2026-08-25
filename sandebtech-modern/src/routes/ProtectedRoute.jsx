@@ -1,14 +1,11 @@
 import { useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
-import "./ProtectedRoute.css"; // <--- Import the CSS here
+import "./ProtectedRoute.css";
 
 export default function ProtectedRoute({ children }) {
   const { user, token, setLoginOpen } = useAuth();
-  
-  const isAuthenticated = Boolean(
-    user || token || sessionStorage.getItem("token") || sessionStorage.getItem("sandebtech-user")
-  );
 
+  const isAuthenticated = Boolean(user || token);
   const hasPrompted = useRef(false);
 
   useEffect(() => {

@@ -25,7 +25,7 @@ export const rawNewsData = [
       "Maya HTT, a Montreal-based engineering software and simulation company, announced the acquisition of FRIENDSHIP SYSTEMS, bringing CAESES' parametric CAD and shape-optimization platform into a broader simulation and AI portfolio.",
     date: "July 2026",
     newsUrl: "https://www.friendship-systems.com/",
-    featured: true,
+    featured: false,
     tags: ["Maya HTT", "Acquisition", "Parametric CAD"]
   },
   
@@ -55,5 +55,19 @@ export const rawNewsData = [
     featured: false,
     tags: ["Marine CFD", "FLOWTECH", "Hydrodynamics"]
   },
+   {
+    id: "caeses-2",
+    product: "CAESES",
+    category: "CAESES",
+    icon: Layers,
+    title: "Simulation- and data-driven design with automated engineering workflows",
+    description:
+      "CAESES combines simulation-ready parametric geometry with automated workflows – connecting geometry variation, simulation, and optimization to explore hundreds or thousands of design alternatives with minimal manual intervention.",
+    date: "September 16, 2026",
+    newsUrl: "https://lnkd.in/dtmniMpF",
+    featured: true,
+    tags: ["SimulationDrivenDesign", "DataDrivenEngineering", "DesignOptimization"]
+  },
+  
 
 ];

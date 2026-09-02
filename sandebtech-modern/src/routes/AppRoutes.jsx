@@ -82,10 +82,10 @@ useEffect(() => {
 
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/application" element={<Application />} />
-            <Route
+            {/* <Route
               path="/solutions/shipflow-cfd"
               element={<ShipflowCFD />}
-            />
+            /> */}
 
             <Route
               path="/solutions/caeses"

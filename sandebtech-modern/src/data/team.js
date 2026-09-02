@@ -30,13 +30,7 @@ export const coreTeam = [
 ];
 
 export const mentors = [
-  {
-    id: 1,
-    name: "Dr. Michal Orych",
-    designation: "Managing Director, FLOWTECH international AB",
-    image: mentor1,
-    linkedin: "https://www.linkedin.com/in/michal-orych-663735b9/",
-  },
+
   {
     id: 2,
     name: "Dr. Sarmistha Mahanty",

@@ -39,7 +39,7 @@ function Footer() {
   const solutions =
     solutionsMenuItem?.subLinks ||
     solutionsMenuItem?.children || [
-      { id: "shipflow", title: "SHIPFLOW CFD", path: "/solutions/shipflow-cfd" },
+      // { id: "shipflow", title: "SHIPFLOW CFD", path: "/solutions/shipflow-cfd" },
       { id: "caeses", title: "CAESES", path: "/solutions/caeses" },
       { id: "lotus-micro", title: "Lotus Microsystems", path: "/solutions/lotus-micro" },
       { id: "cloud-cae", title: "Cloud-CAE Solutions", path: "/solutions/cloud-cae" },

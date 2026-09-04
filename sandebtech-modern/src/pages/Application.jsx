@@ -46,7 +46,7 @@ const applicationData = {
         description:
           "Specialized CFD tool calculating potential flow, viscous resistance, trim, sinkage, and self-propulsion across varying sea conditions and speed profiles.",
         image: shipflowImg,
-        link: "/solutions/shipflow-cfd",
+        link: "/services",
         tags: ["Potential Flow", "Viscous RANS", "Propulsor Interaction"],
       },
       {

@@ -65,9 +65,33 @@ export const rawNewsData = [
       "CAESES combines simulation-ready parametric geometry with automated workflows – connecting geometry variation, simulation, and optimization to explore hundreds or thousands of design alternatives with minimal manual intervention.",
     date: "September 16, 2026",
     newsUrl: "https://lnkd.in/dtmniMpF",
-    featured: true,
+    featured: false,
     tags: ["SimulationDrivenDesign", "DataDrivenEngineering", "DesignOptimization"]
   },
+  {
+    id: "shipflow-2",
+    product: "SHIPFLOW",
+    category: "SHIPFLOW",
+    icon: Ship,
+    title: "SHIPFLOW 9.0.00 for Windows",
+    description: "Supported on Windows version 10 and 11.",
+    date: "2026",
+    newsUrl: "https://shipflow.se/pub/SetupShipflow9.0.00-x86_64.exe",
+    featured: true,
+    tags: ["Marine CFD", "FLOWTECH", "Hydrodynamics", "Windows"]
+  },
+  {
+    id: "shipflow-3",
+    product: "SHIPFLOW",
+    category: "SHIPFLOW",
+    icon: Ship,
+    title: "SHIPFLOW 9.0.00 for Linux",
+    description: "Supported on Rocky, Alma, RedHat 9 & 10, and Ubuntu 22 and newer.",
+    date: "2026",
+    newsUrl: "https://shipflow.se/pub/shipflow9.0.00-linux-x86_64.tgz",
+    featured: true,
+    tags: ["Marine CFD", "FLOWTECH", "Hydrodynamics", "Linux"]
+  }
   
 
 ];

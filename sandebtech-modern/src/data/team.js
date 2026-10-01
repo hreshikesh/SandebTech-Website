@@ -1,6 +1,7 @@
 import member1 from "../assets/images/team/member1.webp";
 import member2 from "../assets/images/team/member2.webp";
 import member3 from "../assets/images/team/member3.webp";
+import member4 from "../assets/images/team/member4.webp";
 import mentor1 from "../assets/images/mentor/mentor1.webp";
 import mentor2 from "../assets/images/mentor/mentor2.webp";
 import mentor3 from "../assets/images/mentor/mentor3.webp";
@@ -26,6 +27,13 @@ export const coreTeam = [
     designation: "CAE Consultant",
     image: member3,
     linkedin: "https://www.linkedin.com/in/shankar-s-ba388533",
+  },
+  {
+    id: 4,
+    name: "Mr.Vishnu R Suresh",
+    designation: "Naval Architect / Design Engineer",
+    image: member4,
+    linkedin: "https://www.linkedin.com/in/vishnu-r-suresh-308754130",
   },
 ];
 
